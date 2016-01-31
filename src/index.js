@@ -1,9 +1,17 @@
-import React, { Component } from 'react'
+import React from 'react'
+import { render } from 'react-dom'
+import { Provider } from 'react-redux'
 
-class App extends Component {
-  render () {
-    return <div>Hello World!!!</div>
-  }
-}
+import App from './containers/App'
+import DevTools from './containers/DevTools'
+import store from './store'
 
-export default App
+render(
+  <Provider store={ store() }>
+    <div>
+      <App/>
+      <DevTools/>
+    </div>
+  </Provider>,
+  document.getElementById('app')
+)
