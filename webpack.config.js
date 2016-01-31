@@ -5,6 +5,7 @@ module.exports = {
     path: __dirname,
     filename: "bundle.js"
   },
+  devtool: 'source-map',
   module: {
     loaders: [
       {
@@ -12,7 +13,8 @@ module.exports = {
         exclude: /(node_modules)/,
         loader: 'babel',
         query: {
-          presets: ['react', 'es2015']
+          presets: ['react', 'es2015'],
+          plugins: ['transform-runtime']
         }
       }
     ]
