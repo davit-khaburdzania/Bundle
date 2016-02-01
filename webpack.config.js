@@ -1,3 +1,8 @@
+'use strict'
+
+let autoprefixer = require('autoprefixer')
+let precss       = require('precss')
+
 module.exports = {
   context: __dirname,
   entry: './index',
@@ -19,7 +24,12 @@ module.exports = {
           presets: ['react', 'es2015'],
           plugins: ['transform-runtime']
         }
+      },
+      {
+        test:   /\.css$/,
+        loader: 'style-loader!css-loader!postcss-loader'
       }
     ]
-  }
+  },
+  postcss: () => [autoprefixer, precss]
 }
