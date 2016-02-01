@@ -2,14 +2,16 @@ import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 
-import App from './containers/App'
+import Root from './containers/Root'
 import DevTools from './containers/DevTools'
-import store from './store'
+import createStore from './store/createStore'
+
+let store = createStore({})
 
 render(
-  <Provider store={ store() }>
+  <Provider store={ store }>
     <div>
-      <App/>
+      <Root/>
       <DevTools/>
     </div>
   </Provider>,

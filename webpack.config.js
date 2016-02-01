@@ -3,9 +3,12 @@ module.exports = {
   entry: './index',
   output: {
     path: __dirname,
-    filename: "bundle.js"
+    filename: 'bundle.js'
   },
   devtool: 'source-map',
+  devServer: {
+    historyApiFallback: true
+  },
   module: {
     loaders: [
       {
