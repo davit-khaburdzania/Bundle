@@ -1,3 +1,5 @@
+'use strict'
+
 let autoprefixer = require('autoprefixer')
 let precss       = require('precss')
 
@@ -25,11 +27,9 @@ module.exports = {
       },
       {
         test:   /\.css$/,
-        loader: "style-loader!css-loader!postcss-loader"
+        loader: 'style-loader!css-loader!postcss-loader'
       }
     ]
   },
-  postcss: function () {
-    return [autoprefixer, precss];
-  }
+  postcss: () => [autoprefixer, precss]
 }
