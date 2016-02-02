@@ -1,8 +1,15 @@
-import { createStore } from 'redux'
+import { createStore, compose } from 'redux'
 import rootReducer from '../reducers'
 
-import middlewares from './middlewares'
+import * as middlewares from './middlewares'
+
+const enhancers = compose(
+  middlewares.thunk(),
+  middlewares.history(),
+  middlewares.devTools(),
+  middlewares.devToolsPersistState()
+)
 
 export default function (initialState) {
-  return createStore(rootReducer, initialState, middlewares)
+  return createStore(rootReducer, initialState, enhancers)
 }
