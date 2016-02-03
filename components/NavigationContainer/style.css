@@ -3,4 +3,5 @@
   width: 80px;
   height: 100vh;
   background: #F8F8F8;
+  overflow: hidden;
 }
