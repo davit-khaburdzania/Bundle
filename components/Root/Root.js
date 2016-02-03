@@ -12,7 +12,7 @@ class Root extends Component {
     return (
       <Provider store={ store }>
         <div>
-          <Router history={ history } >
+          <Router history={ history }>
             <Route path='/' component={ App } />
             <Route path='/login' component={ Login } />
           </Router>
