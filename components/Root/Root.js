@@ -11,7 +11,7 @@ class Root extends Component {
   render() {
     return (
       <Provider store={ store }>
-        <div>
+        <div className="root-container">
           <Router history={ history }>
             <Route path='/' component={ App } />
             <Route path='/login' component={ Login } />
