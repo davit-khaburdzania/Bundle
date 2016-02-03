@@ -13,8 +13,8 @@ class Root extends Component {
       <Provider store={ store }>
         <div className="root-container">
           <Router history={ history }>
-            <Route path='/' component={ App } />
-            <Route path='/login' component={ Login } />
+            <Route path="/" component={ App } />
+            <Route path="/login" component={ Login } />
           </Router>
 
           <DevTools/>
