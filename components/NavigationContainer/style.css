@@ -1,5 +1,6 @@
 .navigation-container {
+  position: relative;
   width: 80px;
+  height: 100vh;
   background: #F8F8F8;
-  height: 100%;
 }
