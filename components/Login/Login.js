@@ -7,7 +7,7 @@ class Login extends Component {
       <div>
         Login now!
         <br />
-        <Link to={ '/' }>Home</Link>
+        <Link to="/">Home</Link>
       </div>
     )
   }
