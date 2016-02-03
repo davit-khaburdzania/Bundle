@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-
-import { UserMenu, Menu } from '../'
+import { MainNavigation, UserMenu, Menu } from '../'
 import * as userMenuActions from '../../actions/UserMenu'
 
 import './style.css'
@@ -14,6 +13,8 @@ class NavigationContainer extends Component {
 
     return (
       <div className="navigation-container">
+        <MainNavigation />
+
         <UserMenu { ...bindActionCreators(userMenuActions, dispatch) }>
           <Menu left={ "70px" } bottom={ "40px" } headline={ "Julia Roberts" }
             open={ isOpen }>
