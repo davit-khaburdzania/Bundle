@@ -5,6 +5,6 @@ import { Root } from './components'
 import './style.css'
 
 render(
-  <Root/>,
+  <Root />,
   document.getElementById('app')
 )
