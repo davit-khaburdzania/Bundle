@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router'
 
 class Login extends Component {
   render () {
     return (
       <div>
-        Hello Login!
+        Login now!
+        <br />
+        <Link to={ '/' } >Home</Link>
       </div>
     )
   }
 }
 
-export default Login
+export { Login }
