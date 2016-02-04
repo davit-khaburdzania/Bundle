@@ -8,7 +8,9 @@ import {
   CollectionsContainer,
   BundlesContainer,
   FavoritesContainer,
-  NotificationsContainer } from '../'
+  NotificationsContainer
+} from '../'
+
 import createStore from '../../store/createStore'
 import history from '../../history'
 
