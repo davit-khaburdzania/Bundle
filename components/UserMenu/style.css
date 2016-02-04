@@ -1,0 +1,18 @@
+.user-menu {
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  bottom: 0;
+
+  .avatar-holder {
+    height: inherit;
+    position: absolute;
+    cursor: pointer;
+    padding: 15px;
+
+    img {
+      width: 50px;
+      height: 50px;
+    }
+  }
+}
