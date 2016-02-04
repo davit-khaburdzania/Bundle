@@ -1,0 +1,6 @@
+.app-container {
+  display: flex;
+  width: 350px;
+  height: 100vh;
+  background: #e3e3e3;
+}
