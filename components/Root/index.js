@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
-import { Router, Route } from 'react-router'
+import { Router, Route, IndexRedirect } from 'react-router'
 import {
   App,
   Login,
@@ -24,9 +24,11 @@ class Root extends Component {
         <div className="root-container">
           <Router history={ history }>
             <Route path="/" component={ App }>
-              <Route path="/collections" component={ CollectionsContainer } />
-              <Route path="/bundles" component={ BundlesContainer } />
-              <Route path="/favorites" component={ FavoritesContainer } />
+              <IndexRedirect to="/bundles" />
+
+              <Route path="/bundles"       component={ BundlesContainer } />
+              <Route path="/collections"   component={ CollectionsContainer } />
+              <Route path="/favorites"     component={ FavoritesContainer } />
               <Route path="/notifications" component={ NotificationsContainer } />
             </Route>
             <Route path="/login" component={ Login } />
