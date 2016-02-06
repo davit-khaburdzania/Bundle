@@ -12,14 +12,16 @@ class NavigationContainer extends Component {
     let { isOpen, dispatch } = this.props
 
     return (
-      <div className="navigation-container">
+      <div className='navigation-container'>
         <MainNavigation />
 
         <UserMenu { ...bindActionCreators(userMenuActions, dispatch) }>
-          <Menu left={ "70px" } bottom={ "40px" } headline={ "Julia Roberts" }
-            open={ isOpen }>
-            <Link to="/settings">Settings</Link>
-            <Link to="/logout">Sign Out</Link>
+          <Menu left={'70px'} bottom={'40px'}
+            headline={'Julia Roberts'}
+            open={isOpen}
+          >
+            <Link to='/settings'>Settings</Link>
+            <Link to='/logout'>Sign Out</Link>
           </Menu>
         </UserMenu>
       </div>

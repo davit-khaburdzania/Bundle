@@ -32,6 +32,8 @@
     "babel-preset-react": "^6.3.13",
     "babel-preset-stage-0": "^6.3.13",
     "css-loader": "^0.23.1",
+    "eslint-config-standard": "^5.0.0",
+    "eslint-config-standard-jsx": "^1.0.0",
     "history": "^1.17.0",
     "postcss-loader": "^0.8.0",
     "precss": "^1.4.0",

@@ -1,8 +1,3 @@
-'use strict'
-
-let autoprefixer = require('autoprefixer')
-let precss       = require('precss')
-
 module.exports = {
   context: __dirname,
   entry: './index',
@@ -26,10 +21,11 @@ module.exports = {
         }
       },
       {
-        test:   /\.css$/,
+        test: /\.css$/,
         loader: 'style-loader!css-loader!postcss-loader'
       }
     ]
   },
-  postcss: () => [autoprefixer, precss]
+
+  postcss: () => [require('autoprefixer'), require('precss')]
 }
