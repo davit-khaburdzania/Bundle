@@ -11,6 +11,7 @@ class BundlesContainer extends Component {
           </div>
         </div>
 
+        Bundle
       </div>
     )
   }
