@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { List, ListItem } from '../'
+import { List, ListItem, BundleListItem } from '../'
 
 class BundlesContainer extends Component {
   render () {
@@ -13,10 +13,10 @@ class BundlesContainer extends Component {
         </div>
 
         <List>
-          <ListItem />
-          <ListItem />
-          <ListItem />
-          <ListItem />
+          <ListItem Component={BundleListItem} />
+          <ListItem Component={BundleListItem} />
+          <ListItem Component={BundleListItem} />
+          <ListItem Component={BundleListItem} />
         </List>
       </div>
     )

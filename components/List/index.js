@@ -5,7 +5,7 @@ class List extends Component {
     let { children } = this.props
 
     return (
-      <div className='List'>
+      <div className='list'>
         this is whole list
         {children}
       </div>

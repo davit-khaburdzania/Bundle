@@ -2,9 +2,11 @@ import React, { Component } from 'react'
 
 class ListItem extends Component {
   render () {
+    let { Component, ...componentProps } = this.props
+
     return (
-      <div className='ListItem'>
-        this is list item
+      <div className='list-item'>
+        <Component {...componentProps} />
       </div>
     )
   }
