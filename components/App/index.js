@@ -5,11 +5,13 @@ import './style.css'
 
 class App extends Component {
   render () {
+    let { children } = this.props
+
     return (
       <div className='app-container'>
         <NavigationContainer />
         <ListContainer>
-          {this.props.children}
+          {children}
         </ListContainer>
       </div>
     )

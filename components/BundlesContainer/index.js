@@ -1,8 +1,18 @@
 import React, { Component } from 'react'
+import { resolve } from 'react-resolver'
 import { List, ListItem, BundleListItem } from '../'
 
+// TODO move from here...
+@resolve('bundles', (props) => { return props.getBundles() })
 class BundlesContainer extends Component {
+
+  renderBundle (bundle, index) {
+    return <ListItem key={index} bundle={bundle} Component={BundleListItem} />
+  }
+
   render () {
+    let { bundles } = this.props
+
     return (
       <div className='bundle-container'>
         <div className='top-nav'>
@@ -13,10 +23,8 @@ class BundlesContainer extends Component {
         </div>
 
         <List>
-          <ListItem Component={BundleListItem} />
-          <ListItem Component={BundleListItem} />
-          <ListItem Component={BundleListItem} />
-          <ListItem Component={BundleListItem} />
+          { /* TODO fix */ }
+          { bundles.bundles.map(this.renderBundle) }
         </List>
       </div>
     )

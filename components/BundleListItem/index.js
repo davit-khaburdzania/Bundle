@@ -2,10 +2,11 @@ import React, { Component } from 'react'
 
 class BundleListItem extends Component {
   render () {
-    console.log(this.props)
+    let { bundle } = this.props
+
     return (
       <div className='bundle-list-item'>
-        this is bundle list item
+        {bundle.name}
       </div>
     )
   }

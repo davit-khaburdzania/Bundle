@@ -6,7 +6,6 @@ class List extends Component {
 
     return (
       <div className='list'>
-        this is whole list
         {children}
       </div>
     )

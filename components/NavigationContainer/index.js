@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
-import { bindActionCreators } from 'redux'
+import { bindActionCreators as ba } from 'redux'
 import { connect } from 'react-redux'
 import { MainNavigation, UserMenu, Menu } from '../'
 import * as userMenuActions from '../../actions/UserMenu'
@@ -10,12 +10,13 @@ import './style.css'
 class NavigationContainer extends Component {
   render () {
     let { isOpen, dispatch } = this.props
+    let actions = ba(userMenuActions, dispatch)
 
     return (
       <div className='navigation-container'>
         <MainNavigation />
 
-        <UserMenu { ...bindActionCreators(userMenuActions, dispatch) }>
+        <UserMenu { ...actions }>
           <Menu left={'70px'} bottom={'40px'}
             headline={'Julia Roberts'}
             open={isOpen}
