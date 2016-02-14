@@ -5,8 +5,8 @@ import {
   App,
   Login,
   DevTools,
-  CollectionsContainer,
   BundlesContainer,
+  CollectionsContainer,
   FavoritesContainer,
   NotificationsContainer
 } from '../'
