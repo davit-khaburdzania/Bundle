@@ -1,16 +1,17 @@
 import React, { Component } from 'react'
-import { Link, Route } from 'react-router'
-import { ListContainer, NavigationContainer, CollectionsContainer } from '../'
+import { ListContainer, NavigationContainer } from '../'
 
 import './style.css'
 
 class App extends Component {
   render () {
+    let { children } = this.props
+
     return (
-      <div className="app-container">
+      <div className='app-container'>
         <NavigationContainer />
         <ListContainer>
-          { this.props.children }
+          {children}
         </ListContainer>
       </div>
     )

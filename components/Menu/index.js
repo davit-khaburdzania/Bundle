@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router'
 
 import './style.css'
 
@@ -7,8 +6,8 @@ class Menu extends Component {
   renderHeadline (headline) {
     if (headline) {
       return (
-        <div className="headline">
-          <span>{ headline }</span>
+        <div className='headline'>
+          <span>{headline}</span>
           <hr />
         </div>
       )
@@ -20,10 +19,10 @@ class Menu extends Component {
     let styles = { left, bottom, display: open ? '' : 'none' }
 
     return (
-      <div style={ styles } className="menu">
-        { this.renderHeadline(headline) }
+      <div style={styles} className='menu'>
+        {this.renderHeadline(headline)}
 
-        { children }
+        {children}
       </div>
     )
   }
