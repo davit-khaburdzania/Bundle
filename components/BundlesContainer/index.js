@@ -1,34 +1,39 @@
 import React, { Component } from 'react'
-import { resolve } from 'react-resolver'
-import { List, ListItem, BundleListItem } from '../'
+import { bindActionCreators as ba } from 'redux'
+import { connect } from 'react-redux'
+import * as SearchActions from '../../actions/SearchContainer'
 
-// TODO move from here...
-@resolve('bundles', (props) => { return props.getBundles() })
+import { SearchContainer } from '../'
+
+import './style.css'
+
 class BundlesContainer extends Component {
-
-  renderBundle (bundle, index) {
-    return <ListItem key={index} bundle={bundle} Component={BundleListItem} />
-  }
-
   render () {
-    let { bundles } = this.props
+    let { search, dispatch } = this.props
+    let actions = ba(SearchActions, dispatch)
+    let styles = { display: !search ? 'block' : 'none' }
 
     return (
       <div className='bundle-container'>
         <div className='top-nav'>
-          <h2 className='title'>Bundles</h2>
+          <h2 style={styles} className='title'> Bundles </h2>
           <div className='nav'>
-            <span className='ion-ios-search icon'></span>
+            <SearchContainer search={search}
+              onClick={actions.toggleSearchVisibility}
+              onChange={actions.getSearchResult} />
           </div>
         </div>
-
-        <List>
-          { /* TODO fix */ }
-          { bundles.bundles.map(this.renderBundle) }
-        </List>
       </div>
     )
   }
 }
 
-export { BundlesContainer }
+BundlesContainer.propTypes = {
+  dispatch: React.PropTypes.func,
+  search: React.PropTypes.bool
+}
+
+const ConnectedBundlesContainer =
+  connect((state) => ({ search: state.Search }))(BundlesContainer)
+
+export { ConnectedBundlesContainer as BundlesContainer }

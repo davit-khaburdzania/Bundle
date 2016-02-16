@@ -1,0 +1,26 @@
+.search-container-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  padding: 3px;
+
+  .search-input {
+    background: #FCFCFC;
+    border: 1px solid #ECECEC;
+    border-radius: 13px;
+    font-family: Avenir-Light;
+    font-size: 14px;
+    color: #B4B4B4;
+    line-height: 21px;
+    text-indent: 10px;
+    color: #4E4E4E;
+    padding: 2px;
+    margin: 3px 0;
+    width: 100%;
+    outline: none;
+
+    &:focus {
+      font-family: Avenir-Roman;
+    }
+  }
+
+}
