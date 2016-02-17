@@ -34,6 +34,6 @@ BundlesContainer.propTypes = {
 }
 
 const ConnectedBundlesContainer =
-  connect((state) => ({ search: state.Search }))(BundlesContainer)
+  connect((state) => ({ search: state.Search.open }))(BundlesContainer)
 
 export { ConnectedBundlesContainer as BundlesContainer }
