@@ -4,6 +4,6 @@ import browserHistory from '../../history'
 
 const historyMiddleware = syncHistory(browserHistory)
 
-export function history () {
+export default function history () {
   return applyMiddleware(historyMiddleware)
 }

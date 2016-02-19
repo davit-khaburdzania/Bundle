@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import { List, ListItem, BundleListItem } from '../'
+import List from './../List'
+import ListItem from './../ListItem'
+import BundleListItem from './../BundleListItem'
 
 export default class BundlesContainer extends Component {
   renderBundle (bundle, index) {

@@ -2,8 +2,11 @@ import React, { Component } from 'react'
 import { Link } from 'react-router'
 import { bindActionCreators as ba } from 'redux'
 import { connect } from 'react-redux'
-import { MainNavigation, UserMenu, Menu } from '../'
 import * as userMenuActions from '../../actions/UserMenu'
+
+import MainNavigation from './../MainNavigation'
+import UserMenu from './../UserMenu'
+import Menu from './../Menu'
 
 import './style.css'
 

@@ -1,13 +1,16 @@
 import { createStore, compose } from 'redux'
 import rootReducer from '../reducers'
 
-import * as middlewares from './middlewares'
+import thunk from './middlewares/thunk'
+import history from './middlewares/history'
+import devTools from './middlewares/devTools'
+import devToolsPersistState from './middlewares/persistState'
 
 const enhancers = compose(
-  middlewares.thunk(),
-  middlewares.history(),
-  middlewares.devTools(),
-  middlewares.devToolsPersistState()
+  thunk(),
+  history(),
+  devTools(),
+  devToolsPersistState()
 )
 
 export default function (initialState) {

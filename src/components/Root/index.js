@@ -1,18 +1,16 @@
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
 import { Router, Route, IndexRedirect } from 'react-router'
-import {
-  App,
-  Login,
-  DevTools,
-  BundlesContainer,
-  CollectionsContainer,
-  FavoritesContainer,
-  NotificationsContainer
-} from '../'
 
-import createStore from '../../store/createStore'
-import history from '../../history'
+import App from './../App'
+import DevTools from './../DevTools'
+import BundlesContainer from './../BundlesContainer'
+import CollectionsContainer from './../CollectionsContainer'
+import FavoritesContainer from './../FavoritesContainer'
+import NotificationsContainer from './../NotificationsContainer'
+
+import createStore from './../../store/createStore'
+import history from './../../history'
 
 let store = createStore({})
 
@@ -29,7 +27,6 @@ export default function Root () {
             <Route path='/favorites' component={FavoritesContainer}/>
             <Route path='/notifications' component={NotificationsContainer} />
           </Route>
-          <Route path='/login' component={Login} />
         </Router>
 
         <DevTools/>

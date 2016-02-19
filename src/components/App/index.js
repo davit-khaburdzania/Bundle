@@ -1,5 +1,6 @@
 import React from 'react'
-import { ListContainer, NavigationContainer } from '../'
+import ListContainer from './../ListContainer'
+import NavigationContainer from './../NavigationContainer'
 
 import './style.css'
 

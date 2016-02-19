@@ -1,5 +1,5 @@
-import { DevTools } from '../../components/'
+import DevTools from '../../components/DevTools'
 
-export function devTools () {
+export default function devTools () {
   return DevTools.instrument()
 }

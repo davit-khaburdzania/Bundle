@@ -1,5 +1,4 @@
 var webpack = require('webpack')
-var path = require('path')
 
 module.exports = {
   context: __dirname,
@@ -14,15 +13,13 @@ module.exports = {
   },
   devtool: 'source-map',
   devServer: {
-    historyApiFallback: true,
-    hot: true
+    historyApiFallback: true
   },
   module: {
     loaders: [
       {
         test: /\.js?$/,
         exclude: /node_modules/,
-        include: path.resolve(__dirname, 'src'),
         loaders: ['react-hot', 'babel?cacheDirectory']
       },
       {
