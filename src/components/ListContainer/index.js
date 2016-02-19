@@ -7,7 +7,7 @@ import './style.css'
 
 class ListContainer extends Component {
   render () {
-    let { bundles, children, dispatch } = this.props
+    let { children, dispatch } = this.props
     children = React.cloneElement(children, {
       ...ba(bundleActions, dispatch)
     })

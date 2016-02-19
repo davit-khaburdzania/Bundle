@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { bindActionCreators as bac } from 'redux'
 import { connect } from 'react-redux'
 import * as bundleActions from '../../actions/Bundle'
 
@@ -30,7 +29,7 @@ function BundleList ({ bundles }) {
 }
 
 class BundleListContainer extends Component {
-  constructor(props) {
+  constructor (props) {
     props.dispatch(bundleActions.getBundles())
 
     super(props)
