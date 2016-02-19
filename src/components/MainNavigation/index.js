@@ -7,9 +7,10 @@ export default function MainNavigation () {
   return (
     <div className='main-navigation-container'>
       <div className='top-nav-list'>
-        <li><Link to='/' className='logo'> B </Link></li>
-        <li><Link to='/new' className='add-new-icon' /></li>
+        <Link to='/' className='logo'>B</Link>
+        <Link to='/new' className='add-new-icon' />
       </div>
+
       <div className='main-nav-list'>
         <Link to='/bundles' className='ion-ios-paper nav-icon' />
         <Link to='/collections' className='ion-ios-albums nav-icon' />

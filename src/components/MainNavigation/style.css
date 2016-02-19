@@ -1,5 +1,4 @@
 .main-navigation-container {
-
   .top-nav-list {
     display: flex;
     flex-direction: column;
@@ -10,7 +9,7 @@
     height: 120px;
   }
 
-  .top-nav-list li a {
+  .top-nav-list a {
     font-size: 33px;
   }
 
@@ -21,7 +20,7 @@
     line-height: 33px;
   }
 
-  .top-nav-list li a.add-new-icon {
+  .top-nav-list a.add-new-icon {
     display: inline-block;
     width: 36px;
     height: 36px;
@@ -47,11 +46,9 @@
     color: #4E4E4E;
     font-size: 23px;
     transition: all .15s ease-in-out;
-
   }
 
   .nav-icon:hover {
     opacity: 0.6;
   }
-
 }
