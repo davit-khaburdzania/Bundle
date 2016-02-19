@@ -1,7 +1,6 @@
 export { default as Root } from './Root'
 export { default as DevTools } from './DevTools'
 export { default as App } from './App'
-export { default as Login } from './Login'
 
 export { default as NavigationContainer } from './NavigationContainer'
 export { default as MainNavigation } from './MainNavigation'
