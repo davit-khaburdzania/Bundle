@@ -1,13 +1,9 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class BundleListItem extends Component {
-  render () {
-    let { bundle } = this.props
-
-    return (
-      <div className='bundle-list-item'>
-        {bundle.name}
-      </div>
-    )
-  }
+export default function BundleListItem ({ bundle }) {
+  return (
+    <div className='bundle-list-item'>
+      {bundle.name}
+    </div>
+  )
 }

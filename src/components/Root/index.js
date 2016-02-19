@@ -16,26 +16,24 @@ import history from '../../history'
 
 let store = createStore({})
 
-export default class Root extends Component {
-  render () {
-    return (
-      <Provider store={store}>
-        <div className='root-container'>
-          <Router history={history}>
-            <Route path='/' component={App}>
-              <IndexRedirect to='/bundles' />
+export default function Root () {
+  return (
+    <Provider store={store}>
+      <div className='root-container'>
+        <Router history={history}>
+          <Route path='/' component={App}>
+            <IndexRedirect to='/bundles' />
 
-              <Route path='/bundles' component={BundlesContainer} />
-              <Route path='/collections' component={CollectionsContainer} />
-              <Route path='/favorites' component={FavoritesContainer}/>
-              <Route path='/notifications' component={NotificationsContainer} />
-            </Route>
-            <Route path='/login' component={Login} />
-          </Router>
+            <Route path='/bundles' component={BundlesContainer} />
+            <Route path='/collections' component={CollectionsContainer} />
+            <Route path='/favorites' component={FavoritesContainer}/>
+            <Route path='/notifications' component={NotificationsContainer} />
+          </Route>
+          <Route path='/login' component={Login} />
+        </Router>
 
-          <DevTools/>
-        </div>
-      </Provider>
-    )
-  }
+        <DevTools/>
+      </div>
+    </Provider>
+  )
 }

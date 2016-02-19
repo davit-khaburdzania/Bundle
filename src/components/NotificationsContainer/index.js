@@ -1,13 +1,11 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class NotificationsContainer extends Component {
-  render () {
-    return (
-      <div className='notifications-container'>
-        <div className='top-nav'>
-          <h2 className='title'> Notifications </h2>
-        </div>
+export default function NotificationsContainer () {
+  return (
+    <div className='notifications-container'>
+      <div className='top-nav'>
+        <h2 className='title'>Notifications</h2>
       </div>
-    )
-  }
+    </div>
+  )
 }
