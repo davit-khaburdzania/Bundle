@@ -1,31 +1,38 @@
+var webpack = require('webpack')
+var path = require('path')
+
 module.exports = {
   context: __dirname,
-  entry: './index',
+  entry: [
+    'webpack-dev-server/client?http://0.0.0.0:8080',
+    'webpack/hot/only-dev-server',
+    './src/index'
+  ],
   output: {
     path: __dirname,
     filename: 'bundle.js'
   },
   devtool: 'source-map',
   devServer: {
-    historyApiFallback: true
+    historyApiFallback: true,
+    hot: true
   },
   module: {
     loaders: [
       {
         test: /\.js?$/,
-        exclude: /(node_modules)/,
-        loader: 'babel',
-        query: {
-          presets: ['react', 'es2015', 'stage-0'],
-          plugins: ['transform-runtime', 'transform-decorators-legacy']
-        }
+        exclude: /node_modules/,
+        include: path.resolve(__dirname, 'src'),
+        loaders: ['react-hot', 'babel?cacheDirectory']
       },
       {
         test: /\.css$/,
-        loader: 'style-loader!css-loader!postcss-loader'
+        loaders: ['style-loader', 'css-loader', 'postcss-loader']
       }
     ]
   },
-
+  plugins: [
+    new webpack.HotModuleReplacementPlugin()
+  ],
   postcss: () => [require('autoprefixer'), require('precss')]
 }
