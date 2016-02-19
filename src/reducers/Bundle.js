@@ -1,9 +1,8 @@
-export default function (state = {}, action) {
+export default function (state = { list: [] }, action) {
   switch (action.type) {
-    case 'RECEIVE_BUNDLES':
-      // TODO should have bundles
-      return { ...state }
-    default:
-      return state
+  case 'RECEIVE_BUNDLES':
+    return { ...state, list: action.list }
+  default:
+    return state
   }
 }

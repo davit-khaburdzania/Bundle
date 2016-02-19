@@ -1,9 +1,10 @@
-import request from 'superagent'
+import request from 'axios'
 
 export function getBundles () {
   return (dispatch) => {
-    // TODO don't use fetch
     return request.get('http://localhost:3000/bundles')
-      .then((bundles) => dispatch({ type: 'RECEIVE_BUNDLES', bundles }))
+      .then((response) =>
+        dispatch({ type: 'RECEIVE_BUNDLES', list: response.data }))
+      .catch(console.log)
   }
 }

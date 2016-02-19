@@ -2,11 +2,7 @@ var webpack = require('webpack')
 
 module.exports = {
   context: __dirname,
-  entry: [
-    'webpack-dev-server/client?http://0.0.0.0:8080',
-    'webpack/hot/only-dev-server',
-    './src/index'
-  ],
+  entry: './src/index',
   output: {
     path: __dirname,
     filename: 'bundle.js'
@@ -20,7 +16,7 @@ module.exports = {
       {
         test: /\.js?$/,
         exclude: /node_modules/,
-        loaders: ['react-hot', 'babel?cacheDirectory']
+        loaders: ['babel?cacheDirectory']
       },
       {
         test: /\.css$/,
@@ -28,8 +24,5 @@ module.exports = {
       }
     ]
   },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin()
-  ],
   postcss: () => [require('autoprefixer'), require('precss')]
 }
