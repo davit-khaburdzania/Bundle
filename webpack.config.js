@@ -1,6 +1,8 @@
+var webpack = require('webpack')
+
 module.exports = {
   context: __dirname,
-  entry: './index',
+  entry: './src/index',
   output: {
     path: __dirname,
     filename: 'bundle.js'
@@ -13,19 +15,14 @@ module.exports = {
     loaders: [
       {
         test: /\.js?$/,
-        exclude: /(node_modules)/,
-        loader: 'babel',
-        query: {
-          presets: ['react', 'es2015', 'stage-0'],
-          plugins: ['transform-runtime', 'transform-decorators-legacy']
-        }
+        exclude: /node_modules/,
+        loaders: ['babel?cacheDirectory']
       },
       {
         test: /\.css$/,
-        loader: 'style-loader!css-loader!postcss-loader'
+        loaders: ['style-loader', 'css-loader', 'postcss-loader']
       }
     ]
   },
-
   postcss: () => [require('autoprefixer'), require('precss')]
 }
