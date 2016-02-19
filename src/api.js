@@ -1,7 +1,7 @@
 const BASE = 'http://localhost:3000/'
 
-let pathes = {
+let paths = {
   bundles: BASE + '/bundles'
 }
 
-export default pathes
+export default paths
