@@ -1,5 +1,5 @@
 import request from 'axios'
-import api from './../api'
+import api from './../apiRoutes'
 
 export function getBundles () {
   return (dispatch) => {

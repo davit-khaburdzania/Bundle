@@ -8,6 +8,7 @@ export default function App ({ children }) {
   return (
     <div className='app-container'>
       <NavigationContainer />
+
       <ListContainer>
         {children}
       </ListContainer>

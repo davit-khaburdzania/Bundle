@@ -7,8 +7,8 @@ import devTools from './middlewares/devTools'
 import devToolsPersistState from './middlewares/persistState'
 
 const enhancers = compose(
-  thunk(),
   history(),
+  thunk(),
   devTools(),
   devToolsPersistState()
 )
