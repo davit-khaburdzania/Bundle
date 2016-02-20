@@ -6,10 +6,9 @@ export function toggleSearchVisibility () {
 }
 
 export function getSearchResult (value) {
-  let searchUrl = `${api.search}${value}`
 
   return (dispatch) => {
-    return request.get(searchUrl)
+    return request.get(api.search(value))
       .then((response) =>
         dispatch({ type: 'FETCH_SEARCH_RESULTS', result: response.data }))
       .catch(console.log)

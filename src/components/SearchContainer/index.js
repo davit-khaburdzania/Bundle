@@ -15,14 +15,13 @@ export default class SearchContainer extends Component {
 
     return (
       <div className='search-container-wrapper'>
-        <span style={this.displayInput(search)}
-          onClick={onClick}
-          className='ion-ios-search icon'></span>
-        <input className='search-input animated flipInX'
-          style={this.displayInput(search, true)}
-          onChange={(e) => { onChange(e.target.value) }}
-          type='text'
-          placeholder='Search...' />
+        <span style={this.displayInput(search)} onClick={onClick}
+          className='ion-ios-search icon'>
+        </span>
+
+        <input className='search-input animated flipInX' type='text'
+          style={this.displayInput(search, true)} placeholder='Search...'
+          onChange={(e) => { onChange(e.target.value) }} />
       </div>
     )
   }

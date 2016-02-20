@@ -4,7 +4,6 @@ export default function (state = { open: false, result: {} }, action) {
       return { ...state, open: !state.open }
     case 'FETCH_SEARCH_RESULTS':
       let result = [...action.result.collections, ...action.result.bundles]
-
       return { ...state, result: result }
     default:
       return state

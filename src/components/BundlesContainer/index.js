@@ -2,12 +2,11 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators as ba } from 'redux'
 import * as bundleActions from '../../actions/Bundle'
+import * as SearchActions from '../../actions/SearchContainer'
 
 import List from './../List'
 import BundleListItem from './../BundleListItem'
 import SearchContainer from './../SearchContainer'
-
-import * as SearchActions from '../../actions/SearchContainer'
 
 import './style.css'
 
@@ -16,21 +15,19 @@ function BundleList ({
   search,
   dispatch,
   toggleSearchVisibility,
-  getSearchResult,
-  searchResults
+  getSearchResult
 }) {
 
-  let styles = { 'display': !search ? 'block' : 'none' }
-  let currentListItems = []
+  let styles = { 'display': search.open ? 'none' : 'block' }
 
-  currentListItems = searchResults.length ? searchResults : bundles
+  let currentListItems = search.result.length ? search.result : bundles
 
   return (
     <div className='bundle-container'>
       <div className='top-nav'>
         <h2 style={styles} className='title'>Bundles</h2>
         <div className='nav'>
-          <SearchContainer search={search}
+          <SearchContainer search={search.open}
            onClick={toggleSearchVisibility}
            onChange={getSearchResult}
           />
@@ -57,25 +54,24 @@ class BundleListContainer extends Component {
   }
 
   render () {
-    let { bundles, search, searchResults, dispatch } = this.props
+    let { bundles, search, dispatch } = this.props
     let boundActionCreators = ba(SearchActions, dispatch)
 
     return (
-      <BundleList {...boundActionCreators} search={search} searchResults={searchResults} bundles={bundles} />
+      <BundleList {...boundActionCreators} search={search} bundles={bundles} />
     )
   }
 }
 
 BundleListContainer.propTypes = {
   bundles: React.PropTypes.array,
-  search: React.PropTypes.bool,
+  search: React.PropTypes.object,
   dispatch: React.PropTypes.func
 }
 
 export default connect((state) => {
   return {
     bundles: state.Bundle.list,
-    search: state.Search.open,
-    searchResults: state.Search.result
+    search: state.Search
   }
 })(BundleListContainer)
