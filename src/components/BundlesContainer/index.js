@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import * as bundleActions from '../../actions/Bundle'
 
 import List from './../List'
-import ListItem from './../ListItem'
 import BundleListItem from './../BundleListItem'
 
 function BundleList ({ bundles }) {
@@ -18,7 +17,7 @@ function BundleList ({ bundles }) {
 
       <List>
         {bundles.map((bundle, index) =>
-          <ListItem key={index}
+          <List.Item key={index}
             bundle={bundle}
             Component={BundleListItem}
           />
