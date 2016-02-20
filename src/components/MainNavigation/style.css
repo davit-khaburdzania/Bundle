@@ -1,0 +1,54 @@
+.main-navigation-container {
+  .top-nav-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 10px;
+    list-style: none;
+    height: 120px;
+  }
+
+  .top-nav-list a {
+    font-size: 33px;
+  }
+
+  .logo {
+    font-family: Helvetica-Bold;
+    font-size: 33px;
+    color: #1581E2;
+    line-height: 33px;
+  }
+
+  .top-nav-list a.add-new-icon {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    background: url(/assets/images/add-icon.svg) no-repeat;
+    transition: all .2s ease-in-out;
+  }
+
+  a.add-new-icon:hover {
+    opacity: 0.6;
+  }
+
+  .main-nav-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    list-style: none;
+    height: 200px;
+    justify-content: space-between;
+    margin-top: 40px;
+  }
+
+  .nav-icon {
+    color: #4E4E4E;
+    font-size: 23px;
+    transition: all .15s ease-in-out;
+  }
+
+  .nav-icon:hover {
+    opacity: 0.6;
+  }
+}

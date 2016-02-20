@@ -1,8 +1,0 @@
-.bundle-list-item {
-  border-bottom: 1px solid #ECECEC;
-  cursor: pointer;
-
-  &:hover {
-    background: #EBF3FA;
-  }
-}
