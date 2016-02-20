@@ -4,20 +4,20 @@ import { bindActionCreators as ba } from 'redux'
 import { connect } from 'react-redux'
 import * as userMenuActions from '../../actions/UserMenu'
 
-import MainNavigation from './../MainNavigation'
+import Main from './Main'
 import UserMenu from './../UserMenu'
 import Menu from './../Menu'
 
 import './style.css'
 
-class NavigationContainer extends Component {
+class Navigation extends Component {
   render () {
     let { isOpen, dispatch } = this.props
     let actions = ba(userMenuActions, dispatch)
 
     return (
       <div className='navigation-container'>
-        <MainNavigation />
+        <Navigation.Main />
 
         <UserMenu { ...actions }>
           <Menu left={'70px'} bottom={'40px'}
@@ -33,7 +33,7 @@ class NavigationContainer extends Component {
   }
 }
 
-const ConnectedNavigationContainer =
-  connect((state) => ({ isOpen: state.UserMenu }))(NavigationContainer)
+Navigation.Main = Main
 
-export default ConnectedNavigationContainer
+export default connect((state) =>
+  ({ isOpen: state.UserMenu }))(Navigation)

@@ -1,3 +1,10 @@
+.navigation-container {
+  position: relative;
+  width: 80px;
+  height: 100vh;
+  background: #F8F8F8;
+}
+
 .main-navigation-container {
   .top-nav-list {
     display: flex;

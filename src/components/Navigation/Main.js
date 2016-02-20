@@ -1,9 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
 
-import './style.css'
-
-export default function MainNavigation () {
+export default function Main () {
   return (
     <div className='main-navigation-container'>
       <div className='top-nav-list'>
