@@ -5,13 +5,5 @@ import Navigation from './../Navigation'
 import './style.css'
 
 export default function App ({ children }) {
-  return (
-    <div className='app-container'>
-      <Navigation />
-
-      <ListContainer>
-        {children}
-      </ListContainer>
-    </div>
-  )
+  return <Navigation listChildren={children} />
 }

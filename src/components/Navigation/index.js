@@ -12,22 +12,28 @@ import './style.css'
 
 class Navigation extends Component {
   render () {
-    let { isOpen, dispatch } = this.props
+    let { isOpen, listChildren, dispatch } = this.props
     let actions = ba(userMenuActions, dispatch)
 
     return (
       <div className='navigation-container'>
-        <Navigation.Main />
+        <div className='menu-container'>
+          <Navigation.Main />
 
-        <UserMenu { ...actions }>
-          <Menu left={'70px'} bottom={'40px'}
-            headline={'Julia Roberts'}
-            open={isOpen}
-          >
-            <Link to='/settings'>Settings</Link>
-            <Link to='/logout'>Sign Out</Link>
-          </Menu>
-        </UserMenu>
+          <UserMenu { ...actions }>
+            <Menu left={'70px'} bottom={'40px'}
+              headline={'Julia Roberts'}
+              open={isOpen}
+            >
+              <Link to='/settings'>Settings</Link>
+              <Link to='/logout'>Sign Out</Link>
+            </Menu>
+          </UserMenu>
+        </div>
+
+        <div className='list-container'>
+          {listChildren}
+        </div>
       </div>
     )
   }
