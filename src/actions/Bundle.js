@@ -2,10 +2,13 @@ import request from 'axios'
 import api from './../api'
 
 export function getBundles () {
-  return (dispatch) => {
-    return request.get(api.bundles)
-      .then((response) =>
-        dispatch({ type: 'RECEIVE_BUNDLES', list: response.data }))
-      .catch(console.log)
+  return async (dispatch) => {
+    try {
+      let response = await request.get(api.bundles)
+      dispatch({ type: 'RECEIVE_BUNDLES', list: response.data })
+    } catch (e) {
+      // write error handler outside
+      console.log(e.data.errors)
+    }
   }
 }
