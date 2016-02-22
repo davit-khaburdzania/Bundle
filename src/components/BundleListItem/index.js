@@ -1,4 +1,5 @@
 import React from 'react'
+import Date from '../Date'
 
 export default function BundleListItem ({
   name,
@@ -6,8 +7,9 @@ export default function BundleListItem ({
 }) {
   return (
     <div>
-      <h1>{name}</h1>
-      <h2>{created_at}</h2>
+      {name}
+      <br />
+      <Date type='fromNow'>{created_at}</Date>
     </div>
   )
 }
