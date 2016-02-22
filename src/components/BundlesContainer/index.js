@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators as ba } from 'redux'
 import * as bundleActions from '../../actions/Bundle'
@@ -37,7 +37,7 @@ function BundleList ({
       <List>
         {currentListItems.map((bundle, index) =>
           <List.Item key={index}
-            bundle={bundle}
+            {...bundle}
             Component={BundleListItem}
           />
         )}
@@ -64,9 +64,9 @@ class BundleListContainer extends Component {
 }
 
 BundleListContainer.propTypes = {
-  bundles: React.PropTypes.array,
-  search: React.PropTypes.object,
-  dispatch: React.PropTypes.func
+  bundles: PropTypes.array,
+  search: PropTypes.object,
+  dispatch: PropTypes.func
 }
 
 export default connect((state) => {
