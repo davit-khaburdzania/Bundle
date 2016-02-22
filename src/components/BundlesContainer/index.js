@@ -37,7 +37,7 @@ function BundleList ({
       <List>
         {currentListItems.map((bundle, index) =>
           <List.Item key={index}
-            bundle={bundle}
+            {...bundle}
             Component={BundleListItem}
           />
         )}
