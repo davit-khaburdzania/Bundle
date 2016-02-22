@@ -17,6 +17,6 @@ function filter (date, type) {
 }
 
 Date.propTypes = {
-  children: PropTypes.string,
-  fromNow: PropTypes.bool
+  children: PropTypes.string.isRequired,
+  type: PropTypes.string
 }
