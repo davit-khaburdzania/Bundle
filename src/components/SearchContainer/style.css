@@ -3,6 +3,10 @@
   justify-content: flex-end;
   padding: 3px;
 
+  .search-icon {
+    cursor: pointer;
+  }
+
   .search-input {
     background: #FCFCFC;
     border: 1px solid #ECECEC;
@@ -22,5 +26,4 @@
       font-family: Avenir-Roman;
     }
   }
-
 }
