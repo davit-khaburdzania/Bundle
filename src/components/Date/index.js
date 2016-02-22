@@ -4,11 +4,7 @@ import Moment from 'moment'
 export default function Date ({ children, type }) {
   let time = filter(children, type)
 
-  return (
-    <div>
-      {time}
-    </div>
-  )
+  return <span>{time}</span>
 }
 
 function filter (date, type) {
