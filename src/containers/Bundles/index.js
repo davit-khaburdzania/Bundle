@@ -20,7 +20,7 @@ export default class BundleListContainer extends Component {
   }
 
   render () {
-    let { bundles, search} = this.props
+    let { bundles, search } = this.props
     let actions = {
       toggleSearchVisibility: this.props.toggleSearchVisibility,
       getSearchResult: this.props.getSearchResult

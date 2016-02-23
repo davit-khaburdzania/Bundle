@@ -3,14 +3,13 @@ import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import * as userMenuActions from '../../actions/UserMenu'
 
-import Main from './Main'
+import MainNavigation from './MainNavigation'
+import './index.css'
 
 import {
   Menu,
   UserMenu
 } from '../../components'
-
-import './index.css'
 
 @connect(state => ({
   isOpen: state.UserMenu
@@ -24,9 +23,9 @@ export default class Navigation extends Component {
     return (
       <div className='navigation-container'>
         <div className='menu-container'>
-          <Main />
+          <MainNavigation />
 
-          <UserMenu toggleUserMenu= {toggleUserMenu}>
+          <UserMenu toggleUserMenu={toggleUserMenu}>
             <Menu left={'70px'} bottom={'40px'}
               headline={'Julia Roberts'}
               open={isOpen}

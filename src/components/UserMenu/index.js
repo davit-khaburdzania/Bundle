@@ -18,5 +18,6 @@ export default function UserMenu ({
 }
 
 UserMenu.propTypes = {
-  toggleUserMenu: PropTypes.func
+  toggleUserMenu: PropTypes.func,
+  children: React.PropTypes.element
 }

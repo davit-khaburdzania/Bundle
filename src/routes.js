@@ -9,7 +9,7 @@ import {
   Notifications
 } from './containers'
 
-let routes = (
+export default (
   <Route path='/' component={App}>
     <IndexRedirect to='/bundles' />
 
@@ -19,5 +19,3 @@ let routes = (
     <Route path='/notifications' component={Notifications} />
   </Route>
 )
-
-export default routes
