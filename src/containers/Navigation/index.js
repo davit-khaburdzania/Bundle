@@ -4,8 +4,11 @@ import { connect } from 'react-redux'
 import * as userMenuActions from '../../actions/UserMenu'
 
 import Main from './Main'
-import UserMenu from './../../components/UserMenu'
-import Menu from './../../components/Menu'
+
+import {
+  Menu,
+  UserMenu
+} from '../../components'
 
 import './index.css'
 

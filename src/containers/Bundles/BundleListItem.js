@@ -1,5 +1,5 @@
 import React from 'react'
-import Date from './../../components/Date'
+import { Date } from '../../components'
 
 import './BundleListItem.css'
 

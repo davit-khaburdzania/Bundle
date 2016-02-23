@@ -1,5 +1,4 @@
 import React from 'react'
-import Item from './item'
 
 export default function List ({ children }) {
   return (
@@ -8,5 +7,3 @@ export default function List ({ children }) {
     </div>
   )
 }
-
-List.Item = Item
