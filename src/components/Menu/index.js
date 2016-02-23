@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import './style.css'
+import './index.css'
 
 export default class Menu extends Component {
   renderHeadline (headline) {

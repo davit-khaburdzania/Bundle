@@ -1,26 +1,31 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
-import { bindActionCreators as ba } from 'redux'
 import { connect } from 'react-redux'
 import * as userMenuActions from '../../actions/UserMenu'
 
-import Main from './Main'
-import UserMenu from './../UserMenu'
-import Menu from './../Menu'
+import MainNavigation from './MainNavigation'
+import './index.css'
 
-import './style.css'
+import {
+  Menu,
+  UserMenu
+} from '../../components'
 
-class Navigation extends Component {
+@connect(state => ({
+  isOpen: state.UserMenu
+}), {
+  ...userMenuActions
+})
+export default class Navigation extends Component {
   render () {
-    let { isOpen, listChildren, dispatch } = this.props
-    let actions = ba(userMenuActions, dispatch)
+    let { isOpen, listChildren, toggleUserMenu } = this.props
 
     return (
       <div className='navigation-container'>
         <div className='menu-container'>
-          <Navigation.Main />
+          <MainNavigation />
 
-          <UserMenu { ...actions }>
+          <UserMenu toggleUserMenu={toggleUserMenu}>
             <Menu left={'70px'} bottom={'40px'}
               headline={'Julia Roberts'}
               open={isOpen}
@@ -38,8 +43,3 @@ class Navigation extends Component {
     )
   }
 }
-
-Navigation.Main = Main
-
-export default connect((state) =>
-  ({ isOpen: state.UserMenu }))(Navigation)

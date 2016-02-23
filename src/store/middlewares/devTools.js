@@ -1,4 +1,4 @@
-import DevTools from '../../components/DevTools'
+import DevTools from '../../utils/DevTools'
 
 export default function devTools () {
   return DevTools.instrument()

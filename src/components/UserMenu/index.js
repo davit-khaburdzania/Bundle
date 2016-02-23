@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 
-import './style.css'
+import './index.css'
 
-export default function UserMenu ({ children, toggleUserMenu }) {
+export default function UserMenu ({
+  children,
+  toggleUserMenu
+}) {
   return (
     <div className='user-menu'>
       {children}
@@ -12,4 +15,9 @@ export default function UserMenu ({ children, toggleUserMenu }) {
       </div>
     </div>
   )
+}
+
+UserMenu.propTypes = {
+  toggleUserMenu: PropTypes.func,
+  children: React.PropTypes.element
 }

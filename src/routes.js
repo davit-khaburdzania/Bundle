@@ -1,21 +1,21 @@
 import React from 'react'
 import { Route, IndexRedirect } from 'react-router'
 
-import App from './components/App'
-import BundlesContainer from './components/BundlesContainer'
-import CollectionsContainer from './components/CollectionsContainer'
-import FavoritesContainer from './components/FavoritesContainer'
-import NotificationsContainer from './components/NotificationsContainer'
+import {
+  App,
+  Bundles,
+  Collections,
+  Favorites,
+  Notifications
+} from './containers'
 
-let routes = (
+export default (
   <Route path='/' component={App}>
     <IndexRedirect to='/bundles' />
 
-    <Route path='/bundles' component={BundlesContainer} />
-    <Route path='/collections' component={CollectionsContainer} />
-    <Route path='/favorites' component={FavoritesContainer}/>
-    <Route path='/notifications' component={NotificationsContainer} />
+    <Route path='/bundles' component={Bundles} />
+    <Route path='/collections' component={Collections} />
+    <Route path='/favorites' component={Favorites}/>
+    <Route path='/notifications' component={Notifications} />
   </Route>
 )
-
-export default routes

@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 
-import './style.css'
+import './index.css'
 
-export default function SearchContainer ({
+export default function Search ({
   onClick,
   onChange,
   search
@@ -26,7 +26,7 @@ export default function SearchContainer ({
   )
 }
 
-SearchContainer.propTypes = {
+Search.propTypes = {
   onClick: PropTypes.func,
   onChange: PropTypes.func,
   search: PropTypes.bool
