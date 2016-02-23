@@ -4,9 +4,9 @@ import { bindActionCreators as ba } from 'redux'
 import * as bundleActions from '../../actions/Bundle'
 import * as SearchActions from '../../actions/SearchContainer'
 
-import List from './../List'
-import BundleListItem from './../BundleListItem'
-import SearchContainer from './../SearchContainer'
+import List from './../../components/List'
+import BundleListItem from './../../components/BundleListItem'
+import { Search } from '../'
 
 import './style.css'
 
@@ -27,7 +27,7 @@ function BundleList ({
       <div className='top-nav'>
         <h2 style={styles} className='title'>Bundles</h2>
         <div className='nav'>
-          <SearchContainer search={search.open}
+          <Search search={search.open}
            onClick={toggleSearchVisibility}
            onChange={getSearchResult}
           />
