@@ -1,20 +1,17 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { bindActionCreators as ba } from 'redux'
 import * as bundleActions from '../../actions/Bundle'
 import * as searchActions from '../../actions/SearchContainer'
-
 import BundleList from './BundleList'
 
-import './style.css'
+import './index.css'
 
-@connect(
-  state => ({
-    bundles: state.Bundle.list,
-    search: state.Search
-  }), {
-     ...bundleActions,
-     ...searchActions
+@connect(state => ({
+  bundles: state.Bundle.list,
+  search: state.Search
+}), {
+   ...bundleActions,
+   ...searchActions
 })
 export default class BundleListContainer extends Component {
   constructor (props) {

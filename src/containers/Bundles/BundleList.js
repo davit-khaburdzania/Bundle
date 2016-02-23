@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import List from './../../components/List'
-import { Search } from '..'
-import BundleListItem from './../../components/BundleListItem'
+import Search from '../../components/Search'
+import BundleListItem from './BundleListItem'
 
 export default function BundleList ({
   bundles,

@@ -1,7 +1,7 @@
 import React from 'react'
-import Date from '../Date'
+import Date from './../../components/Date'
 
-import './style.css'
+import './BundleListItem.css'
 
 export default function BundleListItem ({
   name,
