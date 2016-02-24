@@ -3,15 +3,15 @@ import React, { Component, PropTypes } from 'react'
 import './header.css'
 
 export default function Header ({
-	children
+  children
 }) {
   return (
-		<div className='header'>
-			{children}
-		</div>
+    <div className='header'>
+      {children}
+    </div>
   )
 }
 
 Header.propTypes = {
-	children: PropTypes.node
+  children: PropTypes.node
 }

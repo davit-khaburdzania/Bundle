@@ -5,17 +5,17 @@ import Body from './body'
 import './index.css'
 
 export default function ResourceNavigation ({
-	children
+  children
 }) {
   return (
     <div className='resource-navigation'>
-			{children}
+      {children}
     </div>
   )
 }
 
 ResourceNavigation.propTypes = {
-	children: PropTypes.element
+  children: PropTypes.element
 }
 
 ResourceNavigation.Header = Header
