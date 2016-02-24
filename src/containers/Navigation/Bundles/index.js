@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import * as bundleActions from '../../actions/Bundle'
-import * as searchActions from '../../actions/SearchContainer'
-import BundleList from './BundleList'
+import * as bundleActions from '../../../actions/Bundle'
+import * as searchActions from '../../../actions/SearchContainer'
+import Wrapper from './wrapper'
 
 import './index.css'
 
@@ -13,7 +13,7 @@ import './index.css'
    ...bundleActions,
    ...searchActions
 })
-export default class BundleListContainer extends Component {
+export default class BundleNavigationContainer extends Component {
   constructor (props) {
     props.getBundles()
     super(props)
@@ -27,12 +27,12 @@ export default class BundleListContainer extends Component {
     }
 
     return (
-      <BundleList {...actions} search={search} bundles={bundles} />
+      <Wrapper {...actions} search={search} bundles={bundles} />
     )
   }
 }
 
-BundleListContainer.propTypes = {
+BundleNavigationContainer.propTypes = {
   bundles: PropTypes.array,
   search: PropTypes.object,
   dispatch: PropTypes.func
