@@ -20,12 +20,14 @@ export default class BundleNavigationContainer extends Component {
   }
 
   render () {
+    let props = this.props
+
     return (
       <Wrapper
-        toggleSearchVisibility={this.props.toggleSearchVisibility}
-        getSearchResult={this.props.getSearchResult}
-        search={this.props.search}
-        bundles={this.props.bundles}
+        toggleSearchVisibility={props.toggleSearchVisibility}
+        getSearchResult={props.getSearchResult}
+        search={props.search}
+        bundles={props.bundles}
       />
     )
   }
