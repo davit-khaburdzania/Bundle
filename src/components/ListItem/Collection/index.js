@@ -1,7 +1,7 @@
 import React from 'react'
-import { Date } from '../../../components'
+import Date from '../../Date'
 
-export default function Item ({
+export default function CollectionListItem ({
   name,
   created_at,
   bundle_count,

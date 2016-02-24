@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { ResourceNavigation } from '../../../components'
-import CollectionListItem from './Item'
+
 import {
   List,
   ListItem
@@ -24,7 +24,7 @@ export default function Wrapper ({
           {collections.map((collection, index) =>
             <ListItem key={index}
               {...collection}
-              Component={CollectionListItem}
+              Component={ListItem.Collection}
             />
           )}
         </List>

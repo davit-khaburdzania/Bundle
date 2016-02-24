@@ -1,9 +1,7 @@
-const APP_PATH = '../../..'
-
 import React from 'react'
-import { Date } from '../../../components'
+import Date from '../../Date'
 
-export default function Item ({
+export default function BundleListItem ({
   name,
   created_at
 }) {
