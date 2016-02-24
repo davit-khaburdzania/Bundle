@@ -1,13 +1,11 @@
 import React from 'react'
 import { Provider } from 'react-redux'
-import { Router, Route, IndexRedirect } from 'react-router'
+import { Router } from 'react-router'
 
 import DevTools from './../../utils/DevTools'
-import history from './../../utils/history'
-import routes from './../../routes'
-import createStore from './../../store/createStore'
 
-let store = createStore({})
+import { store, history } from './../../store/store'
+import routes from './../../routes'
 
 export default function Root () {
   return (

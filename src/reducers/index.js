@@ -1,15 +1,13 @@
-import { routeReducer } from 'react-router-redux'
 import { combineReducers } from 'redux'
+import { routerReducer } from 'react-router-redux'
 
 import UserMenu from './UserMenu'
 import Bundle from './Bundle'
 import Search from './SearchContainer'
 
-const rootReducer = combineReducers({
-  routing: routeReducer,
+export default combineReducers({
   UserMenu,
   Bundle,
-  Search
+  Search,
+  routing: routerReducer
 })
-
-export default rootReducer
