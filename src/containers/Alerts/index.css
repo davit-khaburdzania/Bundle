@@ -5,9 +5,9 @@
   width: 100%;
 
   margin-top: 20px;
-  pointer-events:none;
+  pointer-events: none;
 
   > div {
-    pointer-events:all;
+    pointer-events: all;
   }
 }
