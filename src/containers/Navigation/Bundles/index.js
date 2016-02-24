@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import * as bundleActions from '../../../actions/Bundle'
 import * as searchActions from '../../../actions/SearchContainer'
-import Wrapper from './wrapper'
+import Wrapper from './Wrapper'
 
 import './index.css'
 
@@ -20,14 +20,13 @@ export default class BundleNavigationContainer extends Component {
   }
 
   render () {
-    let { bundles, search } = this.props
-    let actions = {
-      toggleSearchVisibility: this.props.toggleSearchVisibility,
-      getSearchResult: this.props.getSearchResult
-    }
-
     return (
-      <Wrapper {...actions} search={search} bundles={bundles} />
+      <Wrapper
+        toggleSearchVisibility={this.props.toggleSearchVisibility}
+        getSearchResult={this.props.getSearchResult}
+        search={this.props.search}
+        bundles={this.props.bundles}
+      />
     )
   }
 }
