@@ -1,12 +1,14 @@
 import React, { Component, PropTypes } from 'react'
-import BundleListItem from './BundleListItem'
+import { ResourceNavigation } from '../../../components'
+import BundleListItem from './Item'
+
 import {
   List,
   ListItem,
   Search
-} from '../../components'
+} from '../../../components'
 
-export default function BundleList ({
+export default function Wrapper ({
   bundles,
   search,
   dispatch,
@@ -18,8 +20,8 @@ export default function BundleList ({
   let currentListItems = search.result.length ? search.result : bundles
 
   return (
-    <div className='bundle-container'>
-      <div className='top-nav'>
+    <div className='bundles-navigation'>
+      <ResourceNavigation.Header>
         <h2 style={styles} className='title'>Bundles</h2>
         <div className='nav'>
           <Search search={search.open}
@@ -27,16 +29,18 @@ export default function BundleList ({
            onChange={getSearchResult}
           />
         </div>
-      </div>
+      </ResourceNavigation.Header>
 
-      <List>
-        {currentListItems.map((bundle, index) =>
-          <ListItem key={index}
-            {...bundle}
-            Component={BundleListItem}
-          />
-        )}
-      </List>
+      <ResourceNavigation.Body>
+        <List>
+          {currentListItems.map((bundle, index) =>
+            <ListItem key={index}
+              {...bundle}
+              Component={BundleListItem}
+            />
+          )}
+        </List>
+      </ResourceNavigation.Body>
     </div>
   )
 }
