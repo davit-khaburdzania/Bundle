@@ -13,7 +13,10 @@ export default class Alerts extends Component {
 
     return (
       <div className='alerts-container'>
-        <Alert type='success'>this is a test alert</Alert>
+        <Alert type='success'>This is a test success</Alert>
+        <Alert type='info'>This is a test info</Alert>
+        <Alert type='error'>This is a test error</Alert>
+        <Alert type='warning'>This is a test danger</Alert>
       </div>
     )
   }
