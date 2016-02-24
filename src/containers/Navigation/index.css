@@ -9,33 +9,6 @@
   background: #F8F8F8;
 }
 
-.list-container {
-  width: 350px;
-  border-left: 1px solid #ECECEC;
-  border-right: 1px solid #ECECEC;
-
-  .title {
-    margin: 0;
-    font-size: 23.85px;
-    color: #C2C2C2;
-    line-height: 26px;
-    padding: 4px 0;
-  }
-
-  .top-nav .icon {
-    font-size: 24px;
-    margin-left: 10px;
-  }
-
-  .top-nav {
-    display: flex;
-    justify-content: space-between;
-    padding: 15px 20px;
-    align-items: center;
-    border-bottom: 1px solid #ECECEC;
-  }
-}
-
 .main-navigation-container {
   .top-nav-list {
     display: flex;
