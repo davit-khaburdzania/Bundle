@@ -1,5 +1,6 @@
 export Root from './Root'
 export App from './App'
+export Alerts from './Alerts'
 export Bundles from './Bundles'
 export Collections from './Collections'
 export Favorites from './Favorites'
