@@ -19,23 +19,34 @@ import {
   ...userMenuActions
 })
 export default class Navigation extends Component {
+  renderUserMenu () {
+    let { closeUserMenu } = this.props
+
+    return (
+      <Menu
+        left={'70px'}
+        bottom={'40px'}
+        headline={'Julia Roberts'}
+        closeUserMenu={closeUserMenu}
+      >
+        <Link to='/settings'>Settings</Link>
+        <Link to='/logout'>Sign Out</Link>
+      </Menu>
+    )
+  }
+
   render () {
-    let { isOpen, listChildren, toggleUserMenu } = this.props
+    let { isOpen, listChildren, openUserMenu } = this.props
 
     return (
       <div className='navigation-container'>
         <div className='menu-container'>
           <MainNavigation />
 
-          <UserMenu toggleUserMenu={toggleUserMenu}>
-            <Menu left={'70px'} bottom={'40px'}
-              headline={'Julia Roberts'}
-              open={isOpen}
-            >
-              <Link to='/settings'>Settings</Link>
-              <Link to='/logout'>Sign Out</Link>
-            </Menu>
+          <UserMenu openUserMenu={openUserMenu}>
+            { isOpen ? this.renderUserMenu() : null }
           </UserMenu>
+
         </div>
 
         <ResourceNavigation>
