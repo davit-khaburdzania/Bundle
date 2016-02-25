@@ -1,8 +1,11 @@
 import React from 'react'
 import { createDevTools } from 'redux-devtools'
 
-import LogMonitor from 'redux-devtools-log-monitor'
 import DockMonitor from 'redux-devtools-dock-monitor'
+import MultipleMonitors from 'redux-devtools-dispatch/lib/MultipleMonitors'
+import Inspector from 'redux-devtools-inspector'
+import LogMonitor from 'redux-devtools-log-monitor'
+import Dispatcher from 'redux-devtools-dispatch'
 import SliderMonitor from 'redux-slider-monitor'
 
 export default createDevTools(
@@ -11,7 +14,11 @@ export default createDevTools(
     changePositionKey='ctrl-q'
     changeMonitorKey='ctrl-m'
   >
-    <LogMonitor expandActionRoot={false} />
+    <Inspector />
+    <MultipleMonitors>
+      <LogMonitor />
+      <Dispatcher />
+    </MultipleMonitors>
     <SliderMonitor keyboardEnabled />
   </DockMonitor>
 )

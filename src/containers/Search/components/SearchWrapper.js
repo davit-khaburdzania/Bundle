@@ -3,12 +3,14 @@ import React, { Component, PropTypes } from 'react'
 import SearchHeader from './SearchHeader'
 import SearchBody from './SearchBody'
 
-export default function SearchWrapper () {
+import './wrapper.css'
+
+export default function SearchWrapper ({ routeParams, searchResults }) {
 
   return (
     <div className='search-wrapper'>
-      <SearchHeader />
-      <SearchBody />
+      <SearchHeader routeParams={routeParams} />
+      <SearchBody searchResults={searchResults} />
     </div>
   )
 }

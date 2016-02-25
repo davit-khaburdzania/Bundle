@@ -1,16 +1,14 @@
 import request from 'axios'
 import api from './../api'
 
-export function toggleSearchVisibility () {
-  return { type: 'TOGGLE_SEARCH_VISIBILITY' }
-}
-
 export function getSearchResult (value) {
-
-  return (dispatch) => {
-    return request.get(api.search(value))
-      .then((response) =>
-        dispatch({ type: 'FETCH_SEARCH_RESULTS', result: response.data }))
-      .catch(console.log)
+  return async (dispatch) => {
+    try {
+      let response = await request.get(api.search(value))
+      dispatch({ type: 'FETCH_SEARCH_RESULTS', result: response.data })
+    } catch (error) {
+      // write error handler outside
+      console.log(error)
+    }
   }
 }

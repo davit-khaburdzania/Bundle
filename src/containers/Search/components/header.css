@@ -1,6 +1,19 @@
 .search-header-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 10px 15px;
-  height: 10vh;
+  height: 8.7vh;
+  border-bottom: 1px solid #ECECEC;
+
+  .close-search {
+    position: absolute;
+    color: #B4B4B4;
+    cursor: pointer;
+    top: 20px;
+    right: 25px;
+  }
 
   .search-input {
     background: #FCFCFC;
