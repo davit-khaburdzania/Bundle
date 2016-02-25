@@ -6,7 +6,8 @@ import {
   BundleNavigation,
   CollectionNavigation,
   FavoriteNavigation,
-  NotificationNavigation
+  NotificationNavigation,
+  SearchContainer
 } from './containers'
 
 export default (
@@ -14,6 +15,7 @@ export default (
     <IndexRedirect to='/bundles' />
 
     <Route path='/bundles' component={BundleNavigation} />
+    <Route path='/search(/:query)' component={SearchContainer} />
     <Route path='/collections' component={CollectionNavigation} />
     <Route path='/favorites' component={FavoriteNavigation}/>
     <Route path='/notifications' component={NotificationNavigation} />

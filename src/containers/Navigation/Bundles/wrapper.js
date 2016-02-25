@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react'
+import { Link } from 'react-router'
 import { ResourceNavigation } from '../../../components'
 import BundleListItem from './Item'
+
 
 import {
   List,
@@ -24,10 +26,7 @@ export default function Wrapper ({
       <ResourceNavigation.Header>
         <h2 style={styles} className='title'>Bundles</h2>
         <div className='nav'>
-          <Search search={search.open}
-           onClick={toggleSearchVisibility}
-           onChange={getSearchResult}
-          />
+          <Link to='/search' className='icon ion-ios-search search-icon' />
         </div>
       </ResourceNavigation.Header>
 
