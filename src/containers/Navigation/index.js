@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import * as userMenuActions from '../../actions/UserMenu'
 
 import MainNavigation from './MainNavigation'
+import { ResourceNavigation } from '../../components'
+
 import './index.css'
 
 import {
@@ -36,9 +38,9 @@ export default class Navigation extends Component {
           </UserMenu>
         </div>
 
-        <div className='list-container'>
+        <ResourceNavigation>
           {listChildren}
-        </div>
+        </ResourceNavigation>
       </div>
     )
   }

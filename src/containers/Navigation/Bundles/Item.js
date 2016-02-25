@@ -1,7 +1,9 @@
-import React from 'react'
-import { Date } from '../../components'
+const APP_PATH = '../../..'
 
-import './BundleListItem.css'
+import React from 'react'
+import { Date } from '../../../components'
+
+import './item.css'
 
 export default function BundleListItem ({
   name,

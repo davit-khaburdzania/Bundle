@@ -1,0 +1,7 @@
+.resource-navigation {
+  width: 350px;
+  height: 100vh;
+  overflow-y: scroll;
+  border-left: 1px solid #ECECEC;
+  border-right: 1px solid #ECECEC;
+}
