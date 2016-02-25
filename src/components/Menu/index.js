@@ -1,14 +1,8 @@
 import React, { Component, PropTypes } from 'react'
-import listensToClickOutside from 'react-onclickoutside/decorator'
 
 import './index.css'
 
-@listensToClickOutside()
 export default class Menu extends Component {
-  handleClickOutside () {
-    this.props.closeUserMenu()
-  }
-
   renderHeadline (headline) {
     if (headline) {
       return (
@@ -37,6 +31,5 @@ export default class Menu extends Component {
     left: PropTypes.string,
     bottom: PropTypes.string,
     headline: PropTypes.string,
-    closeUserMenu: PropTypes.func.isRequired
   }
 }
