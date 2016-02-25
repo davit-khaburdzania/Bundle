@@ -9,4 +9,3 @@ export default function Wrapper ({ children }) {
 Wrapper.propTypes = {
   children: PropTypes.element.isRequired
 }
-

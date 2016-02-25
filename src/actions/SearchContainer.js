@@ -6,7 +6,6 @@ export function toggleSearchVisibility () {
 }
 
 export function getSearchResult (value) {
-
   return (dispatch) => {
     return request.get(api.search(value))
       .then((response) =>

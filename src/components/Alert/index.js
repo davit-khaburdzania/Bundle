@@ -5,10 +5,10 @@ import Wrapper from './Wrapper'
 import './index.css'
 
 function alertContent (alerts) {
-  if (alerts.length == 1) {
+  if (alerts.length === 1) {
     return alerts
   } else {
-    return <ul>{ alerts.map((item, key) => <li key={ key }>{item}</li>) }</ul>
+    return <ul>{alerts.map((item, key) => <li key={key}>{item}</li>)}</ul>
   }
 }
 
@@ -16,9 +16,9 @@ export default function Alert ({ type, alerts, removeAlert }) {
   const content = alertContent(alerts)
 
   return (
-    <div className={ `alert alert-${type}` }>
+    <div className={`alert alert-${type}`}>
       {content}
-      <button onClick={ removeAlert }>x</button>
+      <button onClick={removeAlert}>x</button>
     </div>
   )
 }

@@ -1,5 +1,3 @@
-const APP_PATH = '../../..'
-
 import React from 'react'
 import { Date } from '../../../components'
 

@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'
+import React from 'react'
 import { ResourceNavigation } from '../../../components'
 import BundleListItem from './Item'
 
@@ -24,9 +24,10 @@ export default function Wrapper ({
       <ResourceNavigation.Header>
         <h2 style={styles} className='title'>Bundles</h2>
         <div className='nav'>
-          <Search search={search.open}
-           onClick={toggleSearchVisibility}
-           onChange={getSearchResult}
+          <Search
+            search={search.open}
+            onClick={toggleSearchVisibility}
+            onChange={getSearchResult}
           />
         </div>
       </ResourceNavigation.Header>
@@ -34,7 +35,8 @@ export default function Wrapper ({
       <ResourceNavigation.Body>
         <List>
           {currentListItems.map((bundle, index) =>
-            <ListItem key={index}
+            <ListItem
+              key={index}
               {...bundle}
               Component={BundleListItem}
             />
