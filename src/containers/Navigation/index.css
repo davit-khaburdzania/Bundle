@@ -54,9 +54,27 @@
   }
 
   .nav-icon {
-    color: #4E4E4E;
-    font-size: 23px;
+    width: 22px;
+    height: 22px;
     transition: all .15s ease-in-out;
+    background-repeat: no-repeat;
+    background-size: 22px 22px;
+
+    &.nav-icon-bundles {
+      background-image: url(/assets/images/bundles.svg);
+    }
+
+    &.nav-icon-collections {
+      background-image: url(/assets/images/collections.svg);
+    }
+
+    &.nav-icon-favorites {
+      background-image: url(/assets/images/favorites.svg);
+    }
+
+    &.nav-icon-notifications {
+      background-image: url(/assets/images/notifications.svg);
+    }
   }
 
   .nav-icon:hover {

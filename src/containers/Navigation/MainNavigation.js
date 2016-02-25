@@ -10,10 +10,10 @@ export default function Main () {
       </div>
 
       <div className='main-nav-list'>
-        <Link to='/bundles' className='ion-ios-paper nav-icon' />
-        <Link to='/collections' className='ion-ios-albums nav-icon' />
-        <Link to='/favorites' className='ion-star nav-icon' />
-        <Link to='/notifications' className='ion-ios-bell nav-icon' />
+        <Link to='/bundles' className='nav-icon nav-icon-bundles' />
+        <Link to='/collections' className='nav-icon nav-icon-collections' />
+        <Link to='/favorites' className='nav-icon nav-icon-favorites' />
+        <Link to='/notifications' className='nav-icon nav-icon-notifications' />
       </div>
     </div>
   )
