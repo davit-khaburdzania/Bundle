@@ -6,9 +6,9 @@ export function getCollection (id) {
     try {
       let response = await request.get(api.collections(id))
       dispatch({ type: 'RECEIVE_COLLECTION', collection: response.data })
-    } catch (e) {
+    } catch (error) {
       // write error handler outside
-      console.log(e)
+      console.log(error)
     }
   }
 }
@@ -18,9 +18,9 @@ export function getCollections () {
     try {
       let response = await request.get(api.collections())
       dispatch({ type: 'RECEIVE_COLLECTIONS', list: response.data })
-    } catch (e) {
+    } catch (error) {
       // write error handler outside
-      console.log(e)
+      console.log(error)
     }
   }
 }

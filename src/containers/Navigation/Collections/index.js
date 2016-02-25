@@ -7,9 +7,7 @@ const connect_state = (state) => ({
   collections: state.Collection.list
 })
 
-const connect_props = {
-  ...CollectionActions
-}
+const connect_props = { ...CollectionActions }
 
 @connect(connect_state, connect_props)
 export default class CollectionsNavigationContainer extends Component {

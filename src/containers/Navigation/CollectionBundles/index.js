@@ -25,8 +25,8 @@ export default class Container extends Component {
       <Wrapper collection={collection.current}/>
     )
   }
-}
 
-Container.propTypes = {
-  collection: PropTypes.object,
+  static propTypes = {
+    collection: PropTypes.object,
+  }
 }
