@@ -6,9 +6,9 @@ export function getBundles () {
     try {
       let response = await request.get(api.bundles)
       dispatch({ type: 'RECEIVE_BUNDLES', list: response.data })
-    } catch (e) {
+    } catch (error) {
       // write error handler outside
-      console.log(e.data.errors)
+      console.log(error)
     }
   }
 }

@@ -1,6 +1,5 @@
 import React from 'react'
 import { ResourceNavigation } from '../../../components'
-import BundleListItem from './Item'
 
 import {
   List,
@@ -38,7 +37,7 @@ export default function Wrapper ({
             <ListItem
               key={index}
               {...bundle}
-              Component={BundleListItem}
+              Component={ListItem.Bundle}
             />
           )}
         </List>
