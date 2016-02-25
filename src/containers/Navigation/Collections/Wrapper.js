@@ -22,7 +22,8 @@ export default function Wrapper ({
       <ResourceNavigation.Body>
         <List>
           {collections.map((collection, index) =>
-            <ListItem key={index}
+            <ListItem
+              key={index}
               {...collection}
               Component={ListItem.Collection}
             />

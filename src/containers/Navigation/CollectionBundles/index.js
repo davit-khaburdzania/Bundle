@@ -21,12 +21,10 @@ export default class Container extends Component {
 
     if (!collection.current) return false
 
-    return (
-      <Wrapper collection={collection.current}/>
-    )
+    return <Wrapper collection={collection.current} />
   }
 
   static propTypes = {
-    collection: PropTypes.object,
+    collection: PropTypes.object.isRequired,
   }
 }

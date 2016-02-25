@@ -17,8 +17,6 @@ export default class CollectionsNavigationContainer extends Component {
   }
 
   render () {
-    return (
-      <Wrapper collections={this.props.collections} />
-    )
+    return <Wrapper collections={this.props.collections} />
   }
 }

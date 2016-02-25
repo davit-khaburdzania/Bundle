@@ -35,8 +35,7 @@ export default class Container extends Component {
   }
 
   static propTypes = {
-    bundles: PropTypes.array,
-    search: PropTypes.object,
-    dispatch: PropTypes.func
+    bundles: PropTypes.array.isRequired,
+    search: PropTypes.object.isRequired
   }
 }
