@@ -9,7 +9,6 @@ import Dispatcher from 'redux-devtools-dispatch'
 import SliderMonitor from 'redux-slider-monitor'
 
 import { allActions } from '../../actions'
-console.log(allActions)
 
 export default createDevTools(
   <DockMonitor
