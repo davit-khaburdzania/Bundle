@@ -10,15 +10,19 @@ function alertContent (alerts) {
   }
 }
 
-export default function Alert ({ type, alerts }) {
+export default function Alert ({ type, alerts, removeAlert }) {
   const content = alertContent(alerts)
 
   return (
-    <div className={ `alert alert-${type}` }>{content}</div>
+    <div className={ `alert alert-${type}` }>
+      {content}
+      <button onClick={ removeAlert }>x</button>
+    </div>
   )
 }
 
 Alert.propTypes = {
   type: PropTypes.string.isRequired,
-  alerts: PropTypes.array.isRequired
+  alerts: PropTypes.array.isRequired,
+  removeAlert: PropTypes.func.isRequired
 }

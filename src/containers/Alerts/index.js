@@ -1,24 +1,30 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { Alert } from '../../components'
+import * as alertActions from '../../actions/Alerts'
 
 import './index.css'
 
-@connect(state => ({
-  alert: state.Alerts[0]
-}))
+const connectProps = state => ({ alert: state.Alerts[0] })
+const connectActions = { ...alertActions }
+
+@connect(connectProps, connectActions)
 export default class Alerts extends Component {
   render () {
-    let { alert } = this.props
+    let { alert, removeAlert } = this.props
+    if (! alert) return false
 
     return (
       <div className='alerts-container'>
-        <Alert type={ alert.type } alerts={ alert.list } />
+        <Alert type={ alert.type }
+          alerts={ alert.list }
+          removeAlert={ removeAlert }
+        />
       </div>
     )
   }
 
   static propTypes = {
-    alert: PropTypes.object.isRequired
+    alert: PropTypes.object
   }
 }
