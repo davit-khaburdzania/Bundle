@@ -1,16 +1,22 @@
-import React from 'react'
-import { ResourceNavigation } from '../../../components'
+import React, { Component, PropTypes } from 'react'
+import { connect } from 'react-redux'
+import * as CollectionActions from '../../../actions/Collection'
+import Wrapper from './Wrapper'
 
-export default function CollectionsContainer () {
-  return (
-    <div className='collections-navigation'>
-      <ResourceNavigation.Header>
-        <h2 className='title'>Collections</h2>
-        <div className='nav'>
-          <span className='ion-ios-albums icon'></span>
-          <span className='ion-ios-search icon'></span>
-        </div>
-      </ResourceNavigation.Header>
-    </div>
-  )
+const connect_state = (state) => ({
+  collections: state.Collection.list
+})
+
+const connect_props = { ...CollectionActions }
+
+@connect(connect_state, connect_props)
+export default class CollectionsNavigationContainer extends Component {
+  constructor (props) {
+    props.getCollections()
+    super(props)
+  }
+
+  render () {
+    return <Wrapper collections={this.props.collections} />
+  }
 }

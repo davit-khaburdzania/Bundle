@@ -4,16 +4,18 @@ import * as bundleActions from '../../../actions/Bundle'
 import * as searchActions from '../../../actions/SearchContainer'
 import Wrapper from './Wrapper'
 
-import './index.css'
-
-@connect(state => ({
+const connectState = (state) => ({
   bundles: state.Bundle.list,
   search: state.Search
-}), {
-   ...bundleActions,
-   ...searchActions
 })
-export default class BundleNavigationContainer extends Component {
+
+const connectProps = {
+  ...bundleActions,
+  ...searchActions
+}
+
+@connect(connectState, connectProps)
+export default class Container extends Component {
   constructor (props) {
     props.getBundles()
     super(props)
@@ -31,10 +33,9 @@ export default class BundleNavigationContainer extends Component {
       />
     )
   }
-}
 
-BundleNavigationContainer.propTypes = {
-  bundles: PropTypes.array,
-  search: PropTypes.object,
-  dispatch: PropTypes.func
+  static propTypes = {
+    bundles: PropTypes.array.isRequired,
+    search: PropTypes.object.isRequired
+  }
 }

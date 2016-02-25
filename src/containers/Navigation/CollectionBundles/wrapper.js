@@ -3,36 +3,23 @@ import { ResourceNavigation } from '../../../components'
 
 import {
   List,
-  ListItem,
-  Search
+  ListItem
 } from '../../../components'
 
 export default function Wrapper ({
-  bundles,
-  search,
-  dispatch,
-  toggleSearchVisibility,
-  getSearchResult
+  collection
 }) {
-  let styles = { 'display': search.open ? 'none' : 'block' }
-
-  let currentListItems = search.result.length ? search.result : bundles
-
   return (
     <div className='bundles-navigation'>
       <ResourceNavigation.Header>
-        <h2 style={styles} className='title'>Bundles</h2>
+        <h2 className='title'>{collection.name}</h2>
         <div className='nav'>
-          <Search search={search.open}
-           onClick={toggleSearchVisibility}
-           onChange={getSearchResult}
-          />
         </div>
       </ResourceNavigation.Header>
 
       <ResourceNavigation.Body>
         <List>
-          {currentListItems.map((bundle, index) =>
+          {collection.bundles.map((bundle, index) =>
             <ListItem key={index}
               {...bundle}
               Component={ListItem.Bundle}
