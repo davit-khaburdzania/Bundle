@@ -5,13 +5,13 @@ import UserMenu from './UserMenu'
 import Bundle from './Bundle'
 import Collection from './Collection'
 import Search from './SearchContainer'
-import Alerts from './Alerts'
+import Alert from './Alert'
 
 export default combineReducers({
   UserMenu,
   Bundle,
   Collection,
   Search,
-  Alerts,
+  Alert,
   routing
 })

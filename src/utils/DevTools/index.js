@@ -8,6 +8,9 @@ import LogMonitor from 'redux-devtools-log-monitor'
 import Dispatcher from 'redux-devtools-dispatch'
 import SliderMonitor from 'redux-slider-monitor'
 
+import { allActions } from '../../actions'
+console.log(allActions)
+
 export default createDevTools(
   <DockMonitor
     toggleVisibilityKey='ctrl-h'
@@ -17,7 +20,7 @@ export default createDevTools(
     <Inspector />
     <MultipleMonitors>
       <LogMonitor />
-      <Dispatcher />
+      <Dispatcher actionCreators={allActions} />
     </MultipleMonitors>
     <SliderMonitor keyboardEnabled />
   </DockMonitor>
