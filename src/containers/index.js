@@ -1,5 +1,6 @@
 export Root from './Root'
 export App from './App'
+export Alerts from './Alerts'
 export BundleNavigation from './Navigation/Bundles'
 export CollectionNavigation from './Navigation/Collections'
 export CollectionBundlesNavigation from './Navigation/CollectionBundles'

@@ -1,8 +1,13 @@
 import React from 'react'
-import { Navigation } from '..'
+import { Navigation, Alerts } from '..'
 
 import './style.css'
 
 export default function App ({ children }) {
-  return <Navigation listChildren={children} />
+  return  (
+    <div>
+      <Alerts />
+      <Navigation listChildren={children} />
+    </div>
+  )
 }
