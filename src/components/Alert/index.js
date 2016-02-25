@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react'
 
+import Wrapper from './Wrapper'
+
 import './index.css'
 
 function alertContent (alerts) {
@@ -20,6 +22,8 @@ export default function Alert ({ type, alerts, removeAlert }) {
     </div>
   )
 }
+
+Alert.Wrapper = Wrapper
 
 Alert.propTypes = {
   type: PropTypes.string.isRequired,

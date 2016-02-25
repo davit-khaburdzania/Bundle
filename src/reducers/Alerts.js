@@ -1,9 +1,4 @@
-export default function (state = [{
-  type: 'error',
-  list: [
-    'The quick brown fox jumped over the lazy dog'
-  ]
-}], action) {
+export default function (state = [], action) {
   switch (action.type) {
     case 'REMOVE_ALERT':
       return state.slice(1)
