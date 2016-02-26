@@ -1,7 +1,7 @@
 import React from 'react'
 import { ResourceNavigation } from '../../../components'
 
-export default function FavoritesContainer () {
+export default function Container () {
   return (
     <div className='favorites-navigation'>
       <ResourceNavigation.Header>

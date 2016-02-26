@@ -1,7 +1,7 @@
 import React from 'react'
 import { ResourceNavigation } from '../../../components'
 
-export default function NotificationsContainer () {
+export default function Container () {
   return (
     <div className='notifications-navigation'>
       <ResourceNavigation.Header>
