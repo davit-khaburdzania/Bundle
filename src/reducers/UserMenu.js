@@ -1,7 +1,9 @@
 export default function (state = false, action) {
   switch (action.type) {
-    case 'TOGGLE_USER_MENU':
-      return !state
+    case 'OPEN_USER_MENU':
+      return true
+    case 'CLOSE_USER_MENU':
+      return false
     default:
       return state
   }

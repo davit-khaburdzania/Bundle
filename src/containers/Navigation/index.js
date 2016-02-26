@@ -20,22 +20,28 @@ import {
 })
 export default class Navigation extends Component {
   render () {
-    let { isOpen, listChildren, toggleUserMenu } = this.props
+    let { isOpen, listChildren, openUserMenu, closeUserMenu } = this.props
 
     return (
       <div className='navigation-container'>
         <div className='menu-container'>
           <MainNavigation />
 
-          <UserMenu toggleUserMenu={toggleUserMenu}>
-            <Menu left={'70px'} bottom={'40px'}
+          <UserMenu
+            isOpen={isOpen}
+            openUserMenu={openUserMenu}
+            closeUserMenu={closeUserMenu}
+          >
+            <Menu
+              left={'70px'}
+              bottom={'40px'}
               headline={'Julia Roberts'}
-              open={isOpen}
             >
               <Link to='/settings'>Settings</Link>
               <Link to='/logout'>Sign Out</Link>
             </Menu>
           </UserMenu>
+
         </div>
 
         <ResourceNavigation>
@@ -43,5 +49,12 @@ export default class Navigation extends Component {
         </ResourceNavigation>
       </div>
     )
+  }
+
+  static propTypes: {
+    isOpen: PropTypes.bool.isRequired,
+    openUserMenu: PropTypes.func.isRequired,
+    closeUserMenu: PropTypes.func.isRequired,
+    listChildren: PropTypes.element.isRequired
   }
 }
