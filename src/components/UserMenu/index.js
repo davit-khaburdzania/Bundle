@@ -1,23 +1,32 @@
-import React, { PropTypes } from 'react'
+import React, { Component, PropTypes } from 'react'
+import listensToClickOutside from 'react-onclickoutside/decorator'
 
 import './index.css'
 
-export default function UserMenu ({
-  children,
-  toggleUserMenu
-}) {
-  return (
-    <div className='user-menu'>
-      {children}
+@listensToClickOutside()
+export default class UserMenu extends Component {
+  handleClickOutside () {
+    this.props.isOpen && this.props.closeUserMenu()
+  }
 
-      <div className='avatar-holder' onClick={toggleUserMenu}>
-        <img src='/assets/images/avatar.png' />
+  render () {
+    let { children, isOpen, openUserMenu } = this.props
+
+    return (
+      <div className='user-menu'>
+        { isOpen ? children : null }
+
+        <div className='avatar-holder' onClick={openUserMenu}>
+          <img src='/assets/images/avatar.png' />
+        </div>
       </div>
-    </div>
-  )
-}
+    )
+  }
 
-UserMenu.propTypes = {
-  toggleUserMenu: PropTypes.func,
-  children: React.PropTypes.element
+  static propTypes = {
+    isOpen: PropTypes.bool.isRequired,
+    openUserMenu: PropTypes.func.isRequired,
+    closeUserMenu: PropTypes.func.isRequired,
+    children: PropTypes.element,
+  }
 }
