@@ -1,7 +1,6 @@
 import React from 'react'
 import {
   SideNavigation,
-  ResourceNavigation,
   Alerts
 } from '..'
 
@@ -13,7 +12,7 @@ export default function App ({ children }) {
       <Alerts />
       <div className='application-container'>
         <SideNavigation/>
-        <ResourceNavigation listChildren={children} />
+        {children}
       </div>
     </div>
   )
