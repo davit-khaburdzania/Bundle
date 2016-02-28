@@ -5,11 +5,15 @@ import Body from './Body'
 import './index.css'
 
 export default function ResourceNavigation ({
-  children
+  children,
+  bundleView
 }) {
   return (
-    <div className='resource-navigation'>
-      {children}
+    <div>
+      <div className='resource-navigation'>
+        {children}
+      </div>
+      {bundleView}
     </div>
   )
 }

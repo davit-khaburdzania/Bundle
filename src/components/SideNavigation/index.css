@@ -1,4 +1,11 @@
-.main-navigation-container {
+.side-navigation {
+  position: relative;
+  width: 80px;
+  height: 100vh;
+  background: #F8F8F8;
+}
+
+.side-navigation-top {
   .top-nav-list {
     display: flex;
     flex-direction: column;
