@@ -4,14 +4,20 @@ import { Menu, UserMenu } from '../../../components'
 
 export default function SideNavigationBottom ({
   isOpen,
-  toggleUserMenu
+  openUserMenu,
+  closeUserMenu
 }) {
   return (
     <div className='side-navigation-bottom'>
-      <UserMenu toggleUserMenu={toggleUserMenu}>
-        <Menu left={'70px'} bottom={'40px'}
+      <UserMenu
+        isOpen={isOpen}
+        openUserMenu={openUserMenu}
+        closeUserMenu={closeUserMenu}
+      >
+        <Menu
+          left={'70px'}
+          bottom={'40px'}
           headline={'Julia Roberts'}
-          open={isOpen}
         >
           <Link to='/settings'>Settings</Link>
           <Link to='/logout'>Sign Out</Link>
@@ -19,4 +25,9 @@ export default function SideNavigationBottom ({
       </UserMenu>
     </div>
   )
+}
+SideNavigationBottom.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  openUserMenu: PropTypes.func.isRequired,
+  closeUserMenu: PropTypes.func.isRequired
 }

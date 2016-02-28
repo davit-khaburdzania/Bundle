@@ -16,12 +16,16 @@ const connect_props = { ...userMenuActions }
 @connect(connect_state, connect_props)
 export default class SideNavigation extends Component {
   render () {
-    let { isOpen, toggleUserMenu } = this.props
+    let { isOpen, openUserMenu, closeUserMenu } = this.props
 
     return (
       <div className='side-navigation'>
         <SideNavigationTop/>
-        <SideNavigationBottom isOpen={isOpen} toggleUserMenu={toggleUserMenu} />
+        <SideNavigationBottom
+          isOpen={isOpen}
+          openUserMenu={openUserMenu}
+          closeUserMenu={closeUserMenu}
+        />
       </div>
     )
   }
