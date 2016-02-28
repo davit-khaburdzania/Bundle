@@ -17,11 +17,11 @@ export default class Container extends Component {
   }
 
   render () {
-    const collection = this.props.collection
+    const { collection, children } = this.props
 
     if (!collection.current) return false
 
-    return <Wrapper collection={collection.current} />
+    return <Wrapper collection={collection.current} children={children} />
   }
 
   static propTypes = {

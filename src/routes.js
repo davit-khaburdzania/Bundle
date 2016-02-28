@@ -7,15 +7,21 @@ import {
   CollectionNavigation,
   CollectionBundlesNavigation,
   FavoriteNavigation,
-  NotificationNavigation
+  NotificationNavigation,
+  BundleView
 } from './containers'
 
 export default (
   <Route path='/' component={App}>
     <IndexRedirect to='/bundles' />
 
-    <Route path='/bundles' component={BundleNavigation} />
-    <Route path='/collections/:id' component={CollectionBundlesNavigation} />
+    <Route path='/bundles' component={BundleNavigation}>
+      <Route path='/bundles/:bundle_id' component={BundleView} />
+    </Route>
+
+    <Route path='/collections/:id' component={CollectionBundlesNavigation}>
+      <Route path='/collections/:id/bundles/:bundle_id' component={BundleView} />
+    </Route>
     <Route path='/collections' component={CollectionNavigation} />
     <Route path='/favorites' component={FavoriteNavigation}/>
     <Route path='/notifications' component={NotificationNavigation} />

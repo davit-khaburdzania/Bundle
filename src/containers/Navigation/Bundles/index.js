@@ -23,13 +23,13 @@ export default class Container extends Component {
 
   render () {
     let props = this.props
-
     return (
       <Wrapper
         toggleSearchVisibility={props.toggleSearchVisibility}
         getSearchResult={props.getSearchResult}
         search={props.search}
         bundles={props.bundles}
+        children={props.children}
       />
     )
   }

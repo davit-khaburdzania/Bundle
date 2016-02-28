@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router'
 
+import './index.css'
+
 export default function Main () {
   return (
     <div className='main-navigation-container'>

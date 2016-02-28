@@ -3,8 +3,10 @@ import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import * as userMenuActions from '../../actions/UserMenu'
 
-import MainNavigation from './MainNavigation'
-import { ResourceNavigation } from '../../components'
+import {
+  MainNavigation,
+  ResourceNavigation
+} from '../../components'
 
 import './index.css'
 
@@ -37,10 +39,7 @@ export default class Navigation extends Component {
             </Menu>
           </UserMenu>
         </div>
-
-        <ResourceNavigation>
-          {listChildren}
-        </ResourceNavigation>
+        {listChildren}
       </div>
     )
   }
