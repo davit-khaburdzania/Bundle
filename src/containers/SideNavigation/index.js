@@ -2,7 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import * as userMenuActions from '../../actions/UserMenu'
 
-import { SideNavigation } from '../../components'
+import SideNavigationTop from './top'
+import SideNavigationBottom from './bottom'
+
+import './index.css'
 
 const connect_state = state => ({
   isOpen: state.UserMenu
@@ -11,12 +14,15 @@ const connect_state = state => ({
 const connect_props = { ...userMenuActions }
 
 @connect(connect_state, connect_props)
-export default class Navigation extends Component {
+export default class SideNavigation extends Component {
   render () {
     let { isOpen, toggleUserMenu } = this.props
 
     return (
-      <SideNavigation isOpen={isOpen} toggleUserMenu={toggleUserMenu} />
+      <div className='side-navigation'>
+        <SideNavigationTop/>
+        <SideNavigationBottom isOpen={isOpen} toggleUserMenu={toggleUserMenu} />
+      </div>
     )
   }
 }
