@@ -8,7 +8,7 @@ export default function App ({ children }) {
     <div>
       <Alerts />
       <div className='application-container'>
-        <SideNavigation/>
+        <SideNavigation />
         {children}
       </div>
     </div>

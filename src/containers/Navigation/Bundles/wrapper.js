@@ -36,11 +36,7 @@ export default function Wrapper ({
         <ResourceNavigation.Body>
           <List>
             {currentListItems.map((bundle, index) =>
-              <ListItem
-                key={index}
-                {...bundle}
-                Component={ListItem.Bundle}
-              />
+              <ListItem key={index} {...bundle} Component={ListItem.Bundle} />
             )}
           </List>
         </ResourceNavigation.Body>

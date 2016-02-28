@@ -21,9 +21,7 @@ export default class SideNavigation extends Component {
     return (
       <div className='side-navigation'>
         <SideNavigationTop/>
-        <SideNavigationBottom
-          isOpen={isOpen}
-          openUserMenu={openUserMenu}
+        <SideNavigationBottom isOpen={isOpen} openUserMenu={openUserMenu}
           closeUserMenu={closeUserMenu}
         />
       </div>

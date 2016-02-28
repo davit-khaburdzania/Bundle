@@ -9,16 +9,10 @@ export default function SideNavigationBottom ({
 }) {
   return (
     <div className='side-navigation-bottom'>
-      <UserMenu
-        isOpen={isOpen}
-        openUserMenu={openUserMenu}
-        closeUserMenu={closeUserMenu}
-      >
-        <Menu
-          left={'70px'}
-          bottom={'40px'}
-          headline={'Julia Roberts'}
-        >
+      <UserMenu isOpen={isOpen} openUserMenu={openUserMenu}
+        closeUserMenu={closeUserMenu} >
+
+        <Menu left={'70px'} bottom={'40px'} headline={'Julia Roberts'}>
           <Link to='/settings'>Settings</Link>
           <Link to='/logout'>Sign Out</Link>
         </Menu>
