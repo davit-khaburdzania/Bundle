@@ -9,7 +9,7 @@ export default function ResourceNavigation ({
   bundleView
 }) {
   return (
-    <div>
+    <div className='navigation-wrapper'>
       <div className='resource-navigation'>
         {children}
       </div>
@@ -19,7 +19,8 @@ export default function ResourceNavigation ({
 }
 
 ResourceNavigation.propTypes = {
-  children: PropTypes.element
+  children: PropTypes.element,
+  bundleView: PropTypes.element
 }
 
 ResourceNavigation.Header = Header
