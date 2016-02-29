@@ -22,7 +22,8 @@ export default class Container extends Component {
   }
 
   render () {
-    let props = this.props
+    const props = this.props
+
     return (
       <Wrapper
         toggleSearchVisibility={props.toggleSearchVisibility}

@@ -1,9 +1,8 @@
 import React, { Component, PropTypes } from 'react'
-import { ResourceNavigation } from '../../../components'
-
 import {
   List,
   ListItem,
+  ResourceNavigation
 } from '../../../components'
 
 export default function Wrapper ({
