@@ -8,6 +8,8 @@ import {
   Search
 } from '../../../components'
 
+import './wrapper.css'
+
 export default function Wrapper ({
   bundles,
   search,

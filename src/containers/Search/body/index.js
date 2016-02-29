@@ -8,7 +8,7 @@ import {
 import './index.css'
 
 function isAnyResult (searchResults) {
-  return searchResults.collections.length || searchResults.bundles.length
+  return isBundles(searchResults) || isCollections(searchResults)
 }
 
 function isBundles (searchResults) {
@@ -41,10 +41,7 @@ export default function SearchBody ({ searchResults }) {
              Collections
           </h4>
           {searchResults.collections.map((item, index) =>
-            <ListItem key={index}
-              {...item}
-              Component={ListItem.Collection}
-            />
+            <ListItem key={index} {...item} Component={ListItem.Collection} />
           )}
         </List>
 
@@ -52,10 +49,7 @@ export default function SearchBody ({ searchResults }) {
           <h4 style={shouldShow(isBundles(searchResults))}
             className='name'> Bundles </h4>
           {searchResults.bundles.map((item, index) =>
-            <ListItem key={index}
-              {...item}
-              Component={ListItem.Bundle}
-            />
+            <ListItem key={index} {...item} Component={ListItem.Bundle} />
           )}
         </List>
 

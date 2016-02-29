@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react'
 
+import './body.css'
+
 export default function Body ({
   children
 }) {

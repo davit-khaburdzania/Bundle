@@ -29,9 +29,5 @@
     margin: 3px 0;
     width: 100%;
     outline: none;
-
-    &:focus {
-      font-family: Avenir-Roman;
-    }
   }
 }

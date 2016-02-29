@@ -6,7 +6,6 @@ import SearchBody from '../body'
 import './index.css'
 
 export default function SearchWrapper ({ query, searchResults }) {
-
   return (
     <div className='search-wrapper'>
       <SearchHeader query={query} />

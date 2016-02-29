@@ -1,14 +1,11 @@
 import React, { Component, PropTypes } from 'react'
+import { Link } from 'react-router'
 
 import { browserHistory } from 'react-router'
 
 import './index.css'
 
 export default class SearchHeader extends Component {
-  constructor (props) {
-    super(props)
-  }
-
   onChange (e) {
     let value = e.target.value
 
@@ -20,14 +17,14 @@ export default class SearchHeader extends Component {
   }
 
   render () {
-    let { query } = this.props
+    const { query } = this.props
+
     return (
       <div className='search-header-wrapper'>
         <input className='search-input animated flipInX' type='text'
           placeholder='Search...' onChange={this.onChange}
-          value={query || ''}
-        />
-        <span onClick={this.goToBundles} className='close-search'>x</span>
+          value={query || ''} />
+        <Link to="/bundles" className='close-search'>x</Link>
       </div>
     )
   }
