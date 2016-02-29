@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'react-router'
 import { ResourceNavigation } from '../../../components'
 
 import {
@@ -36,7 +37,9 @@ export default function Wrapper ({
         <ResourceNavigation.Body>
           <List>
             {currentListItems.map((bundle, index) =>
-              <ListItem key={index} {...bundle} Component={ListItem.Bundle} />
+              <ListItem key={index} {...bundle} Component={ListItem.Bundle}
+                url={'/bundles/' + bundle.id}
+              />
             )}
           </List>
         </ResourceNavigation.Body>
