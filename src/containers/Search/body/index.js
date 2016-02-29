@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { Component, PropTypes } from 'react'
 
 import {
   List,
   ListItem
 } from '../../../components'
 
-import './body.css'
+import './index.css'
 
 function isAnyResult (searchResults) {
   return searchResults.collections.length || searchResults.bundles.length
@@ -62,4 +62,8 @@ export default function SearchBody ({ searchResults }) {
       </div>
     </div>
   )
+}
+
+SearchBody.propTypes = {
+  searchResults: PropTypes.object
 }

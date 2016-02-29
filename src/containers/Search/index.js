@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import * as searchActions from '../../actions/SearchContainer'
+import * as searchActions from '../../actions/Search'
 
-import SearchWrapper from './components/SearchWrapper'
+import SearchWrapper from './wrapper'
 
 @connect(state => ({
   searchResults: state.Search.result
@@ -32,11 +32,12 @@ export default class SearchContainer extends Component {
 
   render () {
     let { searchResults, routeParams } = this.props
+    console.log(routeParams)
 
     if (! searchResults)  return false
 
     return (
-      <SearchWrapper routeParams={routeParams} searchResults={searchResults} />
+      <SearchWrapper query={routeParams.query} searchResults={searchResults} />
     )
   }
 }
