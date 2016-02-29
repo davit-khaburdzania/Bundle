@@ -22,7 +22,7 @@ export default class Container extends Component {
   }
 
   render () {
-    let props = this.props
+    const props = this.props
 
     return (
       <Wrapper
@@ -30,6 +30,7 @@ export default class Container extends Component {
         getSearchResult={props.getSearchResult}
         search={props.search}
         bundles={props.bundles}
+        children={props.children}
       />
     )
   }

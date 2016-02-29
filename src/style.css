@@ -1,5 +1,9 @@
 @import '../assets/css/vendor/animate.css';
 
+/* fix overscroll */
+html { overflow: hidden; }
+body { overflow: scroll; }
+
 html,
 body {
   padding: 0;

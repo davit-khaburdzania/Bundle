@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { Alert } from '../../components'
-import * as alertActions from '../../actions/Alerts'
+import * as alertActions from '../../actions/Alert'
 
-const connectProps = state => ({ alert: state.Alerts[0] })
+const connectProps = state => ({ alert: state.Alert[0] })
 const connectActions = { ...alertActions }
 
 @connect(connectProps, connectActions)
