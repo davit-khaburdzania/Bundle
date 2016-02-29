@@ -1,3 +1,7 @@
+.navigation-wrapper {
+  display: flex;
+}
+
 .resource-navigation {
   width: 350px;
   height: 100vh;

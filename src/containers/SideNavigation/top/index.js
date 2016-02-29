@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
 
-export default function Main () {
+import './index.css'
+
+export default function SideNavigationTop () {
   return (
-    <div className='main-navigation-container'>
+    <div className='side-navigation-top'>
       <div className='top-nav-list'>
         <Link to='/' className='logo'>B</Link>
         <Link to='/new' className='add-new-icon' />

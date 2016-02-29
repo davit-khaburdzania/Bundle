@@ -12,36 +12,35 @@ export default function Wrapper ({
   search,
   dispatch,
   toggleSearchVisibility,
-  getSearchResult
+  getSearchResult,
+  children
 }) {
   let styles = { 'display': search.open ? 'none' : 'block' }
 
   let currentListItems = search.result.length ? search.result : bundles
 
   return (
-    <div className='bundles-navigation'>
-      <ResourceNavigation.Header>
-        <h2 style={styles} className='title'>Bundles</h2>
-        <div className='nav'>
-          <Search
-            search={search.open}
-            onClick={toggleSearchVisibility}
-            onChange={getSearchResult}
-          />
-        </div>
-      </ResourceNavigation.Header>
-
-      <ResourceNavigation.Body>
-        <List>
-          {currentListItems.map((bundle, index) =>
-            <ListItem
-              key={index}
-              {...bundle}
-              Component={ListItem.Bundle}
+    <ResourceNavigation bundleView={children}>
+      <div className='bundles-navigation'>
+        <ResourceNavigation.Header>
+          <h2 style={styles} className='title'>Bundles</h2>
+          <div className='nav'>
+            <Search
+              search={search.open}
+              onClick={toggleSearchVisibility}
+              onChange={getSearchResult}
             />
-          )}
-        </List>
-      </ResourceNavigation.Body>
-    </div>
+          </div>
+        </ResourceNavigation.Header>
+
+        <ResourceNavigation.Body>
+          <List>
+            {currentListItems.map((bundle, index) =>
+              <ListItem key={index} {...bundle} Component={ListItem.Bundle} />
+            )}
+          </List>
+        </ResourceNavigation.Body>
+      </div>
+    </ResourceNavigation>
   )
 }

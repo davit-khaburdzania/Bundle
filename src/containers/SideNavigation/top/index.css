@@ -1,15 +1,4 @@
-.navigation-container {
-  display: flex;
-}
-
-.menu-container {
-  position: relative;
-  width: 80px;
-  height: 100vh;
-  background: #F8F8F8;
-}
-
-.main-navigation-container {
+.side-navigation-top {
   .top-nav-list {
     display: flex;
     flex-direction: column;
