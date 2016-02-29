@@ -5,31 +5,7 @@
 .resource-navigation {
   width: 350px;
   height: 100vh;
-  overflow-y: scroll;
   border-left: 1px solid #ECECEC;
   border-right: 1px solid #ECECEC;
-
-  h1,
-  h2 {
-    margin: 0;
-    padding: 0;
-  }
-
-  h1 {
-    font-family: Avenir-Medium;
-    font-weight: normal;
-    font-size: 16px;
-    color: #414141;
-    line-height: 22px;
-    margin-bottom: 5px;
-  }
-
-  h2 {
-    font-family: Avenir-Light;
-    font-weight: normal;
-    font-size: 14px;
-    color: #A6A6A6;
-    line-height: 19px;
-  }
-
+  overflow: hidden;
 }

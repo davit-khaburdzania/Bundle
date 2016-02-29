@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import * as bundleActions from '../../../actions/Bundle'
-import * as searchActions from '../../../actions/SearchContainer'
+import * as searchActions from '../../../actions/Search'
 import Wrapper from './Wrapper'
 
 const connectState = (state) => ({

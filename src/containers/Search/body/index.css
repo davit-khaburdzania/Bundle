@@ -1,0 +1,26 @@
+.search-results-wrapper {
+  position: relative;
+  height: 90vh;
+  overflow-x: scroll;
+
+  .title {
+    font-family: Avenir-Light;
+    font-size: 18px;
+    color: #A3A3A3;
+    line-height: 18px;
+    padding: 0 20px;
+    margin-bottom: 30px;
+  }
+
+  .search-note {
+    margin-top: 280px;
+    text-align: center;
+    font-size: 17px;
+    color: #A0A0A0;
+  }
+
+  .name {
+    padding: 0 20px;
+    margin: 20px 0;
+  }
+}
