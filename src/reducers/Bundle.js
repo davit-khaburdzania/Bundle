@@ -1,4 +1,4 @@
-export default function (state = { list: [], current: {} }, action) {
+export default function (state = { list: [] }, action) {
   switch (action.type) {
     case 'RECEIVE_BUNDLES':
       return { ...state, list: action.list }

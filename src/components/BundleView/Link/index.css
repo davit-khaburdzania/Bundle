@@ -1,0 +1,56 @@
+.bundle-view-link {
+  font-family: Avenir-Medium;
+  margin-bottom: 50px;
+
+  .link-creator {
+    .creator-image {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      margin-bottom: -8px;
+      margin-right: 8px;
+    }
+
+    .creator-name {
+      font-size: 16px;
+      color: #1D1D26;
+      letter-spacing: 0.2px;
+      line-height: 16px;
+    }
+
+    .shared-this {
+      opacity: 0.5;
+      font-family: Avenir-Book;
+      font-size: 14px;
+      color: #1D1D26;
+      letter-spacing: 0.08px;
+      line-height: 20px;
+    }
+  }
+
+  .link-description {
+    font-family: Avenir-Book;
+    font-size: 16px;
+    color: #1B1722;
+    line-height: 21px;
+  }
+
+  .link-body {
+    border: 1px solid #E8E8E9;
+    height: 80px;
+
+    .link-image {
+      height: 78px;
+    }
+
+    .link-title {
+      font-size: 16px;
+      color: #1B1722;
+      line-height: 13px;
+    }
+
+    .link-created {
+
+    }
+  }
+}
