@@ -4,16 +4,10 @@ import * as searchActions from '../../actions/Search'
 
 import SearchWrapper from './wrapper'
 
-const connectState = (state) => ({
-  searchResults: state.Search.result
-})
-
-const connectProps = {
-  ...searchActions
-}
+const connectState = (state) => ({ searchResults: state.Search.result })
+const connectProps = { ...searchActions }
 
 @connect(connectState, connectProps)
-
 export default class SearchContainer extends Component {
   componentWillMount () {
     let query = this.props.routeParams.query
