@@ -33,7 +33,7 @@ export default class SearchContainer extends Component {
   render () {
     const { searchResults, routeParams } = this.props
 
-    if (! searchResults)  return false
+    if (! searchResults) return false
 
     return (
       <SearchWrapper query={routeParams.query} searchResults={searchResults} />
