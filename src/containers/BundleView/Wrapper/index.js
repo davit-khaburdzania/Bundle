@@ -11,7 +11,7 @@ export default function BundleView ({
   return (
     <div className='bundle-view-wrapper'>
       <BundleViewHeader />
-      <BundleViewBody bundle={bundle}/>
+      <BundleViewBody bundle={bundle} />
     </div>
   )
 }

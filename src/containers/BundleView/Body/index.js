@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react'
 import { BundleView } from '../../../components'
 import './index.css'
 
-
 export default function BundleViewBody ({
   bundle
 }) {

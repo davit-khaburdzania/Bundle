@@ -9,7 +9,6 @@ const connectState = (state) => ({
 
 const connectProps = bundleActions
 
-
 @connect(connectState, connectProps)
 export default class BundleViewContainer extends Component {
   constructor (props) {
@@ -22,6 +21,6 @@ export default class BundleViewContainer extends Component {
 
     if (!bundle) return false
 
-    return <Wrapper bundle={bundle}/>
+    return <Wrapper bundle={bundle} />
   }
 }
