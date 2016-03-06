@@ -6,13 +6,22 @@
     align-items: center;
     border-bottom: 1px solid #ECECEC;
 
-    .nav {
-      width: 100%;
+    .header {
+      display: flex;
+      justify-content: space-between;
+      line-height: 10px;
     }
 
     .icon {
       font-size: 24px;
       margin-left: 10px;
+    }
+
+    .search-icon {
+      display: inline-block;
+      width: 17px;
+      height: 17px;
+      background: url(/assets/images/search-icon.svg) no-repeat;
     }
 
     .title {
