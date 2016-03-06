@@ -5,7 +5,6 @@ import BundleViewBody from '../Body'
 
 import './index.css'
 
-
 export default function BundleView ({
   bundle
 }) {

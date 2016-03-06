@@ -22,6 +22,6 @@ export default class BundleViewContainer extends Component {
 
     if (!bundle) return false
 
-    return <Wrapper bundle={this.props.bundle}/>
+    return <Wrapper bundle={bundle}/>
   }
 }

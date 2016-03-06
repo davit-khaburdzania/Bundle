@@ -3,7 +3,7 @@ import React, { Component, PropTypes } from 'react'
 import './index.css'
 
 export default function BundleLink ({
-  link,
+  link
 }) {
   return (
     <div className='bundle-view-link'>
