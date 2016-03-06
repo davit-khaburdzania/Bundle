@@ -1,11 +1,26 @@
 import React, { Component, PropTypes } from 'react'
+import { connect } from 'react-redux'
+import * as bundleActions from '../../actions/Bundle'
+import Wrapper from './Wrapper'
 
-export default class Container extends Component {
+const connectState = (state) => ({
+  bundle: state.Bundle.current
+})
+
+const connectProps = bundleActions
+
+@connect(connectState, connectProps)
+export default class BundleViewContainer extends Component {
   constructor (props) {
+    props.getBundle(props.params.bundle_id)
     super(props)
   }
 
   render () {
-    return <div className='bundle-view'> wait a minut </div>
+    const { bundle } = this.props
+
+    if (!bundle) return false
+
+    return <Wrapper bundle={bundle} />
   }
 }

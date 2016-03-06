@@ -40,16 +40,20 @@ export default function SearchBody ({ searchResults }) {
             style={shouldShow(isCollections(searchResults))}>
              Collections
           </h4>
-          {searchResults.collections.map((item, index) =>
-            <ListItem key={index} {...item} Component={ListItem.Collection} />
+          {searchResults.collections.map((collection, index) =>
+            <ListItem key={index} {...collection} Component={ListItem.Collection}
+              url={'/collections/' + collection.id}
+            />
           )}
         </List>
 
         <List>
           <h4 style={shouldShow(isBundles(searchResults))}
             className='name'> Bundles </h4>
-          {searchResults.bundles.map((item, index) =>
-            <ListItem key={index} {...item} Component={ListItem.Bundle} />
+          {searchResults.bundles.map((bundle, index) =>
+            <ListItem key={index} {...bundle} Component={ListItem.Bundle}
+              url={'/bundles/' + bundle.id}
+            />
           )}
         </List>
 

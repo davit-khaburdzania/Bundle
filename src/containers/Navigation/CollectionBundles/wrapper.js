@@ -5,6 +5,10 @@ import {
   ResourceNavigation
 } from '../../../components'
 
+function bundleUrl(collection, bundle) {
+  return `/collections/${collection.id}/bundles/${bundle.id}`
+}
+
 export default function Wrapper ({
   collection,
   children
@@ -21,7 +25,9 @@ export default function Wrapper ({
         <ResourceNavigation.Body>
           <List>
             {collection.bundles.map((bundle, index) =>
-              <ListItem key={index} {...bundle} Component={ListItem.Bundle} />
+              <ListItem key={index} {...bundle} Component={ListItem.Bundle}
+                url={bundleUrl(collection, bundle)}
+              />
             )}
           </List>
         </ResourceNavigation.Body>
