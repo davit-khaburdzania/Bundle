@@ -33,7 +33,9 @@ export default function Wrapper ({
         <ResourceNavigation.Body>
           <List>
             {bundles.map((bundle, index) =>
-              <ListItem key={index} {...bundle} Component={ListItem.Bundle} />
+              <ListItem key={index} {...bundle} Component={ListItem.Bundle}
+                url={'/bundles/' + bundle.id}
+              />
             )}
           </List>
         </ResourceNavigation.Body>

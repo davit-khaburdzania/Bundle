@@ -37,7 +37,8 @@ function renderResults (searchResults) {
           Collections
         </h4>
         {searchResults.collections.map((item, index) =>
-          <ListItem key={index} {...item} Component={ListItem.Collection} />
+          <ListItem key={index} {...item} url={'/collections/' + item.id}
+            Component={ListItem.Collection} />
         )}
       </List>
 
@@ -45,7 +46,8 @@ function renderResults (searchResults) {
       <h4 style={shouldShow(isBundles(searchResults))}
           className='name'> Bundles </h4>
         {searchResults.bundles.map((item, index) =>
-          <ListItem key={index} {...item} Component={ListItem.Bundle} />
+          <ListItem key={index} {...item} url={'/bundles/' + item.id}
+            Component={ListItem.Bundle} />
         )}
       </List>
 
@@ -56,9 +58,7 @@ function renderResults (searchResults) {
 export default function SearchBody ({ searchResults }) {
   return (
     <div className='search-results-wrapper'>
-
       { renderResults(searchResults) }
-
     </div>
   )
 }
