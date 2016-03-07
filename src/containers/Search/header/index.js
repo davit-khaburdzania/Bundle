@@ -12,10 +12,6 @@ export default class SearchHeader extends Component {
     browserHistory.push(`/search/${value}`)
   }
 
-  goToBundles () {
-    browserHistory.push(`/bundles`)
-  }
-
   render () {
     const { query } = this.props
 
