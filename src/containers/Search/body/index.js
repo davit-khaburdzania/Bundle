@@ -24,7 +24,6 @@ function shouldShow (show) {
 }
 
 function renderResults (searchResults) {
-  console.log('shemodis', searchResults)
   if (searchResults && isAnyResult(searchResults)) {
     return (
       <div className='search-results'>
