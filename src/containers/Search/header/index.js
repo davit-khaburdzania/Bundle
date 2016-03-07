@@ -12,10 +12,6 @@ export default class SearchHeader extends Component {
     browserHistory.push(`/search/${value}`)
   }
 
-  goToBundles () {
-    browserHistory.push(`/bundles`)
-  }
-
   render () {
     const { query } = this.props
 
@@ -24,7 +20,7 @@ export default class SearchHeader extends Component {
         <input className='search-input animated flipInX' type='text'
           placeholder='Search...' onChange={this.onChange}
           value={query || ''} />
-        <Link to="/bundles" className='close-search'>x</Link>
+        <Link to='/bundles' className='close-search'>x</Link>
       </div>
     )
   }

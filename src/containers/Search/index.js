@@ -12,22 +12,22 @@ export default class SearchContainer extends Component {
   componentWillMount () {
     let query = this.props.routeParams.query
 
-    this.props.getSearchResult(query)
+    if (query) this.props.getSearchResult(query)
   }
 
   componentWillReceiveProps (nextProps) {
     let thisPropsQuery = this.props.routeParams.query
     let nextPropsQuery = nextProps.routeParams.query
 
-    if (thisPropsQuery !== nextPropsQuery) {
+    if (! nextPropsQuery) {
+      nextProps.getSearchResult()
+    } else if (thisPropsQuery !== nextPropsQuery && nextPropsQuery) {
       nextProps.getSearchResult(nextPropsQuery)
     }
   }
 
   render () {
     const { searchResults, routeParams } = this.props
-
-    if (! searchResults) return false
 
     return (
       <SearchWrapper query={routeParams.query} searchResults={searchResults} />
