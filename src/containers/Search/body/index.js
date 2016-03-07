@@ -30,7 +30,7 @@ function renderResults (searchResults) {
 
   return (
     <div className='search-results'>
-      <h3 className='title'> Search results </h3>
+      <h3 className='title'>Search results</h3>
 
       <List>
         <h4 className='name' style={shouldShow(isCollections(searchResults))}>
@@ -58,7 +58,7 @@ function renderResults (searchResults) {
 export default function SearchBody ({ searchResults }) {
   return (
     <div className='search-results-wrapper'>
-      { renderResults(searchResults) }
+      {renderResults(searchResults)}
     </div>
   )
 }
