@@ -23,7 +23,16 @@ function shouldShow (show) {
   return { 'display': show ? 'block' : 'none' }
 }
 
+function renderList (searchResults, listType, component) {
+  return searchResults[listType].map((item, index) =>
+    <ListItem key={index} {...item} url={`/${listType}/${item.id}`}
+      Component={component} />
+  )
+}
+
 function renderResults (searchResults) {
+  const { Collection, Bundle } = ListItem
+
   if (! isAnyResult(searchResults)) {
     return <div className="search-note"> Search Bundles and Collections </div>
   }
@@ -36,19 +45,14 @@ function renderResults (searchResults) {
         <h4 className='name' style={shouldShow(isCollections(searchResults))}>
           Collections
         </h4>
-        {searchResults.collections.map((item, index) =>
-          <ListItem key={index} {...item} url={'/collections/' + item.id}
-            Component={ListItem.Collection} />
-        )}
+        {renderList(searchResults, 'collections', Collection)}
       </List>
 
       <List>
-      <h4 style={shouldShow(isBundles(searchResults))}
-          className='name'> Bundles </h4>
-        {searchResults.bundles.map((item, index) =>
-          <ListItem key={index} {...item} url={'/bundles/' + item.id}
-            Component={ListItem.Bundle} />
-        )}
+        <h4 style={shouldShow(isBundles(searchResults))}
+          className='name'> Bundles
+        </h4>
+        {renderList(searchResults, 'bundles', Bundle)}
       </List>
 
     </div>
