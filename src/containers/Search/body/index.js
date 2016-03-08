@@ -24,7 +24,7 @@ function shouldShow (show) {
 }
 
 function renderList (searchResults, listType, component) {
-  return searchResults[listType].map((item, index) =>
+  return searchResults.map((item, index) =>
     <ListItem key={index} {...item} url={`/${listType}/${item.id}`}
       Component={component} />
   )
@@ -45,14 +45,16 @@ function renderResults (searchResults) {
         <h4 className='name' style={shouldShow(isCollections(searchResults))}>
           Collections
         </h4>
-        {renderList(searchResults, 'collections', Collection)}
+
+        {renderList(searchResults.collections, 'collections', Collection)}
       </List>
 
       <List>
         <h4 style={shouldShow(isBundles(searchResults))}
           className='name'> Bundles
         </h4>
-        {renderList(searchResults, 'bundles', Bundle)}
+
+        {renderList(searchResults.bundles, 'bundles', Bundle)}
       </List>
 
     </div>
