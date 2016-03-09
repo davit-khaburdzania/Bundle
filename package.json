@@ -28,13 +28,22 @@
       "stage-0"
     ],
     "plugins": [
-      ["react-transform", {
-        "transforms": [{
-          "transform": "react-transform-hmr",
-          "imports": ["react"],
-          "locals": ["module"]
-        }]
-      }],
+      [
+        "react-transform",
+        {
+          "transforms": [
+            {
+              "transform": "react-transform-hmr",
+              "imports": [
+                "react"
+              ],
+              "locals": [
+                "module"
+              ]
+            }
+          ]
+        }
+      ],
       "transform-runtime",
       "transform-decorators-legacy"
     ]
@@ -62,6 +71,7 @@
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
     "babel-preset-stage-0": "^6.3.13",
+    "babel-runtime": "^6.6.1",
     "css-loader": "^0.23.1",
     "eslint": "^2.1.0",
     "eslint-config-standard": "^5.0.0",

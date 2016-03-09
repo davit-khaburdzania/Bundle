@@ -14,8 +14,8 @@ export default function CollectionListItem ({
   id,
   name,
   created_at,
-  bundle_count,
-  share_count
+  bundles_count,
+  shares_count
 }) {
   return (
     <Link to={'/collections/' + id}>
@@ -24,8 +24,8 @@ export default function CollectionListItem ({
           {name}
         </h1>
         <h2>
-          <span> {bundle_count} Bundle </span>
-          <span> {shared_with_text(share_count)}</span>
+          <span> {bundles_count} Bundle </span>
+          <span> {shared_with_text(shares_count)}</span>
         </h2>
       </div>
     </Link>
