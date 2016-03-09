@@ -34,7 +34,7 @@ export default function Wrapper ({
           <List>
             {bundles.map((bundle, index) =>
               <ListItem key={index} {...bundle} Component={ListItem.Bundle}
-                url={'/bundles/' + bundle.id}
+                url={'/bundles/' + bundle.slug}
               />
             )}
           </List>
