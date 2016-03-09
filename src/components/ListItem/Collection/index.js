@@ -12,13 +12,14 @@ function shared_with_text(count) {
 
 export default function CollectionListItem ({
   id,
+  slug,
   name,
   created_at,
   bundles_count,
   shares_count
 }) {
   return (
-    <Link to={'/collections/' + id}>
+    <Link to={'/collections/' + slug}>
       <div>
         <h1>
           {name}
