@@ -13,10 +13,9 @@ import './wrapper.css'
 export default function Wrapper ({
   bundles,
   search,
-  dispatch,
-  toggleSearchVisibility,
-  getSearchResult,
-  children
+  children,
+  favorite,
+  unfavorite
 }) {
   let styles = { 'display': search.open ? 'none' : 'block' }
 
@@ -35,6 +34,11 @@ export default function Wrapper ({
             {bundles.map((bundle, index) =>
               <ListItem key={index} {...bundle} Component={ListItem.Bundle}
                 url={'/bundles/' + bundle.id}
+                type={'bundle'}
+                id={bundle.id}
+                isFavorited={bundle.favorited}
+                favorite={favorite}
+                unfavorite={unfavorite}
               />
             )}
           </List>
