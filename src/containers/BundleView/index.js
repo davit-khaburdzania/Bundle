@@ -11,9 +11,18 @@ const connectProps = bundleActions
 
 @connect(connectState, connectProps)
 export default class BundleViewContainer extends Component {
-  constructor (props) {
-    props.getBundle(props.params.bundle_id)
-    super(props)
+  componentWillMount() {
+    const { getBundle, params } = this.props
+    getBundle(params.bundle_id)
+  }
+
+  componentWillReceiveProps (nextProps) {
+    const { getBundle, params } = this.props
+
+    if (params.bundle_id != nextProps.params.bundle_id) {
+      console.log('viri')
+      getBundle(params.bundle_id)
+    }
   }
 
   render () {
