@@ -37,3 +37,9 @@ a {
   text-decoration: none;
   color: #777;
 }
+
+.u-truncate-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
