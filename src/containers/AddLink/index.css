@@ -6,4 +6,17 @@
     margin-bottom: -8px;
     margin-right: 8px;
   }
+
+  .add-link-button {
+    width: 95px;
+    height: 30px;
+    background-color: #FFF;
+    border: 1px solid #6C90F3;
+    color: #6C90F3;
+    font-family: Avenir-Book;
+    font-size: 15px;
+    line-height: 25px;
+    cursor: pointer;
+    border-radius: 34px;
+  }
 }

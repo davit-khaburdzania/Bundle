@@ -22,7 +22,7 @@ export default function BundleLink ({
         </div>
 
         <div className='link-details-wrapper'>
-          <span className='link-title'>{link.title}</span>
+          <span className='link-title u-truncate-text'>{link.title}</span>
           <div className='link-details-sub-wrapper'>
             <span className='link-domain'> On {urlDomain(link.url)} </span>
             <span className='dot-symbol'> • </span>
