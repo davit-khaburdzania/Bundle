@@ -16,11 +16,22 @@ export default function BundleLink ({
       <p className='link-description'>{link.description}</p>
 
       <div className='link-body'>
-        <img className='link-image' src={link.image} />
-        <span className='link-title'>{link.title}</span>
-        <span className='link-domain'> On {urlDomain(link.url)} </span>
-        <span className='link-created'> {timeAgo(link.created_at)} </span>
+
+        <div className='link-image-wrapper'>
+          <img className='link-image' src={link.image} />
+        </div>
+
+        <div className='link-details-wrapper'>
+          <span className='link-title'>{link.title}</span>
+          <div className='link-details-sub-wrapper'>
+            <span className='link-domain'> On {urlDomain(link.url)} </span>
+            <span className='dot-symbol'> • </span>
+            <span className='link-created'> {timeAgo(link.created_at)} </span>
+          </div>
+        </div>
+
       </div>
+
     </div>
   )
 }
