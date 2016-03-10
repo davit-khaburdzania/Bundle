@@ -1,6 +1,7 @@
 export Date from './Date'
 export List from './List'
 export ListItem from './ListItem'
+export ListToolbar from './ListToolbar'
 export Menu from './Menu'
 export Search from './Search'
 export UserMenu from './UserMenu'

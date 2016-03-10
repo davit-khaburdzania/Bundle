@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Collection from './Collection'
 import Bundle from './Bundle'
+import { ListToolbar } from './..'
 
 import './index.css'
 
@@ -11,6 +12,7 @@ export default function ListItem ({
   return (
     <div className='list-item'>
       <Component {...componentProps} />
+      <ListToolbar />
     </div>
   )
 }
