@@ -1,14 +1,19 @@
 import React from 'react'
 
+import ToolbarShareItem from './ToolbarShareItem'
+import ToolbarRenameItem from './ToolbarRenameItem'
+import ToolbarDeleteItem from './ToolbarDeleteItem'
+import ToolbarFavoriteItem from './ToolbarFavoriteItem'
+
 import './index.css'
 
 export default function ListToolbar () {
   return (
     <div className='list-toolbar'>
-      <div className='icon icon-toolbar-share' />
-      <div className='icon icon-toolbar-rename' />
-      <div className='icon icon-toolbar-delete' />
-      <div className='icon icon-toolbar-favorite' />
+      <ToolbarShareItem />
+      <ToolbarRenameItem />
+      <ToolbarDeleteItem />
+      <ToolbarFavoriteItem />
     </div>
   )
 }
