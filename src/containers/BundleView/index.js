@@ -18,11 +18,9 @@ export default class BundleViewContainer extends Component {
 
   componentWillReceiveProps (nextProps) {
     const { getBundle, params } = this.props
+    const nextBundleId = nextProps.params.bundle_id
 
-    if (params.bundle_id != nextProps.params.bundle_id) {
-      console.log('viri')
-      getBundle(params.bundle_id)
-    }
+    if (params.bundle_id != nextBundleId) getBundle(nextBundleId)
   }
 
   render () {
