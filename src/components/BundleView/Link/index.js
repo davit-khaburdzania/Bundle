@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import { urlDomain, timeAgo } from '../../../helpers'
 
 import './index.css'
 
@@ -17,7 +18,8 @@ export default function BundleLink ({
       <div className='link-body'>
         <img className='link-image' src={link.image} />
         <span className='link-title'>{link.title}</span>
-        <span className='link-created'>2 days ago </span>
+        <span className='link-domain'> On {urlDomain(link.url)} </span>
+        <span className='link-created'> {timeAgo(link.created_at)} </span>
       </div>
     </div>
   )
