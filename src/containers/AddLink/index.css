@@ -1,0 +1,9 @@
+.add-link {
+  .creator-image {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-bottom: -8px;
+    margin-right: 8px;
+  }
+}
