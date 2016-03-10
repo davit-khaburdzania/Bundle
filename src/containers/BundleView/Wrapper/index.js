@@ -6,12 +6,16 @@ import BundleViewBody from '../Body'
 import './index.css'
 
 export default function BundleView ({
-  bundle
+  bundle,
+  handleDesctiptionChange,
+  editMode,
+  toggleEditMode
 }) {
   return (
     <div className='bundle-view-wrapper'>
       <BundleViewHeader />
-      <BundleViewBody bundle={bundle} />
+      <BundleViewBody editMode={editMode} toggleEditMode={toggleEditMode}
+        handleDesctiptionChange={handleDesctiptionChange} bundle={bundle} />
     </div>
   )
 }

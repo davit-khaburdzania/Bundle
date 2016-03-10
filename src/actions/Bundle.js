@@ -24,3 +24,19 @@ export function getBundle (id) {
     }
   }
 }
+
+export function changeDescriptionInCurrentBundle (value, field) {
+  return (dispatch) => {
+    dispatch({
+      type: 'UPDATE_DESCRIPTION',
+      field,
+      value
+     })
+  }
+}
+
+export function toggleEditMode () {
+  return (dispatch) => {
+    dispatch({ type: 'TOGGLE_EDIT_MODE' })
+  }
+}

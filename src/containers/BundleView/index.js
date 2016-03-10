@@ -4,7 +4,8 @@ import * as bundleActions from '../../actions/Bundle'
 import Wrapper from './Wrapper'
 
 const connectState = (state) => ({
-  bundle: state.Bundle.current
+  bundle: state.Bundle.current,
+  editMode: state.Bundle.editMode
 })
 
 const connectProps = bundleActions
@@ -23,11 +24,24 @@ export default class BundleViewContainer extends Component {
     if (params.bundle_id != nextBundleId) getBundle(nextBundleId)
   }
 
+  handleDesctiptionChange (value, field) {
+    const { changeDescriptionInCurrentBundle } = this.props
+
+    changeDescriptionInCurrentBundle(value, field)
+  }
+
+  toggleEditMode () {
+    const { toggleEditMode } = this.props
+    toggleEditMode()
+  }
+
   render () {
-    const { bundle } = this.props
+    const { bundle, editMode } = this.props
 
     if (!bundle) return false
 
-    return <Wrapper bundle={bundle} />
+    return <Wrapper editMode={editMode}
+      toggleEditMode={this.toggleEditMode.bind(this)} handleDesctiptionChange={this.handleDesctiptionChange.bind(this)}
+      bundle={bundle} />
   }
 }

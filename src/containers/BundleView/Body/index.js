@@ -3,11 +3,16 @@ import { BundleView } from '../../../components'
 import './index.css'
 
 export default function BundleViewBody ({
-  bundle
+  bundle,
+  handleDesctiptionChange,
+  editMode,
+  toggleEditMode
 }) {
   return (
     <div className='bundle-view-body'>
-      <BundleView.Description name={bundle.name} description={bundle.description} />
+      <BundleView.Description toggleEditMode={toggleEditMode}
+        editMode={editMode} handleDesctiptionChange={handleDesctiptionChange}
+        name={bundle.name} description={bundle.description} />
 
       {bundle.links.map((link, index) =>
         <BundleView.Link key={index} link={link} />
