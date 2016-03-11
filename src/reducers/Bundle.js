@@ -19,7 +19,7 @@ export default function (state = { list: [] }, action) {
     case 'TOGGLE_EDIT_MODE':
       return { ...state, current: {
         ...state.current,
-        editMode: !state.editMode
+        editMode: !state.current.editMode
       }}
     default:
       return state
