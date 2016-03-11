@@ -37,9 +37,9 @@ export function fetchLink (url) {
   }
 }
 
-export function AddLink (bundle_id, link) {
+export function UpdateBundle (bundle_id, data) {
   const payload = {
-    bundle: { links_attributes: [link] }
+    bundle: data
   }
 
   return async (dispatch) => {

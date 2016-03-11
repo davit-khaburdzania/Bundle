@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import * as BundleActions from '../../actions/Bundle'
 import { BundleView } from '../../components'
+import EnterUrl from './EnterUrl'
 
 import './index.css'
 
@@ -15,7 +16,7 @@ const connectProps = BundleActions
 @connect(connectState, connectProps)
 export default class BundleAddLink extends Component {
 
-  handleKeyPress (e) {
+  handeUrlEnter (e) {
     const url = e.target.value
     const { bundleId, fetchLink } =  this.props
 
@@ -25,10 +26,15 @@ export default class BundleAddLink extends Component {
   }
 
   addLinkClick (link) {
-    const { currentUser, currentBundle, AddLink } = this.props
-    const payload= { ...this.parseLink(link), creator_id: currentUser.id }
+    const { currentUser, currentBundle, UpdateBundle } = this.props
+    const payload= {
+      links_attributes: [{
+        ...this.parseLink(link),
+        creator_id: currentUser.id
+      }]
+    }
 
-    AddLink(currentBundle.id, payload)
+    UpdateBundle(currentBundle.id, payload)
   }
 
   parseLink (link) {
@@ -40,7 +46,7 @@ export default class BundleAddLink extends Component {
     }
   }
 
-  generateLink () {
+  generatePreviewLink () {
     const { currentBundle, currentUser } =  this.props
 
     if (!currentBundle || !currentBundle.link) return false
@@ -49,32 +55,21 @@ export default class BundleAddLink extends Component {
     link.creator = currentUser
 
     return (
-      <div>
+      <div className='add-link-preview'>
         <BundleView.Link link={link} />
         <button className='add-link-button' onClick={this.addLinkClick.bind(this, link)}>Add Link</button>
       </div>
     )
   }
 
-  generateAddLink () {
+  render () {
     const { currentUser, currentBundle } = this.props
 
-    if (currentBundle.link) return false
-
-    return (
-      <div className='add-link'>
-        <img className='creator-image' src={currentUser.image} />
-        <input className='url-input' placeholder='Enter Url Here...'
-          onKeyPress={this.handleKeyPress.bind(this)} />
-      </div>
-    )
-  }
-
-  render () {
     return (
       <div className='add-link-container'>
-        {this.generateAddLink()}
-        {this.generateLink()}
+        <EnterUrl image={currentUser.image} linkPreview={currentBundle.link}
+          handeUrlEnter={this.handeUrlEnter.bind(this)} />
+        {this.generatePreviewLink()}
       </div>
     )
   }
