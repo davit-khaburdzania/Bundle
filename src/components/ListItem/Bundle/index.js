@@ -1,34 +1,24 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
-import { ListToolbar } from './../..'
-import Date from '../../Date'
+import { Editable, Date, ListToolbar } from './../..'
 
 export default function BundleListItem ({
   name,
   created_at,
   url,
-  type,
+  editMode,
+  rename,
   id,
-  isFavorited,
-  favorite,
-  unfavorite,
-  remove,
-  startEdit,
-  endEdit,
-  editMode
+  ...toolbarProps
 }) {
-
   return (
     <div>
-      <ListToolbar type={type} id={id} isFavorited={isFavorited}
-        favorite={favorite} unfavorite={unfavorite} remove={remove}
-        startEdit={startEdit} endEdit={endEdit} editMode={editMode}
-      />
+      <ListToolbar id={id} editMode={editMode} {...toolbarProps} />
 
       <Link to={url}>
         <h1>
-          {editMode ? '[EDITMODE] ' : ''}
-          {name}
+          <Editable id={id} editMode={editMode} value={name}
+            rename={rename} />
         </h1>
         <h2>
           Created <Date type='fromNow'>{created_at}</Date>
@@ -36,4 +26,13 @@ export default function BundleListItem ({
       </Link>
     </div>
   )
+}
+
+BundleListItem.propTypes = {
+  id: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  //created_at: PropTypes.string.isRequred, # TODO causes weird warning
+  url: PropTypes.string.isRequired,
+  editMode: PropTypes.bool,
+  rename: PropTypes.func.isRequired
 }

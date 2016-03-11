@@ -17,6 +17,7 @@ export default function Wrapper ({
   favorite,
   unfavorite,
   removeBundle,
+  renameBundle,
   startEditBundle,
   endEditBundle
 }) {
@@ -45,6 +46,7 @@ export default function Wrapper ({
                 endEdit={endEditBundle}
                 favorite={favorite}
                 unfavorite={unfavorite}
+                rename={renameBundle}
                 remove={removeBundle}
               />
             )}

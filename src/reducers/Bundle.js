@@ -36,6 +36,17 @@ export default function (state = { list: [] }, action) {
         return bundle
       })
       return newState
+    case 'RENAME_BUNDLE':
+      var newState = { ...state }
+      newState.list = newState.list.map(bundle => {
+        if (bundle.id == action.id) {
+          bundle.name = action.name
+          bundle.editMode = false // TODO baad kitty bad kitty
+        }
+
+        return bundle
+      })
+      return newState
     default:
       return state
   }
