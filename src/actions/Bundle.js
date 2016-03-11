@@ -37,14 +37,14 @@ export function fetchLink (url) {
   }
 }
 
-export function AddLink (bundle_id, link) {
+export function updateBundle (bundleId, data) {
   const payload = {
-    bundle: { links_attributes: [link] }
+    bundle: data
   }
 
   return async (dispatch) => {
     try {
-      let response = await request.put(api.bundles(bundle_id), payload)
+      let response = await request.put(api.bundles(bundleId), payload)
       dispatch({ type: 'UPDATE_BUNDLE', bundle: response.data })
     } catch (error) {
       // write error handler outside
