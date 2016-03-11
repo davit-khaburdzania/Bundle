@@ -1,15 +1,19 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import * as CollectionActions from '../../../actions/Collection'
+import * as collectionActions from '../../../actions/Collection'
+import * as favoriteActions from '../../../actions/Favorite'
 import Wrapper from './Wrapper'
 
-const connect_state = (state) => ({
+const connectState = (state) => ({
   collections: state.Collection.list
 })
 
-const connect_props = { ...CollectionActions }
+const connectProps = {
+  ...collectionActions,
+  ...favoriteActions
+}
 
-@connect(connect_state, connect_props)
+@connect(connectState, connectProps)
 export default class CollectionsNavigationContainer extends Component {
   constructor (props) {
     props.getCollections()
@@ -17,6 +21,6 @@ export default class CollectionsNavigationContainer extends Component {
   }
 
   render () {
-    return <Wrapper collections={this.props.collections} />
+    return <Wrapper {...this.props} />
   }
 }

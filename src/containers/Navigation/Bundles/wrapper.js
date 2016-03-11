@@ -38,7 +38,6 @@ export default function Wrapper ({
               <ListItem key={index} {...bundle} Component={ListItem.Bundle}
                 url={'/bundles/' + bundle.id}
                 type={'bundle'}
-                id={bundle.id}
                 isFavorited={bundle.favorited}
                 editMode={bundle.editMode}
                 edit={editModeBundle}

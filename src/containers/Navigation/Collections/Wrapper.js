@@ -7,7 +7,11 @@ import {
 } from '../../../components'
 
 export default function Wrapper ({
-  collections
+  collections,
+  editModeCollection,
+  renameCollection,
+  removeCollection,
+  ...listItemProps
 }) {
   return (
     <ResourceNavigation>
@@ -23,7 +27,15 @@ export default function Wrapper ({
         <ResourceNavigation.Body>
           <List>
             {collections.map((collection, index) =>
-              <ListItem key={index} {...collection} Component={ListItem.Collection} />
+              <ListItem key={index} Component={ListItem.Collection}
+                {...collection} {...listItemProps}
+                type={'collection'}
+                isFavorited={collection.favorited}
+                editMode={collection.editMode}
+                edit={editModeCollection}
+                rename={renameCollection}
+                remove={removeCollection}
+              />
             )}
           </List>
         </ResourceNavigation.Body>
