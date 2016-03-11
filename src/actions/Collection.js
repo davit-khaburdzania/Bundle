@@ -14,3 +14,21 @@ export function getCollections () {
     dispatch({ type: 'RECEIVE_COLLECTIONS', list: response.data })
   }
 }
+
+export function removeCollection (id) {
+  return async (dispatch) => {
+    let response = await request.delete(api.collections(id))
+    dispatch({ type: 'REMOVE_COLLECTION', id })
+  }
+}
+
+export function editModeCollection (id, editMode) {
+  return { type: 'EDIT_MODE_COLLECTION', id, editMode }
+}
+
+export function renameCollection (id, name) {
+  return async (dispatch) => {
+    let response = await request.put(api.collections(id), { name })
+    dispatch({ type: 'RENAME_COLLECTION', id, name })
+  }
+}
