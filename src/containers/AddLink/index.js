@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import * as BundleActions from '../../actions/Bundle'
-import { BundleView } from '../../components'
 import EnterUrl from './EnterUrl'
+import LinkPreview from './LinkPreview'
 
 import './index.css'
 
@@ -29,7 +29,7 @@ export default class BundleAddLink extends Component {
     const { currentUser, currentBundle, UpdateBundle } = this.props
     const payload= {
       links_attributes: [{
-        ...this.parseLink(link),
+        ...link,
         creator_id: currentUser.id
       }]
     }
@@ -37,39 +37,23 @@ export default class BundleAddLink extends Component {
     UpdateBundle(currentBundle.id, payload)
   }
 
-  parseLink (link) {
-    return {
-      url: link.url,
-      title: link.title,
-      description: link.description,
-      image: link.image,
+  renderComponent () {
+    const { currentUser, currentBundle } = this.props
+    const link = currentBundle.link
+
+    if (link) {
+      return <LinkPreview currentUser={currentUser} link={link}
+        addLinkClick={this.addLinkClick.bind(this)} />
+    } else {
+      return <EnterUrl image={currentUser.image}
+        handeUrlEnter={this.handeUrlEnter.bind(this)} />
     }
   }
 
-  generatePreviewLink () {
-    const { currentBundle, currentUser } =  this.props
-
-    if (!currentBundle || !currentBundle.link) return false
-
-    const link = this.parseLink(currentBundle.link)
-    link.creator = currentUser
-
-    return (
-      <div className='add-link-preview'>
-        <BundleView.Link link={link} />
-        <button className='add-link-button' onClick={this.addLinkClick.bind(this, link)}>Add Link</button>
-      </div>
-    )
-  }
-
   render () {
-    const { currentUser, currentBundle } = this.props
-
     return (
       <div className='add-link-container'>
-        <EnterUrl image={currentUser.image} linkPreview={currentBundle.link}
-          handeUrlEnter={this.handeUrlEnter.bind(this)} />
-        {this.generatePreviewLink()}
+        {this.renderComponent()}
       </div>
     )
   }
