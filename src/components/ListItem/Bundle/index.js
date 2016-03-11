@@ -32,7 +32,7 @@ export default function BundleListItem ({
 BundleListItem.propTypes = {
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
-  //created_at: PropTypes.string.isRequred, # TODO causes weird warning
+  created_at: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
   editMode: PropTypes.bool,
   rename: PropTypes.func.isRequired

@@ -4,7 +4,7 @@ import { Editable, ListToolbar } from './../..'
 
 
 function sharedWithText (count) {
-  if (count || count == 0) {
+  if (count || count === 0) {
     return `· Shared with ${count} people`
   } else {
     return ''
@@ -45,7 +45,7 @@ export default function CollectionListItem ({
 CollectionListItem.propTypes = {
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
-  //created_at: PropTypes.string.isRequred, # TODO causes weird warning
+  created_at: PropTypes.string.isRequired,
   bundles_count: PropTypes.number.isRequired,
   shares_count: PropTypes.number.isRequired,
   editMode: PropTypes.bool,
