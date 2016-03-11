@@ -17,8 +17,9 @@ export default function BundleListItem ({
 
       <Link to={url}>
         <h1>
-          <Editable id={id} editMode={editMode} value={name}
-            enterAction={rename} />
+          <Editable editMode={editMode} value={name}
+            enterAction={value => rename(id, value)}
+          />
         </h1>
         <h2>
           Created <Date type='fromNow'>{created_at}</Date>

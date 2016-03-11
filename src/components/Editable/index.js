@@ -2,10 +2,10 @@ import React, { Component, PropTypes } from 'react'
 
 export default class Editable extends Component {
   handleEnter ({ key, target }) {
-    let { id, enterAction, value } = this.props
+    let { enterAction, value } = this.props
 
     if (key === 'Enter' && value !== target.value) {
-      enterAction(id, target.value)
+      enterAction(target.value)
     }
   }
 
@@ -20,7 +20,6 @@ export default class Editable extends Component {
   }
 
   static propTypes = {
-    id: PropTypes.number.isRequired,
     value: PropTypes.string.isRequired,
     editMode: PropTypes.bool,
     enterAction: PropTypes.func.isRequired

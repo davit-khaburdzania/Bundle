@@ -28,8 +28,9 @@ export default function CollectionListItem ({
       <Link to={'/collections/' + id}>
         <div>
           <h1>
-            <Editable id={id} editMode={editMode} value={name}
-              enterAction={rename} />
+            <Editable editMode={editMode} value={name}
+              enterAction={value => rename(id, value)}
+            />
           </h1>
           <h2>
             <span>{bundles_count} Bundle</span>
