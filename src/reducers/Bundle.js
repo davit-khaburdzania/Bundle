@@ -22,7 +22,7 @@ export default function (state = { list: [] }, action) {
       var newState = { ...state }
       newState.list = newState.list.filter(bundle => bundle.id !== action.id)
       return newState
-    case 'EDIT_BUNDLE':
+    case 'EDIT_MODE_BUNDLE':
       var newState = { ...state }
       newState.list = newState.list.map(bundle => {
         if (bundle.id == action.id) bundle.editMode = action.editMode
