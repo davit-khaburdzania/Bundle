@@ -14,6 +14,11 @@
     &:focus {
       outline: none;
     }
+
+    &:hover {
+      color: #FFF;
+      background-color: #6C90F3;
+    }
   }
 
   .bundle-view-link {
