@@ -3,11 +3,11 @@ import React, { PropTypes } from 'react'
 export default function ToolbarFavoriteItem ({
   type,
   id,
-  isFavorited,
   favorite,
+  favorited,
   unfavorite
 }) {
-  if (isFavorited) {
+  if (favorited) {
     return <div className='icon icon-toolbar-favorite-full'
       onClick={unfavorite.bind(this, type, id)}
     />
@@ -21,7 +21,7 @@ export default function ToolbarFavoriteItem ({
 ToolbarFavoriteItem.propTypes = {
   type: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
-  isFavorited: PropTypes.bool.isRequired,
+  favorited: PropTypes.bool.isRequired,
   favorite: PropTypes.func.isRequired,
   unfavorite: PropTypes.func.isRequired,
 }

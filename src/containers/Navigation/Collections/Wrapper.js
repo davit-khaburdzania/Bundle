@@ -8,9 +8,9 @@ import {
 
 export default function Wrapper ({
   collections,
-  editModeCollection,
   renameCollection,
   removeCollection,
+  editModeCollection,
   ...listItemProps
 }) {
   return (
@@ -30,9 +30,6 @@ export default function Wrapper ({
               <ListItem key={index} Component={ListItem.Collection}
                 {...collection} {...listItemProps}
                 type={'collection'}
-                isFavorited={collection.favorited}
-                editMode={collection.editMode}
-                edit={editModeCollection}
                 rename={renameCollection}
                 remove={removeCollection}
               />

@@ -10,7 +10,7 @@ import './index.css'
 export default function ListToolbar ({
   type,
   id,
-  isFavorited,
+  favorited,
   favorite,
   unfavorite,
   remove,
@@ -25,7 +25,7 @@ export default function ListToolbar ({
 
       <ToolbarDeleteItem id={id} remove={remove} />
 
-      <ToolbarFavoriteItem type={type} id={id} isFavorited={isFavorited}
+      <ToolbarFavoriteItem type={type} id={id} favorited={favorited}
         favorite={favorite} unfavorite={unfavorite}
       />
     </div>
@@ -35,7 +35,7 @@ export default function ListToolbar ({
 ListToolbar.propTypes = {
   type: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
-  isFavorited: PropTypes.bool.isRequired,
+  favorited: PropTypes.bool,
   favorite: PropTypes.func.isRequired,
   unfavorite: PropTypes.func.isRequired,
   remove: PropTypes.func.isRequired,

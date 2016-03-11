@@ -14,11 +14,10 @@ export default function Wrapper ({
   bundles,
   search,
   children,
-  favorite,
-  unfavorite,
   removeBundle,
   renameBundle,
-  editModeBundle
+  editModeBundle,
+  ...listItemProps
 }) {
   let styles = { 'display': search.open ? 'none' : 'block' }
 
@@ -35,14 +34,11 @@ export default function Wrapper ({
         <ResourceNavigation.Body>
           <List>
             {bundles.map((bundle, index) =>
-              <ListItem key={index} {...bundle} Component={ListItem.Bundle}
+              <ListItem key={index} Component={ListItem.Bundle}
+                {...bundle} {...listItemProps}
                 url={'/bundles/' + bundle.id}
                 type={'bundle'}
-                isFavorited={bundle.favorited}
-                editMode={bundle.editMode}
                 edit={editModeBundle}
-                favorite={favorite}
-                unfavorite={unfavorite}
                 rename={renameBundle}
                 remove={removeBundle}
               />
