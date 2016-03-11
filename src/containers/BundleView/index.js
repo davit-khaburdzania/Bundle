@@ -4,8 +4,7 @@ import * as bundleActions from '../../actions/Bundle'
 import Wrapper from './Wrapper'
 
 const connectState = (state) => ({
-  bundle: state.Bundle.current,
-  editMode: state.Bundle.editMode
+  bundle: state.Bundle.current
 })
 
 const connectProps = bundleActions
@@ -36,11 +35,11 @@ export default class BundleViewContainer extends Component {
   }
 
   render () {
-    const { bundle, editMode } = this.props
+    const { bundle } = this.props
 
     if (!bundle) return false
 
-    return <Wrapper editMode={editMode}
+    return <Wrapper editMode={bundle.editMode}
       toggleEditMode={this.toggleEditMode.bind(this)} handleDesctiptionChange={this.handleDesctiptionChange.bind(this)}
       bundle={bundle} />
   }

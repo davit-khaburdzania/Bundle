@@ -1,4 +1,4 @@
-export default function (state = { list: [], editMode: false }, action) {
+export default function (state = { list: [] }, action) {
   switch (action.type) {
     case 'RECEIVE_BUNDLES':
       return { ...state, list: action.list }
@@ -17,10 +17,10 @@ export default function (state = { list: [], editMode: false }, action) {
         current: { ...state.current, [action.field]: action.value }
       }
     case 'TOGGLE_EDIT_MODE':
-      return {
-        ...state,
+      return { ...state, current: {
+        ...state.current,
         editMode: !state.editMode
-      }
+      }}
     default:
       return state
   }
