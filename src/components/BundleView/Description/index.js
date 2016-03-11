@@ -16,10 +16,14 @@ export default class BundleDescription extends Component {
   }
 
   renderEditMode () {
-    const { name, description } = this.props
+    const { name, description, toggleEditMode } = this.props
 
     return (
       <div className='is-in-edit-mode'>
+        <button className='btn' onClick={(e) => toggleEditMode(e, true)}>
+          Save
+        </button>
+
         <div className='bundle-name'>
           <input type='text' data-name='name' value={name}
             onChange={this.handleChange.bind(this)}
@@ -27,18 +31,22 @@ export default class BundleDescription extends Component {
         </div>
         <div className='bundle-desc'>
           <textarea value={description} data-name='description'
-            onChange={this.handleChange.bind(this)} cols='80' rows='10'
+            onChange={this.handleChange.bind(this)}
             className='description bundle-view-description-desc-input' />
         </div>
+
       </div>
     )
   }
 
   renderReadMode () {
-    const { name, description } = this.props
+    const { name, description, toggleEditMode } = this.props
 
     return (
       <div className='desc-read-mode'>
+        <button className='btn' onClick={(e) => toggleEditMode(e, false)}>
+          Edit
+        </button>
         <h2 className='name'>{name}</h2>
         <p className='description'>{description}</p>
       </div>
@@ -54,11 +62,8 @@ export default class BundleDescription extends Component {
   }
 
   render () {
-    const { handleDesctiptionChange, toggleEditMode } = this.props
-
     return (
       <div className='bundle-view-description'>
-        <button onClick={toggleEditMode}> toggle edit mode </button>
         {this.renderDescription()}
       </div>
     )
