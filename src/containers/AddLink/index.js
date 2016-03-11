@@ -6,7 +6,8 @@ import { BundleView } from '../../components'
 import './index.css'
 
 const connectState = (state, props) => ({
-  AddLink: state.AddLink[props.bundleId]
+  AddLink: state.AddLink[props.bundleId],
+  currentUser: state.User.me
 })
 
 const connectProps = AddLinkActions
@@ -24,12 +25,7 @@ export default class BundleAddLink extends Component {
   }
 
   generateLink () {
-    const { AddLink, bundleId } =  this.props
-
-    const creator = {
-      image: 'http://i.imgur.com/XMnLzi2.jpg',
-      name: 'Sarah Gadon'
-    }
+    const { AddLink, bundleId, currentUser } =  this.props
 
     if (!AddLink || !AddLink.link) return false
 
@@ -38,7 +34,7 @@ export default class BundleAddLink extends Component {
       title: AddLink.link.title,
       description: AddLink.link.description,
       image: AddLink.link.image,
-      creator
+      creator: currentUser
     }
 
     return (

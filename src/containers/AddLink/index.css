@@ -18,5 +18,13 @@
     line-height: 25px;
     cursor: pointer;
     border-radius: 34px;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .bundle-view-link {
+    margin-bottom: 20px;
   }
 }
