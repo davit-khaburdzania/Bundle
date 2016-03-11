@@ -26,7 +26,7 @@ export default class BundleAddLink extends Component {
   }
 
   addLinkClick (link) {
-    const { currentUser, currentBundle, UpdateBundle } = this.props
+    const { currentUser, currentBundle, updateBundle } = this.props
     const payload= {
       links_attributes: [{
         ...link,
@@ -34,7 +34,7 @@ export default class BundleAddLink extends Component {
       }]
     }
 
-    UpdateBundle(currentBundle.id, payload)
+    updateBundle(currentBundle.id, payload)
   }
 
   renderComponent () {

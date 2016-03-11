@@ -25,14 +25,14 @@ export function getBundle (id) {
   }
 }
 
-export function UpdateBundle (bundle_id, data) {
+export function updateBundle (bundleId, data) {
   const payload = {
     bundle: data
   }
 
   return async (dispatch) => {
     try {
-      let response = await request.put(api.bundles(bundle_id), payload)
+      let response = await request.put(api.bundles(bundleId), payload)
       dispatch({ type: 'UPDATE_BUNDLE', bundle: response.data })
     } catch (error) {
       // write error handler outside

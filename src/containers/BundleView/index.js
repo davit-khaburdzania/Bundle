@@ -29,9 +29,16 @@ export default class BundleViewContainer extends Component {
     changeDescriptionInCurrentBundle(value, field)
   }
 
-  toggleEditMode () {
-    const { toggleEditMode } = this.props
-    toggleEditMode()
+  toggleEditMode (e, save) {
+    const { toggleEditMode, bundle, updateBundle } = this.props
+    const { id, name, description } = bundle
+
+    if (save) {
+      updateBundle(id, { name, description })
+      return toggleEditMode()
+    }
+
+    return toggleEditMode()
   }
 
   render () {
