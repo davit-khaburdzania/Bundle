@@ -4,6 +4,13 @@ export default function (state = { list: [], editMode: false }, action) {
       return { ...state, list: action.list }
     case 'RECEIVE_BUNDLE':
       return { ...state, current: action.bundle }
+    case 'UPDATE_BUNDLE':
+      return { ...state, current: action.bundle }
+    case 'FETCH_LINK':
+      return { ...state, current: {
+        ...state.current,
+        link: action.link
+      }}
     case 'UPDATE_DESCRIPTION':
       return {
         ...state,

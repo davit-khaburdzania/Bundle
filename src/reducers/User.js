@@ -1,6 +1,7 @@
 const me = {
-  image: 'http://i.imgur.com/XMnLzi2.jpg',
-  name: 'Sarah Gadon'
+  id: 1,
+  name: 'Sarah Gadon',
+  image: 'http://i.imgur.com/XMnLzi2.jpg'
 }
 
 export default function (state= { me }, action) {

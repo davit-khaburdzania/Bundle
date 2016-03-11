@@ -1,16 +1,16 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import * as AddLinkActions from '../../actions/AddLink'
+import * as BundleActions from '../../actions/Bundle'
 import { BundleView } from '../../components'
 
 import './index.css'
 
-const connectState = (state, props) => ({
-  AddLink: state.AddLink[props.bundleId],
+const connectState = (state) => ({
+  currentBundle: state.Bundle.current,
   currentUser: state.User.me
 })
 
-const connectProps = AddLinkActions
+const connectProps = BundleActions
 
 @connect(connectState, connectProps)
 export default class BundleAddLink extends Component {
@@ -24,44 +24,58 @@ export default class BundleAddLink extends Component {
     }
   }
 
-  generateLink () {
-    const { AddLink, bundleId, currentUser } =  this.props
+  addLinkClick (link) {
+    const { currentUser, currentBundle, AddLink } = this.props
+    const payload= { ...this.parseLink(link), creator_id: currentUser.id }
 
-    if (!AddLink || !AddLink.link) return false
+    AddLink(currentBundle.id, payload)
+  }
 
-    const link = {
-      url: AddLink.link.url,
-      title: AddLink.link.title,
-      description: AddLink.link.description,
-      image: AddLink.link.image,
-      creator: currentUser
+  parseLink (link) {
+    return {
+      url: link.url,
+      title: link.title,
+      description: link.description,
+      image: link.image,
     }
+  }
+
+  generateLink () {
+    const { currentBundle, currentUser } =  this.props
+
+    if (!currentBundle || !currentBundle.link) return false
+
+    const link = this.parseLink(currentBundle.link)
+    link.creator = currentUser
 
     return (
       <div>
         <BundleView.Link link={link} />
-        <button className='add-link-button'>Add Link</button>
+        <button className='add-link-button' onClick={this.addLinkClick.bind(this, link)}>Add Link</button>
+      </div>
+    )
+  }
+
+  generateAddLink () {
+    const { currentUser, currentBundle } = this.props
+
+    if (currentBundle.link) return false
+
+    return (
+      <div className='add-link'>
+        <img className='creator-image' src={currentUser.image} />
+        <input className='url-input' placeholder='Enter Url Here...'
+          onKeyPress={this.handleKeyPress.bind(this)} />
       </div>
     )
   }
 
   render () {
-    const creator = {
-      image: 'http://i.imgur.com/XMnLzi2.jpg',
-      name: 'Sarah Gadon'
-    }
-
     return (
-      <div className='add-link'>
-        <img className='creator-image' src={creator.image} />
-        <input placeholder='Enter Url Here...' onKeyPress={this.handleKeyPress.bind(this)} />
-
+      <div className='add-link-container'>
+        {this.generateAddLink()}
         {this.generateLink()}
       </div>
     )
-  }
-
-  static propTypes = {
-    bundleId: PropTypes.number
   }
 }

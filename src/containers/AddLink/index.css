@@ -1,4 +1,4 @@
-.add-link {
+.add-link-container {
   .creator-image {
     width: 30px;
     height: 30px;
@@ -26,5 +26,19 @@
 
   .bundle-view-link {
     margin-bottom: 20px;
+  }
+
+  .url-input {
+    border: none;
+    font-family: Avenir-Book;
+    font-size: 16px;
+    color: #B4B4B4;
+    letter-spacing: 0.2px;
+    line-height: 16px;
+    width: 60%;
+
+    &:focus {
+      outline: none;
+    }
   }
 }

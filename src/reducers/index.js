@@ -6,7 +6,6 @@ import Bundle from './Bundle'
 import Collection from './Collection'
 import Search from './Search'
 import Alert from './Alert'
-import AddLink from './AddLink'
 import User from './User'
 
 export default combineReducers({
@@ -16,6 +15,5 @@ export default combineReducers({
   Search,
   Alert,
   routing,
-  AddLink,
   User
 })
