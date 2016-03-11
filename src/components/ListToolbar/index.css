@@ -13,6 +13,7 @@ $size: 18px;
     background-size: $size;
     opacity: 0.5;
     transition: opacity linear 200ms;
+    cursor: pointer;
 
     &:not(:last-child) {
       margin-right: 5px;

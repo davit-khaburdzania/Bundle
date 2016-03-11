@@ -18,6 +18,6 @@ export function getBundle (id) {
 export function removeBundle (id) {
   return async (dispatch) => {
     let response = await request.delete(api.bundles(id))
-    dispatch({ type: 'DELETE_BUNDLE', id })
+    dispatch({ type: 'REMOVE_BUNDLE', id })
   }
 }

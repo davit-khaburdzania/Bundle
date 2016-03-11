@@ -12,13 +12,14 @@ export default function ListToolbar ({
   id,
   isFavorited,
   favorite,
-  unfavorite
+  unfavorite,
+  remove
 }) {
   return (
     <div className='list-toolbar'>
       <ToolbarShareItem />
       <ToolbarRenameItem />
-      <ToolbarDeleteItem />
+      <ToolbarDeleteItem id={id} remove={remove} />
       <ToolbarFavoriteItem type={type} id={id} isFavorited={isFavorited}
         favorite={favorite} unfavorite={unfavorite}
       />

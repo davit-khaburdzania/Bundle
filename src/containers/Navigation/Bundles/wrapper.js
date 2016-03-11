@@ -15,7 +15,8 @@ export default function Wrapper ({
   search,
   children,
   favorite,
-  unfavorite
+  unfavorite,
+  removeBundle
 }) {
   let styles = { 'display': search.open ? 'none' : 'block' }
 
@@ -39,6 +40,7 @@ export default function Wrapper ({
                 isFavorited={bundle.favorited}
                 favorite={favorite}
                 unfavorite={unfavorite}
+                remove={removeBundle}
               />
             )}
           </List>
