@@ -1,12 +1,6 @@
 import React from 'react'
-import { ResourceNavigation } from '../../../components'
 import { Link } from 'react-router'
-
-import {
-  List,
-  ListItem,
-  Search
-} from '../../../components'
+import { ResourceNavigation, List, ListItem, Search } from '../../../components'
 
 import './wrapper.css'
 

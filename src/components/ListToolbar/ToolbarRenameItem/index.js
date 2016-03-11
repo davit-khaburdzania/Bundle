@@ -6,7 +6,7 @@ export default function ToolbarRenameItem ({
   editMode
 }) {
   return <div className='icon icon-toolbar-rename'
-    onClick={edit.bind(this, id, ! editMode)} />
+    onClick={edit.bind(this, id, !editMode)} />
 }
 
 ToolbarRenameItem.propTypes = {
