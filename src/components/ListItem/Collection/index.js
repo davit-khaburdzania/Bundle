@@ -23,7 +23,7 @@ export default function CollectionListItem ({
 }) {
   return (
     <div>
-      <ListToolbar id={id} editMode={editMode}{...toolbarProps} />
+      <ListToolbar id={id} editMode={editMode} {...toolbarProps} />
 
       <Link to={'/collections/' + id}>
         <div>
