@@ -13,15 +13,21 @@ export default function BundleListItem ({
   favorite,
   unfavorite,
   remove,
+  startEdit,
+  endEdit,
+  editMode
 }) {
+
   return (
     <div>
       <ListToolbar type={type} id={id} isFavorited={isFavorited}
         favorite={favorite} unfavorite={unfavorite} remove={remove}
+        startEdit={startEdit} endEdit={endEdit} editMode={editMode}
       />
 
       <Link to={url}>
         <h1>
+          {editMode ? '[EDITMODE] ' : ''}
           {name}
         </h1>
         <h2>

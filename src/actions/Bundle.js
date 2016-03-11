@@ -21,3 +21,11 @@ export function removeBundle (id) {
     dispatch({ type: 'REMOVE_BUNDLE', id })
   }
 }
+
+export function startEditBundle (id) {
+  return { type: 'START_EDIT_BUNDLE', id }
+}
+
+export function endEditBundle (id) {
+  return { type: 'END_EDIT_BUNDLE', id }
+}

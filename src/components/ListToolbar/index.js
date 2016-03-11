@@ -13,12 +13,16 @@ export default function ListToolbar ({
   isFavorited,
   favorite,
   unfavorite,
-  remove
+  remove,
+  startEdit,
+  endEdit,
+  editMode
 }) {
   return (
     <div className='list-toolbar'>
       <ToolbarShareItem />
-      <ToolbarRenameItem />
+      <ToolbarRenameItem id={id} editMode={editMode}
+        startEdit={startEdit} endEdit={endEdit}/>
       <ToolbarDeleteItem id={id} remove={remove} />
       <ToolbarFavoriteItem type={type} id={id} isFavorited={isFavorited}
         favorite={favorite} unfavorite={unfavorite}
@@ -27,10 +31,14 @@ export default function ListToolbar ({
   )
 }
 
-ToolbarFavoriteItem.propTypes = {
+ListToolbar.propTypes = {
   type: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
   isFavorited: PropTypes.bool.isRequired,
   favorite: PropTypes.func.isRequired,
   unfavorite: PropTypes.func.isRequired,
+  remove: PropTypes.func.isRequired,
+  startEdit: PropTypes.func.isRequired,
+  endEdit: PropTypes.func.isRequired,
+  editMode: PropTypes.bool
 }
