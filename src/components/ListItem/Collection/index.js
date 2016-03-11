@@ -29,7 +29,7 @@ export default function CollectionListItem ({
         <div>
           <h1>
             <Editable id={id} editMode={editMode} value={name}
-              rename={rename} />
+              enterAction={rename} />
           </h1>
           <h2>
             <span>{bundles_count} Bundle</span>
