@@ -18,8 +18,7 @@ export default function Wrapper ({
   unfavorite,
   removeBundle,
   renameBundle,
-  startEditBundle,
-  endEditBundle
+  editBundle
 }) {
   let styles = { 'display': search.open ? 'none' : 'block' }
 
@@ -42,8 +41,7 @@ export default function Wrapper ({
                 id={bundle.id}
                 isFavorited={bundle.favorited}
                 editMode={bundle.editMode}
-                startEdit={startEditBundle}
-                endEdit={endEditBundle}
+                edit={editBundle}
                 favorite={favorite}
                 unfavorite={unfavorite}
                 rename={renameBundle}

@@ -22,12 +22,8 @@ export function removeBundle (id) {
   }
 }
 
-export function startEditBundle (id) {
-  return { type: 'START_EDIT_BUNDLE', id }
-}
-
-export function endEditBundle (id) {
-  return { type: 'END_EDIT_BUNDLE', id }
+export function editBundle (id, editMode) {
+  return { type: 'EDIT_BUNDLE', id, editMode }
 }
 
 export function renameBundle (id, name) {

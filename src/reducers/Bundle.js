@@ -22,17 +22,10 @@ export default function (state = { list: [] }, action) {
       var newState = { ...state }
       newState.list = newState.list.filter(bundle => bundle.id !== action.id)
       return newState
-    case 'START_EDIT_BUNDLE':
+    case 'EDIT_BUNDLE':
       var newState = { ...state }
       newState.list = newState.list.map(bundle => {
-        if (bundle.id == action.id) bundle.editMode = true
-        return bundle
-      })
-      return newState
-    case 'END_EDIT_BUNDLE':
-      var newState = { ...state }
-      newState.list = newState.list.map(bundle => {
-        if (bundle.id == action.id) bundle.editMode = false
+        if (bundle.id == action.id) bundle.editMode = action.editMode
         return bundle
       })
       return newState
