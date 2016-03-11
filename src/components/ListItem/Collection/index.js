@@ -25,7 +25,9 @@ export default function CollectionListItem ({
     <div>
       <ListToolbar id={id} editMode={editMode} {...toolbarProps} />
 
-      <Link to={'/collections/' + id}>
+      <Link to={'/collections/' + id}
+        onClick={event => editMode && event.preventDefault()}
+      >
         <div>
           <h1>
             <Editable editMode={editMode} value={name}

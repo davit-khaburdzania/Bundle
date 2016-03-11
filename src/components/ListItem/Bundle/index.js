@@ -15,7 +15,7 @@ export default function BundleListItem ({
     <div>
       <ListToolbar id={id} editMode={editMode} {...toolbarProps} />
 
-      <Link to={url}>
+      <Link to={url} onClick={event => editMode && event.preventDefault()}>
         <h1>
           <Editable editMode={editMode} value={name}
             enterAction={value => rename(id, value)}
