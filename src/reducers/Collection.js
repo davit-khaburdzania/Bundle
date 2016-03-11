@@ -8,7 +8,6 @@ export default function (state = { list: [] }, action) {
 
     case 'FAVORITE_COLLECTION':
       var newState = { ...state }
-      console.log('fav', action.id)
       newState.list = newState.list.map(collection => {
         if (collection.id === action.id) collection.favorited = true
         return collection
@@ -17,7 +16,6 @@ export default function (state = { list: [] }, action) {
 
     case 'UNFAVORITE_COLLECTION':
       var newState = { ...state }
-      console.log('unfav', action.id)
       newState.list = newState.list.map(collection => {
         if (collection.id == action.id) collection.favorited = false
         return collection
