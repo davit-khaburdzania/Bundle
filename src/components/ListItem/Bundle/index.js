@@ -3,12 +3,12 @@ import { Link } from 'react-router'
 import { Editable, Date, ListToolbar } from './../..'
 
 export default function BundleListItem ({
+  id,
   name,
   created_at,
   url,
   editMode,
   rename,
-  id,
   ...toolbarProps
 }) {
   return (
