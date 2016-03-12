@@ -24,10 +24,11 @@ function shouldShow (show) {
 }
 
 function renderList (searchResults, listType, component) {
-  return searchResults.map((item, index) =>
-    <ListItem key={index} {...item} url={`/${listType}/${item.id}`}
-      Component={component} />
-  )
+  return searchResults.map((item, index) => {
+    let url = `/${listType}/${item.slug}`
+
+    return <ListItem key={index} {...item} url={url} Component={component} />
+  })
 }
 
 function renderResults (searchResults) {

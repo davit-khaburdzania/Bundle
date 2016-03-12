@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { ResourceNavigation, List, ListItem } from '../../../components'
 
 function bundleUrl(collection, bundle) {
-  return `/collections/${collection.id}/bundles/${bundle.id}`
+  return `/collections/${collection.id}/bundles/${bundle.slug}`
 }
 
 export default function Wrapper ({
