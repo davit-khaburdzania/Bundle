@@ -1,22 +1,17 @@
 import React from 'react'
-import { ResourceNavigation } from '../../../components'
 import { Link } from 'react-router'
-
-import {
-  List,
-  ListItem,
-  Search
-} from '../../../components'
+import { ResourceNavigation, List, ListItem, Search } from '../../../components'
 
 import './wrapper.css'
 
 export default function Wrapper ({
   bundles,
   search,
-  dispatch,
-  toggleSearchVisibility,
-  getSearchResult,
-  children
+  children,
+  removeBundle,
+  renameBundle,
+  editModeBundle,
+  ...listItemProps
 }) {
   let styles = { 'display': search.open ? 'none' : 'block' }
 
@@ -33,8 +28,13 @@ export default function Wrapper ({
         <ResourceNavigation.Body>
           <List>
             {bundles.map((bundle, index) =>
-              <ListItem key={index} {...bundle} Component={ListItem.Bundle}
+              <ListItem key={index} Component={ListItem.Bundle}
+                {...bundle} {...listItemProps}
                 url={'/bundles/' + bundle.slug}
+                type={'bundle'}
+                edit={editModeBundle}
+                rename={renameBundle}
+                remove={removeBundle}
               />
             )}
           </List>

@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import * as bundleActions from '../../../actions/Bundle'
 import * as searchActions from '../../../actions/Search'
+import * as favoriteActions from '../../../actions/Favorite'
 import Wrapper from './Wrapper'
 
 const connectState = (state) => ({
@@ -11,7 +12,8 @@ const connectState = (state) => ({
 
 const connectProps = {
   ...bundleActions,
-  ...searchActions
+  ...searchActions,
+  ...favoriteActions
 }
 
 @connect(connectState, connectProps)
@@ -22,17 +24,7 @@ export default class Container extends Component {
   }
 
   render () {
-    const props = this.props
-
-    return (
-      <Wrapper
-        toggleSearchVisibility={props.toggleSearchVisibility}
-        getSearchResult={props.getSearchResult}
-        search={props.search}
-        bundles={props.bundles}
-        children={props.children}
-      />
-    )
+    return <Wrapper {...this.props} />
   }
 
   static propTypes = {

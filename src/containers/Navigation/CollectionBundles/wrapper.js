@@ -1,9 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import {
-  List,
-  ListItem,
-  ResourceNavigation
-} from '../../../components'
+import { ResourceNavigation, List, ListItem } from '../../../components'
 
 function bundleUrl(collection, bundle) {
   return `/collections/${collection.id}/bundles/${bundle.slug}`
@@ -11,7 +7,11 @@ function bundleUrl(collection, bundle) {
 
 export default function Wrapper ({
   collection,
-  children
+  children,
+  removeBundle,
+  renameBundle,
+  editModeBundle,
+  ...listItemProps
 }) {
   return (
     <ResourceNavigation bundleView={children}>
@@ -25,8 +25,13 @@ export default function Wrapper ({
         <ResourceNavigation.Body>
           <List>
             {collection.bundles.map((bundle, index) =>
-              <ListItem key={index} {...bundle} Component={ListItem.Bundle}
+              <ListItem key={index} j Component={ListItem.Bundle}
+                {...bundle} {...listItemProps}
                 url={bundleUrl(collection, bundle)}
+                type={'bundle'}
+                edit={editModeBundle}
+                rename={renameBundle}
+                remove={removeBundle}
               />
             )}
           </List>
