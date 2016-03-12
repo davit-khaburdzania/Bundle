@@ -2,7 +2,7 @@ import React from 'react'
 import { createDevTools } from 'redux-devtools'
 
 import DockMonitor from 'redux-devtools-dock-monitor'
-import MultipleMonitors from 'redux-devtools-dispatch/lib/MultipleMonitors'
+import MultipleMonitors from 'redux-devtools-multiple-monitors'
 import Inspector from 'redux-devtools-inspector'
 import LogMonitor from 'redux-devtools-log-monitor'
 import Dispatcher from 'redux-devtools-dispatch'
