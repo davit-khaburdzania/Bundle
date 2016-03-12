@@ -40,7 +40,6 @@ export default function (state = { list: [] }, action) {
       newState.list = newState.list.map(collection => {
         if (collection.id == action.id) {
           collection.name = action.name
-          collection.editMode = false // TODO baad kitty bad kitty
         }
 
         return collection

@@ -30,5 +30,6 @@ export function renameCollection (id, name) {
   return async (dispatch) => {
     let response = await request.put(api.collections(id), { name })
     dispatch({ type: 'RENAME_COLLECTION', id, name })
+    dispatch(editModeCollection(id, false))
   }
 }

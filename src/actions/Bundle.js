@@ -30,5 +30,6 @@ export function renameBundle (id, name) {
   return async (dispatch) => {
     let response = await request.put(api.bundles(id), { name })
     dispatch({ type: 'RENAME_BUNDLE', id, name })
+    dispatch(editModeBundle(id, false))
   }
 }

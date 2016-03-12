@@ -4,7 +4,7 @@ export default class Editable extends Component {
   handleEnter ({ key, target }) {
     let { enterAction, value } = this.props
 
-    if (key === 'Enter' && value !== target.value) {
+    if (key === 'Enter') {
       enterAction(target.value)
     }
   }
