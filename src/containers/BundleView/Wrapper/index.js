@@ -8,18 +8,22 @@ import './index.css'
 export default function BundleView ({
   bundle,
   editMode,
-  toggleEditMode,
-  handleLinkEdit
+  handleLinkEdit,
+  handleChange,
+  toggleEdit
 }) {
   return (
     <div className='bundle-view-wrapper'>
-      <BundleViewHeader />
+      <BundleViewHeader toggleEdit={toggleEdit} editMode={editMode} />
       <BundleViewBody editMode={editMode} handleLinkEdit={handleLinkEdit}
-        toggleEditMode={toggleEditMode} bundle={bundle} />
+        bundle={bundle} handleChange={handleChange} />
     </div>
   )
 }
 
 BundleView.propTypes = {
-  bundle: PropTypes.object
+  bundle: PropTypes.object,
+  editMode: PropTypes.bool,
+  handleLinkEdit: PropTypes.func,
+  handleChange: PropTypes.func
 }

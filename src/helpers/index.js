@@ -4,6 +4,11 @@ function urlDomain(str) {
   return url.hostname
 }
 
+function shouldShow (show) {
+  return { 'display': show ? 'block' : 'none' }
+}
+
 export {
-  urlDomain
+  urlDomain,
+  shouldShow
 }

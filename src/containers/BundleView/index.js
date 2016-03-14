@@ -30,16 +30,26 @@ export default class BundleViewContainer extends Component {
 
   }
 
-  toggleEditMode (e, save, data) {
-    const { toggleEditMode, bundle, updateBundle } = this.props
-
-    if (save) {
-      updateBundle(bundle.id, data)
-      toggleEditMode()
-    } else {
-      toggleEditMode()
-    }
+  handleChange (event) {
+    console.log("changing")
   }
+
+  toggleEdit (save) {
+    console.log("save ? ", save)
+    const { toggleEditMode } = this.props
+    toggleEditMode()
+  }
+
+  // toggleEditMode (event, save, data) {
+  //   const { toggleEditMode, bundle, updateBundle } = this.props
+  //
+  //   if (save) {
+  //     updateBundle(bundle.id, data)
+  //     toggleEditMode()
+  //   } else {
+  //     toggleEditMode()
+  //   }
+  // }
 
   render () {
     const { bundle } = this.props
@@ -47,7 +57,8 @@ export default class BundleViewContainer extends Component {
     if (!bundle) return false
 
     return <Wrapper editMode={bundle.editMode} bundle={bundle}
-      toggleEditMode={this.toggleEditMode.bind(this)}
-      handleLinkEdit={this.handleLinkEdit.bind(this)} />
+      handleChange={this.handleChange.bind(this)}
+      handleLinkEdit={this.handleLinkEdit.bind(this)}
+      toggleEdit={this.toggleEdit.bind(this)} />
   }
 }

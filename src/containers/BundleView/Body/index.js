@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { BundleView } from '../../../components'
+import BundleName from './BundleName'
+import BundleDescription from './BundleDescription'
 import { AddLink } from '../../'
 
 import './index.css'
@@ -8,14 +10,16 @@ export default function BundleViewBody ({
   bundle,
   editMode,
   toggleEditMode,
-  handleLinkEdit
+  handleLinkEdit,
+  handleChange
 }) {
   return (
 
     <div className='bundle-view-body'>
-      <BundleView.Description toggleEditMode={toggleEditMode}
-        editMode={editMode} bundle={bundle}
-      />
+      <BundleName name={bundle.name} editMode={editMode}
+        handleChange={handleChange} />
+      <BundleDescription description={bundle.description} editMode={editMode}
+        handleChange={handleChange} />
 
       <AddLink bundleId={bundle.id} />
       <div className='line' />

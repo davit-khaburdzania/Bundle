@@ -7,37 +7,34 @@ export default class BundleDescription extends Component {
     super(props)
   }
 
-  handleSaveButton (event) {
-    const { bundle, toggleEditMode } = this.props
-
-    const data = {
-      name: this.refs.name.value,
-      description: this.refs.description.value,
-      links_attributes: bundle.links.map(link => {
-        let newLink = {...link}
-        delete newLink.creator
-        return newLink
-      })
-    }
-
-    toggleEditMode(event, true, data)
-  }
+  // handleSaveButton (event) {
+  //   const { bundle, toggleEditMode } = this.props
+  //
+  //   const data = {
+  //     name: this.refs.name.value,
+  //     description: this.refs.description.value,
+  //     links_attributes: bundle.links.map(link => {
+  //       let newLink = {...link}
+  //       delete newLink.creator
+  //       return newLink
+  //     })
+  //   }
+  //
+  //   toggleEditMode(event, true, data)
+  // }
 
   renderEditMode () {
-    const { bundle } = this.props
+    const { name, description } = this.props
 
     return (
-      <div className='is-in-edit-mode'>
-        <button className='btn' onClick={this.handleSaveButton.bind(this)}>
-          Save
-        </button>
+      <div className='desc-edit-mode is-in-edit-mode'>
 
         <div className='bundle-name'>
-          <input type='text' ref='name' defaultValue={bundle.name}
+          <input type='text' value={name}
             className='name bundle-view-description-name-input' />
         </div>
         <div className='bundle-desc'>
-          <textarea defaultValue={bundle.description} ref='description'
+          <textarea value={description}
             className='description bundle-view-description-desc-input' />
         </div>
 
@@ -46,16 +43,12 @@ export default class BundleDescription extends Component {
   }
 
   renderReadMode () {
-    const { bundle, toggleEditMode } = this.props
+    const { name, description } = this.props
 
     return (
       <div className='desc-read-mode'>
-        <button className='btn'
-          onClick={(event) => toggleEditMode(event, false)}>
-          Edit
-        </button>
-        <h2 className='name'>{bundle.name}</h2>
-        <p className='description'>{bundle.description}</p>
+        <h2 className='name'>{name}</h2>
+        <p className='description'>{description}</p>
       </div>
     )
   }
@@ -78,7 +71,7 @@ export default class BundleDescription extends Component {
 }
 
 BundleDescription.propTypes = {
-  bundle: PropTypes.object,
-  toggleEditMode: PropTypes.func,
+  name: PropTypes.string,
+  description: PropTypes.string,
   editMode: PropTypes.bool
 }

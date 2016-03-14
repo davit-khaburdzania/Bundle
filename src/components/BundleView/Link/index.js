@@ -22,7 +22,7 @@ export default class BundleLink extends Component {
 
   render () {
     const { link, editMode } = this.props
-    console.log(link.description)
+
     return (
       <div className='bundle-view-link'>
         <div className='link-creator'>
