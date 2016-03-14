@@ -3,37 +3,68 @@ import { urlDomain, timeAgo } from '../../../helpers'
 
 import './index.css'
 
-export default function BundleLink ({
-  link
-}) {
-  return (
-    <div className='bundle-view-link'>
-      <div className='link-creator'>
-        <img className='creator-image' src={link.creator.image} />
-        <span className='creator-name'>{link.creator.name} </span>
-        <span className='shared-this'> shared this </span>
-      </div>
-      <p className='link-description'>{link.description}</p>
+export default class BundleLink extends Component {
+  constructor (props) {
+    super(props)
+  }
 
-      <div className='link-body'>
+  handleEdit (link, field, event) {
+    const { handleLinkEdit } = this.props
+    const value = event.target.value
 
-        <div className='link-image-wrapper'>
-          <img className='link-image' src={link.image} />
+    handleLinkEdit(link.id, field, value)
+  }
+
+  shouldShow (editMode) {
+    return { 'display': editMode ? 'none' : 'block' }
+  }
+
+  render () {
+    const { link, editMode } = this.props
+    console.log(link.description)
+    return (
+      <div className='bundle-view-link'>
+        <div className='link-creator'>
+          <img className='creator-image' src={link.creator.image} />
+          <span className='creator-name'>{link.creator.name} </span>
+          <span className='shared-this'> shared this </span>
         </div>
-
-        <div className='link-details-wrapper'>
-          <span className='link-title u-truncate-text'>{link.title}</span>
-          <div className='link-details-sub-wrapper'>
-            <span className='link-domain'> On {urlDomain(link.url)} </span>
-            <span className='dot-symbol'> • </span>
-            <span className='link-created'> {timeAgo(link.created_at)} </span>
+        <div className='link-description'>
+          <div style={this.shouldShow(editMode)}>
+            { link.description}
           </div>
+          <input style={this.shouldShow(!editMode)} type='text'
+            value={link.description}
+            onChange={this.handleEdit.bind(this, link, 'description')} />
+        </div>
+
+        <div className='link-body'>
+
+          <div className='link-image-wrapper'>
+            <img className='link-image' src={link.image} />
+          </div>
+
+          <div className='link-details-wrapper'>
+            <div className='link-title u-truncate-text'>
+              <span style={this.shouldShow(editMode)}
+                className='link-title u-truncate-text'>{link.title}</span>
+              <input style={this.shouldShow(!editMode)} type='text'
+                value={link.title}
+                onChange={this.handleEdit.bind(this, link, 'title')} />
+            </div>
+            <div className='link-details-sub-wrapper'>
+              <span className='link-domain'> On {urlDomain(link.url)} </span>
+              <span className='dot-symbol'> • </span>
+              <span className='link-created'> {timeAgo(link.created_at)} </span>
+            </div>
+          </div>
+
         </div>
 
       </div>
+    )
+  }
 
-    </div>
-  )
 }
 
 BundleLink.propTypes = {

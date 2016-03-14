@@ -7,19 +7,22 @@ import './index.css'
 export default function BundleViewBody ({
   bundle,
   editMode,
-  toggleEditMode
+  toggleEditMode,
+  handleLinkEdit
 }) {
   return (
+
     <div className='bundle-view-body'>
       <BundleView.Description toggleEditMode={toggleEditMode}
-        editMode={editMode} name={bundle.name} description={bundle.description}
+        editMode={editMode} bundle={bundle}
       />
 
       <AddLink bundleId={bundle.id} />
       <div className='line' />
 
       {bundle.links.map((link, index) =>
-        <BundleView.Link key={index} link={link} />
+        <BundleView.Link key={index} link={link} editMode={editMode}
+          handleLinkEdit={handleLinkEdit} />
       )}
     </div>
   )

@@ -23,15 +23,22 @@ export default class BundleViewContainer extends Component {
     if (params.bundle_id != nextBundleId) getBundle(nextBundleId)
   }
 
+  handleLinkEdit (id, field, value) {
+    const { updateBundleLink } = this.props
+
+    updateBundleLink(id, field, value)
+
+  }
+
   toggleEditMode (e, save, data) {
     const { toggleEditMode, bundle, updateBundle } = this.props
 
     if (save) {
       updateBundle(bundle.id, data)
       toggleEditMode()
+    } else {
+      toggleEditMode()
     }
-
-    toggleEditMode()
   }
 
   render () {
@@ -40,6 +47,7 @@ export default class BundleViewContainer extends Component {
     if (!bundle) return false
 
     return <Wrapper editMode={bundle.editMode} bundle={bundle}
-      toggleEditMode={this.toggleEditMode.bind(this)} />
+      toggleEditMode={this.toggleEditMode.bind(this)}
+      handleLinkEdit={this.handleLinkEdit.bind(this)} />
   }
 }

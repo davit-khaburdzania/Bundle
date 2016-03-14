@@ -6,6 +6,19 @@ export default function (state = { list: [] }, action) {
       return { ...state, current: action.bundle }
     case 'UPDATE_BUNDLE':
       return { ...state, current: action.bundle }
+    case 'UPDATE_BUNDLE_LINK':
+      return { ...state,
+        current: {
+          ...state.current,
+          links: state.current.links.map(link => {
+            const newLink = { ...link }
+
+            if (newLink.id === action.id) newLink[action.field] = action.value
+
+            return newLink
+          })
+        }
+      }
     case 'FETCH_LINK':
       return { ...state, current: {
         ...state.current,

@@ -1,7 +1,33 @@
 .bundle-view-link {
+  position: relative;
   min-width: 520px;
   font-family: Avenir-Medium;
   margin-bottom: 50px;
+
+  .btn {
+    width: 40px;
+    height: 20px;
+    background-color: #FFF;
+    border: 1px solid #6C90F3;
+    color: #6C90F3;
+    font-family: Avenir-Book;
+    font-size: 12px;
+    line-height: 15px;
+    cursor: pointer;
+    border-radius: 34px;
+    outline: none;
+    transition: all .05s ease-in-out;
+
+    &.mod-link-edit-btn {
+      position: absolute;
+      right: 0;
+    }
+
+    &:hover {
+      color: #FFF;
+      background-color: #6C90F3;
+    }
+  }
 
   .link-creator {
     .creator-image {

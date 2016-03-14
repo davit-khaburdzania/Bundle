@@ -41,6 +41,17 @@ export function updateBundle (bundleId, data) {
   }
 }
 
+export function updateBundleLink (id, field, value) {
+  return (dispatch) => {
+    dispatch({
+      type: 'UPDATE_BUNDLE_LINK',
+      id,
+      field,
+      value
+    })
+  }
+}
+
 export function fetchLink (url) {
   return async (dispatch) => {
     try {
@@ -57,16 +68,6 @@ export function fetchLink (url) {
       // write error handler outside
       console.log(error)
     }
-  }
-}
-
-export function changeDescriptionInCurrentBundle (value, field) {
-  return (dispatch) => {
-    dispatch({
-      type: 'UPDATE_DESCRIPTION',
-      field,
-      value
-     })
   }
 }
 

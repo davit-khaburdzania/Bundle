@@ -8,13 +8,14 @@ import './index.css'
 export default function BundleView ({
   bundle,
   editMode,
-  toggleEditMode
+  toggleEditMode,
+  handleLinkEdit
 }) {
   return (
     <div className='bundle-view-wrapper'>
       <BundleViewHeader />
-      <BundleViewBody editMode={editMode} toggleEditMode={toggleEditMode}
-        bundle={bundle} />
+      <BundleViewBody editMode={editMode} handleLinkEdit={handleLinkEdit}
+        toggleEditMode={toggleEditMode} bundle={bundle} />
     </div>
   )
 }

@@ -8,17 +8,23 @@ export default class BundleDescription extends Component {
   }
 
   handleSaveButton (event) {
-    const { toggleEditMode } = this.props
+    const { bundle, toggleEditMode } = this.props
+
     const data = {
       name: this.refs.name.value,
-      description: this.refs.description.value
+      description: this.refs.description.value,
+      links_attributes: bundle.links.map(link => {
+        let newLink = {...link}
+        delete newLink.creator
+        return newLink
+      })
     }
 
     toggleEditMode(event, true, data)
   }
 
   renderEditMode () {
-    const { name, description } = this.props
+    const { bundle } = this.props
 
     return (
       <div className='is-in-edit-mode'>
@@ -27,11 +33,11 @@ export default class BundleDescription extends Component {
         </button>
 
         <div className='bundle-name'>
-          <input type='text' ref='name' defaultValue={name}
+          <input type='text' ref='name' defaultValue={bundle.name}
             className='name bundle-view-description-name-input' />
         </div>
         <div className='bundle-desc'>
-          <textarea defaultValue={description} ref='description'
+          <textarea defaultValue={bundle.description} ref='description'
             className='description bundle-view-description-desc-input' />
         </div>
 
@@ -40,7 +46,7 @@ export default class BundleDescription extends Component {
   }
 
   renderReadMode () {
-    const { name, description, toggleEditMode } = this.props
+    const { bundle, toggleEditMode } = this.props
 
     return (
       <div className='desc-read-mode'>
@@ -48,8 +54,8 @@ export default class BundleDescription extends Component {
           onClick={(event) => toggleEditMode(event, false)}>
           Edit
         </button>
-        <h2 className='name'>{name}</h2>
-        <p className='description'>{description}</p>
+        <h2 className='name'>{bundle.name}</h2>
+        <p className='description'>{bundle.description}</p>
       </div>
     )
   }
@@ -72,8 +78,7 @@ export default class BundleDescription extends Component {
 }
 
 BundleDescription.propTypes = {
-  name: PropTypes.string,
-  description: PropTypes.string,
+  bundle: PropTypes.object,
   toggleEditMode: PropTypes.func,
   editMode: PropTypes.bool
 }
