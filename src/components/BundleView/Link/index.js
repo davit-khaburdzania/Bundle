@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
-import { urlDomain, timeAgo } from '../../../helpers'
+import { urlDomain } from '../../../helpers'
+import Date from '../../Date'
 
 import './index.css'
 
@@ -55,7 +56,9 @@ export default class BundleLink extends Component {
             <div className='link-details-sub-wrapper'>
               <span className='link-domain'> On {urlDomain(link.url)} </span>
               <span className='dot-symbol'> • </span>
-              <span className='link-created'> {timeAgo(link.created_at)} </span>
+              <span className='link-created'>
+                <Date type='fromNow'>{link.created_at}</Date>
+              </span>
             </div>
           </div>
 

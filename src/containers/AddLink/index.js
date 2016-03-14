@@ -4,8 +4,6 @@ import * as BundleActions from '../../actions/Bundle'
 import EnterUrl from './EnterUrl'
 import LinkPreview from './LinkPreview'
 
-import './index.css'
-
 const connectState = (state) => ({
   currentBundle: state.Bundle.current,
   currentUser: state.User.me
@@ -25,7 +23,7 @@ export default class BundleAddLink extends Component {
     }
   }
 
-  addLinkClick (link) {
+  addLinkHandler (link) {
     const { currentUser, currentBundle, updateBundle } = this.props
     const payload= {
       links_attributes: [{
@@ -37,24 +35,16 @@ export default class BundleAddLink extends Component {
     updateBundle(currentBundle.id, payload)
   }
 
-  renderComponent () {
+  render () {
     const { currentUser, currentBundle } = this.props
     const link = currentBundle.link
 
     if (link) {
       return <LinkPreview currentUser={currentUser} link={link}
-        addLinkClick={this.addLinkClick.bind(this)} />
+        addLinkHandler={this.addLinkHandler.bind(this)} />
     } else {
       return <EnterUrl image={currentUser.image}
         handeUrlEnter={this.handeUrlEnter.bind(this)} />
     }
-  }
-
-  render () {
-    return (
-      <div className='add-link-container'>
-        {this.renderComponent()}
-      </div>
-    )
   }
 }

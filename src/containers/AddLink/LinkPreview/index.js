@@ -6,14 +6,18 @@ import './index.css'
 export default function LinkPreview({
   link,
   currentUser,
-  addLinkClick
+  addLinkHandler
 }) {
-  const linkWithCreator = { ...link, creator: currentUser }
+  const linkWithCreator = {
+    ...link,
+    creator: currentUser,
+    created_at: link.created_at || new Date().toISOString()
+  }
 
   return (
     <div className='add-link-preview'>
       <BundleView.Link link={linkWithCreator} />
-      <button className='add-link-button' onClick={addLinkClick.bind(this, link)}>Add Link</button>
+      <button className='add-link-button' onClick={addLinkHandler.bind(this, link)}>Add Link</button>
     </div>
   )
 }
@@ -21,5 +25,5 @@ export default function LinkPreview({
 LinkPreview.propTypes = {
   link: PropTypes.object.isRequired,
   currentUser: PropTypes.object.isRequired,
-  addLinkClick: PropTypes.func.isRequired
+  addLinkHandler: PropTypes.func.isRequired
 }
