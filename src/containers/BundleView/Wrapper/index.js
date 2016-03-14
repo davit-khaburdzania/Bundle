@@ -7,7 +7,6 @@ import './index.css'
 
 export default function BundleView ({
   bundle,
-  handleDesctiptionChange,
   editMode,
   toggleEditMode
 }) {
@@ -15,7 +14,7 @@ export default function BundleView ({
     <div className='bundle-view-wrapper'>
       <BundleViewHeader />
       <BundleViewBody editMode={editMode} toggleEditMode={toggleEditMode}
-        handleDesctiptionChange={handleDesctiptionChange} bundle={bundle} />
+        bundle={bundle} />
     </div>
   )
 }

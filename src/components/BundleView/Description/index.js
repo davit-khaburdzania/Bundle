@@ -7,31 +7,31 @@ export default class BundleDescription extends Component {
     super(props)
   }
 
-  handleChange (e) {
-    const { handleDesctiptionChange } = this.props
-    let field = e.target.dataset.name
-    let value = e.target.value
+  handleSaveButton (event) {
+    const { toggleEditMode } = this.props
+    const data = {
+      name: this.refs.name.value,
+      description: this.refs.description.value
+    }
 
-    handleDesctiptionChange(value, field)
+    toggleEditMode(event, true, data)
   }
 
   renderEditMode () {
-    const { name, description, toggleEditMode } = this.props
+    const { name, description } = this.props
 
     return (
       <div className='is-in-edit-mode'>
-        <button className='btn' onClick={(e) => toggleEditMode(e, true)}>
+        <button className='btn' onClick={this.handleSaveButton.bind(this)}>
           Save
         </button>
 
         <div className='bundle-name'>
-          <input type='text' data-name='name' value={name}
-            onChange={this.handleChange.bind(this)}
+          <input type='text' ref='name' defaultValue={name}
             className='name bundle-view-description-name-input' />
         </div>
         <div className='bundle-desc'>
-          <textarea value={description} data-name='description'
-            onChange={this.handleChange.bind(this)}
+          <textarea defaultValue={description} ref='description'
             className='description bundle-view-description-desc-input' />
         </div>
 
@@ -44,7 +44,8 @@ export default class BundleDescription extends Component {
 
     return (
       <div className='desc-read-mode'>
-        <button className='btn' onClick={(e) => toggleEditMode(e, false)}>
+        <button className='btn'
+          onClick={(event) => toggleEditMode(event, false)}>
           Edit
         </button>
         <h2 className='name'>{name}</h2>
@@ -72,5 +73,7 @@ export default class BundleDescription extends Component {
 
 BundleDescription.propTypes = {
   name: PropTypes.string,
-  description: PropTypes.string
+  description: PropTypes.string,
+  toggleEditMode: PropTypes.func,
+  editMode: PropTypes.bool
 }

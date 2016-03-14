@@ -23,22 +23,15 @@ export default class BundleViewContainer extends Component {
     if (params.bundle_id != nextBundleId) getBundle(nextBundleId)
   }
 
-  handleDesctiptionChange (value, field) {
-    const { changeDescriptionInCurrentBundle } = this.props
-
-    changeDescriptionInCurrentBundle(value, field)
-  }
-
-  toggleEditMode (e, save) {
+  toggleEditMode (e, save, data) {
     const { toggleEditMode, bundle, updateBundle } = this.props
-    const { id, name, description } = bundle
 
     if (save) {
-      updateBundle(id, { name, description })
-      return toggleEditMode()
+      updateBundle(bundle.id, data)
+      toggleEditMode()
     }
 
-    return toggleEditMode()
+    toggleEditMode()
   }
 
   render () {
@@ -46,8 +39,7 @@ export default class BundleViewContainer extends Component {
 
     if (!bundle) return false
 
-    return <Wrapper editMode={bundle.editMode}
-      toggleEditMode={this.toggleEditMode.bind(this)} handleDesctiptionChange={this.handleDesctiptionChange.bind(this)}
-      bundle={bundle} />
+    return <Wrapper editMode={bundle.editMode} bundle={bundle}
+      toggleEditMode={this.toggleEditMode.bind(this)} />
   }
 }
