@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router'
-import Date from '../../Date'
 
 function shared_with_text(count) {
   if (count || count == 0) {
