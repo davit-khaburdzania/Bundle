@@ -39,13 +39,6 @@ export default class BundleViewContainer extends Component {
     const { toggleEditMode, bundle, updateBundle } = this.props
 
     if (save) {
-      // let newBundle = { ...bundle }
-      // newBundle.links_attributes = bundle.links.map(link => {
-      //   let newLink = {...link}
-      //   delete newLink.creator
-      //   return newLink
-      // })
-      // delete newBundle.links
       const payload = {
         name: bundle.name,
         description: bundle.description,
@@ -55,6 +48,7 @@ export default class BundleViewContainer extends Component {
           return newLink
         })
       }
+      
       updateBundle(bundle.id, payload)
       toggleEditMode()
     } else {

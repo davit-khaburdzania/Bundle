@@ -55,13 +55,28 @@
     }
   }
 
-  .link-description {
+  .link-description,
+  .link-description-input,
+  .link-title-input {
     margin: 10px 0;
     font-family: Avenir-Book;
     font-size: 16px;
     color: #1B1722;
     line-height: 21px;
+    border: none;
+    outline: none;
   }
+
+  .link-description-input,
+  .link-title-input {
+    width: 100%;
+  }
+
+  .link-title-input {
+    margin: 0;
+    font-weight: bolder;
+  }
+
 
 
 

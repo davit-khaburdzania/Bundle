@@ -35,7 +35,7 @@ export default class BundleLink extends Component {
             { link.description}
           </div>
           <input style={this.shouldShow(!editMode)} type='text'
-            value={link.description}
+            value={link.description} className='link-description-input'
             onChange={this.handleEdit.bind(this, link, 'description')} />
         </div>
 
@@ -50,7 +50,7 @@ export default class BundleLink extends Component {
               <span style={this.shouldShow(editMode)}
                 className='link-title u-truncate-text'>{link.title}</span>
               <input style={this.shouldShow(!editMode)} type='text'
-                value={link.title}
+                value={link.title} className='link-title-input'
                 onChange={this.handleEdit.bind(this, link, 'title')} />
             </div>
             <div className='link-details-sub-wrapper'>

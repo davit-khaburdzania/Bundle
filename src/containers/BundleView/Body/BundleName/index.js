@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react'
 
 import { shouldShow } from '../../../../helpers'
 
+import './index.css'
+
 export default function BundleName ({ name , editMode, handleChange }) {
   return (
     <div className='bundle-name-wrapper'>
