@@ -30,34 +30,45 @@ export default class BundleViewContainer extends Component {
 
   }
 
-  handleChange (event) {
-    console.log("changing")
+  handleChange (field, value) {
+    updateBundleState(field, value)
   }
 
   toggleEdit (save) {
     console.log("save ? ", save)
-    const { toggleEditMode } = this.props
-    toggleEditMode()
+    const { toggleEditMode, bundle, updateBundle } = this.props
+
+    if (save) {
+      // let newBundle = { ...bundle }
+      // newBundle.links_attributes = bundle.links.map(link => {
+      //   let newLink = {...link}
+      //   delete newLink.creator
+      //   return newLink
+      // })
+      // delete newBundle.links
+      const payload = {
+        name: bundle.name,
+        description: bundle.description,
+        links_attributes: bundle.links.map(link => {
+          let newLink = {...link}
+          delete newLink.creator
+          return newLink
+        })
+      }
+      updateBundle(bundle.id, payload)
+      toggleEditMode()
+    } else {
+      toggleEditMode()
+    }
   }
 
-  // toggleEditMode (event, save, data) {
-  //   const { toggleEditMode, bundle, updateBundle } = this.props
-  //
-  //   if (save) {
-  //     updateBundle(bundle.id, data)
-  //     toggleEditMode()
-  //   } else {
-  //     toggleEditMode()
-  //   }
-  // }
-
   render () {
-    const { bundle } = this.props
+    const { bundle, updateBundleState } = this.props
 
     if (!bundle) return false
 
     return <Wrapper editMode={bundle.editMode} bundle={bundle}
-      handleChange={this.handleChange.bind(this)}
+      handleChange={updateBundleState}
       handleLinkEdit={this.handleLinkEdit.bind(this)}
       toggleEdit={this.toggleEdit.bind(this)} />
   }

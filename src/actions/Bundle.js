@@ -52,6 +52,16 @@ export function updateBundleLink (id, field, value) {
   }
 }
 
+export function updateBundleState(field, value) {
+  return (dispatch) => {
+    dispatch({
+      type: 'UPDATE_BUNDLE_INFO',
+      field,
+      value
+    })
+  }
+}
+
 export function fetchLink (url) {
   return async (dispatch) => {
     try {

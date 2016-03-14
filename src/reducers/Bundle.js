@@ -6,6 +6,11 @@ export default function (state = { list: [] }, action) {
       return { ...state, current: action.bundle }
     case 'UPDATE_BUNDLE':
       return { ...state, current: action.bundle }
+    case 'UPDATE_BUNDLE_INFO':
+      return {
+        ...state,
+        current: { ...state.current, [action.field]: action.value }
+      }
     case 'UPDATE_BUNDLE_LINK':
       return { ...state,
         current: {
@@ -24,11 +29,6 @@ export default function (state = { list: [] }, action) {
         ...state.current,
         link: action.link
       }}
-    case 'UPDATE_DESCRIPTION':
-      return {
-        ...state,
-        current: { ...state.current, [action.field]: action.value }
-      }
     case 'TOGGLE_EDIT_MODE':
       return { ...state, current: {
         ...state.current,

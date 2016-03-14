@@ -11,7 +11,6 @@ export default function ToggleBundleButton ({ toggleEdit, editMode }) {
         className='btn mod-toggle'> Edit </button>
       <button style={shouldShow(editMode)} onClick={toggleEdit.bind(this, true)}
         className='btn mod-toggle'> Save </button>
-
     </div>
   )
 }

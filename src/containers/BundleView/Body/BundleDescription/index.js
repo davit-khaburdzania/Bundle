@@ -13,7 +13,8 @@ export default function BundleDescription ({
       <h2 style={shouldShow(!editMode)} className='bundle-description'>{description}</h2>
 
       <textarea style={shouldShow(editMode)} className='bundle-description-input'
-        type='text' value={description} onChange={handleChange}/>
+        type='text' value={description}
+        onChange={(e) => handleChange('description', e.target.value)} />
 
     </div>
   )
