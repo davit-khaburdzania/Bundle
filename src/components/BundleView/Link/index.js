@@ -1,16 +1,10 @@
 import React, { Component, PropTypes } from 'react'
-import { urlDomain } from '../../../helpers'
 import Date from '../../Date'
-
-import { shouldShow } from '../../../helpers/'
+import { urlDomain, shouldShow } from '../../../helpers'
 
 import './index.css'
 
 export default class BundleLink extends Component {
-  constructor (props) {
-    super(props)
-  }
-
   handleEdit (link, field, event) {
     const { handleLinkEdit } = this.props
     const value = event.target.value
@@ -43,12 +37,15 @@ export default class BundleLink extends Component {
 
           <div className='link-details-wrapper'>
             <div className='link-title u-truncate-text'>
-              <span style={shouldShow(!editMode)}
-                className='link-title u-truncate-text'>{link.title}</span>
+              <a href={link.url} target='_blank'>
+                <span style={shouldShow(!editMode)}
+                  className='link-title u-truncate-text'>{link.title}</span>
+              </a>
               <input style={shouldShow(editMode)} type='text'
-                value={link.title} className='link-title-input'
-                onChange={this.handleEdit.bind(this, link, 'title')} />
+                  value={link.title} className='link-title-input'
+                  onChange={this.handleEdit.bind(this, link, 'title')} />
             </div>
+
             <div className='link-details-sub-wrapper'>
               <span className='link-domain'> On {urlDomain(link.url)} </span>
               <span className='dot-symbol'> • </span>
