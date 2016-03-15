@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react'
 import { urlDomain } from '../../../helpers'
 import Date from '../../Date'
 
+import { shouldShow } from '../../../helpers/'
+
 import './index.css'
 
 export default class BundleLink extends Component {
@@ -16,10 +18,6 @@ export default class BundleLink extends Component {
     handleLinkEdit(link.id, field, value)
   }
 
-  shouldShow (editMode) {
-    return { 'display': editMode ? 'none' : 'block' }
-  }
-
   render () {
     const { link, editMode } = this.props
 
@@ -27,14 +25,12 @@ export default class BundleLink extends Component {
       <div className='bundle-view-link'>
         <div className='link-creator'>
           <img className='creator-image' src={link.creator.image} />
-          <span className='creator-name'>{link.creator.name} </span>
-          <span className='shared-this'> shared this </span>
+          <span className='creator-name'>{link.creator.name}</span>
+          <span className='shared-this'>shared this</span>
         </div>
         <div className='link-description'>
-          <div style={this.shouldShow(editMode)}>
-            { link.description}
-          </div>
-          <input style={this.shouldShow(!editMode)} type='text'
+          <div style={shouldShow(!editMode)}>{link.description}</div>
+          <input style={shouldShow(editMode)} type='text'
             value={link.description} className='link-description-input'
             onChange={this.handleEdit.bind(this, link, 'description')} />
         </div>
@@ -47,9 +43,9 @@ export default class BundleLink extends Component {
 
           <div className='link-details-wrapper'>
             <div className='link-title u-truncate-text'>
-              <span style={this.shouldShow(editMode)}
+              <span style={shouldShow(!editMode)}
                 className='link-title u-truncate-text'>{link.title}</span>
-              <input style={this.shouldShow(!editMode)} type='text'
+              <input style={shouldShow(editMode)} type='text'
                 value={link.title} className='link-title-input'
                 onChange={this.handleEdit.bind(this, link, 'title')} />
             </div>
@@ -71,5 +67,7 @@ export default class BundleLink extends Component {
 }
 
 BundleLink.propTypes = {
-  link: PropTypes.object
+  link: PropTypes.object,
+  editMode: PropTypes.bool,
+  handleLinkEdit: PropTypes.func
 }

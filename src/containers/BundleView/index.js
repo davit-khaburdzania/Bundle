@@ -35,7 +35,6 @@ export default class BundleViewContainer extends Component {
   }
 
   toggleEdit (save) {
-    console.log("save ? ", save)
     const { toggleEditMode, bundle, updateBundle } = this.props
 
     if (save) {
@@ -48,7 +47,7 @@ export default class BundleViewContainer extends Component {
           return newLink
         })
       }
-      
+
       updateBundle(bundle.id, payload)
       toggleEditMode()
     } else {

@@ -7,10 +7,10 @@ import './index.css'
 export default function ToggleBundleButton ({ toggleEdit, editMode }) {
   return (
     <div className='toggle-btn-wrapper'>
-      <button style={shouldShow(!editMode)} onClick={toggleEdit.bind(this, false)}
-        className='btn mod-toggle'> Edit </button>
-      <button style={shouldShow(editMode)} onClick={toggleEdit.bind(this, true)}
-        className='btn mod-toggle'> Save </button>
+      <button style={shouldShow(!editMode)} className='btn mod-toggle'
+        onClick={toggleEdit.bind(this, false)}> Edit </button>
+      <button style={shouldShow(editMode)} className='btn mod-toggle'
+        onClick={toggleEdit.bind(this, true)}> Save </button>
     </div>
   )
 }

@@ -33,5 +33,9 @@ export default function BundleViewBody ({
 }
 
 BundleViewBody.propTypes = {
-  bundle: PropTypes.object
+  bundle: PropTypes.object,
+  editMode: PropTypes.bool,
+  toggleEditMode: PropTypes.func,
+  handleLinkEdit: PropTypes.func,
+  handleChange: PropTypes.func
 }
