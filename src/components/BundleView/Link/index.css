@@ -18,11 +18,6 @@
     outline: none;
     transition: all .05s ease-in-out;
 
-    &.mod-link-edit-btn {
-      position: absolute;
-      right: 0;
-    }
-
     &:hover {
       color: #FFF;
       background-color: #6C90F3;
@@ -77,9 +72,6 @@
     font-weight: bolder;
   }
 
-
-
-
   .link-body {
     display: flex;
     border: 1px solid #E8E8E9;
@@ -119,5 +111,4 @@
   .dot-symbol {
     font-size: 10px;
   }
-
 }

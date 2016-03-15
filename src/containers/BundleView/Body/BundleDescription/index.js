@@ -12,7 +12,9 @@ export default function BundleDescription ({
   return (
     <div className='bundle-description-wrapper'>
 
-      <h3 style={shouldShow(!editMode)} className='bundle-description'>{description}</h3>
+      <h3 style={shouldShow(!editMode)} className='bundle-description'>
+        {description}
+      </h3>
 
       <textarea style={shouldShow(editMode)} className='bundle-description-input'
         type='text' value={description}

@@ -70,7 +70,7 @@ export function fetchLink (url) {
         url: response.data.url,
         title: response.data.title,
         description: response.data.description,
-        image: response.data.image,
+        image: response.data.image
       }
 
       dispatch({ type: 'FETCH_LINK', link })

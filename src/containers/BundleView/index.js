@@ -23,17 +23,6 @@ export default class BundleViewContainer extends Component {
     if (params.bundle_id != nextBundleId) getBundle(nextBundleId)
   }
 
-  handleLinkEdit (id, field, value) {
-    const { updateBundleLink } = this.props
-
-    updateBundleLink(id, field, value)
-
-  }
-
-  handleChange (field, value) {
-    updateBundleState(field, value)
-  }
-
   toggleEdit (save) {
     const { toggleEditMode, bundle, updateBundle } = this.props
 
@@ -42,7 +31,8 @@ export default class BundleViewContainer extends Component {
         name: bundle.name,
         description: bundle.description,
         links_attributes: bundle.links.map(link => {
-          let newLink = {...link}
+          let newLink = { ...link }
+
           delete newLink.creator
           return newLink
         })
@@ -56,13 +46,13 @@ export default class BundleViewContainer extends Component {
   }
 
   render () {
-    const { bundle, updateBundleState } = this.props
+    const { bundle, updateBundleState, updateBundleLink } = this.props
 
     if (!bundle) return false
 
     return <Wrapper editMode={bundle.editMode} bundle={bundle}
       handleChange={updateBundleState}
-      handleLinkEdit={this.handleLinkEdit.bind(this)}
+      handleLinkEdit={updateBundleLink}
       toggleEdit={this.toggleEdit.bind(this)} />
   }
 }

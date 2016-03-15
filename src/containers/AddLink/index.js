@@ -13,16 +13,6 @@ const connectProps = BundleActions
 
 @connect(connectState, connectProps)
 export default class BundleAddLink extends Component {
-
-  handeUrlEnter (e) {
-    const url = e.target.value
-    const { bundleId, fetchLink } =  this.props
-
-    if (e.key == 'Enter') {
-      fetchLink(url, bundleId)
-    }
-  }
-
   addLinkHandler (link) {
     const { currentUser, currentBundle, updateBundle } = this.props
     const payload= {
@@ -36,15 +26,15 @@ export default class BundleAddLink extends Component {
   }
 
   render () {
-    const { currentUser, currentBundle } = this.props
+    const { currentUser, currentBundle, fetchLink } = this.props
     const link = currentBundle.link
 
     if (link) {
       return <LinkPreview currentUser={currentUser} link={link}
         addLinkHandler={this.addLinkHandler.bind(this)} />
     } else {
-      return <EnterUrl image={currentUser.image}
-        handeUrlEnter={this.handeUrlEnter.bind(this)} />
+      return <EnterUrl image={currentUser.image} bundleId={currentBundle.id}
+        handeUrlEnter={fetchLink} />
     }
   }
 }
