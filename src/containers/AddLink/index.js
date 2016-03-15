@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import * as BundleActions from '../../actions/Bundle'
+import * as bundleActions from '../../actions/Bundle'
 import EnterUrl from './EnterUrl'
 import LinkPreview from './LinkPreview'
 
@@ -9,13 +9,13 @@ const connectState = (state) => ({
   currentUser: state.User.me
 })
 
-const connectProps = BundleActions
+const connectProps = bundleActions
 
 @connect(connectState, connectProps)
 export default class BundleAddLink extends Component {
   addLinkHandler (link) {
     const { currentUser, currentBundle, updateBundle } = this.props
-    const payload= {
+    const payload = {
       links_attributes: [{
         ...link,
         creator_id: currentUser.id

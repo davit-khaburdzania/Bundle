@@ -4,9 +4,9 @@ const me = {
   image: 'http://i.imgur.com/XMnLzi2.jpg'
 }
 
-export default function (state= { me }, action) {
+export default function (state = { me }, action) {
   switch (action.type) {
-    default:
-      return state
+  default:
+    return state
   }
 }

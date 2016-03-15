@@ -15,15 +15,17 @@ export default function BundleView ({
   return (
     <div className='bundle-view-wrapper'>
       <BundleViewHeader toggleEdit={toggleEdit} editMode={editMode} />
+
       <BundleViewBody editMode={editMode} handleLinkEdit={handleLinkEdit}
-        bundle={bundle} handleChange={handleChange} />
+        bundle={bundle} handleChange={handleChange}
+      />
     </div>
   )
 }
 
 BundleView.propTypes = {
-  bundle: PropTypes.object,
+  bundle: PropTypes.object.isRequired,
   editMode: PropTypes.bool,
-  handleLinkEdit: PropTypes.func,
-  handleChange: PropTypes.func
+  handleLinkEdit: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired
 }

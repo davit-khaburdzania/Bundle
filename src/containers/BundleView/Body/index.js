@@ -17,25 +17,30 @@ export default function BundleViewBody ({
 
     <div className='bundle-view-body'>
       <BundleName name={bundle.name} editMode={editMode}
-        handleChange={handleChange} />
+        handleChange={handleChange}
+      />
+
       <BundleDescription description={bundle.description} editMode={editMode}
-        handleChange={handleChange} />
+        handleChange={handleChange}
+      />
 
       <AddLink bundleId={bundle.id} />
+
       <div className='line' />
 
       {bundle.links.map((link, index) =>
         <BundleView.Link key={index} link={link} editMode={editMode}
-          handleLinkEdit={handleLinkEdit} />
+          handleLinkEdit={handleLinkEdit}
+        />
       )}
     </div>
   )
 }
 
 BundleViewBody.propTypes = {
-  bundle: PropTypes.object,
+  bundle: PropTypes.object.isRequired,
   editMode: PropTypes.bool,
   toggleEditMode: PropTypes.func,
-  handleLinkEdit: PropTypes.func,
-  handleChange: PropTypes.func
+  handleLinkEdit: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired
 }

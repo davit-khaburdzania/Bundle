@@ -9,11 +9,11 @@ import Alert from './Alert'
 import User from './User'
 
 export default combineReducers({
+  routing,
   UserMenu,
   Bundle,
   Collection,
   Search,
   Alert,
-  routing,
   User
 })

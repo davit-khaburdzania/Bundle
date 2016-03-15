@@ -23,10 +23,8 @@ export function removeBundle (id) {
 }
 
 export function updateBundle (id, data) {
-  const payload = { bundle: data }
-
   return async (dispatch) => {
-    let response = await request.put(api.bundles(id), payload)
+    let response = await request.put(api.bundles(id), { bundle: data })
     dispatch({ type: 'UPDATE_BUNDLE', bundle: response.data })
   }
 }
@@ -55,21 +53,15 @@ export function fetchLink (url) {
 }
 
 export function updateBundleLink (id, field, value) {
-  return (dispatch) => {
-    dispatch({ type: 'UPDATE_BUNDLE_LINK', id, field, value })
-  }
+  return { type: 'UPDATE_BUNDLE_LINK', id, field, value }
 }
 
-export function updateBundleState(field, value) {
-  return (dispatch) => {
-    dispatch({ type: 'UPDATE_BUNDLE_INFO', field, value })
-  }
+export function updateBundleInfo(field, value) {
+  return { type: 'UPDATE_BUNDLE_INFO', field, value }
 }
 
 export function toggleEditMode () {
-  return (dispatch) => {
-    dispatch({ type: 'TOGGLE_EDIT_MODE' })
-  }
+  return { type: 'TOGGLE_EDIT_MODE' }
 }
 
 export function editModeBundle (id, editMode) {

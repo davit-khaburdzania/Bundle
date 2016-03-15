@@ -16,7 +16,8 @@ export default function EnterUrl({
     <div className='add-link-enter-url'>
       <img className='creator-image' src={image} />
       <input className='url-input' placeholder='Enter Url Here...'
-        onKeyPress={handleKeyPress.bind(this, bundleId, handeUrlEnter)} />
+        onKeyPress={handleKeyPress.bind(this, bundleId, handeUrlEnter)}
+      />
     </div>
   )
 }

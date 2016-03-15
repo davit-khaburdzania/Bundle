@@ -46,12 +46,12 @@ export default class BundleViewContainer extends Component {
   }
 
   render () {
-    const { bundle, updateBundleState, updateBundleLink } = this.props
+    const { bundle, updateBundleInfo, updateBundleLink } = this.props
 
     if (!bundle) return false
 
     return <Wrapper editMode={bundle.editMode} bundle={bundle}
-      handleChange={updateBundleState}
+      handleChange={updateBundleInfo}
       handleLinkEdit={updateBundleLink}
       toggleEdit={this.toggleEdit.bind(this)} />
   }

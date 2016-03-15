@@ -11,15 +11,14 @@ export default function BundleDescription ({
 }) {
   return (
     <div className='bundle-description-wrapper'>
-
       <h3 style={shouldShow(!editMode)} className='bundle-description'>
         {description}
       </h3>
 
       <textarea style={shouldShow(editMode)} className='bundle-description-input'
         type='text' value={description}
-        onChange={(e) => handleChange('description', e.target.value)} />
-
+        onChange={(e) => handleChange('description', e.target.value)}
+      />
     </div>
   )
 }
@@ -27,5 +26,5 @@ export default function BundleDescription ({
 BundleDescription.propTypes = {
   description: PropTypes.string,
   editMode: PropTypes.bool,
-  handleChange: PropTypes.func
+  handleChange: PropTypes.func.isRequired
 }
