@@ -5,8 +5,8 @@ import EnterUrl from './EnterUrl'
 import LinkPreview from './LinkPreview'
 
 const connectState = (state) => ({
-  currentBundle: state.Bundle.current,
-  currentUser: state.User.me
+  currentBundle: state.Bundle.toJS().current,
+  currentUser: state.User.toJS().me
 })
 
 const connectProps = bundleActions

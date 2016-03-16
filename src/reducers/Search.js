@@ -1,8 +1,9 @@
-export default function (state = {}, action) {
+import Immutable from 'immutable'
+
+export default function (state = Immutable.Map({}), action) {
   switch (action.type) {
   case 'FETCH_SEARCH_RESULTS':
-    let result = action.result
-    return { ...state, result }
+    return state.set('result', Immutable.fromJS(action.result))
   default:
     return state
   }
