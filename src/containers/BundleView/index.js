@@ -34,18 +34,16 @@ export default class BundleViewContainer extends Component {
   toggleEdit (save) {
     const { toggleEditMode, bundle, updateBundle } = this.props
 
-    if (save) {
-      const payload = {
-        name: bundle.name,
-        description: bundle.description,
-        links_attributes: this.linksWithoutAuthors(bundle.links)
-      }
+    if (!save) return toggleEditMode()
 
-      updateBundle(bundle.id, payload)
-      toggleEditMode()
-    } else {
-      toggleEditMode()
+    const payload = {
+      name: bundle.name,
+      description: bundle.description,
+      links_attributes: this.linksWithoutAuthors(bundle.links)
     }
+
+    updateBundle(bundle.id, payload)
+    toggleEditMode()
   }
 
   render () {
