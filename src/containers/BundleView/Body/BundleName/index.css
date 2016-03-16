@@ -1,0 +1,16 @@
+.bundle-name-wrapper {
+  .bundle-name,
+  .bundle-name-input {
+    font-family: Avenir-Medium;
+    font-weight: normal;
+    font-size: 30px;
+    color: #333333;
+    line-height: 30px;
+    margin: 15px 0;
+  }
+
+  .bundle-name-input {
+    border: none;
+    outline: none;
+  }
+}

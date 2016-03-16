@@ -1,9 +1,12 @@
 .navigation-wrapper {
   display: flex;
+  min-width: 920px;
+  width: 94.5%;
 }
 
 .resource-navigation {
-  width: 350px;
+  min-width: 350px;
+  width: 25.7%;
   height: 100vh;
   border-left: 1px solid #ECECEC;
   border-right: 1px solid #ECECEC;

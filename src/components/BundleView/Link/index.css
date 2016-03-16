@@ -1,6 +1,28 @@
 .bundle-view-link {
+  position: relative;
+  min-width: 520px;
   font-family: Avenir-Medium;
   margin-bottom: 50px;
+
+  .btn {
+    width: 40px;
+    height: 20px;
+    background-color: #FFF;
+    border: 1px solid #6C90F3;
+    color: #6C90F3;
+    font-family: Avenir-Book;
+    font-size: 12px;
+    line-height: 15px;
+    cursor: pointer;
+    border-radius: 34px;
+    outline: none;
+    transition: all .05s ease-in-out;
+
+    &:hover {
+      color: #FFF;
+      background-color: #6C90F3;
+    }
+  }
 
   .link-creator {
     .creator-image {
@@ -28,14 +50,30 @@
     }
   }
 
-  .link-description {
+  .link-description,
+  .link-description-input,
+  .link-title-input {
+    margin: 10px 0;
     font-family: Avenir-Book;
     font-size: 16px;
     color: #1B1722;
     line-height: 21px;
+    border: none;
+    outline: none;
+  }
+
+  .link-description-input,
+  .link-title-input {
+    width: 100%;
+  }
+
+  .link-title-input {
+    margin: 0;
+    font-weight: bolder;
   }
 
   .link-body {
+    display: flex;
     border: 1px solid #E8E8E9;
     height: 80px;
 
@@ -47,6 +85,30 @@
       font-size: 16px;
       color: #1B1722;
       line-height: 13px;
+      display: block;
+      width: 93%;
     }
+  }
+
+  .link-details-wrapper {
+    padding: 20px;
+    width: 89.2%;
+  }
+
+  .link-details-sub-wrapper {
+    opacity: 0.4;
+    font-family: Avenir-Book;
+    font-size: 14px;
+    color: #000000;
+    line-height: 16px;
+    margin-top: 5px;
+
+    > span {
+        margin-right: 10px;
+    }
+  }
+
+  .dot-symbol {
+    font-size: 10px;
   }
 }

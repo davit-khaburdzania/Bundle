@@ -11,16 +11,51 @@ const connectProps = bundleActions
 
 @connect(connectState, connectProps)
 export default class BundleViewContainer extends Component {
-  constructor (props) {
-    props.getBundle(props.params.bundle_id)
-    super(props)
+  componentWillMount() {
+    const { getBundle, params } = this.props
+    getBundle(params.bundle_id)
+  }
+
+  componentWillReceiveProps (nextProps) {
+    const { getBundle, params } = this.props
+    const nextBundleId = nextProps.params.bundle_id
+
+    if (params.bundle_id != nextBundleId) getBundle(nextBundleId)
+  }
+
+  linksWithoutAuthors (links) {
+    links.map(link => {
+      let newLink = { ...link }
+      delete newLink.creator
+      return newLink
+    })
+  }
+
+  toggleEdit (save) {
+    const { toggleEditMode, bundle, updateBundle } = this.props
+
+    if (save) {
+      const payload = {
+        name: bundle.name,
+        description: bundle.description,
+        links_attributes: this.linksWithoutAuthors(bundle.links)
+      }
+
+      updateBundle(bundle.id, payload)
+      toggleEditMode()
+    } else {
+      toggleEditMode()
+    }
   }
 
   render () {
-    const { bundle } = this.props
+    const { bundle, updateBundleInfo, updateBundleLink } = this.props
 
     if (!bundle) return false
 
-    return <Wrapper bundle={bundle} />
+    return <Wrapper editMode={bundle.editMode} bundle={bundle}
+      handleChange={updateBundleInfo}
+      handleLinkEdit={updateBundleLink}
+      toggleEdit={this.toggleEdit.bind(this)} />
   }
 }

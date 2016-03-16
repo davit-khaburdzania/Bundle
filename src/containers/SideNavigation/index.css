@@ -1,6 +1,7 @@
 .side-navigation {
   position: relative;
-  width: 80px;
+  min-width: 80px;
+  width: 5.5%;
   height: 100vh;
   background: #F8F8F8;
 }

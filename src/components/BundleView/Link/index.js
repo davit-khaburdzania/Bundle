@@ -1,28 +1,69 @@
 import React, { Component, PropTypes } from 'react'
+import Date from '../../Date'
+import { urlDomain, shouldShow } from '../../../helpers'
 
 import './index.css'
 
-export default function BundleLink ({
-  link
-}) {
-  return (
-    <div className='bundle-view-link'>
-      <div className='link-creator'>
-        <img className='creator-image' src={link.creator.image} />
-        <span className='creator-name'>{link.creator.name} </span>
-        <span className='shared-this'> shared this </span>
-      </div>
-      <p className='link-description'>{link.description}</p>
+export default class BundleLink extends Component {
+  handleEdit (link, field, event) {
+    const { handleLinkEdit } = this.props
+    const value = event.target.value
 
-      <div className='link-body'>
-        <img className='link-image' src={link.image} />
-        <span className='link-title'>{link.title}</span>
-        <span className='link-created'>2 days ago </span>
+    handleLinkEdit(link.id, field, value)
+  }
+
+  render () {
+    const { link, editMode } = this.props
+
+    return (
+      <div className='bundle-view-link'>
+        <div className='link-creator'>
+          <img className='creator-image' src={link.creator.image} />
+          <span className='creator-name'>{link.creator.name}</span>
+          <span className='shared-this'>shared this</span>
+        </div>
+        <div className='link-description'>
+          <div style={shouldShow(!editMode)}>{link.description}</div>
+
+          <input style={shouldShow(editMode)} type='text'
+            value={link.description} className='link-description-input'
+            onChange={this.handleEdit.bind(this, link, 'description')}
+          />
+        </div>
+
+        <div className='link-body'>
+          <div className='link-image-wrapper'>
+            <img className='link-image' src={link.image} />
+          </div>
+          <div className='link-details-wrapper'>
+            <div className='link-title u-truncate-text'>
+              <a href={link.url} target='_blank'>
+                <span style={shouldShow(!editMode)}
+                  className='link-title u-truncate-text'>{link.title}
+                </span>
+              </a>
+
+              <input style={shouldShow(editMode)} type='text'
+                  value={link.title} className='link-title-input'
+                  onChange={this.handleEdit.bind(this, link, 'title')}
+              />
+            </div>
+            <div className='link-details-sub-wrapper'>
+              <span className='link-domain'>On {urlDomain(link.url)}</span>
+              <span className='dot-symbol'>•</span>
+              <span className='link-created'>
+                <Date type='fromNow'>{link.created_at}</Date>
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 
 BundleLink.propTypes = {
-  link: PropTypes.object
+  link: PropTypes.object.isRequired,
+  editMode: PropTypes.bool,
+  handleLinkEdit: PropTypes.func
 }

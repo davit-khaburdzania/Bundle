@@ -1,0 +1,20 @@
+.bundle-description-wrapper {
+  margin-bottom: 20px;
+
+  .bundle-description,
+  .bundle-description-input {
+    font-family: Avenir-Book;
+    font-size: 16px;
+    color: #353535;
+    font-weight: lighter;
+    border: none;
+    outline: none;
+    height: 100px;
+    margin: 15px 0;
+  }
+
+  .bundle-description-input {
+    resize: none;
+    width: 500px;
+  }
+}

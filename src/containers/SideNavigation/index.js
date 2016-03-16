@@ -8,7 +8,8 @@ import SideNavigationBottom from './bottom'
 import './index.css'
 
 const connectState = state => ({
-  isOpen: state.UserMenu
+  isOpen: state.UserMenu,
+  currentUser: state.User.me
 })
 
 const connectProps = { ...userMenuActions }
@@ -16,13 +17,13 @@ const connectProps = { ...userMenuActions }
 @connect(connectState, connectProps)
 export default class SideNavigation extends Component {
   render () {
-    let { isOpen, openUserMenu, closeUserMenu } = this.props
+    let { isOpen, openUserMenu, closeUserMenu, currentUser } = this.props
 
     return (
       <div className='side-navigation'>
         <SideNavigationTop/>
         <SideNavigationBottom isOpen={isOpen} openUserMenu={openUserMenu}
-          closeUserMenu={closeUserMenu}
+          closeUserMenu={closeUserMenu} currentUser={currentUser}
         />
       </div>
     )

@@ -10,20 +10,21 @@ export default class UserMenu extends Component {
   }
 
   render () {
-    let { children, isOpen, openUserMenu } = this.props
+    let { children, isOpen, openUserMenu, currentUser } = this.props
 
     return (
       <div className='user-menu'>
         { isOpen ? children : null }
 
         <div className='avatar-holder' onClick={openUserMenu}>
-          <img src='/assets/images/avatar.png' />
+          <img src={currentUser.image} />
         </div>
       </div>
     )
   }
 
   static propTypes = {
+    currentUser: PropTypes.object.isRequired,
     isOpen: PropTypes.bool.isRequired,
     openUserMenu: PropTypes.func.isRequired,
     closeUserMenu: PropTypes.func.isRequired,
