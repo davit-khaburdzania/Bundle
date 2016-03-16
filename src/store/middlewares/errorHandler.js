@@ -11,7 +11,9 @@ function errorHandler () {
           if (response instanceof Error) {
             return dispatch(addAlert('error', response.message))
           } else {
-            return dispatch(addAlert('error', response.data.errors || response.statusText))
+            return dispatch(
+              addAlert('error', response.data.errors || response.statusText)
+            )
           }
         }
       })
