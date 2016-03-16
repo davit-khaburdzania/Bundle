@@ -1,14 +1,14 @@
-import Immutable from 'immutable'
+import { fromJS } from 'immutable'
 
-const defaultState = Immutable.fromJS({ list: [] })
+const defaultState = fromJS({ list: [] })
 
 export default function (state = defaultState, action) {
   switch (action.type) {
   case 'RECEIVE_COLLECTIONS':
-    return state.set('list', Immutable.fromJS(action.list))
+    return state.set('list', fromJS(action.list))
 
   case 'RECEIVE_COLLECTION':
-    return state.set('current', Immutable.fromJS(action.collection))
+    return state.set('current', fromJS(action.collection))
 
   case 'FAVORITE_COLLECTION':
     return state.update('list', list => list.map(col => {

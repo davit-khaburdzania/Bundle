@@ -1,4 +1,4 @@
-import Immutable from 'immutable'
+import { fromJS } from 'immutable'
 
 const me = {
   id: 1,
@@ -6,9 +6,7 @@ const me = {
   image: 'http://i.imgur.com/XMnLzi2.jpg'
 }
 
-const defaultState = Immutable.fromJS({ me })
-
-export default function (state = defaultState, action) {
+export default function (state = fromJS({ me }), action) {
   switch (action.type) {
   default:
     return state

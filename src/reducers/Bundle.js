@@ -1,13 +1,13 @@
-import Immutable from 'immutable'
-const defaultState = Immutable.fromJS({ list: [] })
+import { fromJS } from 'immutable'
+const defaultState = fromJS({ list: [] })
 
 export default function (state = defaultState, action) {
   switch (action.type) {
   case 'RECEIVE_BUNDLES':
-    return state.set('list', Immutable.fromJS(action.list))
+    return state.set('list', fromJS(action.list))
 
   case 'RECEIVE_BUNDLE':
-    return state.set('current', Immutable.fromJS(action.bundle))
+    return state.set('current', fromJS(action.bundle))
 
   case 'FAVORITE_BUNDLE':
     return state.update('list', list => list.map( bundle => {
@@ -27,7 +27,7 @@ export default function (state = defaultState, action) {
     })
 
   case 'UPDATE_BUNDLE':
-    return state.set('current', Immutable.fromJS(action.bundle))
+    return state.set('current', fromJS(action.bundle))
 
   case 'UPDATE_BUNDLE_INFO':
     return state.setIn(['current', action.field], action.value)
@@ -42,7 +42,7 @@ export default function (state = defaultState, action) {
     }))
 
   case 'FETCH_LINK':
-    return state.setIn(['current', 'link'], Immutable.fromJS(action.link))
+    return state.setIn(['current', 'link'], fromJS(action.link))
 
   case 'TOGGLE_EDIT_MODE':
     const editMode = state.getIn(['current', 'editMode'])
