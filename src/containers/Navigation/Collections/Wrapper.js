@@ -8,9 +8,7 @@ import {
 
 export default function Wrapper ({
   collections,
-  renameCollection,
   removeCollection,
-  editModeCollection,
   ...listItemProps
 }) {
   return (
@@ -30,8 +28,6 @@ export default function Wrapper ({
               <ListItem key={index} Component={ListItem.Collection}
                 {...collection} {...listItemProps}
                 type={'collection'}
-                edit={editModeCollection}
-                rename={renameCollection}
                 remove={removeCollection}
               />
             )}

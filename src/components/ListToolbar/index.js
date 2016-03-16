@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react'
 
 import ToolbarShareItem from './ToolbarShareItem'
-import ToolbarRenameItem from './ToolbarRenameItem'
 import ToolbarDeleteItem from './ToolbarDeleteItem'
 import ToolbarFavoriteItem from './ToolbarFavoriteItem'
 
@@ -13,15 +12,11 @@ export default function ListToolbar ({
   favorited,
   favorite,
   unfavorite,
-  remove,
-  edit,
-  editMode
+  remove
 }) {
   return (
     <div className='list-toolbar'>
       <ToolbarShareItem />
-
-      <ToolbarRenameItem id={id} editMode={editMode} edit={edit}/>
 
       <ToolbarDeleteItem id={id} remove={remove} />
 
@@ -38,7 +33,5 @@ ListToolbar.propTypes = {
   favorited: PropTypes.bool,
   favorite: PropTypes.func.isRequired,
   unfavorite: PropTypes.func.isRequired,
-  remove: PropTypes.func.isRequired,
-  edit: PropTypes.func.isRequired,
-  editMode: PropTypes.bool
+  remove: PropTypes.func.isRequired
 }

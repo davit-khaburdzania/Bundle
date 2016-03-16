@@ -9,8 +9,6 @@ export default function Wrapper ({
   collection,
   children,
   removeBundle,
-  renameBundle,
-  editModeBundle,
   ...listItemProps
 }) {
   return (
@@ -29,8 +27,6 @@ export default function Wrapper ({
                 {...bundle} {...listItemProps}
                 url={bundleUrl(collection, bundle)}
                 type={'bundle'}
-                edit={editModeBundle}
-                rename={renameBundle}
                 remove={removeBundle}
               />
             )}

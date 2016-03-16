@@ -24,7 +24,7 @@ $size: 18px;
     }
   }
 
-  @each $icon in (share, rename, delete, favorite, favorite-full) {
+  @each $icon in (share, delete, favorite, favorite-full) {
     .icon-toolbar-$(icon) {
       background-image: url('/assets/images/toolbar-$(icon).svg');
     }

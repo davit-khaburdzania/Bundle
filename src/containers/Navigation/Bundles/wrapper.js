@@ -9,8 +9,6 @@ export default function Wrapper ({
   search,
   children,
   removeBundle,
-  renameBundle,
-  editModeBundle,
   ...listItemProps
 }) {
   let styles = { 'display': search.open ? 'none' : 'block' }
@@ -20,6 +18,7 @@ export default function Wrapper ({
       <div className='bundles-navigation'>
         <ResourceNavigation.Header>
           <h2 style={styles} className='title'>Bundles</h2>
+
           <div className='nav'>
             <Link to='/search' className='icon ion-ios-search search-icon' />
           </div>
@@ -32,8 +31,6 @@ export default function Wrapper ({
                 {...bundle} {...listItemProps}
                 url={'/bundles/' + bundle.slug}
                 type={'bundle'}
-                edit={editModeBundle}
-                rename={renameBundle}
                 remove={removeBundle}
               />
             )}
