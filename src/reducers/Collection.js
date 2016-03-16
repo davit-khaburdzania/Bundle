@@ -1,8 +1,6 @@
 import { fromJS } from 'immutable'
 
-const defaultState = fromJS({ list: [] })
-
-export default function (state = defaultState, action) {
+export default function (state = fromJS({ list: [] }), action) {
   switch (action.type) {
   case 'RECEIVE_COLLECTIONS':
     return state.set('list', fromJS(action.list))
