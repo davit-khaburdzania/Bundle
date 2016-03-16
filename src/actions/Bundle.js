@@ -3,38 +3,29 @@ import api from './../api'
 
 export function getBundle (id) {
   return async (dispatch) => {
-    let response = await request.get(api.bundles(id))
+    const response = await request.get(api.bundles(id))
     dispatch({ type: 'RECEIVE_BUNDLE', bundle: response.data })
   }
 }
 
 export function getBundles () {
   return async (dispatch) => {
-    let response = await request.get(api.bundles())
+    const response = await request.get(api.bundles())
     dispatch({ type: 'RECEIVE_BUNDLES', list: response.data })
   }
 }
 
 export function removeBundle (id) {
   return async (dispatch) => {
-    let response = await request.delete(api.bundles(id))
+    const response = await request.delete(api.bundles(id))
     dispatch({ type: 'REMOVE_BUNDLE', id })
   }
 }
 
 export function updateBundle (id, data) {
   return async (dispatch) => {
-    let response = await request.put(api.bundles(id), { bundle: data })
+    const response = await request.put(api.bundles(id), { bundle: data })
     dispatch({ type: 'UPDATE_BUNDLE', bundle: response.data })
-  }
-}
-
-export function renameBundle (id, name) {
-  return async (dispatch) => {
-    let response = await request.put(api.bundles(id), { name })
-
-    dispatch({ type: 'RENAME_BUNDLE', id, name })
-    dispatch(editModeBundle(id, false))
   }
 }
 
@@ -62,8 +53,4 @@ export function updateBundleInfo(field, value) {
 
 export function toggleEditMode () {
   return { type: 'TOGGLE_EDIT_MODE' }
-}
-
-export function editModeBundle (id, editMode) {
-  return { type: 'EDIT_MODE_BUNDLE', id, editMode }
 }
