@@ -4,7 +4,7 @@ import * as searchActions from '../../actions/Search'
 
 import SearchWrapper from './wrapper'
 
-const connectState = (state) => ({ searchResults: state.Search.result })
+const connectState = (state) => ({ searchResults: state.Search.toJS().result })
 const connectProps = { ...searchActions }
 
 @connect(connectState, connectProps)

@@ -4,7 +4,7 @@ import * as bundleActions from '../../actions/Bundle'
 import Wrapper from './Wrapper'
 
 const connectState = (state) => ({
-  bundle: state.Bundle.current
+  bundle: state.Bundle.toJS().current
 })
 
 const connectProps = bundleActions

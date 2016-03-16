@@ -5,7 +5,7 @@ import * as favoriteActions from '../../../actions/Favorite'
 import Wrapper from './Wrapper'
 
 const connectState = (state) => ({
-  collections: state.Collection.list
+  collections: state.Collection.toJS().list
 })
 
 const connectProps = {
