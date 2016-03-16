@@ -23,6 +23,14 @@ export default class BundleViewContainer extends Component {
     if (params.bundle_id != nextBundleId) getBundle(nextBundleId)
   }
 
+  linksWithoutAuthors (links) {
+    links.map(link => {
+      let newLink = { ...link }
+      delete newLink.creator
+      return newLink
+    })
+  }
+
   toggleEdit (save) {
     const { toggleEditMode, bundle, updateBundle } = this.props
 
@@ -30,12 +38,7 @@ export default class BundleViewContainer extends Component {
       const payload = {
         name: bundle.name,
         description: bundle.description,
-        links_attributes: bundle.links.map(link => {
-          let newLink = { ...link }
-
-          delete newLink.creator
-          return newLink
-        })
+        links_attributes: this.linksWithoutAuthors(bundle.links)
       }
 
       updateBundle(bundle.id, payload)
