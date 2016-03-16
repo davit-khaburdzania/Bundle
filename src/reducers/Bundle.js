@@ -9,13 +9,13 @@ export default function (state = fromJS({ list: [] }), action) {
     return state.set('current', fromJS(action.bundle))
 
   case 'FAVORITE_BUNDLE':
-    return state.update('list', list => list.map( bundle => {
+    return state.update('list', list => list.map(bundle => {
       if (bundle.get('id') === action.id) return bundle.set('favorited', true)
       return bundle
     }))
 
   case 'UNFAVORITE_BUNDLE':
-    return state.update('list', list => list.map( bundle => {
+    return state.update('list', list => list.map(bundle => {
       if (bundle.get('id') === action.id) return bundle.set('favorited', false)
       return bundle
     }))
@@ -32,7 +32,7 @@ export default function (state = fromJS({ list: [] }), action) {
     return state.setIn(['current', action.field], action.value)
 
   case 'UPDATE_BUNDLE_LINK':
-    return state.updateIn(['current', 'links'], links => links.map( link => {
+    return state.updateIn(['current', 'links'], links => links.map(link => {
       if (link.get('id') === action.id) {
         return link.update(action.field, action.value)
       }
