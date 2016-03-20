@@ -9,7 +9,8 @@ import {
   FavoriteNavigation,
   NotificationNavigation,
   SearchContainer,
-  BundleView
+  BundleView,
+  BundleNew
 } from './containers'
 
 export default (
@@ -21,6 +22,8 @@ export default (
     <Route path='/bundles' component={BundleNavigation}>
       <Route path='/bundles/:bundle_id' component={BundleView} />
     </Route>
+
+    <Route path='/new' component={BundleNew} />
 
     <Route path='/collections/:id' component={CollectionBundlesNavigation}>
       <Route path='/collections/:id/bundles/:bundle_id' component={BundleView} />
