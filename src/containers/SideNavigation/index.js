@@ -7,7 +7,7 @@ import SideNavigationBottom from './bottom'
 
 import './index.css'
 
-const connectState = state => ({
+const connectState = (state) => ({
   isOpen: state.UserMenu,
   currentUser: state.User.toJS().me
 })

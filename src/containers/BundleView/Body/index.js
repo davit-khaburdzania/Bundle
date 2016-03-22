@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'
+import React, { PropTypes } from 'react'
 import { BundleView } from '../../../components'
 import BundleName from './BundleName'
 import BundleDescription from './BundleDescription'

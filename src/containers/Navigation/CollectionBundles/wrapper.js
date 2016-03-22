@@ -1,7 +1,7 @@
-import React, { Component, PropTypes } from 'react'
+import React from 'react'
 import { ResourceNavigation, List, ListItem } from '../../../components'
 
-function bundleUrl(collection, bundle) {
+function bundleUrl (collection, bundle) {
   return `/collections/${collection.id}/bundles/${bundle.slug}`
 }
 

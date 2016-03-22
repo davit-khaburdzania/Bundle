@@ -44,8 +44,8 @@ export default class BundleLink extends Component {
               </a>
 
               <input style={shouldShow(editMode)} type='text'
-                  value={link.title} className='link-title-input'
-                  onChange={this.handleEdit.bind(this, link, 'title')}
+                value={link.title} className='link-title-input'
+                onChange={this.handleEdit.bind(this, link, 'title')}
               />
             </div>
             <div className='link-details-sub-wrapper'>

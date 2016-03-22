@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
-import { Editable, Date, ListToolbar } from './../..'
+import { Date, ListToolbar } from './../..'
 
 export default function BundleListItem ({
   id,

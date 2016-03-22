@@ -23,5 +23,5 @@ ToolbarFavoriteItem.propTypes = {
   id: PropTypes.number.isRequired,
   favorited: PropTypes.bool.isRequired,
   favorite: PropTypes.func.isRequired,
-  unfavorite: PropTypes.func.isRequired,
+  unfavorite: PropTypes.func.isRequired
 }
