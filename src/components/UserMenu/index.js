@@ -14,7 +14,7 @@ export default class UserMenu extends Component {
 
     return (
       <div className='user-menu'>
-        { isOpen ? children : null }
+        {isOpen ? children : null}
 
         <div className='avatar-holder' onClick={openUserMenu}>
           <img src={currentUser.image} />
@@ -28,6 +28,6 @@ export default class UserMenu extends Component {
     isOpen: PropTypes.bool.isRequired,
     openUserMenu: PropTypes.func.isRequired,
     closeUserMenu: PropTypes.func.isRequired,
-    children: PropTypes.element,
+    children: PropTypes.element
   }
 }

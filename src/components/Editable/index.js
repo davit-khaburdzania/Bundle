@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 
 export default class Editable extends Component {
   handleEnter ({ key, target }) {
-    let { enterAction, value } = this.props
+    let { enterAction } = this.props
 
     if (key === 'Enter') {
       enterAction(target.value)

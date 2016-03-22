@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
-import { Editable, ListToolbar } from './../..'
+import { ListToolbar } from './../..'
 
 function sharedWithText (count) {
   if (count || count === 0) {
