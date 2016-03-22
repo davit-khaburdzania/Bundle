@@ -17,7 +17,7 @@ export function getBundles () {
 
 export function removeBundle (id) {
   return async function (dispatch) {
-    const response = await request.delete(api.bundles(id))
+    await request.delete(api.bundles(id))
     dispatch({ type: 'REMOVE_BUNDLE', id })
   }
 }
@@ -47,7 +47,7 @@ export function updateBundleLink (id, field, value) {
   return { type: 'UPDATE_BUNDLE_LINK', id, field, value }
 }
 
-export function updateBundleInfo(field, value) {
+export function updateBundleInfo (field, value) {
   return { type: 'UPDATE_BUNDLE_INFO', field, value }
 }
 
