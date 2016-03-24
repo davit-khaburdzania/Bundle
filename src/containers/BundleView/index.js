@@ -24,11 +24,22 @@ export default class BundleViewContainer extends Component {
   }
 
   linksWithoutAuthors (links) {
-    links.map((link) => {
+    return links.map(link => {
       let newLink = { ...link }
       delete newLink.creator
       return newLink
     })
+  }
+
+  handleLinkRemove (index) {
+    const { bundle, updateBundle } = this.props
+    const linkId = bundle.links[index].id
+
+    const payload = {
+      links_attributes: [{id: linkId, _destroy: true }]
+    }
+
+    updateBundle(bundle.id, payload)
   }
 
   toggleEdit (save) {
@@ -54,6 +65,7 @@ export default class BundleViewContainer extends Component {
     return <Wrapper editMode={bundle.editMode} bundle={bundle}
       handleChange={updateBundleInfo}
       handleLinkEdit={updateBundleLink}
+      handleLinkRemove={this.handleLinkRemove.bind(this)}
       toggleEdit={this.toggleEdit.bind(this)} />
   }
 }
