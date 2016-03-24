@@ -30,6 +30,6 @@ export default class Menu extends Component {
   static propTypes = {
     left: PropTypes.string,
     bottom: PropTypes.string,
-    headline: PropTypes.string,
+    headline: PropTypes.string
   }
 }

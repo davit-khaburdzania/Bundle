@@ -1,3 +1,5 @@
+var webpack = require('webpack')
+
 module.exports = {
   context: __dirname,
   entry: './src/index',
@@ -9,6 +11,9 @@ module.exports = {
   devServer: {
     historyApiFallback: true
   },
+  plugins: [
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
+  ],
   module: {
     loaders: [
       {

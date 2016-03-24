@@ -8,7 +8,7 @@ const me = {
 
 export default function (state = fromJS({ me }), action) {
   switch (action.type) {
-  default:
-    return state
+    default:
+      return state
   }
 }

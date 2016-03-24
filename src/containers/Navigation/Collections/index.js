@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import * as collectionActions from '../../../actions/Collection'
 import * as favoriteActions from '../../../actions/Favorite'

@@ -19,7 +19,7 @@ export default class SearchContainer extends Component {
     let thisPropsQuery = this.props.routeParams.query
     let nextPropsQuery = nextProps.routeParams.query
 
-    if (! nextPropsQuery) {
+    if (!nextPropsQuery) {
       nextProps.getSearchResult()
     } else if (thisPropsQuery !== nextPropsQuery && nextPropsQuery) {
       nextProps.getSearchResult(nextPropsQuery)

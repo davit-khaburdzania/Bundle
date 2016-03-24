@@ -1,9 +1,9 @@
-import React, { Component, PropTypes } from 'react'
+import React, { PropTypes } from 'react'
 import { BundleView } from '../../../components'
 
 import './index.css'
 
-export default function LinkPreview({
+export default function LinkPreview ({
   link,
   currentUser,
   addLinkHandler

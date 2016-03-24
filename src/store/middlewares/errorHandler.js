@@ -2,9 +2,9 @@ import { applyMiddleware } from 'redux'
 import { addAlert } from './../../actions/Alert'
 
 function errorHandler () {
-  return next => action => {
+  return (next) => (action) => {
     if (typeof action === 'function') {
-      return next(async (dispatch, getState) => {
+      return next(async function (dispatch, getState) {
         try {
           return await action(dispatch, getState)
         } catch (response) {

@@ -4,7 +4,7 @@ import { SideNavigation, Alerts } from '..'
 import './style.css'
 
 export default function App ({ children }) {
-  return  (
+  return (
     <div>
       <Alerts />
       <div className='application-container'>

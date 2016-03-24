@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import * as bundleActions from '../../actions/Bundle'
 import Wrapper from './Wrapper'
@@ -11,7 +11,7 @@ const connectProps = bundleActions
 
 @connect(connectState, connectProps)
 export default class BundleViewContainer extends Component {
-  componentWillMount() {
+  componentWillMount () {
     const { getBundle, params } = this.props
     getBundle(params.bundle_id)
   }
@@ -20,7 +20,7 @@ export default class BundleViewContainer extends Component {
     const { getBundle, params } = this.props
     const nextBundleId = nextProps.params.bundle_id
 
-    if (params.bundle_id != nextBundleId) getBundle(nextBundleId)
+    if (params.bundle_id !== nextBundleId) getBundle(nextBundleId)
   }
 
   linksWithoutAuthors (links) {

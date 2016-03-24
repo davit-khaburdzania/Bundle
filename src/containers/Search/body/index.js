@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'
+import React, { PropTypes } from 'react'
 
 import {
   List,
@@ -34,8 +34,8 @@ function renderList (searchResults, listType, component) {
 function renderResults (searchResults) {
   const { Collection, Bundle } = ListItem
 
-  if (! isAnyResult(searchResults)) {
-    return <div className="search-note"> Search Bundles and Collections </div>
+  if (!isAnyResult(searchResults)) {
+    return <div className='search-note'>Search Bundles and Collections</div>
   }
 
   return (
