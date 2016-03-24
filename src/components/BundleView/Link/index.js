@@ -25,8 +25,11 @@ export default class BundleLink extends Component {
       <div className='bundle-view-link'>
         <button style={shouldShow(editMode)}
           onClick={this.handleRemoveClick.bind(this)}
-          className='btn mod-remove-link-btn'> remove
+          className='btn mod-remove-link-btn'
+        >
+          remove
         </button>
+
         <div className='link-creator'>
           <img className='creator-image' src={link.creator.image} />
           <span className='creator-name'>{link.creator.name}</span>
@@ -74,7 +77,7 @@ export default class BundleLink extends Component {
 
 BundleLink.propTypes = {
   index: PropTypes.number.isRequired,
-  handleLinkRemove: PropTypes.func,
+  handleLinkRemove: PropTypes.func.isRequired,
   link: PropTypes.object.isRequired,
   editMode: PropTypes.bool,
   handleLinkEdit: PropTypes.func

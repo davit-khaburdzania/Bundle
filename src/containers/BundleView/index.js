@@ -33,12 +33,10 @@ export default class BundleViewContainer extends Component {
 
   handleLinkRemove (index) {
     const { bundle, updateBundle } = this.props
-    bundle.links[index]['_destroy'] = true
+    const linkId = bundle.links[index].id
 
     const payload = {
-      name: bundle.name,
-      description: bundle.description,
-      links_attributes: this.linksWithoutAuthors(bundle.links)
+      links_attributes: [{id: linkId, _destroy: true }]
     }
 
     updateBundle(bundle.id, payload)

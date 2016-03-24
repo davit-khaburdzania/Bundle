@@ -43,6 +43,6 @@ BundleViewBody.propTypes = {
   editMode: PropTypes.bool,
   toggleEditMode: PropTypes.func,
   handleLinkEdit: PropTypes.func.isRequired,
-  handleLinkRemove: PropTypes.func,
+  handleLinkRemove: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired
 }

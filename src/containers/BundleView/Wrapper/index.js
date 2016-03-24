@@ -29,6 +29,6 @@ BundleView.propTypes = {
   bundle: PropTypes.object.isRequired,
   editMode: PropTypes.bool,
   handleLinkEdit: PropTypes.func.isRequired,
-  handleLinkRemove: PropTypes.func,
+  handleLinkRemove: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired
 }
