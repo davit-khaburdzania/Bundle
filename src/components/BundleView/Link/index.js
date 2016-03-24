@@ -23,7 +23,8 @@ export default class BundleLink extends Component {
 
     return (
       <div className='bundle-view-link'>
-        <button style={shouldShow(editMode)} onClick={this.handleRemoveClick.bind(this)}
+        <button style={shouldShow(editMode)}
+          onClick={this.handleRemoveClick.bind(this)}
           className='btn mod-remove-link-btn'> remove
         </button>
         <div className='link-creator'>
