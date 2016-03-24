@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'
+import React, { PropTypes } from 'react'
 import { BundleView } from '../../../components'
 import BundleName from './BundleName'
 import BundleDescription from './BundleDescription'
@@ -11,6 +11,7 @@ export default function BundleViewBody ({
   editMode,
   toggleEditMode,
   handleLinkEdit,
+  handleLinkRemove,
   handleChange
 }) {
   return (
@@ -29,8 +30,8 @@ export default function BundleViewBody ({
       <div className='line' />
 
       {bundle.links.map((link, index) =>
-        <BundleView.Link key={index} link={link} editMode={editMode}
-          handleLinkEdit={handleLinkEdit}
+        <BundleView.Link key={index} index={index} link={link} editMode={editMode}
+          handleLinkEdit={handleLinkEdit} handleLinkRemove={handleLinkRemove}
         />
       )}
     </div>
@@ -42,5 +43,6 @@ BundleViewBody.propTypes = {
   editMode: PropTypes.bool,
   toggleEditMode: PropTypes.func,
   handleLinkEdit: PropTypes.func.isRequired,
+  handleLinkRemove: PropTypes.func,
   handleChange: PropTypes.func.isRequired
 }

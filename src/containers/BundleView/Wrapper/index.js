@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'
+import React, { PropTypes } from 'react'
 
 import BundleViewHeader from '../Header'
 import BundleViewBody from '../Body'
@@ -10,6 +10,7 @@ export default function BundleView ({
   editMode,
   handleLinkEdit,
   handleChange,
+  handleLinkRemove,
   toggleEdit
 }) {
   return (
@@ -18,6 +19,7 @@ export default function BundleView ({
 
       <BundleViewBody editMode={editMode} handleLinkEdit={handleLinkEdit}
         bundle={bundle} handleChange={handleChange}
+        handleLinkRemove={handleLinkRemove}
       />
     </div>
   )
@@ -27,5 +29,6 @@ BundleView.propTypes = {
   bundle: PropTypes.object.isRequired,
   editMode: PropTypes.bool,
   handleLinkEdit: PropTypes.func.isRequired,
+  handleLinkRemove: PropTypes.func,
   handleChange: PropTypes.func.isRequired
 }

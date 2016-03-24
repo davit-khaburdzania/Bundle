@@ -23,6 +23,7 @@ export function removeBundle (id) {
 }
 
 export function updateBundle (id, data) {
+  console.log(data)
   return async (dispatch) => {
     const response = await request.put(api.bundles(id), { bundle: data })
     dispatch({ type: 'UPDATE_BUNDLE', bundle: response.data })

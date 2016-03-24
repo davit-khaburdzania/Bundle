@@ -24,6 +24,12 @@
     }
   }
 
+  .mod-remove-link-btn {
+    position: absolute;
+    right: 0;
+    width: 55px;
+  }
+
   .link-creator {
     .creator-image {
       width: 30px;
