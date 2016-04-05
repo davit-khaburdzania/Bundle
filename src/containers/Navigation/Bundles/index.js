@@ -6,7 +6,8 @@ import * as favoriteActions from '../../../actions/Favorite'
 import Wrapper from './Wrapper'
 
 const connectState = (state) => ({
-  bundles: state.Bundle.toJS().list,
+  bundles: state.Bundle.get('list').toJS(),
+  currentBundleId: state.Bundle.getIn(['current', 'id']),
   search: state.Search.toJS()
 })
 

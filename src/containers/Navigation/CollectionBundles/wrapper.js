@@ -9,6 +9,7 @@ export default function Wrapper ({
   collection,
   children,
   removeBundle,
+  currentBundleId,
   ...listItemProps
 }) {
   return (
@@ -28,6 +29,7 @@ export default function Wrapper ({
                 url={bundleUrl(collection, bundle)}
                 type={'bundle'}
                 remove={removeBundle}
+                active={bundle.id === currentBundleId}
               />
             )}
           </List>
