@@ -6,10 +6,11 @@ import './index.css'
 
 export default function ListItem ({
   Component,
-  ...componentProps
+  ...componentProps,
+  active
 }) {
   return (
-    <div className='list-item'>
+    <div className={'list-item' + (active ? ' list-item-active' : '')}>
       <Component {...componentProps} />
     </div>
   )

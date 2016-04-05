@@ -4,6 +4,7 @@ import { Date, ListToolbar } from './../..'
 
 export default function BundleListItem ({
   id,
+  active,
   name,
   created_at,
   url,
