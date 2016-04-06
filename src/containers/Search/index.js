@@ -1,14 +1,12 @@
-import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import * as searchActions from '../../actions/Search'
-
 import SearchWrapper from './wrapper'
 
 const connectState = (state) => ({ searchResults: state.Search.toJS().result })
 const connectProps = { ...searchActions }
 
 @connect(connectState, connectProps)
-export default class SearchContainer extends Component {
+export default class SearchContainer extends React.Component {
   componentWillMount () {
     let query = this.props.routeParams.query
 
@@ -36,5 +34,5 @@ export default class SearchContainer extends Component {
 }
 
 SearchContainer.propTypes = {
-  searchResults: PropTypes.object
+  searchResults: React.PropTypes.object
 }

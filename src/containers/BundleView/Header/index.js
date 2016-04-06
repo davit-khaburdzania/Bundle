@@ -1,5 +1,3 @@
-import React, { PropTypes } from 'react'
-
 import ToggleBundleButton from '../ToggleBundleButton'
 
 export default function BundleViewHeader ({ toggleEdit, editMode }) {
@@ -11,6 +9,6 @@ export default function BundleViewHeader ({ toggleEdit, editMode }) {
 }
 
 BundleViewHeader.propTypes = {
-  editMode: PropTypes.bool,
-  toggleEdit: PropTypes.func
+  editMode: React.PropTypes.bool,
+  toggleEdit: React.PropTypes.func
 }

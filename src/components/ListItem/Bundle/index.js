@@ -1,4 +1,3 @@
-import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
 import { Date, ListToolbar } from './../..'
 
@@ -27,8 +26,8 @@ export default function BundleListItem ({
 }
 
 BundleListItem.propTypes = {
-  id: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired,
-  created_at: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired
+  id: React.PropTypes.number.isRequired,
+  name: React.PropTypes.string.isRequired,
+  created_at: React.PropTypes.string.isRequired,
+  url: React.PropTypes.string.isRequired
 }

@@ -1,6 +1,4 @@
-import React, { PropTypes } from 'react'
 import { BundleView } from '../../../components'
-
 import './index.css'
 
 export default function LinkPreview ({
@@ -26,7 +24,7 @@ export default function LinkPreview ({
 }
 
 LinkPreview.propTypes = {
-  link: PropTypes.object.isRequired,
-  currentUser: PropTypes.object.isRequired,
-  addLinkHandler: PropTypes.func.isRequired
+  link: React.PropTypes.object.isRequired,
+  currentUser: React.PropTypes.object.isRequired,
+  addLinkHandler: React.PropTypes.func.isRequired
 }

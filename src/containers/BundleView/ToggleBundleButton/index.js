@@ -1,7 +1,4 @@
-import React, { PropTypes } from 'react'
-
 import { shouldShow } from '../../../helpers'
-
 import './index.css'
 
 export default function ToggleBundleButton ({ toggleEdit, editMode }) {
@@ -19,6 +16,6 @@ export default function ToggleBundleButton ({ toggleEdit, editMode }) {
 }
 
 ToggleBundleButton.propTypes = {
-  editMode: PropTypes.bool,
-  toggleEdit: PropTypes.func.isRequired
+  editMode: React.PropTypes.bool,
+  toggleEdit: React.PropTypes.func.isRequired
 }

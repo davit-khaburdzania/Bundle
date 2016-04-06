@@ -1,8 +1,6 @@
-import React, { Component, PropTypes } from 'react'
-
 import './index.css'
 
-export default class Menu extends Component {
+export default class Menu extends React.Component {
   renderHeadline (headline) {
     if (headline) {
       return (
@@ -28,8 +26,8 @@ export default class Menu extends Component {
   }
 
   static propTypes = {
-    left: PropTypes.string,
-    bottom: PropTypes.string,
-    headline: PropTypes.string
+    left: React.PropTypes.string,
+    bottom: React.PropTypes.string,
+    headline: React.PropTypes.string
   }
 }

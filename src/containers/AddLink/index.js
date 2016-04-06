@@ -1,4 +1,3 @@
-import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import * as bundleActions from '../../actions/Bundle'
 import EnterUrl from './EnterUrl'
@@ -12,7 +11,7 @@ const connectState = (state) => ({
 const connectProps = bundleActions
 
 @connect(connectState, connectProps)
-export default class BundleAddLink extends Component {
+export default class BundleAddLink extends React.Component {
   addLinkHandler (link) {
     const { currentUser, currentBundle, updateBundle } = this.props
     const payload = {

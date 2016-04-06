@@ -1,4 +1,3 @@
-import React, { PropTypes } from 'react'
 import './index.css'
 
 function handleKeyPress (bundleId, handeUrlEnter, event) {
@@ -22,7 +21,7 @@ export default function EnterUrl ({
 }
 
 EnterUrl.propTypes = {
-  image: PropTypes.string.isRequired,
-  handeUrlEnter: PropTypes.func.isRequired,
-  bundleId: PropTypes.number.isRequired
+  image: React.PropTypes.string.isRequired,
+  handeUrlEnter: React.PropTypes.func.isRequired,
+  bundleId: React.PropTypes.number.isRequired
 }

@@ -1,5 +1,3 @@
-import React, { PropTypes } from 'react'
-
 import BundleViewHeader from '../Header'
 import BundleViewBody from '../Body'
 
@@ -26,9 +24,9 @@ export default function BundleView ({
 }
 
 BundleView.propTypes = {
-  bundle: PropTypes.object.isRequired,
-  editMode: PropTypes.bool,
-  handleLinkEdit: PropTypes.func.isRequired,
-  handleLinkRemove: PropTypes.func.isRequired,
-  handleChange: PropTypes.func.isRequired
+  bundle: React.PropTypes.object.isRequired,
+  editMode: React.PropTypes.bool,
+  handleLinkEdit: React.PropTypes.func.isRequired,
+  handleLinkRemove: React.PropTypes.func.isRequired,
+  handleChange: React.PropTypes.func.isRequired
 }

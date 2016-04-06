@@ -1,4 +1,3 @@
-import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { Alert } from '../../components'
 import * as alertActions from '../../actions/Alert'
@@ -7,7 +6,7 @@ const connectProps = (state) => ({ alert: state.Alert[0] })
 const connectActions = { ...alertActions }
 
 @connect(connectProps, connectActions)
-export default class Alerts extends Component {
+export default class Alerts extends React.Component {
   render () {
     let { alert, removeAlert } = this.props
     if (!alert) return false
@@ -23,6 +22,6 @@ export default class Alerts extends Component {
   }
 
   static propTypes = {
-    alert: PropTypes.object
+    alert: React.PropTypes.object
   }
 }

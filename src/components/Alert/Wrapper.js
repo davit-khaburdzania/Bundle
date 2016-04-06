@@ -1,5 +1,3 @@
-import React, { PropTypes } from 'react'
-
 import './wrapper.css'
 
 export default function Wrapper ({ children }) {
@@ -7,5 +5,5 @@ export default function Wrapper ({ children }) {
 }
 
 Wrapper.propTypes = {
-  children: PropTypes.element.isRequired
+  children: React.PropTypes.element.isRequired
 }

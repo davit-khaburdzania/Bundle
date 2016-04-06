@@ -12,7 +12,10 @@ module.exports = {
     historyApiFallback: true
   },
   plugins: [
-    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    new webpack.ProvidePlugin({
+      'React': 'react'
+    })
   ],
   module: {
     loaders: [

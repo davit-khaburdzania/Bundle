@@ -1,4 +1,3 @@
-import React, { PropTypes } from 'react'
 import Header from './Header'
 import Body from './Body'
 
@@ -19,8 +18,8 @@ export default function ResourceNavigation ({
 }
 
 ResourceNavigation.propTypes = {
-  children: PropTypes.element,
-  bundleView: PropTypes.element
+  children: React.PropTypes.element,
+  bundleView: React.PropTypes.element
 }
 
 ResourceNavigation.Header = Header

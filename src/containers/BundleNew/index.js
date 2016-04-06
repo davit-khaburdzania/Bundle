@@ -1,7 +1,6 @@
-import React, { Component } from 'react'
 import { BundleNavigation } from '..'
 
-export default class BundleNewContainer extends Component {
+export default class BundleNewContainer extends React.Component {
   render () {
     return (
       <BundleNavigation>

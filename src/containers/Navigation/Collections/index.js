@@ -1,4 +1,3 @@
-import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import * as collectionActions from '../../../actions/Collection'
 import * as favoriteActions from '../../../actions/Favorite'
@@ -14,7 +13,7 @@ const connectProps = {
 }
 
 @connect(connectState, connectProps)
-export default class CollectionsNavigationContainer extends Component {
+export default class CollectionsNavigationContainer extends React.Component {
   constructor (props) {
     props.getCollections()
     super(props)

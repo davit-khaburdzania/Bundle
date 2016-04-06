@@ -1,6 +1,4 @@
-import React, { Component, PropTypes } from 'react'
-
-export default class Editable extends Component {
+export default class Editable extends React.Component {
   handleEnter ({ key, target }) {
     let { enterAction } = this.props
 
@@ -20,8 +18,8 @@ export default class Editable extends Component {
   }
 
   static propTypes = {
-    value: PropTypes.string.isRequired,
-    editMode: PropTypes.bool,
-    enterAction: PropTypes.func.isRequired
+    value: React.PropTypes.string.isRequired,
+    editMode: React.PropTypes.bool,
+    enterAction: React.PropTypes.func.isRequired
   }
 }

@@ -1,10 +1,8 @@
-import React, { Component, PropTypes } from 'react'
 import Date from '../../Date'
 import { urlDomain, shouldShow } from '../../../helpers'
-
 import './index.css'
 
-export default class BundleLink extends Component {
+export default class BundleLink extends React.Component {
   handleEdit (link, field, event) {
     const { handleLinkEdit } = this.props
     const value = event.target.value
@@ -76,9 +74,9 @@ export default class BundleLink extends Component {
 }
 
 BundleLink.propTypes = {
-  index: PropTypes.number.isRequired,
-  handleLinkRemove: PropTypes.func.isRequired,
-  link: PropTypes.object.isRequired,
-  editMode: PropTypes.bool,
-  handleLinkEdit: PropTypes.func
+  index: React.PropTypes.number.isRequired,
+  handleLinkRemove: React.PropTypes.func.isRequired,
+  link: React.PropTypes.object.isRequired,
+  editMode: React.PropTypes.bool,
+  handleLinkEdit: React.PropTypes.func
 }

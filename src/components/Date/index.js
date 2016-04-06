@@ -1,4 +1,3 @@
-import React, { PropTypes } from 'react'
 import Moment from 'moment'
 
 export default function Date ({ children, type }) {
@@ -17,6 +16,6 @@ function filter (date, type) {
 }
 
 Date.propTypes = {
-  children: PropTypes.string.isRequired,
-  type: PropTypes.string
+  children: React.PropTypes.string.isRequired,
+  type: React.PropTypes.string
 }

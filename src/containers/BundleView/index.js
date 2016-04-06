@@ -1,4 +1,3 @@
-import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import * as bundleActions from '../../actions/Bundle'
 import Wrapper from './Wrapper'
@@ -10,7 +9,7 @@ const connectState = (state) => ({
 const connectProps = bundleActions
 
 @connect(connectState, connectProps)
-export default class BundleViewContainer extends Component {
+export default class BundleViewContainer extends React.Component {
   componentWillMount () {
     const { getBundle, params } = this.props
     getBundle(params.bundle_id)

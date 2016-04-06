@@ -1,4 +1,3 @@
-import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
 import { Menu, UserMenu } from '../../../components'
 
@@ -22,8 +21,8 @@ export default function SideNavigationBottom ({
   )
 }
 SideNavigationBottom.propTypes = {
-  currentUser: PropTypes.object.isRequired,
-  isOpen: PropTypes.bool.isRequired,
-  openUserMenu: PropTypes.func.isRequired,
-  closeUserMenu: PropTypes.func.isRequired
+  currentUser: React.PropTypes.object.isRequired,
+  isOpen: React.PropTypes.bool.isRequired,
+  openUserMenu: React.PropTypes.func.isRequired,
+  closeUserMenu: React.PropTypes.func.isRequired
 }

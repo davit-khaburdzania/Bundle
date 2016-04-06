@@ -1,5 +1,3 @@
-import React, { PropTypes } from 'react'
-
 export default function ToolbarFavoriteItem ({
   type,
   id,
@@ -19,9 +17,9 @@ export default function ToolbarFavoriteItem ({
 }
 
 ToolbarFavoriteItem.propTypes = {
-  type: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
-  favorited: PropTypes.bool.isRequired,
-  favorite: PropTypes.func.isRequired,
-  unfavorite: PropTypes.func.isRequired
+  type: React.PropTypes.string.isRequired,
+  id: React.PropTypes.number.isRequired,
+  favorited: React.PropTypes.bool.isRequired,
+  favorite: React.PropTypes.func.isRequired,
+  unfavorite: React.PropTypes.func.isRequired
 }

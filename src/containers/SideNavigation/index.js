@@ -1,4 +1,3 @@
-import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import * as userMenuActions from '../../actions/UserMenu'
 
@@ -15,7 +14,7 @@ const connectState = (state) => ({
 const connectProps = { ...userMenuActions }
 
 @connect(connectState, connectProps)
-export default class SideNavigation extends Component {
+export default class SideNavigation extends React.Component {
   render () {
     let { isOpen, openUserMenu, closeUserMenu, currentUser } = this.props
 

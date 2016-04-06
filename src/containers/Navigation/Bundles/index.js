@@ -1,4 +1,3 @@
-import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import * as bundleActions from '../../../actions/Bundle'
 import * as searchActions from '../../../actions/Search'
@@ -18,7 +17,7 @@ const connectProps = {
 }
 
 @connect(connectState, connectProps)
-export default class Container extends Component {
+export default class Container extends React.Component {
   constructor (props) {
     props.getBundles()
     super(props)
@@ -29,7 +28,7 @@ export default class Container extends Component {
   }
 
   static propTypes = {
-    bundles: PropTypes.array.isRequired,
-    search: PropTypes.object.isRequired
+    bundles: React.PropTypes.array.isRequired,
+    search: React.PropTypes.object.isRequired
   }
 }

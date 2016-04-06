@@ -1,5 +1,3 @@
-import React, { PropTypes } from 'react'
-
 import './body.css'
 
 export default function Body ({
@@ -13,5 +11,5 @@ export default function Body ({
 }
 
 Body.propTypes = {
-  children: PropTypes.node
+  children: React.PropTypes.node
 }

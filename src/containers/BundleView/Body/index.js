@@ -1,8 +1,7 @@
-import React, { PropTypes } from 'react'
 import { BundleView } from '../../../components'
+import { AddLink } from '../../'
 import BundleName from './BundleName'
 import BundleDescription from './BundleDescription'
-import { AddLink } from '../../'
 
 import './index.css'
 
@@ -39,10 +38,10 @@ export default function BundleViewBody ({
 }
 
 BundleViewBody.propTypes = {
-  bundle: PropTypes.object.isRequired,
-  editMode: PropTypes.bool,
-  toggleEditMode: PropTypes.func,
-  handleLinkEdit: PropTypes.func.isRequired,
-  handleLinkRemove: PropTypes.func.isRequired,
-  handleChange: PropTypes.func.isRequired
+  bundle: React.PropTypes.object.isRequired,
+  editMode: React.PropTypes.bool,
+  toggleEditMode: React.PropTypes.func,
+  handleLinkEdit: React.PropTypes.func.isRequired,
+  handleLinkRemove: React.PropTypes.func.isRequired,
+  handleChange: React.PropTypes.func.isRequired
 }
