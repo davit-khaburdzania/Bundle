@@ -1,7 +1,5 @@
-import React from 'react'
 import Collection from './Collection'
 import Bundle from './Bundle'
-
 import './index.css'
 
 export default function ListItem ({

@@ -1,7 +1,4 @@
-import React, { PropTypes } from 'react'
-
 import { shouldShow } from '../../../../helpers'
-
 import './index.css'
 
 export default function BundleName ({ name, editMode, handleChange }) {
@@ -18,7 +15,7 @@ export default function BundleName ({ name, editMode, handleChange }) {
 }
 
 BundleName.propTypes = {
-  name: PropTypes.string.isRequired,
-  editMode: PropTypes.bool,
-  handleChange: PropTypes.func.isRequired
+  name: React.PropTypes.string.isRequired,
+  editMode: React.PropTypes.bool,
+  handleChange: React.PropTypes.func.isRequired
 }

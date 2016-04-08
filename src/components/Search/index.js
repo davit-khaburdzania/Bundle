@@ -1,5 +1,3 @@
-import React, { PropTypes } from 'react'
-
 import './index.css'
 
 export default function Search ({
@@ -27,7 +25,7 @@ export default function Search ({
 }
 
 Search.propTypes = {
-  onClick: PropTypes.func,
-  onChange: PropTypes.func,
-  search: PropTypes.bool
+  onClick: React.PropTypes.func,
+  onChange: React.PropTypes.func,
+  search: React.PropTypes.bool
 }

@@ -1,5 +1,3 @@
-import React, { PropTypes } from 'react'
-
 import './header.css'
 
 export default function Header ({
@@ -13,5 +11,5 @@ export default function Header ({
 }
 
 Header.propTypes = {
-  children: PropTypes.node
+  children: React.PropTypes.node
 }

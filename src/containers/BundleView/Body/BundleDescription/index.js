@@ -1,7 +1,4 @@
-import React, { PropTypes } from 'react'
-
 import { shouldShow } from '../../../../helpers'
-
 import './index.css'
 
 export default function BundleDescription ({
@@ -24,7 +21,7 @@ export default function BundleDescription ({
 }
 
 BundleDescription.propTypes = {
-  description: PropTypes.string,
-  editMode: PropTypes.bool,
-  handleChange: PropTypes.func.isRequired
+  description: React.PropTypes.string,
+  editMode: React.PropTypes.bool,
+  handleChange: React.PropTypes.func.isRequired
 }

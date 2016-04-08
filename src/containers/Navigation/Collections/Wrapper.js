@@ -1,10 +1,4 @@
-import React from 'react'
-import { ResourceNavigation } from '../../../components'
-
-import {
-  List,
-  ListItem
-} from '../../../components'
+import { List, ListItem, ResourceNavigation } from '../../../components'
 
 export default function Wrapper ({
   collections,

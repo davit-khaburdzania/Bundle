@@ -1,5 +1,3 @@
-import React, { PropTypes } from 'react'
-
 import SearchHeader from '../header'
 import SearchBody from '../body'
 
@@ -15,6 +13,6 @@ export default function SearchWrapper ({ query, searchResults }) {
 }
 
 SearchWrapper.propTypes = {
-  searchResults: PropTypes.object,
-  query: PropTypes.string
+  searchResults: React.PropTypes.object,
+  query: React.PropTypes.string
 }

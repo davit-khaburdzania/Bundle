@@ -1,5 +1,3 @@
-import React, { PropTypes } from 'react'
-
 import ToolbarShareItem from './ToolbarShareItem'
 import ToolbarDeleteItem from './ToolbarDeleteItem'
 import ToolbarFavoriteItem from './ToolbarFavoriteItem'
@@ -28,10 +26,10 @@ export default function ListToolbar ({
 }
 
 ListToolbar.propTypes = {
-  type: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
-  favorited: PropTypes.bool,
-  favorite: PropTypes.func.isRequired,
-  unfavorite: PropTypes.func.isRequired,
-  remove: PropTypes.func.isRequired
+  type: React.PropTypes.string.isRequired,
+  id: React.PropTypes.number.isRequired,
+  favorited: React.PropTypes.bool,
+  favorite: React.PropTypes.func.isRequired,
+  unfavorite: React.PropTypes.func.isRequired,
+  remove: React.PropTypes.func.isRequired
 }

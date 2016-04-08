@@ -1,10 +1,9 @@
-import React, { Component, PropTypes } from 'react'
 import listensToClickOutside from 'react-onclickoutside/decorator'
 
 import './index.css'
 
 @listensToClickOutside()
-export default class UserMenu extends Component {
+export default class UserMenu extends React.Component {
   handleClickOutside () {
     this.props.isOpen && this.props.closeUserMenu()
   }
@@ -24,10 +23,10 @@ export default class UserMenu extends Component {
   }
 
   static propTypes = {
-    currentUser: PropTypes.object.isRequired,
-    isOpen: PropTypes.bool.isRequired,
-    openUserMenu: PropTypes.func.isRequired,
-    closeUserMenu: PropTypes.func.isRequired,
-    children: PropTypes.element
+    currentUser: React.PropTypes.object.isRequired,
+    isOpen: React.PropTypes.bool.isRequired,
+    openUserMenu: React.PropTypes.func.isRequired,
+    closeUserMenu: React.PropTypes.func.isRequired,
+    children: React.PropTypes.element
   }
 }

@@ -1,4 +1,3 @@
-import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import * as collectionActions from '../../../actions/Collection'
 import * as bundleActions from '../../../actions/Bundle'
@@ -17,7 +16,7 @@ const connectProps = {
 }
 
 @connect(connectState, connectProps)
-export default class Container extends Component {
+export default class Container extends React.Component {
   constructor (props) {
     props.getCollection(props.params.id)
     super(props)
@@ -32,6 +31,6 @@ export default class Container extends Component {
   }
 
   static propTypes = {
-    collection: PropTypes.object.isRequired
+    collection: React.PropTypes.object.isRequired
   }
 }

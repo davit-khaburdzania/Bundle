@@ -1,10 +1,4 @@
-import React, { PropTypes } from 'react'
-
-import {
-  List,
-  ListItem
-} from '../../../components'
-
+import { List, ListItem } from '../../../components'
 import './index.css'
 
 function isAnyResult (searchResults) {
@@ -71,5 +65,5 @@ export default function SearchBody ({ searchResults }) {
 }
 
 SearchBody.propTypes = {
-  searchResults: PropTypes.object
+  searchResults: React.PropTypes.object
 }

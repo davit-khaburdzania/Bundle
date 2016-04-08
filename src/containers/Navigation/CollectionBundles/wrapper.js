@@ -1,4 +1,3 @@
-import React from 'react'
 import { ResourceNavigation, List, ListItem } from '../../../components'
 
 function bundleUrl (collection, bundle) {

@@ -1,11 +1,7 @@
-import React, { Component, PropTypes } from 'react'
-import { Link } from 'react-router'
-
-import { browserHistory } from 'react-router'
-
+import { Link, browserHistory } from 'react-router'
 import './index.css'
 
-export default class SearchHeader extends Component {
+export default class SearchHeader extends React.Component {
   onChange (e) {
     let value = e.target.value
 
@@ -27,5 +23,5 @@ export default class SearchHeader extends Component {
 }
 
 SearchHeader.propTypes = {
-  query: PropTypes.string
+  query: React.PropTypes.string
 }

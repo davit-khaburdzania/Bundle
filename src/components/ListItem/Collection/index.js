@@ -1,4 +1,3 @@
-import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
 import { ListToolbar } from './../..'
 
@@ -39,10 +38,10 @@ export default function CollectionListItem ({
 }
 
 CollectionListItem.propTypes = {
-  id: PropTypes.number.isRequired,
-  slug: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  created_at: PropTypes.string.isRequired,
-  bundles_count: PropTypes.number.isRequired,
-  shares_count: PropTypes.number.isRequired
+  id: React.PropTypes.number.isRequired,
+  slug: React.PropTypes.string.isRequired,
+  name: React.PropTypes.string.isRequired,
+  created_at: React.PropTypes.string.isRequired,
+  bundles_count: React.PropTypes.number.isRequired,
+  shares_count: React.PropTypes.number.isRequired
 }
