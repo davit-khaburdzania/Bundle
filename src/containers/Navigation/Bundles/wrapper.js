@@ -14,7 +14,7 @@ export default function Wrapper ({
   let styles = { 'display': search.open ? 'none' : 'block' }
 
   return (
-    <ResourceNavigation bundleView={children}>
+    <ResourceNavigation>
       <div className='bundles-navigation'>
         <ResourceNavigation.Header>
           <h2 style={styles} className='title'>Bundles</h2>
@@ -31,7 +31,7 @@ export default function Wrapper ({
                 {...bundle} {...listItemProps}
                 url={'/bundles/' + bundle.slug}
                 type={'bundle'}
-                active={bundle.id === currentBundleId}
+                active={bundle.slug === currentBundleId}
                 remove={removeBundle}
               />
             )}

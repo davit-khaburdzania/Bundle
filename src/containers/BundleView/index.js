@@ -3,7 +3,8 @@ import * as bundleActions from '../../actions/Bundle'
 import Wrapper from './Wrapper'
 
 const connectState = (state) => ({
-  bundle: state.Bundle.toJS().current
+  bundle: state.Bundle.toJS().current,
+  bundleId: state.Route.getIn(['bundle', 'id'])
 })
 
 const connectProps = bundleActions
@@ -11,15 +12,15 @@ const connectProps = bundleActions
 @connect(connectState, connectProps)
 export default class BundleViewContainer extends React.Component {
   componentWillMount () {
-    const { getBundle, params } = this.props
-    getBundle(params.bundle_id)
+    const { getBundle, bundleId } = this.props
+    if (bundleId) getBundle(bundleId)
   }
 
   componentWillReceiveProps (nextProps) {
-    const { getBundle, params } = this.props
-    const nextBundleId = nextProps.params.bundle_id
+    const { getBundle, bundleId } = this.props
+    const nextBundleId = nextProps.bundleId
 
-    if (params.bundle_id !== nextBundleId) getBundle(nextBundleId)
+    if (bundleId !== nextBundleId) getBundle(nextBundleId)
   }
 
   linksWithoutAuthors (links) {
@@ -59,7 +60,9 @@ export default class BundleViewContainer extends React.Component {
   render () {
     const { bundle, updateBundleInfo, updateBundleLink } = this.props
 
-    if (!bundle) return false
+    if (!bundle) {
+      return <div> Select Bundle </div>
+    }
 
     return <Wrapper editMode={bundle.editMode} bundle={bundle}
       handleChange={updateBundleInfo}

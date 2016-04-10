@@ -8,7 +8,7 @@ let defaultState = fromJS({
 export default function (state = defaultState, action) {
   switch (action.type) {
     case 'ROUTE_CHANGE_BUNDLE_ID':
-      return state.setIn(['bundle', 'id'], action.bundleID)
+      return state.setIn(['bundle', 'id'], action.bundleId)
     case 'ROUTE_CHANGE_NAVIGATION_VIEW':
       return state.setIn(['navigation', 'view'], action.view)
     case 'ROUTE_CHANGE_NAVIGATION_COLLECTION_ID':

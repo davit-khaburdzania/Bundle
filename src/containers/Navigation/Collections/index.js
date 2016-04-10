@@ -4,7 +4,7 @@ import * as favoriteActions from '../../../actions/Favorite'
 import Wrapper from './Wrapper'
 
 const connectState = (state) => ({
-  collections: state.Collection.toJS().list
+  collections: state.Collection.get('list').toJS()
 })
 
 const connectProps = {
@@ -15,8 +15,8 @@ const connectProps = {
 @connect(connectState, connectProps)
 export default class CollectionsNavigationContainer extends React.Component {
   constructor (props) {
-    props.getCollections()
     super(props)
+    props.getCollections()
   }
 
   render () {

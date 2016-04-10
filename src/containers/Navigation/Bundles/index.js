@@ -6,8 +6,8 @@ import Wrapper from './Wrapper'
 
 const connectState = (state) => ({
   bundles: state.Bundle.get('list').toJS(),
-  currentBundleId: state.Bundle.getIn(['current', 'id']),
-  search: state.Search.toJS()
+  search: state.Search.toJS(),
+  currentBundleId: state.Route.getIn(['bundle', 'id'])
 })
 
 const connectProps = {
@@ -19,8 +19,8 @@ const connectProps = {
 @connect(connectState, connectProps)
 export default class Container extends React.Component {
   constructor (props) {
-    props.getBundles()
     super(props)
+    props.getBundles()
   }
 
   render () {

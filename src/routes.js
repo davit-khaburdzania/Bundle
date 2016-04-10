@@ -2,6 +2,7 @@ import { Route, IndexRedirect } from 'react-router'
 
 import {
   App,
+  Navigation,
   BundleNavigation,
   CollectionNavigation,
   CollectionBundlesNavigation,
@@ -18,8 +19,8 @@ export default (
 
     <Route path='/search(/:query)' component={SearchContainer} />
 
-    <Route path='/bundles' component={BundleNavigation}>
-      <Route path='/bundles/:bundle_id' component={BundleView} />
+    <Route path='/bundles' view='bundles' component={Navigation}>
+      <Route path='/bundles/:bundle_id' component={Navigation} />
     </Route>
 
     <Route path='/new' component={BundleNew} />
@@ -27,8 +28,8 @@ export default (
     <Route path='/collections/:id' component={CollectionBundlesNavigation}>
       <Route path='/collections/:id/bundles/:bundle_id' component={BundleView} />
     </Route>
-    <Route path='/collections' component={CollectionNavigation} />
-    <Route path='/favorites' component={FavoriteNavigation}/>
-    <Route path='/notifications' component={NotificationNavigation} />
+    <Route path='/collections' view='collections' component={Navigation} />
+    <Route path='/favorites' view='favorites' component={Navigation}/>
+    <Route path='/notifications' view='notifications' component={Navigation} />
   </Route>
 )
