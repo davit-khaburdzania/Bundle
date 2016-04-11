@@ -7,33 +7,33 @@ import {
   CollectionBundlesNavigation,
   FavoriteNavigation,
   NotificationNavigation,
-  BundleView
+  BundleView,
+  BundleNew
 } from '..'
 
 
 const connectState = (state) => ({
-  route: state.Route
+  routeState: state.Route
 })
 
 const connectProps = routeActions
 
 @connect(connectState, connectProps)
 export default class Navigation extends React.Component {
-  getViewFromRoute (props) {
-    const { routes, params } = props
-    return routes[routes.length-1].view
+  inNewBundle (props) {
+    return props.route.path == '/new'
   }
 
   parseRouteChange (props) {
-    const view = this.getViewFromRoute(props)
-    const params = props.params
+    const view = props.route.view
+    const newBundle = props.route.newBundle
+    const { bundle_id, collection_id } = props.params
 
     if (view) props.routeChangeNavigationView(view)
-    if (params.bundle_id) props.routeChangeBundleId(params.bundle_id)
+    if (newBundle) props.routeChangeNewBundle(true)
 
-    if (params.collection_id) {
-      props.routeChangeNavigationCollectionId(params.collection_id)
-    }
+    if (bundle_id) props.routeChangeBundleId(bundle_id)
+    if (collection_id) props.routeChangeNavigationCollectionId(collection_id)
   }
 
   constructor (props) {
@@ -45,11 +45,28 @@ export default class Navigation extends React.Component {
     this.parseRouteChange(nextProps)
   }
 
-  render () {
-    let view = this.props.route.getIn(['navigation', 'view'])
-    let NavigationView = BundleNavigation
+  shouldRender () {
+    let view = this.props.routeState.getIn(['navigation', 'view'])
+    let routeView = this.props.route.view
+    let newBundle = this.props.routeState.getIn(['bundle', 'newBundle'])
+    let routeNewBundle = this.props.route.newBundle
 
-    if (view != this.getViewFromRoute(this.props)) return false
+    if (view != routeView && routeView) return false
+    if (newBundle != routeNewBundle && routeNewBundle) return false
+
+    return true
+  }
+
+  render () {
+    let view = this.props.routeState.getIn(['navigation', 'view'])
+    let NavigationView = BundleNavigation
+    let BundleNavigationView = BundleView
+
+    if (!this.shouldRender()) return false
+
+    if (this.props.routeState.getIn(['bundle', 'newBundle'])) {
+      BundleNavigationView = BundleNew
+    }
 
     if (view === 'collections')  NavigationView = CollectionNavigation
     if (view === 'collectionsBundles')  NavigationView = CollectionBundlesNavigation
@@ -59,7 +76,7 @@ export default class Navigation extends React.Component {
     return (
       <div className='navigation-wrapper'>
         <NavigationView />
-        <BundleView />
+        <BundleNavigationView />
       </div>
     )
   }
