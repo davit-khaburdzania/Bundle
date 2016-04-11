@@ -8,7 +8,7 @@ export default function Wrapper ({
   search,
   children,
   removeBundle,
-  currentBundleId,
+  bundleId,
   ...listItemProps
 }) {
   let styles = { 'display': search.open ? 'none' : 'block' }
@@ -31,7 +31,7 @@ export default function Wrapper ({
                 {...bundle} {...listItemProps}
                 url={'/bundles/' + bundle.slug}
                 type={'bundle'}
-                active={bundle.slug === currentBundleId}
+                active={bundle.slug === bundleId}
                 remove={removeBundle}
               />
             )}

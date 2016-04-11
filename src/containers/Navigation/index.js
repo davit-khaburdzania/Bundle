@@ -25,13 +25,13 @@ export default class Navigation extends React.Component {
   parseRouteChange (props) {
     const view = props.route.view
     const newBundle = props.route.newBundle
-    const { bundle_id, collection_id } = props.params
+    const { bundleId, collectionId } = props.params
 
     if (view) props.routeChangeNavigationView(view)
     if (newBundle) props.routeChangeNewBundle(true)
 
-    if (bundle_id) props.routeChangeBundleId(bundle_id)
-    if (collection_id) props.routeChangeNavigationCollectionId(collection_id)
+    if (bundleId) props.routeChangeBundleId(bundleId)
+    if (collectionId) props.routeChangeNavigationCollectionId(collectionId)
   }
 
   shouldRender () {
