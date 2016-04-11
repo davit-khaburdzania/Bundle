@@ -19,9 +19,14 @@ const connectProps = routeActions
 
 @connect(connectState, connectProps)
 export default class Navigation extends React.Component {
-  parseRouteChange (props) {
+  getViewFromRoute (props) {
     const { routes, params } = props
-    const view = routes[routes.length-1].view
+    return routes[routes.length-1].view
+  }
+
+  parseRouteChange (props) {
+    const view = this.getViewFromRoute(props)
+    const params = props.params
 
     if (view) props.routeChangeNavigationView(view)
     if (params.bundle_id) props.routeChangeBundleId(params.bundle_id)
@@ -36,7 +41,7 @@ export default class Navigation extends React.Component {
     this.parseRouteChange(props)
   }
 
-  componentWillReceiveProps (nextProps) {
+  componentWillUpdate (nextProps) {
     this.parseRouteChange(nextProps)
   }
 
@@ -44,7 +49,10 @@ export default class Navigation extends React.Component {
     let view = this.props.route.getIn(['navigation', 'view'])
     let NavigationView = BundleNavigation
 
+    if (view != this.getViewFromRoute(this.props)) return false
+
     if (view === 'collections')  NavigationView = CollectionNavigation
+    if (view === 'collectionsBundles')  NavigationView = CollectionBundlesNavigation
     if (view === 'favorites')  NavigationView = FavoriteNavigation
     if (view === 'notifications')  NavigationView = NotificationNavigation
 
