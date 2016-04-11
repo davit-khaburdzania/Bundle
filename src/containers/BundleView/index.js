@@ -61,7 +61,7 @@ export default class BundleViewContainer extends React.Component {
     const { bundle, updateBundleInfo, updateBundleLink } = this.props
 
     if (!bundle) {
-      return <div> Select Bundle </div>
+      return <div>Select Bundle</div>
     }
 
     return <Wrapper editMode={bundle.editMode} bundle={bundle}

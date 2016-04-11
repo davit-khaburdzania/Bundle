@@ -6,7 +6,6 @@ export function routeChangeNewBundle (newBundle) {
   return { type: 'ROUTE_CHANGE_NEW_BUNDLE', newBundle }
 }
 
-
 export function routeChangeNavigationView (view) {
   return { type: 'ROUTE_CHANGE_NAVIGATION_VIEW', view }
 }

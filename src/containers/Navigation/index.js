@@ -22,16 +22,43 @@ const connectProps = routeActions
 
 @connect(connectState, connectProps)
 export default class Navigation extends React.Component {
+  constructor (props) {
+    super(props)
+    this.parseRouteChange(props)
+  }
+
+  componentWillReceiveProps (nextProps) {
+    this.parseRouteChange(nextProps)
+  }
+
+  render () {
+    let NavigationComponent = this.getNavigationView()
+    let BundleViewComponent = this.getBundleView()
+
+    if (!this.shouldRender()) return false
+
+    return (
+      <div className='navigation-wrapper'>
+        <NavigationComponent />
+        <BundleViewComponent />
+      </div>
+    )
+  }
+
   parseRouteChange (props) {
-    const view = props.route.view
-    const newBundle = props.route.newBundle
-    const { bundleId, collectionId } = props.params
+    let { view, newBundle } = props.route
+    let { bundleId, collectionId } = props.params
 
-    if (view) props.routeChangeNavigationView(view)
-    if (newBundle) props.routeChangeNewBundle(true)
+    let navigation = props.routeNavigation
+    let bundle = props.routeBundle
 
-    if (bundleId) props.routeChangeBundleId(bundleId)
-    if (collectionId) props.routeChangeNavigationCollectionId(collectionId)
+    if (view && navigation.get('view') != view) props.routeChangeNavigationView(view)
+    if (newBundle && bundle.get('newBundle') != newBundle) props.routeChangeNewBundle(true)
+    if (bundleId && bundle.get('id') != bundleId) props.routeChangeBundleId(bundleId)
+
+    if (collectionId && navigation.get('collectionId') != collectionId) {
+      props.routeChangeNavigationCollectionId(collectionId)
+    }
   }
 
   shouldRender () {
@@ -60,28 +87,5 @@ export default class Navigation extends React.Component {
   getBundleView () {
     let newBundle = this.props.routeBundle.get('newBundle')
     return newBundle ? BundleNew : BundleView
-  }
-
-  constructor (props) {
-    super(props)
-    this.parseRouteChange(props)
-  }
-
-  componentWillUpdate (nextProps) {
-    this.parseRouteChange(nextProps)
-  }
-
-  render () {
-    let NavigationComponent = this.getNavigationView()
-    let BundleViewComponent = this.getBundleView()
-
-    if (!this.shouldRender()) return false
-
-    return (
-      <div className='navigation-wrapper'>
-        <NavigationComponent />
-        <BundleViewComponent />
-      </div>
-    )
   }
 }
