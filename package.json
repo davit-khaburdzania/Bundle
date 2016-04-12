@@ -4,7 +4,7 @@
   "description": "Bundle 🎈",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --progress --colors --info false"
+    "start": "webpack-dev-server --progress --colors"
   },
   "repository": {
     "type": "git",

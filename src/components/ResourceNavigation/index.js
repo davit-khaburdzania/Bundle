@@ -8,11 +8,8 @@ export default function ResourceNavigation ({
   bundleView
 }) {
   return (
-    <div className='navigation-wrapper'>
-      <div className='resource-navigation'>
-        {children}
-      </div>
-      {bundleView}
+    <div className='resource-navigation'>
+      {children}
     </div>
   )
 }

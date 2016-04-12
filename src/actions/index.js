@@ -4,6 +4,7 @@ import * as Collection from './Collection'
 import * as Search from './Search'
 import * as UserMenu from './UserMenu'
 import * as Favorite from './Favorite'
+import * as Route from './Route'
 
 export const allActions = {
   ...Alert,
@@ -11,5 +12,6 @@ export const allActions = {
   ...Collection,
   ...Search,
   ...UserMenu,
-  ...Favorite
+  ...Favorite,
+  ...Route
 }

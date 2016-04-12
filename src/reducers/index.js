@@ -7,9 +7,11 @@ import Collection from './Collection'
 import Search from './Search'
 import Alert from './Alert'
 import User from './User'
+import Route from './Route'
 
 export default combineReducers({
   routing,
+  Route,
   UserMenu,
   Bundle,
   Collection,
