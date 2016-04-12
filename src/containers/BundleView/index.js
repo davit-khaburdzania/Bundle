@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 import * as bundleActions from '../../actions/Bundle'
 import Wrapper from './Wrapper'
+import { linksWithoutAuthors } from '../../helpers'
 
 const connectState = (state) => ({
   bundle: state.Bundle.toJS().current,
@@ -23,14 +24,6 @@ export default class BundleViewContainer extends React.Component {
     if (bundleId !== nextBundleId) getBundle(nextBundleId)
   }
 
-  linksWithoutAuthors (links) {
-    return links.map(link => {
-      let newLink = { ...link }
-      delete newLink.creator
-      return newLink
-    })
-  }
-
   handleLinkRemove (index) {
     const { bundle, updateBundle } = this.props
     const linkId = bundle.links[index].id
@@ -50,7 +43,7 @@ export default class BundleViewContainer extends React.Component {
     const payload = {
       name: bundle.name,
       description: bundle.description,
-      links_attributes: this.linksWithoutAuthors(bundle.links)
+      links_attributes: linksWithoutAuthors(bundle.links)
     }
 
     updateBundle(bundle.id, payload)
