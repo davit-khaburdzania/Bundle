@@ -35,8 +35,6 @@ export default class BundleAddLink extends React.Component {
     const { currentUser, currentBundle, fetchLink } = this.props
     const link = currentBundle.link
 
-    console.log('linksssss ', link)
-
     if (link) {
       return <LinkPreview currentUser={currentUser} link={link}
         addLinkHandler={this.addLinkHandler.bind(this)} />

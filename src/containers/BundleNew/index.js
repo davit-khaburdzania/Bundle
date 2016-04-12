@@ -17,11 +17,16 @@ export default class BundleNewContainer extends React.Component {
     generateNewBundle()
   }
   render () {
-    const { currentBundle } = this.props
+    const { currentBundle, updateBundleInfo, updateBundleLink } = this.props
+
     if (! currentBundle) return false
+
     return (
       <div className='bundle-view-wrapper'>
-        <Wrapper bundle={currentBundle} editMode={true}/>
+        <Wrapper bundle={currentBundle} editMode={true}
+          handleChange={updateBundleInfo}
+          handleLinkEdit={updateBundleLink}
+        />
       </div>
     )
   }

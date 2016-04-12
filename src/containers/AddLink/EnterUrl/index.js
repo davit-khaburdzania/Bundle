@@ -3,7 +3,6 @@ import './index.css'
 function handleKeyPress (bundleId, handeUrlEnter, event) {
   const url = event.target.value
   if (event.key === 'Enter') {
-    console.log('test')
     handeUrlEnter(url, bundleId)
   }
 }

@@ -19,8 +19,6 @@ export default class BundleLink extends React.Component {
   render () {
     const { link, editMode } = this.props
 
-    console.log('link ', link)
-
     return (
       <div className='bundle-view-link'>
         <button style={shouldShow(editMode)}
