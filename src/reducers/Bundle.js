@@ -7,9 +7,14 @@ export default function (state = fromJS({ list: [] }), action) {
         name: '',
         description: '',
         id: -1,
+        isNewBundle: true,
         links: []
       }
       return state.set('current', fromJS(bundle))
+    case 'UPDATE_BUNDLE_LINKS':
+      return state.
+        updateIn(['current', 'links'], links => links.unshift(fromJS(action.data)))
+        .deleteIn(['current', 'link'])
     case 'RECEIVE_BUNDLES':
       return state.set('list', fromJS(action.list))
 

@@ -16,6 +16,6 @@ function filter (date, type) {
 }
 
 Date.propTypes = {
-  children: React.PropTypes.string.isRequired,
+  children: React.PropTypes.string,
   type: React.PropTypes.string
 }
