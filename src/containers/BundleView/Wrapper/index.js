@@ -24,9 +24,9 @@ export default function BundleView ({
 }
 
 BundleView.propTypes = {
-  bundle: React.PropTypes.object.isRequired,
+  bundle: React.PropTypes.object,
   editMode: React.PropTypes.bool,
-  handleLinkEdit: React.PropTypes.func.isRequired,
-  handleLinkRemove: React.PropTypes.func.isRequired,
-  handleChange: React.PropTypes.func.isRequired
+  handleLinkEdit: React.PropTypes.func,
+  handleLinkRemove: React.PropTypes.func,
+  handleChange: React.PropTypes.func
 }

@@ -1,6 +1,10 @@
 import request from 'axios'
 import api from './../api'
 
+export function generateNewBundle () {
+  return { type: 'GENERATE_NEW_BUNDLE' }
+}
+
 export function getBundle (id) {
   return async function (dispatch) {
     const response = await request.get(api.bundles(id))

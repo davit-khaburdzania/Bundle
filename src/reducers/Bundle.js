@@ -2,6 +2,14 @@ import { fromJS } from 'immutable'
 
 export default function (state = fromJS({ list: [] }), action) {
   switch (action.type) {
+    case 'GENERATE_NEW_BUNDLE':
+      const bundle = {
+        name: '',
+        description: '',
+        id: -1,
+        links: []
+      }
+      return state.set('current', fromJS(bundle))
     case 'RECEIVE_BUNDLES':
       return state.set('list', fromJS(action.list))
 

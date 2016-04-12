@@ -7,7 +7,7 @@ export default function BundleName ({ name, editMode, handleChange }) {
       <h2 style={shouldShow(!editMode)} className='bundle-name'>{name}</h2>
 
       <input style={shouldShow(editMode)} className='bundle-name-input'
-        type='text' value={name}
+        type='text' value={name} placeholder="Title goes here"
         onChange={(e) => handleChange('name', e.target.value)}
       />
     </div>
@@ -15,7 +15,7 @@ export default function BundleName ({ name, editMode, handleChange }) {
 }
 
 BundleName.propTypes = {
-  name: React.PropTypes.string.isRequired,
+  name: React.PropTypes.string,
   editMode: React.PropTypes.bool,
-  handleChange: React.PropTypes.func.isRequired
+  handleChange: React.PropTypes.func
 }

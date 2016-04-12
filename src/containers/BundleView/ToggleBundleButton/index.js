@@ -17,5 +17,5 @@ export default function ToggleBundleButton ({ toggleEdit, editMode }) {
 
 ToggleBundleButton.propTypes = {
   editMode: React.PropTypes.bool,
-  toggleEdit: React.PropTypes.func.isRequired
+  toggleEdit: React.PropTypes.func
 }
