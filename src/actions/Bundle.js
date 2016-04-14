@@ -5,6 +5,8 @@ export function saveBundle (data) {
   return async function (dispatch) {
     const response = await request.post(api.bundles(), { bundle: data })
     dispatch({ type: 'SAVE_BUNDLE', bundle: response.data })
+
+    return response.data
   }
 }
 
