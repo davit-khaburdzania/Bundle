@@ -3,11 +3,8 @@ import { browserHistory } from 'react-router'
 import * as bundleActions from '../../actions/Bundle'
 
 import Wrapper from '../BundleView/Wrapper'
-import { BundleNavigation } from '..'
 
 import { linksWithoutAuthors } from '../../helpers'
-import api from '../../api'
-
 
 const connectState = (state) => ({
   currentBundle: state.Bundle.toJS().current
