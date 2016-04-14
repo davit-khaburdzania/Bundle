@@ -7,7 +7,7 @@ import Wrapper from '../BundleView/Wrapper'
 import { linksWithoutAuthors } from '../../helpers'
 
 const connectState = (state) => ({
-  currentBundle: state.Bundle.get('current').toJS()
+  currentBundle: state.Bundle.toJS().current
 })
 
 const connectProps = bundleActions
@@ -43,7 +43,7 @@ export default class BundleNewContainer extends React.Component {
     return (
       <div className='bundle-view-wrapper'>
         <Wrapper
-          bundle={currentBundle} 
+          bundle={currentBundle}
           editMode={true}
           handleChange={updateBundleInfo}
           handleLinkEdit={updateBundleLink}
