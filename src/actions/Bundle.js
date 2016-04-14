@@ -3,7 +3,7 @@ import api from './../api'
 
 export function saveBundleAction (bundle) {
   return async function (dispatch) {
-    const response = await request.post(api.bundles(), bundle)
+    const response = await request.post(api.bundles(), { bundle })
     const { data } = response
 
     dispatch({ type: 'SAVE_BUNDLE', bundle: data })

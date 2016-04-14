@@ -11,7 +11,6 @@ const bundle = {
 export default function (state = fromJS({ list: [] }), action) {
   switch (action.type) {
     case 'GENERATE_NEW_BUNDLE':
-
       return state.set('current', fromJS(bundle))
 
     case 'SAVE_BUNDLE':
