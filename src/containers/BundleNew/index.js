@@ -18,7 +18,7 @@ export default class BundleNewContainer extends React.Component {
     generateNewBundle()
   }
 
-  toggleEdit (save) {
+  saveBundle () {
     const { currentBundle, saveBundle } = this.props
     const payload = {
       name: currentBundle.name,
@@ -39,7 +39,7 @@ export default class BundleNewContainer extends React.Component {
         <Wrapper bundle={currentBundle} editMode={true}
           handleChange={updateBundleInfo}
           handleLinkEdit={updateBundleLink}
-          toggleEdit={this.toggleEdit.bind(this)}
+          toggleEdit={this.saveBundle.bind(this)}
         />
       </div>
     )

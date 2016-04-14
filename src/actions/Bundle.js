@@ -4,8 +4,7 @@ import api from './../api'
 export function saveBundle (data) {
   return async function (dispatch) {
     const response = await request.post(api.bundles(), { bundle: data })
-    console.log(response)
-    // dispatch({ type: 'SAVE_BUNDLE', bundle: response.data })
+    dispatch({ type: 'SAVE_BUNDLE', bundle: response.data })
   }
 }
 
