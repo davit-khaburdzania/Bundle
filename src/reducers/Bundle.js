@@ -11,6 +11,9 @@ export default function (state = fromJS({ list: [] }), action) {
         links: []
       }
       return state.set('current', fromJS(bundle))
+    case 'SAVE_BUNDLE':
+      action.bundle.hasToBeRedirected = true
+      return state.set('current', fromJS(action.bundle))
     case 'UPDATE_BUNDLE_LINKS':
       return state.
         updateIn(['current', 'links'], links => links.unshift(fromJS(action.data)))

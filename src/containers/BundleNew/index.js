@@ -3,6 +3,7 @@ import * as bundleActions from '../../actions/Bundle'
 import { BundleNavigation } from '..'
 import Wrapper from '../BundleView/Wrapper'
 import { linksWithoutAuthors } from '../../helpers'
+import { browserHistory } from 'react-router'
 
 const connectState = (state) => ({
   currentBundle: state.Bundle.toJS().current
@@ -27,6 +28,14 @@ export default class BundleNewContainer extends React.Component {
     }
 
     saveBundle(payload)
+  }
+
+  componentWillReceiveProps (nextProps) {
+    const { currentBundle } = nextProps
+
+    if (currentBundle.hasToBeRedirected) {
+      browserHistory.push('/bundles/' + currentBundle.slug)
+    }
   }
 
   render () {
