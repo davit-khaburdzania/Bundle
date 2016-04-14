@@ -1,12 +1,14 @@
 import request from 'axios'
 import api from './../api'
 
-export function saveBundle (data) {
+export function saveBundleAction (bundle) {
   return async function (dispatch) {
-    const response = await request.post(api.bundles(), { bundle: data })
-    dispatch({ type: 'SAVE_BUNDLE', bundle: response.data })
+    const response = await request.post(api.bundles(), bundle)
+    const { data } = response
 
-    return response.data
+    dispatch({ type: 'SAVE_BUNDLE', bundle: data })
+
+    return data
   }
 }
 

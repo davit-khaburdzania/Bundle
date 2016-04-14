@@ -7,7 +7,7 @@ export default function BundleName ({ name, editMode, handleChange }) {
       <h2 style={shouldShow(!editMode)} className='bundle-name'>{name}</h2>
 
       <input style={shouldShow(editMode)} className='bundle-name-input'
-        type='text' value={name} placeholder="Title goes here"
+        type='text' value={name} placeholder='Title goes here'
         onChange={(e) => handleChange('name', e.target.value)}
       />
     </div>

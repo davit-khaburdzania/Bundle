@@ -13,7 +13,7 @@ export default function BundleDescription ({
       </h3>
 
       <textarea style={shouldShow(editMode)} className='bundle-description-input'
-        type='text' value={description} placeholder="Description goes here"
+        type='text' value={description} placeholder='Description goes here'
         onChange={(e) => handleChange('description', e.target.value)}
       />
     </div>
