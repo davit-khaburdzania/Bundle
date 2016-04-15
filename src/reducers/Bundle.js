@@ -1,7 +1,26 @@
 import { fromJS } from 'immutable'
 
+const bundle = {
+  name: '',
+  description: '',
+  id: -1,
+  isNewBundle: true,
+  links: []
+}
+
 export default function (state = fromJS({ list: [] }), action) {
   switch (action.type) {
+    case 'GENERATE_NEW_BUNDLE':
+      return state.set('current', fromJS(bundle))
+
+    case 'SAVE_BUNDLE':
+      return state.set('current', fromJS(action.bundle))
+
+    case 'UPDATE_BUNDLE_LINKS':
+      return state
+        .updateIn(['current', 'links'], links => links.unshift(fromJS(action.data)))
+        .deleteIn(['current', 'link'])
+
     case 'RECEIVE_BUNDLES':
       return state.set('list', fromJS(action.list))
 

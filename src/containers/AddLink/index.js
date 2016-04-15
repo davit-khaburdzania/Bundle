@@ -13,12 +13,19 @@ const connectProps = bundleActions
 @connect(connectState, connectProps)
 export default class BundleAddLink extends React.Component {
   addLinkHandler (link) {
-    const { currentUser, currentBundle, updateBundle } = this.props
+    const { currentUser, currentBundle,
+      updateBundle, updateBundleState } = this.props
     const payload = {
       links_attributes: [{
         ...link,
         creator_id: currentUser.id
       }]
+    }
+
+    if (currentBundle.isNewBundle) {
+      link.creator = currentUser
+
+      return updateBundleState(link)
     }
 
     updateBundle(currentBundle.id, payload)

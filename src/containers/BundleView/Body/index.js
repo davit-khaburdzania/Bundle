@@ -24,7 +24,7 @@ export default function BundleViewBody ({
         handleChange={handleChange}
       />
 
-      <AddLink bundleId={bundle.id} />
+      <AddLink bundle={bundle} />
 
       <div className='line' />
 
@@ -38,10 +38,10 @@ export default function BundleViewBody ({
 }
 
 BundleViewBody.propTypes = {
-  bundle: React.PropTypes.object.isRequired,
+  bundle: React.PropTypes.object,
   editMode: React.PropTypes.bool,
   toggleEditMode: React.PropTypes.func,
-  handleLinkEdit: React.PropTypes.func.isRequired,
-  handleLinkRemove: React.PropTypes.func.isRequired,
-  handleChange: React.PropTypes.func.isRequired
+  handleLinkEdit: React.PropTypes.func,
+  handleLinkRemove: React.PropTypes.func,
+  handleChange: React.PropTypes.func
 }

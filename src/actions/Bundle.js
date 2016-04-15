@@ -1,6 +1,25 @@
 import request from 'axios'
 import api from './../api'
 
+export function saveBundleAction (bundle) {
+  return async function (dispatch) {
+    const response = await request.post(api.bundles(), { bundle })
+    const { data } = response
+
+    dispatch({ type: 'SAVE_BUNDLE', bundle: data })
+
+    return data
+  }
+}
+
+export function generateNewBundle () {
+  return { type: 'GENERATE_NEW_BUNDLE' }
+}
+
+export function updateBundleState (data) {
+  return { type: 'UPDATE_BUNDLE_LINKS', data }
+}
+
 export function getBundle (id) {
   return async function (dispatch) {
     const response = await request.get(api.bundles(id))

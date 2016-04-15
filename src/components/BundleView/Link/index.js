@@ -74,8 +74,8 @@ export default class BundleLink extends React.Component {
 }
 
 BundleLink.propTypes = {
-  index: React.PropTypes.number.isRequired,
-  handleLinkRemove: React.PropTypes.func.isRequired,
+  index: React.PropTypes.number,
+  handleLinkRemove: React.PropTypes.func,
   link: React.PropTypes.object.isRequired,
   editMode: React.PropTypes.bool,
   handleLinkEdit: React.PropTypes.func
