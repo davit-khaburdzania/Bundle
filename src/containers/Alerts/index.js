@@ -1,3 +1,4 @@
+import ImmutablePropTypes from 'react-immutable-proptypes'
 import { connect } from 'react-redux'
 import { Alert } from '../../components'
 import * as alertActions from '../../actions/Alert'
@@ -13,8 +14,8 @@ export default class Alerts extends React.Component {
 
     return (
       <Alert.Wrapper>
-        <Alert type={alert.type}
-          alerts={alert.list}
+        <Alert type={alert.get('type')}
+          alerts={alert.get('list')}
           removeAlert={removeAlert}
         />
       </Alert.Wrapper>
@@ -22,6 +23,6 @@ export default class Alerts extends React.Component {
   }
 
   static propTypes = {
-    alert: React.PropTypes.object
+    alert: ImmutablePropTypes.map
   }
 }
