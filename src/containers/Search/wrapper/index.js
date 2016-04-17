@@ -4,21 +4,19 @@ import SearchBody from '../body'
 
 import './index.css'
 
-export default function SearchWrapper ({ query, searchResults, removeBundle, favorite, unfavorite }) {
+export default function SearchWrapper (props) {
   return (
     <div className='search-wrapper'>
-      <SearchHeader query={query} />
-      <SearchBody
-        searchResults={searchResults}
-        removeBundle={removeBundle}
-        favorite={favorite}
-        unfavorite={unfavorite}
-      />
+      <SearchHeader query={props.query} />
+      <SearchBody {...props}/>
     </div>
   )
 }
 
 SearchWrapper.propTypes = {
   searchResults: ImmutablePropTypes.map,
-  query: React.PropTypes.string
+  query: React.PropTypes.string,
+  removeBundle: React.PropTypes.func,
+  favorite: React.PropTypes.func,
+  unfavorite: React.PropTypes.func
 }
