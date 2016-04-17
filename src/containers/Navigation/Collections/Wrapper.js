@@ -20,7 +20,7 @@ export default function Wrapper ({
           <List>
             {collections.map((collection, index) =>
               <ListItem key={index} Component={ListItem.Collection}
-                {...collection} {...listItemProps}
+                {...collection.toJS()} {...listItemProps}
                 type={'collection'}
                 remove={removeCollection}
               />

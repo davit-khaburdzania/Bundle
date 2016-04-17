@@ -1,3 +1,4 @@
+import ImmutablePropTypes from 'react-immutable-proptypes'
 import { connect } from 'react-redux'
 import * as bundleActions from '../../../actions/Bundle'
 import * as searchActions from '../../../actions/Search'
@@ -5,9 +6,9 @@ import * as favoriteActions from '../../../actions/Favorite'
 import Wrapper from './Wrapper'
 
 const connectState = (state) => ({
-  bundles: state.Bundle.get('list').toJS(),
+  bundles: state.Bundle.get('list'),
   bundleId: state.Route.getIn(['bundle', 'id']),
-  search: state.Search.toJS()
+  search: state.Search
 })
 
 const connectProps = {
@@ -28,7 +29,7 @@ export default class Container extends React.Component {
   }
 
   static propTypes = {
-    bundles: React.PropTypes.array.isRequired,
-    search: React.PropTypes.object.isRequired
+    bundles: ImmutablePropTypes.list,
+    search: ImmutablePropTypes.map
   }
 }

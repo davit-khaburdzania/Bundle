@@ -25,10 +25,8 @@ export default class BundleNewContainer extends React.Component {
     const payload = {
       name: currentBundle.get('name'),
       description: currentBundle.get('description'),
-      links_attributes: linksWithoutAuthors(currentBundle.get('links')).toJS()
+      links_attributes: linksWithoutAuthors(currentBundle.get('links'))
     }
-
-    console.log(payload)
 
     saveBundleAction(payload).then((bundle) => {
       const newBundleRoutePath = `/bundles/${bundle.slug}`

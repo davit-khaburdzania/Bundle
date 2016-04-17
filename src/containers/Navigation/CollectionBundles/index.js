@@ -1,3 +1,4 @@
+import ImmutablePropTypes from 'react-immutable-proptypes'
 import { connect } from 'react-redux'
 import * as collectionActions from '../../../actions/Collection'
 import * as bundleActions from '../../../actions/Bundle'
@@ -5,7 +6,7 @@ import * as favoriteActions from '../../../actions/Favorite'
 import Wrapper from './Wrapper'
 
 const connectState = (state) => ({
-  collection: state.Collection.toJS(),
+  collection: state.Collection.get('current'),
   bundleId: state.Route.getIn(['bundle', 'id']),
   collectionId: state.Route.getIn(['navigation', 'collectionId'])
 })
@@ -26,12 +27,12 @@ export default class Container extends React.Component {
   render () {
     const { collection, ...wrapperProps } = this.props
 
-    if (!collection.current) return false
+    if (!collection) return false
 
-    return <Wrapper collection={collection.current} {...wrapperProps} />
+    return <Wrapper collection={collection} {...wrapperProps} />
   }
 
   static propTypes = {
-    collection: React.PropTypes.object.isRequired
+    collection: ImmutablePropTypes.map
   }
 }
