@@ -8,13 +8,13 @@ const bundle = Map({
   links: List()
 })
 
-export default function (state = fromJS({ list: [] }), action) {
+export default function (state = Map({ list: List() }), action) {
   switch (action.type) {
     case 'GENERATE_NEW_BUNDLE':
       return state.set('current', bundle)
 
     case 'SAVE_BUNDLE':
-      return state.set('current', fromJS(action.bundle))
+      return state.set('current', action.bundle)
 
     case 'UPDATE_BUNDLE_LINKS':
       return state
@@ -22,10 +22,10 @@ export default function (state = fromJS({ list: [] }), action) {
         .deleteIn(['current', 'link'])
 
     case 'RECEIVE_BUNDLES':
-      return state.set('list', fromJS(action.list))
+      return state.set('list', action.list)
 
     case 'RECEIVE_BUNDLE':
-      return state.set('current', fromJS(action.bundle))
+      return state.set('current', action.bundle)
 
     case 'FAVORITE_BUNDLE':
       return state.update('list', (list) => list.map((bundle) => {
@@ -45,7 +45,7 @@ export default function (state = fromJS({ list: [] }), action) {
       })
 
     case 'UPDATE_BUNDLE':
-      return state.set('current', fromJS(action.bundle))
+      return state.set('current', action.bundle)
 
     case 'UPDATE_BUNDLE_INFO':
       return state.setIn(['current', action.field], action.value)
@@ -60,7 +60,7 @@ export default function (state = fromJS({ list: [] }), action) {
       }))
 
     case 'FETCH_LINK':
-      return state.setIn(['current', 'link'], fromJS(action.link))
+      return state.setIn(['current', 'link'], action.link)
 
     case 'TOGGLE_EDIT_MODE':
       const editMode = state.getIn(['current', 'editMode'])
