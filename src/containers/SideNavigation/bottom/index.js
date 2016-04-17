@@ -1,3 +1,4 @@
+import ImmutablePropTypes from 'react-immutable-proptypes'
 import { Link } from 'react-router'
 import { Menu, UserMenu } from '../../../components'
 
@@ -10,9 +11,9 @@ export default function SideNavigationBottom ({
   return (
     <div className='side-navigation-bottom'>
       <UserMenu isOpen={isOpen} openUserMenu={openUserMenu}
-        closeUserMenu={closeUserMenu} currentUser={currentUser} >
+        closeUserMenu={closeUserMenu} userImage={currentUser.get('image')} >
 
-        <Menu left={'70px'} bottom={'40px'} headline={currentUser.name}>
+        <Menu left={'70px'} bottom={'40px'} headline={currentUser.get('name')}>
           <Link to='/settings'>Settings</Link>
           <Link to='/logout'>Sign Out</Link>
         </Menu>
@@ -21,7 +22,7 @@ export default function SideNavigationBottom ({
   )
 }
 SideNavigationBottom.propTypes = {
-  currentUser: React.PropTypes.object.isRequired,
+  currentUser: ImmutablePropTypes.map.isRequired,
   isOpen: React.PropTypes.bool.isRequired,
   openUserMenu: React.PropTypes.func.isRequired,
   closeUserMenu: React.PropTypes.func.isRequired

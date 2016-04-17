@@ -1,3 +1,4 @@
+import ImmutablePropTypes from 'react-immutable-proptypes'
 import { List, ListItem } from '../../../components'
 import './index.css'
 
@@ -6,26 +7,34 @@ function isAnyResult (searchResults) {
 }
 
 function isBundles (searchResults) {
-  return searchResults.bundles.length
+  return searchResults.get('bundles').size
 }
 
 function isCollections (searchResults) {
-  return searchResults.collections.length
+  return searchResults.get('collections').size
 }
 
 function shouldShow (show) {
   return { 'display': show ? 'block' : 'none' }
 }
 
-function renderList (searchResults, listType, component) {
+function renderList (searchResults, listType, component, removeBundle, favorite, unfavorite) {
   return searchResults.map((item, index) => {
-    let url = `/${listType}/${item.slug}`
+    let url = `/${listType}/${item.get('slug')}`
 
-    return <ListItem key={index} {...item} url={url} Component={component} />
+    return <ListItem
+             key={index}
+             {...item.toJS()}
+             url={url}
+             Component={component}
+             remove={removeBundle}
+             favorite={favorite}
+             unfavorite={unfavorite}
+           />
   })
 }
 
-function renderResults (searchResults) {
+function renderResults (searchResults, removeBundle, favorite, unfavorite) {
   const { Collection, Bundle } = ListItem
 
   if (!isAnyResult(searchResults)) {
@@ -41,7 +50,7 @@ function renderResults (searchResults) {
           Collections
         </h4>
 
-        {renderList(searchResults.collections, 'collections', Collection)}
+        {renderList(searchResults.get('collections'), 'collections', Collection, removeBundle, favorite, unfavorite)}
       </List>
 
       <List>
@@ -49,21 +58,21 @@ function renderResults (searchResults) {
           className='name'> Bundles
         </h4>
 
-        {renderList(searchResults.bundles, 'bundles', Bundle)}
+        {renderList(searchResults.get('bundles'), 'bundles', Bundle, removeBundle, favorite, unfavorite)}
       </List>
 
     </div>
   )
 }
 
-export default function SearchBody ({ searchResults }) {
+export default function SearchBody ({ searchResults, removeBundle, favorite, unfavorite }) {
   return (
     <div className='search-results-wrapper'>
-      {renderResults(searchResults)}
+      {renderResults(searchResults, removeBundle, favorite, unfavorite)}
     </div>
   )
 }
 
 SearchBody.propTypes = {
-  searchResults: React.PropTypes.object
+  searchResults: ImmutablePropTypes.map
 }
