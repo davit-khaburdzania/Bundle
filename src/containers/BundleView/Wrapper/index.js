@@ -1,3 +1,4 @@
+import ImmutablePropTypes from 'react-immutable-proptypes'
 import BundleViewHeader from '../Header'
 import BundleViewBody from '../Body'
 
@@ -24,7 +25,7 @@ export default function BundleView ({
 }
 
 BundleView.propTypes = {
-  bundle: React.PropTypes.object,
+  bundle: ImmutablePropTypes.map,
   editMode: React.PropTypes.bool,
   handleLinkEdit: React.PropTypes.func,
   handleLinkRemove: React.PropTypes.func,

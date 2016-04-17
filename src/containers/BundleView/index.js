@@ -4,7 +4,7 @@ import Wrapper from './Wrapper'
 import { linksWithoutAuthors } from '../../helpers'
 
 const connectState = (state) => ({
-  bundle: state.Bundle.toJS().current,
+  bundle: state.Bundle.get('current'),
   bundleId: state.Route.getIn(['bundle', 'id'])
 })
 
@@ -26,13 +26,13 @@ export default class BundleViewContainer extends React.Component {
 
   handleLinkRemove (index) {
     const { bundle, updateBundle } = this.props
-    const linkId = bundle.links[index].id
+    const linkId = bundle.getIn(['links', index, 'id'])
 
     const payload = {
       links_attributes: [{id: linkId, _destroy: true }]
     }
 
-    updateBundle(bundle.id, payload)
+    updateBundle(bundle.get('id'), payload)
   }
 
   toggleEdit (save) {
@@ -41,12 +41,12 @@ export default class BundleViewContainer extends React.Component {
     if (!save) return toggleEditMode()
 
     const payload = {
-      name: bundle.name,
-      description: bundle.description,
-      links_attributes: linksWithoutAuthors(bundle.links)
+      name: bundle.get('name'),
+      description: bundle.get('description'),
+      links_attributes: linksWithoutAuthors(bundle.get('links'))
     }
 
-    updateBundle(bundle.id, payload)
+    updateBundle(bundle.get('id'), payload)
     toggleEditMode()
   }
 
@@ -57,7 +57,7 @@ export default class BundleViewContainer extends React.Component {
       return <div>Select Bundle</div>
     }
 
-    return <Wrapper editMode={bundle.editMode} bundle={bundle}
+    return <Wrapper editMode={bundle.get('editMode')} bundle={bundle}
       handleChange={updateBundleInfo}
       handleLinkEdit={updateBundleLink}
       handleLinkRemove={this.handleLinkRemove.bind(this)}

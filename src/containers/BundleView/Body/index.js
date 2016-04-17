@@ -1,7 +1,8 @@
-import { BundleView } from '../../../components'
-import { AddLink } from '../../'
+import ImmutablePropTypes from 'react-immutable-proptypes'
 import BundleName from './BundleName'
 import BundleDescription from './BundleDescription'
+import { BundleView } from '../../../components'
+import { AddLink } from '../../'
 
 import './index.css'
 
@@ -14,13 +15,12 @@ export default function BundleViewBody ({
   handleChange
 }) {
   return (
-
     <div className='bundle-view-body'>
-      <BundleName name={bundle.name} editMode={editMode}
+      <BundleName name={bundle.get('name')} editMode={editMode}
         handleChange={handleChange}
       />
 
-      <BundleDescription description={bundle.description} editMode={editMode}
+      <BundleDescription description={bundle.get('description')} editMode={editMode}
         handleChange={handleChange}
       />
 
@@ -28,7 +28,7 @@ export default function BundleViewBody ({
 
       <div className='line' />
 
-      {bundle.links.map((link, index) =>
+      {bundle.get('links').map((link, index) =>
         <BundleView.Link key={index} index={index} link={link} editMode={editMode}
           handleLinkEdit={handleLinkEdit} handleLinkRemove={handleLinkRemove}
         />
@@ -38,7 +38,7 @@ export default function BundleViewBody ({
 }
 
 BundleViewBody.propTypes = {
-  bundle: React.PropTypes.object,
+  bundle: ImmutablePropTypes.map,
   editMode: React.PropTypes.bool,
   toggleEditMode: React.PropTypes.func,
   handleLinkEdit: React.PropTypes.func,

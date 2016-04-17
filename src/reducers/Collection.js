@@ -3,10 +3,10 @@ import { fromJS } from 'immutable'
 export default function (state = fromJS({ list: [] }), action) {
   switch (action.type) {
     case 'RECEIVE_COLLECTIONS':
-      return state.set('list', fromJS(action.list))
+      return state.set('list', action.list)
 
     case 'RECEIVE_COLLECTION':
-      return state.set('current', fromJS(action.collection))
+      return state.set('current', action.collection)
 
     case 'FAVORITE_COLLECTION':
       return state.update('list', (list) => list.map((col) => {

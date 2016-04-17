@@ -1,3 +1,4 @@
+import { fromJS, Map, List } from 'immutable'
 import request from 'axios'
 import api from './../api'
 
@@ -6,7 +7,7 @@ export function saveBundleAction (bundle) {
     const response = await request.post(api.bundles(), { bundle })
     const { data } = response
 
-    dispatch({ type: 'SAVE_BUNDLE', bundle: data })
+    dispatch({ type: 'SAVE_BUNDLE', bundle: fromJS(data) })
 
     return data
   }
@@ -16,21 +17,21 @@ export function generateNewBundle () {
   return { type: 'GENERATE_NEW_BUNDLE' }
 }
 
-export function updateBundleState (data) {
-  return { type: 'UPDATE_BUNDLE_LINKS', data }
+export function updateBundleState (link) {
+  return { type: 'UPDATE_BUNDLE_LINKS', link }
 }
 
 export function getBundle (id) {
   return async function (dispatch) {
     const response = await request.get(api.bundles(id))
-    dispatch({ type: 'RECEIVE_BUNDLE', bundle: response.data })
+    dispatch({ type: 'RECEIVE_BUNDLE', bundle: fromJS(response.data) })
   }
 }
 
 export function getBundles () {
   return async function (dispatch) {
     const response = await request.get(api.bundles())
-    dispatch({ type: 'RECEIVE_BUNDLES', list: response.data })
+    dispatch({ type: 'RECEIVE_BUNDLES', list: fromJS(response.data) })
   }
 }
 
@@ -44,19 +45,19 @@ export function removeBundle (id) {
 export function updateBundle (id, data) {
   return async function (dispatch) {
     const response = await request.put(api.bundles(id), { bundle: data })
-    dispatch({ type: 'UPDATE_BUNDLE', bundle: response.data })
+    dispatch({ type: 'UPDATE_BUNDLE', bundle: fromJS(response.data) })
   }
 }
 
 export function fetchLink (url) {
   return async function (dispatch) {
     const response = await request.get(api.fetchLink(url))
-    const link = {
+    const link = fromJS({
       url: response.data.url,
       title: response.data.title,
       description: response.data.description,
       image: response.data.image
-    }
+    })
 
     dispatch({ type: 'FETCH_LINK', link })
   }

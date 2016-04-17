@@ -10,9 +10,5 @@ export function shouldShow (show) {
 }
 
 export function linksWithoutAuthors (links) {
-  return links.map(link => {
-    let newLink = { ...link }
-    delete newLink.creator
-    return newLink
-  })
+  return links.map(link => link.delete('creator'))
 }

@@ -1,5 +1,4 @@
 import listensToClickOutside from 'react-onclickoutside/decorator'
-
 import './index.css'
 
 @listensToClickOutside()
@@ -9,21 +8,21 @@ export default class UserMenu extends React.Component {
   }
 
   render () {
-    let { children, isOpen, openUserMenu, currentUser } = this.props
+    let { children, isOpen, openUserMenu, userImage } = this.props
 
     return (
       <div className='user-menu'>
         {isOpen ? children : null}
 
         <div className='avatar-holder' onClick={openUserMenu}>
-          <img src={currentUser.image} />
+          <img src={userImage} />
         </div>
       </div>
     )
   }
 
   static propTypes = {
-    currentUser: React.PropTypes.object.isRequired,
+    userImage: React.PropTypes.string.isRequired,
     isOpen: React.PropTypes.bool.isRequired,
     openUserMenu: React.PropTypes.func.isRequired,
     closeUserMenu: React.PropTypes.func.isRequired,

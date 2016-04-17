@@ -7,7 +7,7 @@ import Wrapper from '../BundleView/Wrapper'
 import { linksWithoutAuthors } from '../../helpers'
 
 const connectState = (state) => ({
-  currentBundle: state.Bundle.toJS().current
+  currentBundle: state.Bundle.get('current')
 })
 
 const connectProps = bundleActions
@@ -23,9 +23,9 @@ export default class BundleNewContainer extends React.Component {
   saveBundle () {
     const { currentBundle, saveBundleAction } = this.props
     const payload = {
-      name: currentBundle.name,
-      description: currentBundle.description,
-      links_attributes: linksWithoutAuthors(currentBundle.links)
+      name: currentBundle.get('name'),
+      description: currentBundle.get('description'),
+      links_attributes: linksWithoutAuthors(currentBundle.get('links'))
     }
 
     saveBundleAction(payload).then((bundle) => {

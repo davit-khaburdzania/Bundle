@@ -1,8 +1,9 @@
+import ImmutablePropTypes from 'react-immutable-proptypes'
 import Wrapper from './Wrapper'
 import './index.css'
 
 function alertContent (alerts) {
-  if (alerts.length === 1) {
+  if (alerts.size === 1) {
     return alerts
   } else {
     return <ul>{alerts.map((item, key) => <li key={key}>{item}</li>)}</ul>
@@ -24,6 +25,6 @@ Alert.Wrapper = Wrapper
 
 Alert.propTypes = {
   type: React.PropTypes.string.isRequired,
-  alerts: React.PropTypes.array.isRequired,
+  alerts: ImmutablePropTypes.list.isRequired,
   removeAlert: React.PropTypes.func.isRequired
 }

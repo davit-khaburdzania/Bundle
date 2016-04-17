@@ -1,4 +1,6 @@
-export default function (state = [], action) {
+import { List } from 'immutable'
+
+export default function (state = List(), action) {
   switch (action.type) {
     case 'ADD_ALERT':
       return state.concat(action.alert)
