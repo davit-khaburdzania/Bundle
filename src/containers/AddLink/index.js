@@ -4,8 +4,8 @@ import EnterUrl from './EnterUrl'
 import LinkPreview from './LinkPreview'
 
 const connectState = (state) => ({
-  currentBundle: state.Bundle.toJS().current,
-  currentUser: state.User.toJS().me
+  currentBundle: state.Bundle.get('current'),
+  currentUser: state.User.get('me')
 })
 
 const connectProps = bundleActions
@@ -15,32 +15,32 @@ export default class BundleAddLink extends React.Component {
   addLinkHandler (link) {
     const { currentUser, currentBundle,
       updateBundle, updateBundleState } = this.props
+
     const payload = {
-      links_attributes: [{
-        ...link,
-        creator_id: currentUser.id
-      }]
+      links_attributes: [link.set('creator_id', currentUser.get('id')).toJS()]
     }
 
-    if (currentBundle.isNewBundle) {
-      link.creator = currentUser
-
-      return updateBundleState(link)
+    if (currentBundle.get('isNewBundle')) {
+      let linkWithCreator = link.set('creator', currentUser)
+      return updateBundleState(linkWithCreator)
     }
 
-    updateBundle(currentBundle.id, payload)
+    updateBundle(currentBundle.get('id'), payload)
   }
 
   render () {
     const { currentUser, currentBundle, fetchLink } = this.props
-    const link = currentBundle.link
+    const link = currentBundle.get('link')
 
     if (link) {
-      return <LinkPreview currentUser={currentUser} link={link}
-        addLinkHandler={this.addLinkHandler.bind(this)} />
+      return <LinkPreview link={link} currentUser={currentUser}
+               addLinkHandler={this.addLinkHandler.bind(this)}
+             />
     } else {
-      return <EnterUrl image={currentUser.image} bundleId={currentBundle.id}
-        handeUrlEnter={fetchLink} />
+      return <EnterUrl image={currentUser.get('image')}
+               bundleId={currentBundle.get('id')}
+               handeUrlEnter={fetchLink}
+             />
     }
   }
 }

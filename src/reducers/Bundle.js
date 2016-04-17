@@ -1,24 +1,24 @@
-import { fromJS } from 'immutable'
+import { fromJS, Map, List } from 'immutable'
 
-const bundle = {
+const bundle = Map({
   name: '',
   description: '',
   id: -1,
   isNewBundle: true,
-  links: []
-}
+  links: List()
+})
 
 export default function (state = fromJS({ list: [] }), action) {
   switch (action.type) {
     case 'GENERATE_NEW_BUNDLE':
-      return state.set('current', fromJS(bundle))
+      return state.set('current', bundle)
 
     case 'SAVE_BUNDLE':
       return state.set('current', fromJS(action.bundle))
 
     case 'UPDATE_BUNDLE_LINKS':
       return state
-        .updateIn(['current', 'links'], links => links.unshift(fromJS(action.data)))
+        .updateIn(['current', 'links'], links => links.unshift(action.link))
         .deleteIn(['current', 'link'])
 
     case 'RECEIVE_BUNDLES':

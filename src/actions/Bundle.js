@@ -16,8 +16,8 @@ export function generateNewBundle () {
   return { type: 'GENERATE_NEW_BUNDLE' }
 }
 
-export function updateBundleState (data) {
-  return { type: 'UPDATE_BUNDLE_LINKS', data }
+export function updateBundleState (link) {
+  return { type: 'UPDATE_BUNDLE_LINKS', link }
 }
 
 export function getBundle (id) {

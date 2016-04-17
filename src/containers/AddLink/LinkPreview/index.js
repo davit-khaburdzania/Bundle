@@ -1,16 +1,11 @@
+import ImmutablePropTypes from 'react-immutable-proptypes'
 import { BundleView } from '../../../components'
 import './index.css'
 
-export default function LinkPreview ({
-  link,
-  currentUser,
-  addLinkHandler
-}) {
-  const linkWithCreator = {
-    ...link,
-    creator: currentUser,
-    created_at: link.created_at || new Date().toISOString()
-  }
+export default function LinkPreview ({ link, currentUser, addLinkHandler }) {
+  const linkWithCreator = link
+    .set('creator', currentUser)
+    .set('created_at', link.created_at || new Date().toISOString())
 
   return (
     <div className='add-link-preview'>
@@ -24,7 +19,7 @@ export default function LinkPreview ({
 }
 
 LinkPreview.propTypes = {
-  link: React.PropTypes.object.isRequired,
-  currentUser: React.PropTypes.object.isRequired,
+  link: ImmutablePropTypes.map.isRequired,
+  currentUser: ImmutablePropTypes.map.isRequired,
   addLinkHandler: React.PropTypes.func.isRequired
 }
