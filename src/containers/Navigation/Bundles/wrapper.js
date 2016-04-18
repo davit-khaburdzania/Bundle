@@ -12,6 +12,15 @@ export default function Wrapper ({
   ...listItemProps
 }) {
   let styles = { 'display': search.get('open') ? 'none' : 'block' }
+  let bundlesList = bundles.valueSeq().map((bundle, index) => {
+    return <ListItem key={index} Component={ListItem.Bundle}
+      {...bundle.toJS()} {...listItemProps}
+      url={'/bundles/' + bundle.get('id')}
+      type={'bundle'}
+      active={bundle.get('id') === bundleId}
+      remove={removeBundle}
+    />
+  })
 
   return (
     <ResourceNavigation>
@@ -26,15 +35,7 @@ export default function Wrapper ({
 
         <ResourceNavigation.Body>
           <List>
-            {bundles.map((bundle, index) =>
-              <ListItem key={index} Component={ListItem.Bundle}
-                {...bundle.toJS()} {...listItemProps}
-                url={'/bundles/' + bundle.get('slug')}
-                type={'bundle'}
-                active={bundle.get('slug') === bundleId}
-                remove={removeBundle}
-              />
-            )}
+            {bundlesList}
           </List>
         </ResourceNavigation.Body>
       </div>

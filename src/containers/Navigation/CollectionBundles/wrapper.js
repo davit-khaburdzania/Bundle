@@ -1,7 +1,7 @@
 import { ResourceNavigation, List, ListItem } from '../../../components'
 
 function bundleUrl (collection, bundle) {
-  return `/collections/${collection.get('id')}/bundles/${bundle.get('slug')}`
+  return `/collections/${collection.get('id')}/bundles/${bundle.get('id')}`
 }
 
 export default function Wrapper ({
@@ -28,7 +28,7 @@ export default function Wrapper ({
                 url={bundleUrl(collection, bundle)}
                 type={'bundle'}
                 remove={removeBundle}
-                active={bundle.get('slug') === bundleId}
+                active={bundle.get('id') === bundleId}
               />
             )}
           </List>

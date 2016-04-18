@@ -1,6 +1,6 @@
 import { fromJS, Map, List } from 'immutable'
 
-const bundle = Map({
+let defaultBundle = Map({
   name: '',
   description: '',
   id: -1,
@@ -8,10 +8,15 @@ const bundle = Map({
   links: List()
 })
 
-export default function (state = Map({ list: List() }), action) {
+let defaultState = Map({
+  byId: Map(),
+  current: null
+})
+
+export default function (state = defaultState, action) {
   switch (action.type) {
     case 'GENERATE_NEW_BUNDLE':
-      return state.set('current', bundle)
+      return state.set('current', defaultBundle)
 
     case 'SAVE_BUNDLE':
       return state.set('current', action.bundle)
@@ -22,27 +27,19 @@ export default function (state = Map({ list: List() }), action) {
         .deleteIn(['current', 'link'])
 
     case 'RECEIVE_BUNDLES':
-      return state.set('list', action.list)
+      return state.set('byId', Map(action.list.map(bundle => [bundle.get('id'), bundle])))
 
     case 'RECEIVE_BUNDLE':
       return state.set('current', action.bundle)
 
     case 'FAVORITE_BUNDLE':
-      return state.update('list', (list) => list.map((bundle) => {
-        if (bundle.get('id') === action.id) return bundle.set('favorited', true)
-        return bundle
-      }))
+      return state.updateIn(['byId', action.id], (bundle) => bundle.set('favorited', true))
 
     case 'UNFAVORITE_BUNDLE':
-      return state.update('list', (list) => list.map((bundle) => {
-        if (bundle.get('id') === action.id) return bundle.set('favorited', false)
-        return bundle
-      }))
+      return state.updateIn(['byId', action.id], (bundle) => bundle.set('favorited', false))
 
     case 'REMOVE_BUNDLE':
-      return state.update('list', (list) => {
-        return list.filter((bundle) => bundle.get('id') !== action.id)
-      })
+      return state.deleteIn(['byId', action.id])
 
     case 'UPDATE_BUNDLE':
       return state.set('current', action.bundle)

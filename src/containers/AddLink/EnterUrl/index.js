@@ -23,5 +23,5 @@ export default function EnterUrl ({
 EnterUrl.propTypes = {
   image: React.PropTypes.string.isRequired,
   handeUrlEnter: React.PropTypes.func.isRequired,
-  bundleId: React.PropTypes.number.isRequired
+  bundleId: React.PropTypes.string.isRequired
 }

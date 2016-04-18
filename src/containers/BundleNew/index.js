@@ -29,7 +29,7 @@ export default class BundleNewContainer extends React.Component {
     }
 
     saveBundleAction(payload).then((bundle) => {
-      const newBundleRoutePath = `/bundles/${bundle.slug}`
+      const newBundleRoutePath = `/bundles/${bundle.id}`
 
       browserHistory.push(newBundleRoutePath)
     })
