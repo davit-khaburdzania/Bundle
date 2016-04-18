@@ -1,16 +1,16 @@
 import { fromJS, Map, List } from 'immutable'
 
 let defaultBundle = Map({
+  id: '-1',
   name: '',
   description: '',
-  id: 'sadasdasd',
   isNewBundle: true,
   links: List()
 })
 
 let defaultState = Map({
   byId: Map(),
-  current: null
+  current: undefined
 })
 
 export default function (state = defaultState, action) {

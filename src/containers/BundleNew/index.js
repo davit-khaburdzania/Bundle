@@ -16,7 +16,6 @@ const connectProps = bundleActions
 export default class BundleNewContainer extends React.Component {
   componentWillMount () {
     const { generateNewBundle } = this.props
-
     generateNewBundle()
   }
 
@@ -38,7 +37,7 @@ export default class BundleNewContainer extends React.Component {
   render () {
     const { currentBundle, updateBundleInfo, updateBundleLink } = this.props
 
-    if (! currentBundle) return false
+    if (!currentBundle) return false
 
     return (
       <div className='bundle-view-wrapper'>
