@@ -19,6 +19,11 @@ const connectProps = {
 
 @connect(connectState, connectProps)
 export default class Container extends React.Component {
+  static propTypes = {
+    bundles: ImmutablePropTypes.map,
+    search: ImmutablePropTypes.map
+  }
+
   constructor (props) {
     super(props)
     props.getBundles()
@@ -26,10 +31,5 @@ export default class Container extends React.Component {
 
   render () {
     return <Wrapper {...this.props} />
-  }
-
-  static propTypes = {
-    bundles: ImmutablePropTypes.map,
-    search: ImmutablePropTypes.map
   }
 }

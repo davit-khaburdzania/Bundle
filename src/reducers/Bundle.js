@@ -3,7 +3,7 @@ import { fromJS, Map, List } from 'immutable'
 let defaultBundle = Map({
   name: '',
   description: '',
-  id: -1,
+  id: 'sadasdasd',
   isNewBundle: true,
   links: List()
 })

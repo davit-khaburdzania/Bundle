@@ -1,29 +1,25 @@
-import { fromJS } from 'immutable'
+import { fromJS, Map, List } from 'immutable'
 
-export default function (state = fromJS({ list: [] }), action) {
+let defaultState = Map({
+  byId: Map()
+})
+
+export default function (state = defaultState, action) {
   switch (action.type) {
     case 'RECEIVE_COLLECTIONS':
-      return state.set('list', action.list)
+      return state.set('byId', Map(action.list.map(col => [col.get('id'), col])))
 
     case 'RECEIVE_COLLECTION':
       return state.set('current', action.collection)
 
     case 'FAVORITE_COLLECTION':
-      return state.update('list', (list) => list.map((col) => {
-        if (col.get('id') === action.id) return col.set('favorited', true)
-        return col
-      }))
+      return state.updateIn(['byId', action.id], (col) => col.set('favorited', true))
 
     case 'UNFAVORITE_COLLECTION':
-      return state.update('list', (list) => list.map((col) => {
-        if (col.get('id') === action.id) return col.set('favorited', false)
-        return col
-      }))
+      return state.updateIn(['byId', action.id], (col) => col.set('favorited', false))
 
     case 'REMOVE_COLLECTION':
-      return state.update('list', (list) => {
-        return list.filter((col) => col.get('id') !== action.id)
-      })
+      return state.deleteIn(['byId', action.id])
 
     default:
       return state
