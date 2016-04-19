@@ -6,6 +6,7 @@ let paths = {
   collections: (id = '') => `${BASE}/collections/${id}`,
   search: (query) => `${BASE}/search/resource?q=${query}`,
   favorite: (resource, id) => `${BASE}/${resource}/${id}/favorite`,
+  favorites: () => `${BASE}/favorites`,
   fetchLink: (url) => FETCHER_URL + url
 }
 

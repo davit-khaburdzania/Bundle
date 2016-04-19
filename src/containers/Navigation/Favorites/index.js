@@ -9,14 +9,15 @@ const connectState = (state) => ({
 })
 
 const connectProps = {
-  ...bundleActions
+  ...bundleActions,
+  ...favoriteActions
 }
 
 @connect(connectState, connectProps)
 export default class Container extends React.Component {
   constructor (props) {
     super(props)
-    // props.getBundles()
+    props.getFavorites()
   }
 
   render () {
