@@ -24,7 +24,7 @@ export function updateBundleState (link) {
 export function getBundle (id) {
   return async function (dispatch) {
     const response = await request.get(api.bundles(id))
-    dispatch({ type: 'RECEIVE_BUNDLE', bundle: fromJS(response.data) })
+    dispatch({ type: 'SAVE_BUNDLE', bundle: fromJS(response.data) })
   }
 }
 
@@ -45,7 +45,7 @@ export function removeBundle (id) {
 export function updateBundle (id, data) {
   return async function (dispatch) {
     const response = await request.put(api.bundles(id), { bundle: data })
-    dispatch({ type: 'UPDATE_BUNDLE', bundle: fromJS(response.data) })
+    dispatch({ type: 'SAVE_BUNDLE', bundle: fromJS(response.data) })
   }
 }
 
@@ -71,6 +71,6 @@ export function updateBundleInfo (bundleId, field, value) {
   return { type: 'UPDATE_BUNDLE_INFO', bundleId, field, value }
 }
 
-export function toggleEditMode () {
-  return { type: 'TOGGLE_EDIT_MODE' }
+export function toggleEditMode (bundleId) {
+  return { type: 'TOGGLE_EDIT_MODE', bundleId }
 }

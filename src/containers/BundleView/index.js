@@ -4,7 +4,7 @@ import Wrapper from './Wrapper'
 import { linksWithoutAuthors } from '../../helpers'
 
 const connectState = (state) => ({
-  bundle: state.Bundle.get('current'),
+  bundle: state.Bundle.getIn(['byId', state.Route.getIn(['bundle', 'id'])]),
   bundleId: state.Route.getIn(['bundle', 'id'])
 })
 
@@ -24,6 +24,10 @@ export default class BundleViewContainer extends React.Component {
     if (bundleId !== nextBundleId) getBundle(nextBundleId)
   }
 
+  shouldComponentUpdate (nextProps) {
+    return nextProps.bundle.get('full_bundle') ? true : false
+  }
+
   handleLinkRemove (index) {
     const { bundle, updateBundle } = this.props
     const linkId = bundle.getIn(['links', index, 'id'])
@@ -38,7 +42,7 @@ export default class BundleViewContainer extends React.Component {
   toggleEdit (save) {
     const { toggleEditMode, bundle, updateBundle } = this.props
 
-    if (!save) return toggleEditMode()
+    if (!save) return toggleEditMode(bundle.get('id'))
 
     const payload = {
       name: bundle.get('name'),
@@ -47,7 +51,7 @@ export default class BundleViewContainer extends React.Component {
     }
 
     updateBundle(bundle.get('id'), payload)
-    toggleEditMode()
+    toggleEditMode(bundle.get('id'))
   }
 
   render () {
