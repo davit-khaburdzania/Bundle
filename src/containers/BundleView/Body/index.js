@@ -16,12 +16,12 @@ export default function BundleViewBody ({
 }) {
   return (
     <div className='bundle-view-body'>
-      <BundleName name={bundle.get('name')} editMode={editMode}
+      <BundleName bundleId={bundle.get('id')} name={bundle.get('name')} editMode={editMode}
         handleChange={handleChange}
       />
 
-      <BundleDescription description={bundle.get('description')} editMode={editMode}
-        handleChange={handleChange}
+      <BundleDescription bundleId={bundle.get('id')} description={bundle.get('description')}
+        editMode={editMode} handleChange={handleChange}
       />
 
       <AddLink bundle={bundle} />

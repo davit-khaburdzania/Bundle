@@ -67,8 +67,8 @@ export function updateBundleLink (id, field, value) {
   return { type: 'UPDATE_BUNDLE_LINK', id, field, value }
 }
 
-export function updateBundleInfo (field, value) {
-  return { type: 'UPDATE_BUNDLE_INFO', field, value }
+export function updateBundleInfo (bundleId, field, value) {
+  return { type: 'UPDATE_BUNDLE_INFO', bundleId, field, value }
 }
 
 export function toggleEditMode () {

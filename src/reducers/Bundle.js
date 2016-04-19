@@ -19,7 +19,9 @@ export default function (state = defaultState, action) {
       return state.set('current', defaultBundle)
 
     case 'SAVE_BUNDLE':
-      return state.set('current', action.bundle)
+      return state
+        .set('current', action.bundle)
+        .setIn(['byId', action.bundle.get('id')], action.bundle)
 
     case 'UPDATE_BUNDLE_LINKS':
       return state
@@ -45,8 +47,13 @@ export default function (state = defaultState, action) {
       return state.set('current', action.bundle)
 
     case 'UPDATE_BUNDLE_INFO':
-      return state.setIn(['current', action.field], action.value)
+      state = state.setIn(['current', action.field], action.value)
 
+      if (state.getIn(['byId', action.bundleId])) {
+        state = state.setIn(['byId', action.bundleId, action.field], action.value)
+      }
+
+      return state
     case 'UPDATE_BUNDLE_LINK':
       return state.updateIn(['current', 'links'], (links) => links.map((link) => {
         if (link.get('id') === action.id) {

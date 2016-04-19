@@ -2,6 +2,7 @@ import { shouldShow } from '../../../../helpers'
 import './index.css'
 
 export default function BundleDescription ({
+  bundleId,
   description,
   editMode,
   handleChange
@@ -14,13 +15,14 @@ export default function BundleDescription ({
 
       <textarea style={shouldShow(editMode)} className='bundle-description-input'
         type='text' value={description} placeholder='Description goes here'
-        onChange={(e) => handleChange('description', e.target.value)}
+        onChange={(e) => handleChange(bundleId, 'description', e.target.value)}
       />
     </div>
   )
 }
 
 BundleDescription.propTypes = {
+  bundleId: React.PropTypes.string,
   description: React.PropTypes.string,
   editMode: React.PropTypes.bool,
   handleChange: React.PropTypes.func
