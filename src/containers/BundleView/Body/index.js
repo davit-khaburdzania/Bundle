@@ -30,7 +30,7 @@ export default function BundleViewBody ({
 
       {bundle.get('links').map((link, index) =>
         <BundleView.Link key={index} index={index} link={link} editMode={editMode}
-          handleLinkEdit={handleLinkEdit} handleLinkRemove={handleLinkRemove}
+          handleLinkEdit={handleLinkEdit} handleLinkRemove={handleLinkRemove} bundleId={bundle.get('id')}
         />
       )}
     </div>

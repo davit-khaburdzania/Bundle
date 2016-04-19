@@ -5,11 +5,11 @@ import { urlDomain, shouldShow } from '../../../helpers'
 import './index.css'
 
 export default class BundleLink extends React.Component {
-  handleEdit (link, field, event) {
+  handleEdit (bundleId, link, field, event) {
     const { handleLinkEdit } = this.props
     const value = event.target.value
 
-    handleLinkEdit(link.id, field, value)
+    handleLinkEdit(bundleId, link.id, field, value)
   }
 
   handleRemoveClick (event) {
@@ -19,7 +19,7 @@ export default class BundleLink extends React.Component {
   }
 
   render () {
-    const { link, editMode } = this.props
+    const { bundleId, link, editMode } = this.props
 
     return (
       <div className='bundle-view-link'>
@@ -40,7 +40,7 @@ export default class BundleLink extends React.Component {
 
           <input style={shouldShow(editMode)} type='text'
             value={link.get('description')} className='link-description-input'
-            onChange={this.handleEdit.bind(this, link, 'description')}
+            onChange={this.handleEdit.bind(this, bundleId, link, 'description')}
           />
         </div>
 
@@ -76,6 +76,7 @@ export default class BundleLink extends React.Component {
 }
 
 BundleLink.propTypes = {
+  bundleId: React.PropTypes.string,
   index: React.PropTypes.number,
   handleLinkRemove: React.PropTypes.func,
   link: ImmutablePropTypes.map,

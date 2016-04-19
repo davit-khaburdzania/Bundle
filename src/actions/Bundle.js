@@ -17,8 +17,8 @@ export function generateNewBundle () {
   return { type: 'GENERATE_NEW_BUNDLE' }
 }
 
-export function updateBundleState (link) {
-  return { type: 'UPDATE_BUNDLE_LINKS', link }
+export function addCurrentLinkToLink (bundleId, link) {
+  return { type: 'ADD_CURRENT_LINK_TO_BUNDLE', link, bundleId }
 }
 
 export function getBundle (id) {
@@ -49,7 +49,7 @@ export function updateBundle (id, data) {
   }
 }
 
-export function fetchLink (url) {
+export function fetchLink (url, bundleId) {
   return async function (dispatch) {
     const response = await request.get(api.fetchLink(url))
     const link = fromJS({
@@ -59,12 +59,12 @@ export function fetchLink (url) {
       image: response.data.image
     })
 
-    dispatch({ type: 'FETCH_LINK', link })
+    dispatch({ type: 'FETCH_LINK', link, bundleId})
   }
 }
 
-export function updateBundleLink (id, field, value) {
-  return { type: 'UPDATE_BUNDLE_LINK', id, field, value }
+export function updateBundleLink (bundleId, linkId, field, value) {
+  return { type: 'UPDATE_BUNDLE_LINK', bundleId, linkId, field, value }
 }
 
 export function updateBundleInfo (bundleId, field, value) {

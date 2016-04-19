@@ -20,13 +20,12 @@ export default function (state = defaultState, action) {
 
     case 'SAVE_BUNDLE':
       return state
-        .set('current', action.bundle)
         .setIn(['byId', action.bundle.get('id')], action.bundle)
 
-    case 'UPDATE_BUNDLE_LINKS':
+    case 'ADD_CURRENT_LINK_TO_BUNDLE':
       return state
-        .updateIn(['current', 'links'], links => links.unshift(action.link))
-        .deleteIn(['current', 'link'])
+        .updateIn(['byId', action.bundleId, 'links'], links => links.unshift(action.link))
+        .deleteIn(['byId', action.bundleId, 'link'])
 
     case 'RECEIVE_BUNDLES':
       return state.set('byId', Map(action.list.map(bundle => [bundle.get('id'), bundle])))
@@ -44,8 +43,8 @@ export default function (state = defaultState, action) {
       return state.setIn(['byId', action.bundleId, action.field], action.value)
 
     case 'UPDATE_BUNDLE_LINK':
-      return state.updateIn(['current', 'links'], (links) => links.map((link) => {
-        if (link.get('id') === action.id) {
+      return state.updateIn(['byId', action.bundleId, 'links'], (links) => links.map((link) => {
+        if (link.get('id') === action.linkId) {
           return link.update(action.field, action.value)
         }
 
@@ -53,7 +52,7 @@ export default function (state = defaultState, action) {
       }))
 
     case 'FETCH_LINK':
-      return state.setIn(['current', 'link'], action.link)
+      return state.setIn(['byId', action.bundleId, 'link'], action.link)
 
     case 'TOGGLE_EDIT_MODE':
       const editMode = state.getIn(['byId', action.bundleId, 'editMode'])
