@@ -3,9 +3,19 @@ import api from './../api'
 
 export function getFavorites () {
   return async function (dispatch) {
+    let bundles = []
+    let collections = []
     const response = await request.get(api.favorites())
-    console.log('act : ', response)
-    // dispatch({ type: 'RECEIVE_FAVORITES', result: fromJS(response.data) })
+
+    response.data.filter(object => {
+      if (object.favoritable_type === 'Collection') {
+        return collections.push(object.favoritable)
+      }
+
+      return bundles.push(object.favoritable)
+    })
+
+    dispatch({ type: 'RECEIVE_FAVORITES_LIST', bundles, collections })
   }
 }
 

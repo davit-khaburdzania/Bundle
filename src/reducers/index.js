@@ -8,6 +8,7 @@ import Search from './Search'
 import Alert from './Alert'
 import User from './User'
 import Route from './Route'
+import Favorite from './Favorite'
 
 export default combineReducers({
   routing,
@@ -17,5 +18,6 @@ export default combineReducers({
   Collection,
   Search,
   Alert,
-  User
+  User,
+  Favorite
 })

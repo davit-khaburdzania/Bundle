@@ -1,6 +1,14 @@
 import { ResourceNavigation, List, ListItem } from '../../../components'
 
-export default function Container () {
+export default function Container ({
+  bundles,
+  collections,
+  removeBundle,
+  bundleId,
+  collectionId,
+  ...listItemProps
+}) {
+
   return (
     <ResourceNavigation>
       <div className='favorites-navigation'>
@@ -13,7 +21,7 @@ export default function Container () {
           <div>
             favorites
           </div>
-          {/*<List>
+          <List>
             {bundles.map((bundle, index) =>
               <ListItem key={index} Component={ListItem.Bundle}
                 {...bundle.toJS()} {...listItemProps}
@@ -21,6 +29,17 @@ export default function Container () {
                 type={'bundle'}
                 active={bundle.get('slug') === bundleId}
                 remove={removeBundle}
+              />
+            )}
+          </List>
+          <div> collection </div>
+          {/*<List>
+            {collections.map((collection, index) =>
+              <ListItem key={index} Component={ListItem.Collection}
+                {...collection.toJS()} {...listItemProps}
+                url={'/collections/' + collection.get('slug')}
+                type={'collection'}
+                active={collection.get('slug') === collectionId}
               />
             )}
           </List>*/}
