@@ -16,7 +16,7 @@ let defaultState = Map({
 export default function (state = defaultState, action) {
   switch (action.type) {
     case 'GENERATE_NEW_BUNDLE':
-      return state.set('current', defaultBundle)
+      return state.setIn(['byId', defaultBundle.get('id')], defaultBundle)
 
     case 'SAVE_BUNDLE':
       return state
@@ -28,7 +28,11 @@ export default function (state = defaultState, action) {
         .deleteIn(['byId', action.bundleId, 'link'])
 
     case 'RECEIVE_BUNDLES':
-      return state.set('byId', Map(action.list.map(bundle => [bundle.get('id'), bundle])))
+      action.list.forEach(bundle => {
+        state = state.setIn(['byId', bundle.get('id')], bundle)
+      })
+
+      return state
 
     case 'FAVORITE_BUNDLE':
       return state.updateIn(['byId', action.id], (bundle) => bundle.set('favorited', true))
@@ -44,8 +48,8 @@ export default function (state = defaultState, action) {
 
     case 'UPDATE_BUNDLE_LINK':
       return state.updateIn(['byId', action.bundleId, 'links'], (links) => links.map((link) => {
-        if (link.get('id') === action.linkId) {
-          return link.update(action.field, action.value)
+        if (link.get('id') == action.linkId) {
+          return link.set(action.field, action.value)
         }
 
         return link

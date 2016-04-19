@@ -13,6 +13,7 @@ export default function Wrapper ({
 }) {
   let styles = { 'display': search.get('open') ? 'none' : 'block' }
   let bundlesList = bundles.valueSeq()
+    .filter(bundle => bundle.get('id') != '-1')
     .sortBy(bundle => bundle.get('created_at'))
     .reverse()
     .map((bundle, index) => {

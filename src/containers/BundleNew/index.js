@@ -7,7 +7,7 @@ import Wrapper from '../BundleView/Wrapper'
 import { linksWithoutAuthors } from '../../helpers'
 
 const connectState = (state) => ({
-  currentBundle: state.Bundle.get('current')
+  currentBundle: state.Bundle.getIn(['byId', '-1'])
 })
 
 const connectProps = bundleActions
@@ -36,7 +36,6 @@ export default class BundleNewContainer extends React.Component {
 
   render () {
     const { currentBundle, updateBundleInfo, updateBundleLink } = this.props
-
     if (!currentBundle) return false
 
     return (

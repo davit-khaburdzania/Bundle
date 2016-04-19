@@ -9,7 +9,7 @@ export default class BundleLink extends React.Component {
     const { handleLinkEdit } = this.props
     const value = event.target.value
 
-    handleLinkEdit(bundleId, link.id, field, value)
+    handleLinkEdit(bundleId, link.get('id'), field, value)
   }
 
   handleRemoveClick (event) {
