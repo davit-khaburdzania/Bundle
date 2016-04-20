@@ -49,7 +49,7 @@ export default function (state = defaultState, action) {
 
     case 'UPDATE_BUNDLE_LINK':
       return state.updateIn(['byId', action.bundleId, 'links'], links => {
-        links.map((link) => {
+        return links.map((link) => {
           if (link.get('id') == action.linkId) {
             return link.set(action.field, action.value)
           }
