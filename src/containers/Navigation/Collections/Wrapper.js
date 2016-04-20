@@ -9,8 +9,10 @@ export default function Wrapper ({
     .sortBy(col => col.get('created_at'))
     .reverse()
     .map((collection, index) => {
-      return <ListItem key={index} Component={ListItem.Collection}
-        {...collection.toJS()} {...listItemProps}
+      return <ListItem key={index}
+        {...collection.toJS()}
+        {...listItemProps}
+        Component={ListItem.Collection}
         type={'collection'}
         remove={removeCollection}
       />

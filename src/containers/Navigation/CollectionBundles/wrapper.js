@@ -15,8 +15,10 @@ export default function Wrapper ({
     .sortBy(col => col.get('created_at'))
     .reverse()
     .map((bundle, index) => {
-      return <ListItem key={index} j Component={ListItem.Bundle}
-        {...bundle.toJS()} {...listItemProps}
+      return <ListItem key={index}
+        {...bundle.toJS()}
+        {...listItemProps}
+        Component={ListItem.Bundle}
         url={bundleUrl(collection, bundle)}
         type={'bundle'}
         remove={removeBundle}

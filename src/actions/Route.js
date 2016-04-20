@@ -1,9 +1,11 @@
+import { NEW_BUNDLE_ID } from '../constants'
+
 export function routeChangeBundleId (bundleId) {
   return { type: 'ROUTE_CHANGE_BUNDLE_ID', bundleId }
 }
 
 export function routeChangeNewBundle () {
-  return { type: 'ROUTE_CHANGE_BUNDLE_ID', bundleId: '-1' }
+  return { type: 'ROUTE_CHANGE_BUNDLE_ID', bundleId: NEW_BUNDLE_ID }
 }
 
 export function routeChangeNavigationView (view) {

@@ -16,7 +16,7 @@ const connectProps = {
 @connect(connectState, connectProps)
 export default class CollectionsNavigationContainer extends React.Component {
   static propTypes = {
-    collections: ImmutablePropTypes.map,
+    collections: ImmutablePropTypes.map
   }
 
   constructor (props) {

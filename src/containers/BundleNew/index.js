@@ -1,13 +1,14 @@
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
-import * as bundleActions from '../../actions/Bundle'
-
-import Wrapper from '../BundleView/Wrapper'
-
+import { NEW_BUNDLE_ID } from '../../constants'
 import { linksWithoutAuthors } from '../../helpers'
 
+import * as bundleActions from '../../actions/Bundle'
+import Wrapper from '../BundleView/Wrapper'
+
+
 const connectState = (state) => ({
-  currentBundle: state.Bundle.getIn(['byId', '-1'])
+  currentBundle: state.Bundle.getIn(['byId', NEW_BUNDLE_ID])
 })
 
 const connectProps = bundleActions

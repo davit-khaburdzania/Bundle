@@ -14,7 +14,7 @@ const connectProps = bundleActions
 export default class BundleAddLink extends React.Component {
   addLinkHandler (link) {
     const { currentUser, bundle,
-      updateBundle, addCurrentLinkToLink } = this.props
+      updateBundle, addCurrentLinkToBundle } = this.props
 
     const payload = {
       links_attributes: [link.set('creator_id', currentUser.get('id')).toJS()]
@@ -22,7 +22,7 @@ export default class BundleAddLink extends React.Component {
 
     if (bundle.get('isNewBundle')) {
       let linkWithCreator = link.set('creator', currentUser)
-      return addCurrentLinkToLink(bundle.get('id'), linkWithCreator)
+      return addCurrentLinkToBundle(bundle.get('id'), linkWithCreator)
     }
 
     updateBundle(bundle.get('id'), payload)

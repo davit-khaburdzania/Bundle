@@ -17,7 +17,7 @@ export function generateNewBundle () {
   return { type: 'GENERATE_NEW_BUNDLE' }
 }
 
-export function addCurrentLinkToLink (bundleId, link) {
+export function addCurrentLinkToBundle (bundleId, link) {
   return { type: 'ADD_CURRENT_LINK_TO_BUNDLE', link, bundleId }
 }
 

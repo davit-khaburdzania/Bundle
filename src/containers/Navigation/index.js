@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
+import { NEW_BUNDLE_ID } from '../../constants'
 import * as routeActions from '../../actions/Route'
-
 import './index.css'
 
 import {
@@ -88,6 +88,6 @@ export default class Navigation extends React.Component {
   }
 
   isNewBundle (props) {
-    return props.routeBundle.get('id') == '-1'
+    return props.routeBundle.get('id') == NEW_BUNDLE_ID
   }
 }

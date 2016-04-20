@@ -1,7 +1,8 @@
+import { NEW_BUNDLE_ID } from '../constants'
 import { fromJS, Map, List } from 'immutable'
 
 let defaultBundle = Map({
-  id: '-1',
+  id: NEW_BUNDLE_ID,
   name: '',
   description: '',
   isNewBundle: true,
@@ -47,13 +48,15 @@ export default function (state = defaultState, action) {
       return state.setIn(['byId', action.bundleId, action.field], action.value)
 
     case 'UPDATE_BUNDLE_LINK':
-      return state.updateIn(['byId', action.bundleId, 'links'], (links) => links.map((link) => {
-        if (link.get('id') == action.linkId) {
-          return link.set(action.field, action.value)
-        }
+      return state.updateIn(['byId', action.bundleId, 'links'], links => {
+        links.map((link) => {
+          if (link.get('id') == action.linkId) {
+            return link.set(action.field, action.value)
+          }
 
-        return link
-      }))
+          return link
+        })
+      })
 
     case 'FETCH_LINK':
       return state.setIn(['byId', action.bundleId, 'link'], action.link)

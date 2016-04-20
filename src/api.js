@@ -1,11 +1,10 @@
-const BASE = 'http://localhost:3000'
-const FETCHER_URL = 'http://services.spacelab.team/fetcher?url='
+import { API_BASE, FETCHER_URL } from './constants'
 
 let paths = {
-  bundles: (id = '') => `${BASE}/bundles/${id}`,
-  collections: (id = '') => `${BASE}/collections/${id}`,
-  search: (query) => `${BASE}/search/resource?q=${query}`,
-  favorite: (resource, id) => `${BASE}/${resource}/${id}/favorite`,
+  bundles: (id = '') => `${API_BASE}/bundles/${id}`,
+  collections: (id = '') => `${API_BASE}/collections/${id}`,
+  search: (query) => `${API_BASE}/search/resource?q=${query}`,
+  favorite: (resource, id) => `${API_BASE}/${resource}/${id}/favorite`,
   fetchLink: (url) => FETCHER_URL + url
 }
 
