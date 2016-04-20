@@ -4,8 +4,13 @@ import api from './../api'
 
 export function getCollection (id) {
   return async function (dispatch) {
-    const response = await request.get(api.collections(id))
-    dispatch({ type: 'RECEIVE_COLLECTION', collection: fromJS(response.data) })
+    let response = await request.get(api.collections(id))
+    let collection = fromJS(response.data)
+
+    dispatch({ type: 'RECEIVE_BUNDLES', list: collection.get('bundles') })
+
+    collection = collection.update('bundles', bundles => bundles.map(bundle => bundle.get('id')))
+    dispatch({ type: 'RECEIVE_COLLECTION', collection })
   }
 }
 

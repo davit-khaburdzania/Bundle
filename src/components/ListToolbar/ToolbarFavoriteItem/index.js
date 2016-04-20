@@ -18,7 +18,7 @@ export default function ToolbarFavoriteItem ({
 
 ToolbarFavoriteItem.propTypes = {
   type: React.PropTypes.string.isRequired,
-  id: React.PropTypes.number.isRequired,
+  id: React.PropTypes.string.isRequired,
   favorited: React.PropTypes.bool.isRequired,
   favorite: React.PropTypes.func.isRequired,
   unfavorite: React.PropTypes.func.isRequired

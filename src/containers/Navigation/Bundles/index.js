@@ -6,7 +6,7 @@ import * as favoriteActions from '../../../actions/Favorite'
 import Wrapper from './Wrapper'
 
 const connectState = (state) => ({
-  bundles: state.Bundle.get('list'),
+  bundles: state.Bundle.get('byId'),
   bundleId: state.Route.getIn(['bundle', 'id']),
   search: state.Search
 })
@@ -19,6 +19,11 @@ const connectProps = {
 
 @connect(connectState, connectProps)
 export default class Container extends React.Component {
+  static propTypes = {
+    bundles: ImmutablePropTypes.map,
+    search: ImmutablePropTypes.map
+  }
+
   constructor (props) {
     super(props)
     props.getBundles()
@@ -26,10 +31,5 @@ export default class Container extends React.Component {
 
   render () {
     return <Wrapper {...this.props} />
-  }
-
-  static propTypes = {
-    bundles: ImmutablePropTypes.list,
-    search: ImmutablePropTypes.map
   }
 }

@@ -11,7 +11,6 @@ function sharedWithText (count) {
 
 export default function CollectionListItem ({
   id,
-  slug,
   name,
   created_at,
   bundles_count,
@@ -22,7 +21,7 @@ export default function CollectionListItem ({
     <div>
       <ListToolbar id={id} {...toolbarProps} />
 
-      <Link to={'/collections/' + slug}>
+      <Link to={'/collections/' + id}>
         <div>
           <h1>
             {name}
@@ -38,8 +37,7 @@ export default function CollectionListItem ({
 }
 
 CollectionListItem.propTypes = {
-  id: React.PropTypes.number.isRequired,
-  slug: React.PropTypes.string.isRequired,
+  id: React.PropTypes.string.isRequired,
   name: React.PropTypes.string.isRequired,
   created_at: React.PropTypes.string.isRequired,
   bundles_count: React.PropTypes.number.isRequired,

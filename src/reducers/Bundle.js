@@ -1,70 +1,69 @@
+import { NEW_BUNDLE_ID } from '../constants'
 import { fromJS, Map, List } from 'immutable'
 
-const bundle = Map({
+let defaultBundle = Map({
+  id: NEW_BUNDLE_ID,
   name: '',
   description: '',
-  id: -1,
   isNewBundle: true,
   links: List()
 })
 
-export default function (state = Map({ list: List() }), action) {
+let defaultState = Map({
+  byId: Map(),
+  current: undefined
+})
+
+export default function (state = defaultState, action) {
   switch (action.type) {
     case 'GENERATE_NEW_BUNDLE':
-      return state.set('current', bundle)
+      return state.setIn(['byId', defaultBundle.get('id')], defaultBundle)
 
     case 'SAVE_BUNDLE':
-      return state.set('current', action.bundle)
-
-    case 'UPDATE_BUNDLE_LINKS':
       return state
-        .updateIn(['current', 'links'], links => links.unshift(action.link))
-        .deleteIn(['current', 'link'])
+        .setIn(['byId', action.bundle.get('id')], action.bundle)
+
+    case 'ADD_CURRENT_LINK_TO_BUNDLE':
+      return state
+        .updateIn(['byId', action.bundleId, 'links'], links => links.unshift(action.link))
+        .deleteIn(['byId', action.bundleId, 'link'])
 
     case 'RECEIVE_BUNDLES':
-      return state.set('list', action.list)
-
-    case 'RECEIVE_BUNDLE':
-      return state.set('current', action.bundle)
-
-    case 'FAVORITE_BUNDLE':
-      return state.update('list', (list) => list.map((bundle) => {
-        if (bundle.get('id') === action.id) return bundle.set('favorited', true)
-        return bundle
-      }))
-
-    case 'UNFAVORITE_BUNDLE':
-      return state.update('list', (list) => list.map((bundle) => {
-        if (bundle.get('id') === action.id) return bundle.set('favorited', false)
-        return bundle
-      }))
-
-    case 'REMOVE_BUNDLE':
-      return state.update('list', (list) => {
-        return list.filter((bundle) => bundle.get('id') !== action.id)
+      action.list.forEach(bundle => {
+        state = state.setIn(['byId', bundle.get('id')], bundle)
       })
 
-    case 'UPDATE_BUNDLE':
-      return state.set('current', action.bundle)
+      return state
+
+    case 'FAVORITE_BUNDLE':
+      return state.updateIn(['byId', action.id], (bundle) => bundle.set('favorited', true))
+
+    case 'UNFAVORITE_BUNDLE':
+      return state.updateIn(['byId', action.id], (bundle) => bundle.set('favorited', false))
+
+    case 'REMOVE_BUNDLE':
+      return state.deleteIn(['byId', action.id])
 
     case 'UPDATE_BUNDLE_INFO':
-      return state.setIn(['current', action.field], action.value)
+      return state.setIn(['byId', action.bundleId, action.field], action.value)
 
     case 'UPDATE_BUNDLE_LINK':
-      return state.updateIn(['current', 'links'], (links) => links.map((link) => {
-        if (link.get('id') === action.id) {
-          return link.update(action.field, action.value)
-        }
+      return state.updateIn(['byId', action.bundleId, 'links'], links => {
+        return links.map((link) => {
+          if (link.get('id') == action.linkId) {
+            return link.set(action.field, action.value)
+          }
 
-        return link
-      }))
+          return link
+        })
+      })
 
     case 'FETCH_LINK':
-      return state.setIn(['current', 'link'], action.link)
+      return state.setIn(['byId', action.bundleId, 'link'], action.link)
 
     case 'TOGGLE_EDIT_MODE':
-      const editMode = state.getIn(['current', 'editMode'])
-      return state.setIn(['current', 'editMode'], !editMode)
+      const editMode = state.getIn(['byId', action.bundleId, 'editMode'])
+      return state.setIn(['byId', action.bundleId, 'editMode'], !editMode)
 
     default:
       return state

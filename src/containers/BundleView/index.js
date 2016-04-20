@@ -4,7 +4,7 @@ import Wrapper from './Wrapper'
 import { linksWithoutAuthors } from '../../helpers'
 
 const connectState = (state) => ({
-  bundle: state.Bundle.get('current'),
+  bundle: state.Bundle.getIn(['byId', state.Route.getIn(['bundle', 'id'])]),
   bundleId: state.Route.getIn(['bundle', 'id'])
 })
 
@@ -38,7 +38,7 @@ export default class BundleViewContainer extends React.Component {
   toggleEdit (save) {
     const { toggleEditMode, bundle, updateBundle } = this.props
 
-    if (!save) return toggleEditMode()
+    if (!save) return toggleEditMode(bundle.get('id'))
 
     const payload = {
       name: bundle.get('name'),
@@ -47,14 +47,14 @@ export default class BundleViewContainer extends React.Component {
     }
 
     updateBundle(bundle.get('id'), payload)
-    toggleEditMode()
+    toggleEditMode(bundle.get('id'))
   }
 
   render () {
     const { bundle, updateBundleInfo, updateBundleLink } = this.props
 
-    if (!bundle) {
-      return <div>Select Bundle</div>
+    if (!bundle || !bundle.get('full_response')) {
+      return false
     }
 
     return <Wrapper editMode={bundle.get('editMode')} bundle={bundle}

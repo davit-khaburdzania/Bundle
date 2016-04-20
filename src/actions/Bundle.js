@@ -17,14 +17,14 @@ export function generateNewBundle () {
   return { type: 'GENERATE_NEW_BUNDLE' }
 }
 
-export function updateBundleState (link) {
-  return { type: 'UPDATE_BUNDLE_LINKS', link }
+export function addCurrentLinkToBundle (bundleId, link) {
+  return { type: 'ADD_CURRENT_LINK_TO_BUNDLE', link, bundleId }
 }
 
 export function getBundle (id) {
   return async function (dispatch) {
     const response = await request.get(api.bundles(id))
-    dispatch({ type: 'RECEIVE_BUNDLE', bundle: fromJS(response.data) })
+    dispatch({ type: 'SAVE_BUNDLE', bundle: fromJS(response.data) })
   }
 }
 
@@ -45,11 +45,11 @@ export function removeBundle (id) {
 export function updateBundle (id, data) {
   return async function (dispatch) {
     const response = await request.put(api.bundles(id), { bundle: data })
-    dispatch({ type: 'UPDATE_BUNDLE', bundle: fromJS(response.data) })
+    dispatch({ type: 'SAVE_BUNDLE', bundle: fromJS(response.data) })
   }
 }
 
-export function fetchLink (url) {
+export function fetchLink (url, bundleId) {
   return async function (dispatch) {
     const response = await request.get(api.fetchLink(url))
     const link = fromJS({
@@ -59,18 +59,18 @@ export function fetchLink (url) {
       image: response.data.image
     })
 
-    dispatch({ type: 'FETCH_LINK', link })
+    dispatch({ type: 'FETCH_LINK', link, bundleId})
   }
 }
 
-export function updateBundleLink (id, field, value) {
-  return { type: 'UPDATE_BUNDLE_LINK', id, field, value }
+export function updateBundleLink (bundleId, linkId, field, value) {
+  return { type: 'UPDATE_BUNDLE_LINK', bundleId, linkId, field, value }
 }
 
-export function updateBundleInfo (field, value) {
-  return { type: 'UPDATE_BUNDLE_INFO', field, value }
+export function updateBundleInfo (bundleId, field, value) {
+  return { type: 'UPDATE_BUNDLE_INFO', bundleId, field, value }
 }
 
-export function toggleEditMode () {
-  return { type: 'TOGGLE_EDIT_MODE' }
+export function toggleEditMode (bundleId) {
+  return { type: 'TOGGLE_EDIT_MODE', bundleId }
 }
