@@ -24,10 +24,6 @@ export default class BundleViewContainer extends React.Component {
     if (bundleId !== nextBundleId) getBundle(nextBundleId)
   }
 
-  shouldComponentUpdate (nextProps) {
-    return nextProps.bundle.get('full_bundle') ? true : false
-  }
-
   handleLinkRemove (index) {
     const { bundle, updateBundle } = this.props
     const linkId = bundle.getIn(['links', index, 'id'])
@@ -57,8 +53,8 @@ export default class BundleViewContainer extends React.Component {
   render () {
     const { bundle, updateBundleInfo, updateBundleLink } = this.props
 
-    if (!bundle) {
-      return <div>Select Bundle</div>
+    if (!bundle || !bundle.get('full_response')) {
+      return false
     }
 
     return <Wrapper editMode={bundle.get('editMode')} bundle={bundle}

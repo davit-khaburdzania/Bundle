@@ -10,7 +10,7 @@ export default function (state = defaultState, action) {
       return state.set('byId', Map(action.list.map(col => [col.get('id'), col])))
 
     case 'RECEIVE_COLLECTION':
-      return state.set('current', action.collection)
+      return state.setIn(['byId', action.collection.get('id')], action.collection)
 
     case 'FAVORITE_COLLECTION':
       return state.updateIn(['byId', action.id], (col) => col.set('favorited', true))
