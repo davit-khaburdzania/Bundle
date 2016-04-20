@@ -16,11 +16,17 @@ export default function BundleViewBody ({
 }) {
   return (
     <div className='bundle-view-body'>
-      <BundleName name={bundle.get('name')} editMode={editMode}
+      <BundleName
+        bundleId={bundle.get('id')}
+        name={bundle.get('name')}
+        editMode={editMode}
         handleChange={handleChange}
       />
 
-      <BundleDescription description={bundle.get('description')} editMode={editMode}
+      <BundleDescription
+        bundleId={bundle.get('id')}
+        description={bundle.get('description')}
+        editMode={editMode}
         handleChange={handleChange}
       />
 
@@ -29,8 +35,14 @@ export default function BundleViewBody ({
       <div className='line' />
 
       {bundle.get('links').map((link, index) =>
-        <BundleView.Link key={index} index={index} link={link} editMode={editMode}
-          handleLinkEdit={handleLinkEdit} handleLinkRemove={handleLinkRemove}
+        <BundleView.Link
+          key={index}
+          index={index}
+          link={link}
+          bundleId={bundle.get('id')}
+          editMode={editMode}
+          handleLinkEdit={handleLinkEdit}
+          handleLinkRemove={handleLinkRemove}
         />
       )}
     </div>

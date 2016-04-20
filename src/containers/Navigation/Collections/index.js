@@ -1,10 +1,11 @@
+import ImmutablePropTypes from 'react-immutable-proptypes'
 import { connect } from 'react-redux'
 import * as collectionActions from '../../../actions/Collection'
 import * as favoriteActions from '../../../actions/Favorite'
 import Wrapper from './Wrapper'
 
 const connectState = (state) => ({
-  collections: state.Collection.get('list')
+  collections: state.Collection.get('byId')
 })
 
 const connectProps = {
@@ -14,6 +15,10 @@ const connectProps = {
 
 @connect(connectState, connectProps)
 export default class CollectionsNavigationContainer extends React.Component {
+  static propTypes = {
+    collections: ImmutablePropTypes.map
+  }
+
   constructor (props) {
     super(props)
     props.getCollections()

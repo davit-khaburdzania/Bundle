@@ -26,7 +26,7 @@ export default function BundleListItem ({
 }
 
 BundleListItem.propTypes = {
-  id: React.PropTypes.number.isRequired,
+  id: React.PropTypes.string.isRequired,
   name: React.PropTypes.string.isRequired,
   created_at: React.PropTypes.string.isRequired,
   url: React.PropTypes.string.isRequired

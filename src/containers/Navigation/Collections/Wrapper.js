@@ -5,6 +5,19 @@ export default function Wrapper ({
   removeCollection,
   ...listItemProps
 }) {
+  let collectionsList = collections.valueSeq()
+    .sortBy(col => col.get('created_at'))
+    .reverse()
+    .map((collection, index) => {
+      return <ListItem key={index}
+        {...collection.toJS()}
+        {...listItemProps}
+        Component={ListItem.Collection}
+        type={'collection'}
+        remove={removeCollection}
+      />
+  })
+
   return (
     <ResourceNavigation>
       <div className='bundles-navigation'>
@@ -18,13 +31,7 @@ export default function Wrapper ({
 
         <ResourceNavigation.Body>
           <List>
-            {collections.map((collection, index) =>
-              <ListItem key={index} Component={ListItem.Collection}
-                {...collection.toJS()} {...listItemProps}
-                type={'collection'}
-                remove={removeCollection}
-              />
-            )}
+            {collectionsList}
           </List>
         </ResourceNavigation.Body>
       </div>

@@ -1,16 +1,34 @@
 import { ResourceNavigation, List, ListItem } from '../../../components'
 
 function bundleUrl (collection, bundle) {
-  return `/collections/${collection.get('id')}/bundles/${bundle.get('slug')}`
+  return `/collections/${collection.get('id')}/bundles/${bundle.get('id')}`
 }
 
 export default function Wrapper ({
   collection,
+  bundles,
+  bundleId,
   children,
   removeBundle,
-  bundleId,
   ...listItemProps
 }) {
+  let bundleList = collection
+    .get('bundles')
+    .map(id => bundles.get(id))
+    .sortBy(col => col.get('created_at'))
+    .reverse()
+    .map((bundle, index) => {
+      return <ListItem key={index}
+        {...bundle.toJS()}
+        {...listItemProps}
+        Component={ListItem.Bundle}
+        url={bundleUrl(collection, bundle)}
+        type={'bundle'}
+        remove={removeBundle}
+        active={bundle.get('id') === bundleId}
+      />
+    })
+
   return (
     <ResourceNavigation bundleView={children}>
       <div className='bundles-navigation'>
@@ -22,15 +40,7 @@ export default function Wrapper ({
 
         <ResourceNavigation.Body>
           <List>
-            {collection.get('bundles').map((bundle, index) =>
-              <ListItem key={index} j Component={ListItem.Bundle}
-                {...bundle.toJS()} {...listItemProps}
-                url={bundleUrl(collection, bundle)}
-                type={'bundle'}
-                remove={removeBundle}
-                active={bundle.get('slug') === bundleId}
-              />
-            )}
+            {bundleList}
           </List>
         </ResourceNavigation.Body>
       </div>

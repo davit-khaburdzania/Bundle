@@ -27,7 +27,7 @@ export default function ListToolbar ({
 
 ListToolbar.propTypes = {
   type: React.PropTypes.string.isRequired,
-  id: React.PropTypes.number.isRequired,
+  id: React.PropTypes.string.isRequired,
   favorited: React.PropTypes.bool,
   favorite: React.PropTypes.func.isRequired,
   unfavorite: React.PropTypes.func.isRequired,

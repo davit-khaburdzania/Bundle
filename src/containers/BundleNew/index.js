@@ -1,13 +1,14 @@
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
-import * as bundleActions from '../../actions/Bundle'
-
-import Wrapper from '../BundleView/Wrapper'
-
+import { NEW_BUNDLE_ID } from '../../constants'
 import { linksWithoutAuthors } from '../../helpers'
 
+import * as bundleActions from '../../actions/Bundle'
+import Wrapper from '../BundleView/Wrapper'
+
+
 const connectState = (state) => ({
-  currentBundle: state.Bundle.get('current')
+  currentBundle: state.Bundle.getIn(['byId', NEW_BUNDLE_ID])
 })
 
 const connectProps = bundleActions
@@ -16,7 +17,6 @@ const connectProps = bundleActions
 export default class BundleNewContainer extends React.Component {
   componentWillMount () {
     const { generateNewBundle } = this.props
-
     generateNewBundle()
   }
 
@@ -29,7 +29,7 @@ export default class BundleNewContainer extends React.Component {
     }
 
     saveBundleAction(payload).then((bundle) => {
-      const newBundleRoutePath = `/bundles/${bundle.slug}`
+      const newBundleRoutePath = `/bundles/${bundle.id}`
 
       browserHistory.push(newBundleRoutePath)
     })
@@ -37,8 +37,7 @@ export default class BundleNewContainer extends React.Component {
 
   render () {
     const { currentBundle, updateBundleInfo, updateBundleLink } = this.props
-
-    if (! currentBundle) return false
+    if (!currentBundle) return false
 
     return (
       <div className='bundle-view-wrapper'>

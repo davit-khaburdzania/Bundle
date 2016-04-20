@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
+import { NEW_BUNDLE_ID } from '../../constants'
 import * as routeActions from '../../actions/Route'
-
 import './index.css'
 
 import {
@@ -53,7 +53,7 @@ export default class Navigation extends React.Component {
     let bundle = props.routeBundle
 
     if (view && navigation.get('view') != view) props.routeChangeNavigationView(view)
-    if (newBundle && bundle.get('newBundle') != newBundle) props.routeChangeNewBundle(true)
+    if (newBundle && this.isNewBundle(props) != newBundle) props.routeChangeNewBundle()
     if (bundleId && bundle.get('id') != bundleId) props.routeChangeBundleId(bundleId)
 
     if (collectionId && navigation.get('collectionId') != collectionId) {
@@ -64,11 +64,10 @@ export default class Navigation extends React.Component {
   shouldRender () {
     let view = this.props.routeNavigation.get('view')
     let routeView = this.props.route.view
-    let newBundle = this.props.routeBundle.get('newBundle')
     let routeNewBundle = this.props.route.newBundle
 
     if (view != routeView && routeView) return false
-    if (newBundle != routeNewBundle && routeNewBundle) return false
+    if (this.isNewBundle(this.props) != routeNewBundle && routeNewBundle) return false
 
     return true
   }
@@ -85,7 +84,10 @@ export default class Navigation extends React.Component {
   }
 
   getBundleView () {
-    let newBundle = this.props.routeBundle.get('newBundle')
-    return newBundle ? BundleNew : BundleView
+    return this.isNewBundle(this.props) ? BundleNew : BundleView
+  }
+
+  isNewBundle (props) {
+    return props.routeBundle.get('id') == NEW_BUNDLE_ID
   }
 }

@@ -6,7 +6,8 @@ import * as favoriteActions from '../../../actions/Favorite'
 import Wrapper from './Wrapper'
 
 const connectState = (state) => ({
-  collection: state.Collection.get('current'),
+  collection: state.Collection.getIn(['byId', state.Route.getIn(['navigation', 'collectionId'])]),
+  bundles: state.Bundle.get('byId'),
   bundleId: state.Route.getIn(['bundle', 'id']),
   collectionId: state.Route.getIn(['navigation', 'collectionId'])
 })
@@ -19,6 +20,10 @@ const connectProps = {
 
 @connect(connectState, connectProps)
 export default class Container extends React.Component {
+  static propTypes = {
+    collection: ImmutablePropTypes.map
+  }
+
   constructor (props) {
     super(props)
     props.getCollection(props.collectionId)
@@ -26,13 +31,8 @@ export default class Container extends React.Component {
 
   render () {
     const { collection, ...wrapperProps } = this.props
-
-    if (!collection) return false
+    if (!collection || !collection.get('full_response')) return false
 
     return <Wrapper collection={collection} {...wrapperProps} />
-  }
-
-  static propTypes = {
-    collection: ImmutablePropTypes.map
   }
 }
