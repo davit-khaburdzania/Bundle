@@ -6,12 +6,15 @@ function bundleUrl (collection, bundle) {
 
 export default function Wrapper ({
   collection,
+  bundles,
+  bundleId,
   children,
   removeBundle,
-  bundleId,
   ...listItemProps
 }) {
-  let bundleList = collection.get('bundles')
+  let bundleList = collection
+    .get('bundles')
+    .map(id => bundles.get(id))
     .sortBy(col => col.get('created_at'))
     .reverse()
     .map((bundle, index) => {

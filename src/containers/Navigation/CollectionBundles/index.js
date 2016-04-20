@@ -7,6 +7,7 @@ import Wrapper from './Wrapper'
 
 const connectState = (state) => ({
   collection: state.Collection.get('current'),
+  bundles: state.Bundle.get('byId'),
   bundleId: state.Route.getIn(['bundle', 'id']),
   collectionId: state.Route.getIn(['navigation', 'collectionId'])
 })
@@ -19,6 +20,10 @@ const connectProps = {
 
 @connect(connectState, connectProps)
 export default class Container extends React.Component {
+  static propTypes = {
+    collection: ImmutablePropTypes.map
+  }
+
   constructor (props) {
     super(props)
     props.getCollection(props.collectionId)
@@ -30,9 +35,5 @@ export default class Container extends React.Component {
     if (!collection) return false
 
     return <Wrapper collection={collection} {...wrapperProps} />
-  }
-
-  static propTypes = {
-    collection: ImmutablePropTypes.map
   }
 }
