@@ -2,19 +2,17 @@ import ImmutablePropTypes from 'react-immutable-proptypes'
 import { ResourceNavigation, List, ListItem } from '../../../components'
 
 export default class Container extends React.Component {
-  constructor (props) {
-    super(props)
-  }
-
   renderBundleListItem (bundle, index) {
     const { ...listItemProps, bundleId, removeBundle } = this.props
 
     return (
-      <ListItem key={index} Component={ListItem.Bundle}
+      <ListItem
+        key={index}
+        Component={ListItem.Bundle}
         {...bundle.toJS()} {...listItemProps}
-        url={'/bundles/' + bundle.get('slug')}
+        url={'/bundles/' + bundle.get('id')}
         type={'bundle'}
-        active={bundle.get('slug') === bundleId}
+        active={bundle.get('id') === bundleId}
         remove={removeBundle}
       />
     )
@@ -24,11 +22,13 @@ export default class Container extends React.Component {
     const { ...listItemProps, collectionId, removeCollection } = this.props
 
     return (
-      <ListItem key={index} Component={ListItem.Collection}
+      <ListItem
+        key={index}
+        Component={ListItem.Collection}
         {...collection.toJS()} {...listItemProps}
-        url={'/collections/' + collection.get('slug')}
+        url={'/collections/' + collection.get('id')}
         type={'collection'}
-        active={collection.get('slug') === collectionId}
+        active={collection.get('id') === collectionId}
         remove={removeCollection}
       />
     )
