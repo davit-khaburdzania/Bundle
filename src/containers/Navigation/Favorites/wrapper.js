@@ -18,9 +18,6 @@ export default function Container ({
           </div>
         </ResourceNavigation.Header>
         <ResourceNavigation.Body>
-          <div>
-            favorites
-          </div>
           <List>
             {bundles.map((bundle, index) =>
               <ListItem key={index} Component={ListItem.Bundle}
@@ -32,17 +29,17 @@ export default function Container ({
               />
             )}
           </List>
-          <div> collection </div>
-          {/*<List>
+          <List>
             {collections.map((collection, index) =>
               <ListItem key={index} Component={ListItem.Collection}
                 {...collection.toJS()} {...listItemProps}
                 url={'/collections/' + collection.get('slug')}
                 type={'collection'}
                 active={collection.get('slug') === collectionId}
+                remove={removeBundle}
               />
             )}
-          </List>*/}
+          </List>
         </ResourceNavigation.Body>
       </div>
     </ResourceNavigation>
