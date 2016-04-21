@@ -34,9 +34,9 @@ export default class Container extends React.Component {
   }
 
   static propTypes = {
-    favorites: ImmutablePropTypes.list,
-    bundles: ImmutablePropTypes.map,
-    collections: ImmutablePropTypes.map,
+    favorites: ImmutablePropTypes.list.isRequired,
+    bundles: ImmutablePropTypes.map.isRequired,
+    collections: ImmutablePropTypes.map.isRequired,
     bundleId: React.PropTypes.string,
     collectionId: React.PropTypes.string
   }
