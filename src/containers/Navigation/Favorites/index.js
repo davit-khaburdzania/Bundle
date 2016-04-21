@@ -2,7 +2,6 @@ import ImmutablePropTypes from 'react-immutable-proptypes'
 import { connect } from 'react-redux'
 import * as bundleActions from '../../../actions/Bundle'
 import * as collectionActions from '../../../actions/Collection'
-
 import * as favoriteActions from '../../../actions/Favorite'
 import Wrapper from './Wrapper'
 

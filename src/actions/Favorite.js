@@ -7,24 +7,19 @@ export function getFavorites () {
     let response = await request.get(api.favorites())
     let list = fromJS(response.data)
 
-    let collections = list
-      .filter(item => item.get('favoritable_type') == 'Collection')
-      .map(item => item.get('favoritable'))
-
-    let bundles = list
-      .filter(item => item.get('favoritable_type') == 'Bundle')
-      .map(item => item.get('favoritable'))
-
-    dispatch({ type: 'RECEIVE_COLLECTIONS', list: collections })
-    dispatch({ type: 'RECEIVE_BUNDLES', list: bundles })
-
-    list = list.map(item => fromJS({
+    let favorites = list.map(item => fromJS({
       id: item.getIn(['favoritable', 'id']),
       type: item.get('favoritable_type'),
       created_at: item.get('created_at')
     }))
 
-    dispatch({ type: 'RECEIVE_FAVORITES', list })
+    let groupedFavs = list
+      .groupBy(item => item.get('favoritable_type'))
+      .mapEntries(([k, v]) => [k, v.map(item => item.get('favoritable'))])
+
+    dispatch({ type: 'RECEIVE_COLLECTIONS', list: groupedFavs.get('Collection', []) })
+    dispatch({ type: 'RECEIVE_BUNDLES', list: groupedFavs.get('Bundle', []) })
+    dispatch({ type: 'RECEIVE_FAVORITES', list: favorites })
   }
 }
 
