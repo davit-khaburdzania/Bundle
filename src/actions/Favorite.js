@@ -2,11 +2,28 @@ import { fromJS } from 'immutable'
 import request from 'axios'
 import api from './../api'
 
-export function getFavoritesList () {
+export function getFavorites () {
   return async function (dispatch) {
-    const { data } = await request.get(api.favorites())
+    let response = await request.get(api.favorites())
+    let list = fromJS(response.data)
 
-    dispatch({ type: 'RECEIVE_FAVORITES_LIST', list: fromJS(data) })
+    let collections = list
+      .filter(item => item.get('favoritable_type') == 'Collection')
+      .map(item => item.get('favoritable'))
+
+    let bundles = list
+      .filter(item => item.get('favoritable_type') == 'Bundle')
+      .map(item => item.get('favoritable'))
+
+    dispatch({ type: 'RECEIVE_COLLECTIONS', list: collections })
+    dispatch({ type: 'RECEIVE_BUNDLES', list: bundles })
+
+    list = list.map(item => ({
+      id: item.getIn(['favoritable', 'id']),
+      type: item.get('favoritable_type')
+    }))
+
+    dispatch({ type: 'RECEIVE_FAVORITES', list })
   }
 }
 

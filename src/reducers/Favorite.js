@@ -1,8 +1,11 @@
-import { Map } from 'immutable'
+import { Map, List } from 'immutable'
 
-export default function (state = Map(), action) {
+let defaultState = Map({ list: List() })
+
+
+export default function (state = defaultState, action) {
   switch (action.type) {
-    case 'RECEIVE_FAVORITES_LIST':
+    case 'RECEIVE_FAVORITES':
       return state.set('list', action.list)
 
     default:
