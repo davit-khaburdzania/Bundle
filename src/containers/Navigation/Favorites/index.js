@@ -28,10 +28,6 @@ export default class Container extends React.Component {
   }
 
   render () {
-    let size = this.props.favorites.valueSeq().size
-
-    if (size == 0) return false
-
     return <Wrapper {...this.props} />
   }
 

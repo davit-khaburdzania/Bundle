@@ -2,7 +2,7 @@ import { fromJS } from 'immutable'
 
 let defaultState = fromJS({
   bundle: { id: null },
-  navigation: { view: 'bundles', collectionId: null}
+  navigation: { view: null, collectionId: null}
 })
 
 export default function (state = defaultState, action) {

@@ -14,10 +14,10 @@ export default (
     <Route path='/search(/:query)' component={SearchContainer} />
 
     <Route path='/bundles' view='bundles' component={Navigation}>
-      <Route path='/bundles/:bundleId' component={Navigation} />
+      <Route path='/bundles/:bundleId' view='bundles' component={Navigation} />
     </Route>
 
-    <Route path='/new' newBundle={true} component={Navigation} />
+    <Route path='/new' newBundle={true} view='bundles' component={Navigation} />
 
     <Route path='/collections/:collectionId' view='collectionsBundles' component={Navigation}>
       <Route path='/collections/:collectionId/bundles/:bundleId' view='collectionsBundles' component={Navigation} />
