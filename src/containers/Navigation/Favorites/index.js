@@ -7,7 +7,7 @@ import * as favoriteActions from '../../../actions/Favorite'
 import Wrapper from './Wrapper'
 
 const connectState = (state) => ({
-  favorites: state.Favorite.get('list'),
+  favorites: state.Favorite.get('byId'),
   bundles: state.Bundle.get('byId'),
   collections: state.Collection.get('byId'),
   bundleId: state.Route.getIn(['bundle', 'id']),
@@ -28,13 +28,15 @@ export default class Container extends React.Component {
   }
 
   render () {
-    if (!this.props.favorites) return false
+    let size = this.props.favorites.valueSeq().size
+
+    if (size == 0) return false
 
     return <Wrapper {...this.props} />
   }
 
   static propTypes = {
-    favorites: ImmutablePropTypes.list.isRequired,
+    favorites: ImmutablePropTypes.map.isRequired,
     bundles: ImmutablePropTypes.map.isRequired,
     collections: ImmutablePropTypes.map.isRequired,
     bundleId: React.PropTypes.string,

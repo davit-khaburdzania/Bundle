@@ -37,15 +37,20 @@ export default class Container extends React.Component {
   renderList () {
     const { favorites, bundles, collections } = this.props
 
-    return favorites.map((item, index) => {
-      let {id, type } = item
+    return favorites
+      .valueSeq()
+      .sortBy(item => item.get('created_at'))
+      .reverse()
+      .map((item, index) => {
+        let id = item.get('id')
+        let type = item.get('type')
 
-      if (type == 'Bundle') {
-        return this.renderBundleListItem(bundles.get(id), index)
-      } else {
-        return this.renderCollectionListItem(collections.get(id), index)
-      }
-    })
+        if (type == 'Bundle') {
+          return this.renderBundleListItem(bundles.get(id), index)
+        } else {
+          return this.renderCollectionListItem(collections.get(id), index)
+        }
+      })
   }
 
   render () {
@@ -68,7 +73,7 @@ export default class Container extends React.Component {
   }
 
   static propTypes = {
-    favorites: ImmutablePropTypes.list.isRequired,
+    favorites: ImmutablePropTypes.map.isRequired,
     bundles: ImmutablePropTypes.map.isRequired,
     collections: ImmutablePropTypes.map.isRequired,
     removeBundle: React.PropTypes.func.isRequired,

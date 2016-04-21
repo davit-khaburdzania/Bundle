@@ -18,9 +18,10 @@ export function getFavorites () {
     dispatch({ type: 'RECEIVE_COLLECTIONS', list: collections })
     dispatch({ type: 'RECEIVE_BUNDLES', list: bundles })
 
-    list = list.map(item => ({
+    list = list.map(item => fromJS({
       id: item.getIn(['favoritable', 'id']),
-      type: item.get('favoritable_type')
+      type: item.get('favoritable_type'),
+      created_at: item.get('created_at')
     }))
 
     dispatch({ type: 'RECEIVE_FAVORITES', list })
