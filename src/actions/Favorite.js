@@ -41,7 +41,10 @@ export function unfavorite (resource, id) {
   return async function (dispatch) {
     await request.delete(api.favorite(resource, id))
 
-    const type = resource === 'bundle' ? 'UNFAVORITE_BUNDLE' : 'UNFAVORITE_COLLECTION'
+    let type = resource === 'bundle' ? 'UNFAVORITE_BUNDLE' : 'UNFAVORITE_COLLECTION'
+    let resourceType = resource === 'bundle' ? 'Bundle' : 'Collection'
+
     dispatch({ type, id })
+    dispatch({ type: 'UNFAVORITE', id, resourceType })
   }
 }

@@ -13,6 +13,9 @@ export default function (state = defaultState, action) {
 
       return state
 
+    case 'UNFAVORITE':
+      return state.deleteIn(['byId', action.id + '-' + action.resourceType])
+
     default:
       return state
   }
