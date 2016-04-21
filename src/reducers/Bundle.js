@@ -30,6 +30,7 @@ export default function (state = defaultState, action) {
 
     case 'RECEIVE_BUNDLES':
       action.list.forEach(bundle => {
+        if (state.getIn(['byId', bundle.get('id'), 'full_response'])) return
         state = state.setIn(['byId', bundle.get('id')], bundle)
       })
 

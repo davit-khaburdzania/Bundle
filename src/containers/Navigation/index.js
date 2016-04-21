@@ -35,8 +35,6 @@ export default class Navigation extends React.Component {
     let NavigationComponent = this.getNavigationView()
     let BundleViewComponent = this.getBundleView()
 
-    if (!this.shouldRender()) return false
-
     return (
       <div className='navigation-wrapper'>
         <NavigationComponent />
@@ -52,28 +50,17 @@ export default class Navigation extends React.Component {
     let navigation = props.routeNavigation
     let bundle = props.routeBundle
 
-    if (view && navigation.get('view') != view) props.routeChangeNavigationView(view)
     if (newBundle && this.isNewBundle(props) != newBundle) props.routeChangeNewBundle()
     if (bundleId && bundle.get('id') != bundleId) props.routeChangeBundleId(bundleId)
+    if (this.shouldChangeNavigationView(props)) props.routeChangeNavigationView(view)
 
     if (collectionId && navigation.get('collectionId') != collectionId) {
       props.routeChangeNavigationCollectionId(collectionId)
     }
   }
 
-  shouldRender () {
-    let view = this.props.routeNavigation.get('view')
-    let routeView = this.props.route.view
-    let routeNewBundle = this.props.route.newBundle
-
-    if (view != routeView && routeView) return false
-    if (this.isNewBundle(this.props) != routeNewBundle && routeNewBundle) return false
-
-    return true
-  }
-
   getNavigationView () {
-    let view = this.props.routeNavigation.get('view')
+    let view = this.props.routeNavigation.get('view') || this.props.route.view
 
     if (view === 'collections')  return CollectionNavigation
     if (view === 'collectionsBundles')  return CollectionBundlesNavigation
@@ -85,6 +72,14 @@ export default class Navigation extends React.Component {
 
   getBundleView () {
     return this.isNewBundle(this.props) ? BundleNew : BundleView
+  }
+
+  shouldChangeNavigationView (props) {
+    let { view, newBundle } = props.route
+    let { bundleId } = props.params
+    let navigation = props.routeNavigation
+
+    return view && navigation.get('view') != view && !bundleId && !newBundle
   }
 
   isNewBundle (props) {
