@@ -4,6 +4,7 @@ import { NEW_BUNDLE_ID } from '../../constants'
 import { linksWithoutAuthors } from '../../helpers'
 
 import * as bundleActions from '../../actions/Bundle'
+import * as linkActions from '../../actions/Link'
 import Wrapper from '../BundleView/Wrapper'
 
 
@@ -11,7 +12,10 @@ const connectState = (state) => ({
   currentBundle: state.Bundle.getIn(['byId', NEW_BUNDLE_ID])
 })
 
-const connectProps = bundleActions
+const connectProps = {
+  ...bundleActions,
+  ...linkActions
+}
 
 @connect(connectState, connectProps)
 export default class BundleNewContainer extends React.Component {
@@ -36,7 +40,7 @@ export default class BundleNewContainer extends React.Component {
   }
 
   render () {
-    const { currentBundle, updateBundleInfo, updateBundleLink } = this.props
+    const { currentBundle, updateBundleInfo, updateLink } = this.props
     if (!currentBundle) return false
 
     return (
@@ -45,7 +49,7 @@ export default class BundleNewContainer extends React.Component {
           bundle={currentBundle}
           editMode={true}
           handleChange={updateBundleInfo}
-          handleLinkEdit={updateBundleLink}
+          handleLinkEdit={updateLink}
           toggleEdit={this.saveBundle.bind(this)}
         />
       </div>

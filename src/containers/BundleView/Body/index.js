@@ -41,7 +41,6 @@ export default function BundleViewBody ({
           key={index}
           index={index}
           link={links.get(id)}
-          bundleId={bundle.get('id')}
           editMode={editMode}
           handleLinkEdit={handleLinkEdit}
           handleLinkRemove={handleLinkRemove}

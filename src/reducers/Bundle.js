@@ -47,17 +47,6 @@ export default function (state = defaultState, action) {
     case 'UPDATE_BUNDLE_INFO':
       return state.setIn(['byId', action.bundleId, action.field], action.value)
 
-    case 'UPDATE_BUNDLE_LINK':
-      return state.updateIn(['byId', action.bundleId, 'links'], links => {
-        return links.map((link) => {
-          if (link.get('id') == action.linkId) {
-            return link.set(action.field, action.value)
-          }
-
-          return link
-        })
-      })
-
     case 'TOGGLE_EDIT_MODE':
       const editMode = state.getIn(['byId', action.bundleId, 'editMode'])
       return state.setIn(['byId', action.bundleId, 'editMode'], !editMode)

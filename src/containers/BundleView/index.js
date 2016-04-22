@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import * as bundleActions from '../../actions/Bundle'
+import * as linkActions from '../../actions/Link'
 import Wrapper from './Wrapper'
 import { linksWithoutAuthors } from '../../helpers'
 
@@ -10,7 +11,10 @@ const connectState = (state) => ({
   bundleId: state.Route.getIn(['bundle', 'id'])
 })
 
-const connectProps = bundleActions
+const connectProps = {
+  ...bundleActions,
+  ...linkActions
+}
 
 @connect(connectState, connectProps)
 export default class BundleViewContainer extends React.Component {
@@ -59,7 +63,7 @@ export default class BundleViewContainer extends React.Component {
       links,
       currentLink,
       updateBundleInfo,
-      updateBundleLink
+      updateLink
     } = this.props
 
     if (!bundle || !bundle.get('full_response')) {
@@ -71,7 +75,7 @@ export default class BundleViewContainer extends React.Component {
       links={links}
       currentLink={currentLink}
       handleChange={updateBundleInfo}
-      handleLinkEdit={updateBundleLink}
+      handleLinkEdit={updateLink}
       handleLinkRemove={this.handleLinkRemove.bind(this)}
       toggleEdit={this.toggleEdit.bind(this)}
     />

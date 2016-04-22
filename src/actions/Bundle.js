@@ -65,10 +65,6 @@ export function updateBundle (id, data) {
   }
 }
 
-export function updateBundleLink (bundleId, linkId, field, value) {
-  return { type: 'UPDATE_BUNDLE_LINK', bundleId, linkId, field, value }
-}
-
 export function updateBundleInfo (bundleId, field, value) {
   return { type: 'UPDATE_BUNDLE_INFO', bundleId, field, value }
 }

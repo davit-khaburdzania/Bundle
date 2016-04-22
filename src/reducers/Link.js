@@ -23,6 +23,9 @@ export default function (state = defaultState, action) {
     case 'ADD_CURRENT_LINK_TO_BUNDLE':
       return state.setIn(['byId', action.link.get('id')], action.link)
 
+    case 'UPDATE_LINK':
+      return state.setIn(['byId', action.id, action.field], action.value)
+
     default:
       return state
   }

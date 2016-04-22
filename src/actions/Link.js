@@ -19,3 +19,7 @@ export function fetchLink (url, bundleId) {
     dispatch({ type: 'SET_CURRENT_LINK', link, bundleId})
   }
 }
+
+export function updateLink (id, field, value) {
+  return { type: 'UPDATE_LINK', id, field, value }
+}
