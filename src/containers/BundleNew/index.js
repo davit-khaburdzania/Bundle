@@ -21,15 +21,15 @@ export default class BundleNewContainer extends React.Component {
   }
 
   saveBundle () {
-    const { currentBundle, saveBundleAction } = this.props
+    const { currentBundle, createBundle } = this.props
     const payload = {
       name: currentBundle.get('name'),
       description: currentBundle.get('description'),
       links_attributes: linksWithoutAuthors(currentBundle.get('links'))
     }
 
-    saveBundleAction(payload).then((bundle) => {
-      const newBundleRoutePath = `/bundles/${bundle.id}`
+    createBundle(payload).then((bundle) => {
+      const newBundleRoutePath = `/bundles/${bundle.get('id')}`
 
       browserHistory.push(newBundleRoutePath)
     })

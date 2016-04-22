@@ -6,6 +6,7 @@ import { linksWithoutAuthors } from '../../helpers'
 const connectState = (state) => ({
   bundle: state.Bundle.getIn(['byId', state.Route.getIn(['bundle', 'id'])]),
   links: state.Link.get('byId'),
+  currentLink: state.Link.getIn(['current', state.Route.getIn(['bundle', 'id'])]),
   bundleId: state.Route.getIn(['bundle', 'id'])
 })
 
@@ -37,14 +38,15 @@ export default class BundleViewContainer extends React.Component {
   }
 
   toggleEdit (save) {
-    const { toggleEditMode, bundle, updateBundle } = this.props
+    let { toggleEditMode, bundle, links, updateBundle } = this.props
+    let bundleLinks = bundle.get('links').map(id => links.get(id))
 
     if (!save) return toggleEditMode(bundle.get('id'))
 
     const payload = {
       name: bundle.get('name'),
       description: bundle.get('description'),
-      links_attributes: linksWithoutAuthors(bundle.get('links'))
+      links_attributes: linksWithoutAuthors(bundleLinks)
     }
 
     updateBundle(bundle.get('id'), payload)
@@ -52,7 +54,13 @@ export default class BundleViewContainer extends React.Component {
   }
 
   render () {
-    const { bundle, links, updateBundleInfo, updateBundleLink } = this.props
+    let {
+      bundle,
+      links,
+      currentLink,
+      updateBundleInfo,
+      updateBundleLink
+    } = this.props
 
     if (!bundle || !bundle.get('full_response')) {
       return false
@@ -61,6 +69,7 @@ export default class BundleViewContainer extends React.Component {
     return <Wrapper editMode={bundle.get('editMode')}
       bundle={bundle}
       links={links}
+      currentLink={currentLink}
       handleChange={updateBundleInfo}
       handleLinkEdit={updateBundleLink}
       handleLinkRemove={this.handleLinkRemove.bind(this)}

@@ -23,10 +23,9 @@ export default function (state = defaultState, action) {
       return state
         .setIn(['byId', action.bundle.get('id')], action.bundle)
 
-    case 'ADD_CURRENT_LINK_TO_BUNDLE':
+    case 'ADD_LINK_ID_TO_BUNDLE':
       return state
-        .updateIn(['byId', action.bundleId, 'links'], links => links.unshift(action.link))
-        .deleteIn(['byId', action.bundleId, 'link'])
+        .updateIn(['byId', action.bundleId, 'links'], links => links.unshift(action.linkId))
 
     case 'RECEIVE_BUNDLES':
       action.list.forEach(bundle => {
@@ -58,9 +57,6 @@ export default function (state = defaultState, action) {
           return link
         })
       })
-
-    case 'FETCH_LINK':
-      return state.setIn(['byId', action.bundleId, 'link'], action.link)
 
     case 'TOGGLE_EDIT_MODE':
       const editMode = state.getIn(['byId', action.bundleId, 'editMode'])

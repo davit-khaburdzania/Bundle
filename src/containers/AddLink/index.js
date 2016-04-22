@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import * as bundleActions from '../../actions/Bundle'
+import * as linkActions from '../../actions/Link'
 import EnterUrl from './EnterUrl'
 import LinkPreview from './LinkPreview'
 
@@ -8,12 +9,15 @@ const connectState = (state) => ({
   currentUser: state.User.get('me')
 })
 
-const connectProps = bundleActions
+const connectProps = {
+  ...bundleActions,
+  ...linkActions
+}
 
 @connect(connectState, connectProps)
 export default class BundleAddLink extends React.Component {
   addLinkHandler (link) {
-    const { currentUser, bundle,
+    const { currentUser, bundle, clearCurrentLink,
       updateBundle, addCurrentLinkToBundle } = this.props
 
     const payload = {
@@ -26,6 +30,7 @@ export default class BundleAddLink extends React.Component {
     }
 
     updateBundle(bundle.get('id'), payload)
+    clearCurrentLink(bundle.get('id'))
   }
 
   handeUrlEnter (url) {
@@ -33,11 +38,10 @@ export default class BundleAddLink extends React.Component {
   }
 
   render () {
-    const { currentUser, bundle, fetchLink } = this.props
-    const link = bundle.get('link')
+    const { currentUser, currentLink, bundle, fetchLink } = this.props
 
-    if (link) {
-      return <LinkPreview link={link} currentUser={currentUser}
+    if (currentLink) {
+      return <LinkPreview link={currentLink} currentUser={currentUser}
                addLinkHandler={this.addLinkHandler.bind(this)}
              />
     } else {

@@ -9,6 +9,7 @@ import './index.css'
 export default function BundleViewBody ({
   bundle,
   links,
+  currentLink,
   editMode,
   toggleEditMode,
   handleLinkEdit,
@@ -31,7 +32,7 @@ export default function BundleViewBody ({
         handleChange={handleChange}
       />
 
-      <AddLink bundle={bundle} />
+      <AddLink bundle={bundle} currentLink={currentLink}/>
 
       <div className='line' />
 
@@ -53,6 +54,7 @@ export default function BundleViewBody ({
 BundleViewBody.propTypes = {
   bundle: ImmutablePropTypes.map,
   links: ImmutablePropTypes.map,
+  currentLink: ImmutablePropTypes.map,
   editMode: React.PropTypes.bool,
   toggleEditMode: React.PropTypes.func,
   handleLinkEdit: React.PropTypes.func,
