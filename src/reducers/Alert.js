@@ -1,11 +1,13 @@
-import { List } from 'immutable'
+import { Stack } from 'immutable'
 
-export default function (state = List(), action) {
+export default function (state = Stack(), action) {
   switch (action.type) {
     case 'ADD_ALERT':
-      return state.concat(action.alert)
+      return state.push(action.alert)
+
     case 'REMOVE_ALERT':
-      return state.slice(1)
+      return state.pop()
+
     default:
       return state
   }
