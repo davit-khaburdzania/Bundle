@@ -17,7 +17,7 @@ const connectProps = {
 @connect(connectState, connectProps)
 export default class BundleAddLink extends React.Component {
   addLinkHandler (link) {
-    const { currentUser, bundle, clearCurrentLink,
+    const { currentUser, bundle, links, clearCurrentLink,
       updateBundle, addCurrentLinkToBundle } = this.props
 
     const payload = {
@@ -25,7 +25,10 @@ export default class BundleAddLink extends React.Component {
     }
 
     if (bundle.get('isNewBundle')) {
-      let linkWithCreator = link.set('creator', currentUser)
+      let linkWithCreator = link
+        .set('creator', currentUser)
+        .set('id', this.nextLinkId(links))
+
       return addCurrentLinkToBundle(bundle.get('id'), linkWithCreator)
     }
 
@@ -35,6 +38,11 @@ export default class BundleAddLink extends React.Component {
 
   handeUrlEnter (url) {
     this.props.fetchLink(url, this.props.bundle.get('id'))
+  }
+
+  nextLinkId (links) {
+    let max = links.keySeq().filter(id => id < 0).max() || '0'
+    return max - 1
   }
 
   render () {

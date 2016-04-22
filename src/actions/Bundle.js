@@ -61,9 +61,17 @@ export function updateBundle (id, payload) {
 }
 
 export function addCurrentLinkToBundle (bundleId, link) {
-  dispatch({ type: 'ADD_LINK_ID_TO_BUNDLE', linkId: link.get('id'), bundleId })
-  dispatch({ type: 'ADD_CURRENT_LINK_TO_BUNDLE', link, bundleId })
+  return function (dispatch) {
+    dispatch({ type: 'ADD_LINK_ID_TO_BUNDLE', linkId: link.get('id'), bundleId })
+    dispatch({ type: 'ADD_CURRENT_LINK_TO_BUNDLE', link, bundleId })
+    dispatch({ type: 'CLEAR_CURRENT_LINK',bundleId })
+  }
 }
+
+export function removeLinkFromBundle (bundleId, index) {
+  return { type: 'REMOVE_LINK_ID_FROM_BUNDLE', bundleId, index }
+}
+
 
 export function updateBundleInfo (bundleId, field, value) {
   return { type: 'UPDATE_BUNDLE_INFO', bundleId, field, value }

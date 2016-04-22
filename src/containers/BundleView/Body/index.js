@@ -32,7 +32,7 @@ export default function BundleViewBody ({
         handleChange={handleChange}
       />
 
-      <AddLink bundle={bundle} currentLink={currentLink}/>
+      <AddLink bundle={bundle} currentLink={currentLink} links={links} />
 
       <div className='line' />
 
