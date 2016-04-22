@@ -7,13 +7,11 @@ function errorHandler () {
       return next(async function (dispatch, getState) {
         try {
           return await action(dispatch, getState)
-        } catch (response) {
-          if (response instanceof Error) {
-            return dispatch(addAlert('error', response.message))
+        } catch (error) {
+          if (error && error.data || error.statusText) {
+            return dispatch(addAlert('error', error.data.errors || error.statusText))
           } else {
-            return dispatch(
-              addAlert('error', response.data.errors || response.statusText)
-            )
+            throw error
           }
         }
       })

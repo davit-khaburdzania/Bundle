@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Alert } from '../../components'
 import * as alertActions from '../../actions/Alert'
 
-const connectProps = (state) => ({ alert: state.Alert[0] })
+const connectProps = (state) => ({ alert: state.Alert.first() })
 const connectActions = { ...alertActions }
 
 @connect(connectProps, connectActions)
