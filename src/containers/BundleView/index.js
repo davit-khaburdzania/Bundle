@@ -5,6 +5,7 @@ import { linksWithoutAuthors } from '../../helpers'
 
 const connectState = (state) => ({
   bundle: state.Bundle.getIn(['byId', state.Route.getIn(['bundle', 'id'])]),
+  links: state.Link.get('byId'),
   bundleId: state.Route.getIn(['bundle', 'id'])
 })
 
@@ -51,16 +52,19 @@ export default class BundleViewContainer extends React.Component {
   }
 
   render () {
-    const { bundle, updateBundleInfo, updateBundleLink } = this.props
+    const { bundle, links, updateBundleInfo, updateBundleLink } = this.props
 
     if (!bundle || !bundle.get('full_response')) {
       return false
     }
 
-    return <Wrapper editMode={bundle.get('editMode')} bundle={bundle}
+    return <Wrapper editMode={bundle.get('editMode')}
+      bundle={bundle}
+      links={links}
       handleChange={updateBundleInfo}
       handleLinkEdit={updateBundleLink}
       handleLinkRemove={this.handleLinkRemove.bind(this)}
-      toggleEdit={this.toggleEdit.bind(this)} />
+      toggleEdit={this.toggleEdit.bind(this)}
+    />
   }
 }
