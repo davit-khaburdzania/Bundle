@@ -65,20 +65,6 @@ export function updateBundle (id, data) {
   }
 }
 
-export function fetchLink (url, bundleId) {
-  return async function (dispatch) {
-    let response = await request.get(api.fetchLink(url))
-    let link = fromJS({
-      url: response.data.url,
-      title: response.data.title,
-      description: response.data.description,
-      image: response.data.image
-    })
-
-    dispatch({ type: 'SET_CURRENT_LINK', link, bundleId})
-  }
-}
-
 export function updateBundleLink (bundleId, linkId, field, value) {
   return { type: 'UPDATE_BUNDLE_LINK', bundleId, linkId, field, value }
 }
