@@ -12,11 +12,11 @@ function reduceBundle(bundle, dispatch) {
   dispatch({ type: 'SAVE_BUNDLE', bundle: normalizedBundle })
 }
 
-export function createBundle (bundle) {
+export function createBundle (payload) {
   return async function (dispatch) {
-    let response = await request.post(api.bundles(), { bundle })
+    let response = await request.post(api.bundles(), { bundle: payload })
     let bundle = fromJS(response.data)
-
+    console.log(bundle.get('id'))
     reduceBundle(bundle, dispatch)
     return bundle
   }
@@ -51,9 +51,9 @@ export function removeBundle (id) {
   }
 }
 
-export function updateBundle (id, data) {
+export function updateBundle (id, payload) {
   return async function (dispatch) {
-    let response = await request.put(api.bundles(id), { bundle: data })
+    let response = await request.put(api.bundles(id), { bundle: payload })
     let bundle = fromJS(response.data)
 
     reduceBundle(bundle, dispatch)
