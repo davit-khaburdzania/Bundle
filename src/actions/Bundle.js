@@ -23,8 +23,16 @@ export function addCurrentLinkToBundle (bundleId, link) {
 
 export function getBundle (id) {
   return async function (dispatch) {
-    const response = await request.get(api.bundles(id))
-    dispatch({ type: 'SAVE_BUNDLE', bundle: fromJS(response.data) })
+    let response = await request.get(api.bundles(id))
+
+    let bundle = fromJS(response.data)
+    let links = bundle.get('links')
+    let normalizedBundle = bundle.update('links', links => {
+      return links.map(link => link.get('id'))
+    })
+
+    dispatch({ type: 'RECEIVE_LINKS', list: links })
+    dispatch({ type: 'SAVE_BUNDLE', bundle: normalizedBundle })
   }
 }
 
