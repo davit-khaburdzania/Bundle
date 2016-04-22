@@ -35,7 +35,7 @@ export default class Navigation extends React.Component {
     let NavigationComponent = this.getNavigationView()
     let BundleViewComponent = this.getBundleView()
 
-    if (this.shouldNotRender(this.props)) return false
+    if (!this.shouldRender()) return false
 
     return (
       <div className='navigation-wrapper'>
@@ -61,8 +61,11 @@ export default class Navigation extends React.Component {
     }
   }
 
-  shouldNotRender (props) {
-    return props.route.newBundle && props.routeBundle.get('id') == null
+  shouldRender () {
+    let bundleId = this.props.routeBundle.get('id')
+    let newBundle = this.props.route.newBundle
+
+    return (newBundle && bundleId != NEW_BUNDLE_ID) ? false : true
   }
 
   getNavigationView () {

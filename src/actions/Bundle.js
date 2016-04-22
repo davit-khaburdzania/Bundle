@@ -16,7 +16,7 @@ export function createBundle (payload) {
   return async function (dispatch) {
     let response = await request.post(api.bundles(), { bundle: payload })
     let bundle = fromJS(response.data)
-    console.log(bundle.get('id'))
+
     reduceBundle(bundle, dispatch)
     return bundle
   }
