@@ -26,11 +26,6 @@ export function generateNewBundle () {
   return { type: 'GENERATE_NEW_BUNDLE' }
 }
 
-export function addCurrentLinkToBundle (bundleId, link) {
-  dispatch({ type: 'ADD_LINK_ID_TO_BUNDLE', linkId: link.get('id'), bundleId })
-  dispatch({ type: 'ADD_CURRENT_LINK_TO_BUNDLE', link, bundleId })
-}
-
 export function getBundle (id) {
   return async function (dispatch) {
     let response = await request.get(api.bundles(id))
@@ -63,6 +58,11 @@ export function updateBundle (id, data) {
 
     reduceBundle(bundle, dispatch)
   }
+}
+
+export function addCurrentLinkToBundle (bundleId, link) {
+  dispatch({ type: 'ADD_LINK_ID_TO_BUNDLE', linkId: link.get('id'), bundleId })
+  dispatch({ type: 'ADD_CURRENT_LINK_TO_BUNDLE', link, bundleId })
 }
 
 export function updateBundleInfo (bundleId, field, value) {
