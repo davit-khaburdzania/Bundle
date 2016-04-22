@@ -19,5 +19,6 @@ export default combineReducers({
   Search,
   Alert,
   User,
-  Favorite
+  Favorite,
+  Link
 })
