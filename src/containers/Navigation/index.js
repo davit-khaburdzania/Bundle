@@ -1,4 +1,5 @@
 import { connect } from 'react-redux'
+import { fromJS } from 'immutable'
 import { NEW_BUNDLE_ID } from '../../constants'
 import * as routeActions from '../../actions/Route'
 import './index.css'
@@ -14,8 +15,7 @@ import {
 } from '..'
 
 const connectState = (state) => ({
-  routeBundle: state.Route.get('bundle'),
-  routeNavigation: state.Route.get('navigation')
+  Route: state.Route.toJS(),
 })
 
 const connectProps = routeActions
@@ -31,11 +31,16 @@ export default class Navigation extends React.Component {
     this.parseRouteChange(nextProps)
   }
 
+  shouldComponentUpdate (nextProps) {
+    let oldRoute = fromJS(this.props.Route)
+    let route = fromJS(nextProps.Route)
+
+    return !route.equals(oldRoute)
+  }
+
   render () {
     let NavigationComponent = this.getNavigationView()
     let BundleViewComponent = this.getBundleView()
-
-    if (!this.shouldRender()) return false
 
     return (
       <div className='navigation-wrapper'>
@@ -49,27 +54,20 @@ export default class Navigation extends React.Component {
     let { view, newBundle } = props.route
     let { bundleId, collectionId } = props.params
 
-    let navigation = props.routeNavigation
-    let bundle = props.routeBundle
+    let navigation = props.Route.navigation
+    let bundle = props.Route.bundle
 
     if (newBundle && this.isNewBundle(props) != newBundle) props.routeChangeNewBundle()
-    if (bundleId && bundle.get('id') != bundleId) props.routeChangeBundleId(bundleId)
+    if (bundleId && bundle.id != bundleId) props.routeChangeBundleId(bundleId)
     if (this.shouldChangeNavigationView(props)) props.routeChangeNavigationView(view)
 
-    if (collectionId && navigation.get('collectionId') != collectionId) {
+    if (collectionId && navigation.collectionId != collectionId) {
       props.routeChangeNavigationCollectionId(collectionId)
     }
   }
 
-  shouldRender () {
-    let bundleId = this.props.routeBundle.get('id')
-    let newBundle = this.props.route.newBundle
-
-    return (newBundle && bundleId != NEW_BUNDLE_ID) ? false : true
-  }
-
   getNavigationView () {
-    let view = this.props.routeNavigation.get('view') || this.props.route.view
+    let view = this.props.Route.navigation.view || this.props.route.view
 
     if (view === 'collections')  return CollectionNavigation
     if (view === 'collectionsBundles')  return CollectionBundlesNavigation
@@ -86,12 +84,12 @@ export default class Navigation extends React.Component {
   shouldChangeNavigationView (props) {
     let { view, newBundle } = props.route
     let { bundleId } = props.params
-    let navigation = props.routeNavigation
+    let navigation = props.Route.navigation
 
-    return view && navigation.get('view') != view && !bundleId && !newBundle
+    return view && navigation.view != view && !bundleId && !newBundle
   }
 
   isNewBundle (props) {
-    return props.routeBundle.get('id') == NEW_BUNDLE_ID
+    return props.Route.bundle.id == NEW_BUNDLE_ID
   }
 }
