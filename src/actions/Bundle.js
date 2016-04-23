@@ -12,6 +12,10 @@ function reduceBundle(bundle, dispatch) {
   dispatch({ type: 'SAVE_BUNDLE', bundle: normalizedBundle })
 }
 
+export function generateNewBundle () {
+  return { type: 'GENERATE_NEW_BUNDLE' }
+}
+
 export function createBundle (payload) {
   return async function (dispatch) {
     let response = await request.post(api.bundles(), { bundle: payload })
@@ -20,10 +24,6 @@ export function createBundle (payload) {
     reduceBundle(bundle, dispatch)
     return bundle
   }
-}
-
-export function generateNewBundle () {
-  return { type: 'GENERATE_NEW_BUNDLE' }
 }
 
 export function getBundle (id) {
@@ -47,6 +47,9 @@ export function getBundles () {
 export function removeBundle (id) {
   return async function (dispatch) {
     await request.delete(api.bundles(id))
+
+    dispatch({ type: 'ROUTE_RESET_BUNDLE_ID', id })
+    dispatch({ type: 'REMOVE_FAVORITE', id, resourceType: 'Bundle' })
     dispatch({ type: 'REMOVE_BUNDLE', id })
   }
 }

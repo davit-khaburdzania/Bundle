@@ -24,6 +24,9 @@ export function getCollections () {
 export function removeCollection (id) {
   return async function (dispatch) {
     await request.delete(api.collections(id))
+
+    dispatch({ type: 'ROUTE_RESET_COLLECTION_ID', id })
+    dispatch({ type: 'REMOVE_FAVORITE', id, resourceType: 'Collection' })
     dispatch({ type: 'REMOVE_COLLECTION', id })
   }
 }
