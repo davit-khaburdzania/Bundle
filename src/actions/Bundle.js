@@ -4,11 +4,21 @@ import api from './../api'
 
 function reduceBundle(bundle, dispatch) {
   let links = bundle.get('links')
-  let normalizedBundle = bundle.update('links', links => {
-    return links.map(link => link.get('id'))
+  let users = List.of(bundle.get('creator'))
+
+  let normalizedBundle = bundle
+    .update('links', links => {
+      return links.map(link => link.get('id'))
+    })
+    .set('creator', bundle.getIn(['creator', 'id']))
+
+  let normalizedLinks = links.map(link => {
+    users = users.push(link.get('creator'))
+    return link.set('creator', link.getIn(['creator', 'id']))
   })
 
-  dispatch({ type: 'RECEIVE_LINKS', list: links })
+  dispatch({ type: 'RECEIVE_USERS', list: users })
+  dispatch({ type: 'RECEIVE_LINKS', list: normalizedLinks })
   dispatch({ type: 'SAVE_BUNDLE', bundle: normalizedBundle })
 }
 

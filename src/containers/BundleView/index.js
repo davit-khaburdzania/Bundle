@@ -6,6 +6,7 @@ import { linksWithoutAuthors } from '../../helpers'
 
 const connectState = (state) => ({
   bundle: state.Bundle.getIn(['byId', state.Route.getIn(['bundle', 'id'])]),
+  users: state.User.get('byId'),
   links: state.Link.get('byId'),
   currentLink: state.Link.getIn(['current', state.Route.getIn(['bundle', 'id'])]),
   bundleId: state.Route.getIn(['bundle', 'id'])
@@ -61,6 +62,7 @@ export default class BundleViewContainer extends React.Component {
     let {
       bundle,
       links,
+      users,
       currentLink,
       updateBundleInfo,
       updateLink
@@ -73,6 +75,7 @@ export default class BundleViewContainer extends React.Component {
     return <Wrapper editMode={bundle.get('editMode')}
       bundle={bundle}
       links={links}
+      users={users}
       currentLink={currentLink}
       handleChange={updateBundleInfo}
       handleLinkEdit={updateLink}

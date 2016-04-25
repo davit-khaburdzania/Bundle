@@ -19,7 +19,7 @@ export default class BundleLink extends React.Component {
   }
 
   render () {
-    const { link, editMode } = this.props
+    const { link, creator, editMode } = this.props
 
     return (
       <div className='bundle-view-link'>
@@ -31,8 +31,8 @@ export default class BundleLink extends React.Component {
         </button>
 
         <div className='link-creator'>
-          <img className='creator-image' src={link.getIn(['creator', 'image'])} />
-          <span className='creator-name'>{link.getIn(['creator', 'name'])}</span>
+          <img className='creator-image' src={creator.get('image')} />
+          <span className='creator-name'>{creator.get('name')}</span>
           <span className='shared-this'>shared this</span>
         </div>
         <div className='link-description'>
@@ -79,6 +79,7 @@ BundleLink.propTypes = {
   index: React.PropTypes.number,
   handleLinkRemove: React.PropTypes.func,
   link: ImmutablePropTypes.map,
+  creator: ImmutablePropTypes.map,
   editMode: React.PropTypes.bool,
   handleLinkEdit: React.PropTypes.func
 }

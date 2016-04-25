@@ -11,7 +11,8 @@ import Wrapper from '../BundleView/Wrapper'
 const connectState = (state) => ({
   currentBundle: state.Bundle.getIn(['byId', NEW_BUNDLE_ID]),
   currentLink: state.Link.getIn(['current', NEW_BUNDLE_ID]),
-  links: state.Link.get('byId')
+  links: state.Link.get('byId'),
+  users: state.User.get('byId')
 })
 
 const connectProps = {
@@ -50,7 +51,7 @@ export default class BundleNewContainer extends React.Component {
 
   render () {
     const {
-      currentBundle, currentLink, links,
+      currentBundle, currentLink, links, users,
       updateBundleInfo, updateLink
     } = this.props
 
@@ -60,6 +61,7 @@ export default class BundleNewContainer extends React.Component {
       <div className='bundle-view-wrapper'>
         <Wrapper
           bundle={currentBundle}
+          users={users}
           currentLink={currentLink}
           links={links}
           editMode={true}

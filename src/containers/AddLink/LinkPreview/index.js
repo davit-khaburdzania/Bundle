@@ -4,7 +4,7 @@ import './index.css'
 
 export default function LinkPreview ({ link, currentUser, addLinkHandler }) {
   const linkWithCreator = link
-    .set('creator', currentUser)
+    .set('creator', currentUser.get('id'))
     .set('created_at', link.created_at || new Date().toISOString())
 
   return (

@@ -14,6 +14,8 @@ import {
   BundleNew
 } from '..'
 
+import { BundleView as BundleViewComponent } from '../../components'
+
 const connectState = (state) => ({
   Route: state.Route.toJS(),
 })
@@ -78,6 +80,10 @@ export default class Navigation extends React.Component {
   }
 
   getBundleView () {
+    if (!this.props.Route.bundle.id) {
+      return BundleViewComponent.noBundleSelected
+    }
+
     return this.isNewBundle(this.props) ? BundleNew : BundleView
   }
 

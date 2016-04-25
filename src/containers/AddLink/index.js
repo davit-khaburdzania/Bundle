@@ -26,7 +26,7 @@ export default class BundleAddLink extends React.Component {
 
     if (bundle.get('isNewBundle')) {
       let linkWithCreator = link
-        .set('creator', currentUser)
+        .set('creator', currentUser.get('id'))
         .set('id', this.nextLinkId(links))
 
       return addCurrentLinkToBundle(bundle.get('id'), linkWithCreator)

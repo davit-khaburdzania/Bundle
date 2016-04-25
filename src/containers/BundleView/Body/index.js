@@ -8,6 +8,7 @@ import './index.css'
 
 export default function BundleViewBody ({
   bundle,
+  users,
   links,
   currentLink,
   editMode,
@@ -41,6 +42,7 @@ export default function BundleViewBody ({
           key={index}
           index={index}
           link={links.get(id)}
+          creator={users.get(links.getIn([id, 'creator']))}
           editMode={editMode}
           handleLinkEdit={handleLinkEdit}
           handleLinkRemove={handleLinkRemove}
@@ -52,6 +54,7 @@ export default function BundleViewBody ({
 
 BundleViewBody.propTypes = {
   bundle: ImmutablePropTypes.map,
+  users: ImmutablePropTypes.map,
   links: ImmutablePropTypes.map,
   currentLink: ImmutablePropTypes.map,
   editMode: React.PropTypes.bool,
