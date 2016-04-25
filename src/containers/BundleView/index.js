@@ -1,14 +1,21 @@
 import { connect } from 'react-redux'
 import * as bundleActions from '../../actions/Bundle'
+import * as linkActions from '../../actions/Link'
 import Wrapper from './Wrapper'
 import { linksWithoutAuthors } from '../../helpers'
 
 const connectState = (state) => ({
   bundle: state.Bundle.getIn(['byId', state.Route.getIn(['bundle', 'id'])]),
+  users: state.User.get('byId'),
+  links: state.Link.get('byId'),
+  currentLink: state.Link.getIn(['current', state.Route.getIn(['bundle', 'id'])]),
   bundleId: state.Route.getIn(['bundle', 'id'])
 })
 
-const connectProps = bundleActions
+const connectProps = {
+  ...bundleActions,
+  ...linkActions
+}
 
 @connect(connectState, connectProps)
 export default class BundleViewContainer extends React.Component {
@@ -26,7 +33,7 @@ export default class BundleViewContainer extends React.Component {
 
   handleLinkRemove (index) {
     const { bundle, updateBundle } = this.props
-    const linkId = bundle.getIn(['links', index, 'id'])
+    const linkId = bundle.getIn(['links', index])
 
     const payload = {
       links_attributes: [{id: linkId, _destroy: true }]
@@ -36,14 +43,15 @@ export default class BundleViewContainer extends React.Component {
   }
 
   toggleEdit (save) {
-    const { toggleEditMode, bundle, updateBundle } = this.props
+    let { toggleEditMode, bundle, links, updateBundle } = this.props
+    let bundleLinks = bundle.get('links').map(id => links.get(id))
 
     if (!save) return toggleEditMode(bundle.get('id'))
 
     const payload = {
       name: bundle.get('name'),
       description: bundle.get('description'),
-      links_attributes: linksWithoutAuthors(bundle.get('links'))
+      links_attributes: linksWithoutAuthors(bundleLinks)
     }
 
     updateBundle(bundle.get('id'), payload)
@@ -51,16 +59,28 @@ export default class BundleViewContainer extends React.Component {
   }
 
   render () {
-    const { bundle, updateBundleInfo, updateBundleLink } = this.props
+    let {
+      bundle,
+      links,
+      users,
+      currentLink,
+      updateBundleInfo,
+      updateLink
+    } = this.props
 
     if (!bundle || !bundle.get('full_response')) {
       return false
     }
 
-    return <Wrapper editMode={bundle.get('editMode')} bundle={bundle}
+    return <Wrapper editMode={bundle.get('editMode')}
+      bundle={bundle}
+      links={links}
+      users={users}
+      currentLink={currentLink}
       handleChange={updateBundleInfo}
-      handleLinkEdit={updateBundleLink}
+      handleLinkEdit={updateLink}
       handleLinkRemove={this.handleLinkRemove.bind(this)}
-      toggleEdit={this.toggleEdit.bind(this)} />
+      toggleEdit={this.toggleEdit.bind(this)}
+    />
   }
 }

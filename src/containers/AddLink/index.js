@@ -1,19 +1,23 @@
 import { connect } from 'react-redux'
 import * as bundleActions from '../../actions/Bundle'
+import * as linkActions from '../../actions/Link'
 import EnterUrl from './EnterUrl'
 import LinkPreview from './LinkPreview'
 
 const connectState = (state) => ({
   bundle: state.Bundle.getIn(['byId', state.Route.getIn(['bundle', 'id'])]),
-  currentUser: state.User.get('me')
+  currentUser: state.User.getIn(['byId', state.User.get('me')])
 })
 
-const connectProps = bundleActions
+const connectProps = {
+  ...bundleActions,
+  ...linkActions
+}
 
 @connect(connectState, connectProps)
 export default class BundleAddLink extends React.Component {
   addLinkHandler (link) {
-    const { currentUser, bundle,
+    const { currentUser, bundle, links, clearCurrentLink,
       updateBundle, addCurrentLinkToBundle } = this.props
 
     const payload = {
@@ -21,23 +25,31 @@ export default class BundleAddLink extends React.Component {
     }
 
     if (bundle.get('isNewBundle')) {
-      let linkWithCreator = link.set('creator', currentUser)
+      let linkWithCreator = link
+        .set('creator', currentUser.get('id'))
+        .set('id', this.nextLinkId(links))
+
       return addCurrentLinkToBundle(bundle.get('id'), linkWithCreator)
     }
 
     updateBundle(bundle.get('id'), payload)
+    clearCurrentLink(bundle.get('id'))
   }
 
   handeUrlEnter (url) {
     this.props.fetchLink(url, this.props.bundle.get('id'))
   }
 
-  render () {
-    const { currentUser, bundle, fetchLink } = this.props
-    const link = bundle.get('link')
+  nextLinkId (links) {
+    let max = links.keySeq().filter(id => id < 0).max() || 0
+    return max - 1
+  }
 
-    if (link) {
-      return <LinkPreview link={link} currentUser={currentUser}
+  render () {
+    const { currentUser, currentLink, bundle, fetchLink } = this.props
+
+    if (currentLink) {
+      return <LinkPreview link={currentLink} currentUser={currentUser}
                addLinkHandler={this.addLinkHandler.bind(this)}
              />
     } else {

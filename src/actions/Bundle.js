@@ -2,70 +2,89 @@ import { fromJS, Map, List } from 'immutable'
 import request from 'axios'
 import api from './../api'
 
-export function saveBundleAction (bundle) {
-  return async function (dispatch) {
-    const response = await request.post(api.bundles(), { bundle })
-    const { data } = response
+function reduceBundle (bundle, dispatch) {
+  let links = bundle.get('links')
+  let users = List.of(bundle.get('creator'))
 
-    dispatch({ type: 'SAVE_BUNDLE', bundle: fromJS(data) })
+  let normalizedBundle = bundle
+    .update('links', links => {
+      return links.map(link => link.get('id'))
+    })
+    .set('creator', bundle.getIn(['creator', 'id']))
 
-    return data
-  }
+  let normalizedLinks = links.map(link => {
+    users = users.push(link.get('creator'))
+    return link.set('creator', link.getIn(['creator', 'id']))
+  })
+
+  dispatch({ type: 'RECEIVE_USERS', list: users })
+  dispatch({ type: 'RECEIVE_LINKS', list: normalizedLinks })
+  dispatch({ type: 'SAVE_BUNDLE', bundle: normalizedBundle })
 }
 
 export function generateNewBundle () {
   return { type: 'GENERATE_NEW_BUNDLE' }
 }
 
-export function addCurrentLinkToBundle (bundleId, link) {
-  return { type: 'ADD_CURRENT_LINK_TO_BUNDLE', link, bundleId }
+export function createBundle (payload) {
+  return async function (dispatch) {
+    let response = await request.post(api.bundles(), { bundle: payload })
+    let bundle = fromJS(response.data)
+
+    reduceBundle(bundle, dispatch)
+    return bundle
+  }
 }
 
 export function getBundle (id) {
   return async function (dispatch) {
-    const response = await request.get(api.bundles(id))
-    dispatch({ type: 'SAVE_BUNDLE', bundle: fromJS(response.data) })
+    let response = await request.get(api.bundles(id))
+    let bundle = fromJS(response.data)
+
+    reduceBundle(bundle, dispatch)
   }
 }
 
 export function getBundles () {
   return async function (dispatch) {
-    const response = await request.get(api.bundles())
-    dispatch({ type: 'RECEIVE_BUNDLES', list: fromJS(response.data) })
+    let response = await request.get(api.bundles())
+    let list = fromJS(response.data)
+
+    dispatch({ type: 'RECEIVE_BUNDLES', list })
   }
 }
 
 export function removeBundle (id) {
   return async function (dispatch) {
     await request.delete(api.bundles(id))
+
+    dispatch({ type: 'ROUTE_RESET_BUNDLE_ID', id })
+    dispatch({ type: 'REMOVE_FAVORITE', id, resourceType: 'Bundle' })
     dispatch({ type: 'REMOVE_BUNDLE', id })
   }
 }
 
-export function updateBundle (id, data) {
+export function updateBundle (id, payload) {
   return async function (dispatch) {
-    const response = await request.put(api.bundles(id), { bundle: data })
-    dispatch({ type: 'SAVE_BUNDLE', bundle: fromJS(response.data) })
+    let response = await request.put(api.bundles(id), { bundle: payload })
+    let bundle = fromJS(response.data)
+
+    reduceBundle(bundle, dispatch)
   }
 }
 
-export function fetchLink (url, bundleId) {
-  return async function (dispatch) {
-    const response = await request.get(api.fetchLink(url))
-    const link = fromJS({
-      url: response.data.url,
-      title: response.data.title,
-      description: response.data.description,
-      image: response.data.image
-    })
-
-    dispatch({ type: 'FETCH_LINK', link, bundleId})
+export function addCurrentLinkToBundle (bundleId, link) {
+  return function (dispatch) {
+    dispatch({ type: 'ADD_LINK_ID_TO_BUNDLE', linkId: link.get('id'), bundleId })
+    dispatch({ type: 'RECEIVE_LINK', link })
+    dispatch({ type: 'CLEAR_CURRENT_LINK', bundleId })
   }
 }
 
-export function updateBundleLink (bundleId, linkId, field, value) {
-  return { type: 'UPDATE_BUNDLE_LINK', bundleId, linkId, field, value }
+export function removeLinkFromBundle (bundleId, index) {
+  return { type: 'REMOVE_LINK_ID_FROM_BUNDLE', bundleId, index }
 }
+
 
 export function updateBundleInfo (bundleId, field, value) {
   return { type: 'UPDATE_BUNDLE_INFO', bundleId, field, value }

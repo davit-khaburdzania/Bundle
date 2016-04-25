@@ -8,6 +8,9 @@ import './index.css'
 
 export default function BundleViewBody ({
   bundle,
+  users,
+  links,
+  currentLink,
   editMode,
   toggleEditMode,
   handleLinkEdit,
@@ -30,16 +33,16 @@ export default function BundleViewBody ({
         handleChange={handleChange}
       />
 
-      <AddLink bundle={bundle} />
+      <AddLink bundle={bundle} currentLink={currentLink} links={links} />
 
       <div className='line' />
 
-      {bundle.get('links').map((link, index) =>
+      {bundle.get('links').map((id, index) =>
         <BundleView.Link
           key={index}
           index={index}
-          link={link}
-          bundleId={bundle.get('id')}
+          link={links.get(id)}
+          creator={users.get(links.getIn([id, 'creator']))}
           editMode={editMode}
           handleLinkEdit={handleLinkEdit}
           handleLinkRemove={handleLinkRemove}
@@ -51,6 +54,9 @@ export default function BundleViewBody ({
 
 BundleViewBody.propTypes = {
   bundle: ImmutablePropTypes.map,
+  users: ImmutablePropTypes.map,
+  links: ImmutablePropTypes.map,
+  currentLink: ImmutablePropTypes.map,
   editMode: React.PropTypes.bool,
   toggleEditMode: React.PropTypes.func,
   handleLinkEdit: React.PropTypes.func,

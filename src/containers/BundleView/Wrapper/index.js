@@ -6,6 +6,9 @@ import './index.css'
 
 export default function BundleView ({
   bundle,
+  users,
+  links,
+  currentLink,
   editMode,
   handleLinkEdit,
   handleChange,
@@ -17,8 +20,8 @@ export default function BundleView ({
       <BundleViewHeader toggleEdit={toggleEdit} editMode={editMode} />
 
       <BundleViewBody editMode={editMode} handleLinkEdit={handleLinkEdit}
-        bundle={bundle} handleChange={handleChange}
-        handleLinkRemove={handleLinkRemove}
+        bundle={bundle} links={links} users={users} currentLink={currentLink}
+        handleChange={handleChange} handleLinkRemove={handleLinkRemove}
       />
     </div>
   )
@@ -26,6 +29,9 @@ export default function BundleView ({
 
 BundleView.propTypes = {
   bundle: ImmutablePropTypes.map,
+  users: ImmutablePropTypes.map,
+  links: ImmutablePropTypes.map,
+  currentLink: ImmutablePropTypes.map,
   editMode: React.PropTypes.bool,
   handleLinkEdit: React.PropTypes.func,
   handleLinkRemove: React.PropTypes.func,
