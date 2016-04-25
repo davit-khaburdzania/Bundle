@@ -2,7 +2,7 @@ import { fromJS, Map, List } from 'immutable'
 import request from 'axios'
 import api from './../api'
 
-function reduceBundle(bundle, dispatch) {
+function reduceBundle (bundle, dispatch) {
   let links = bundle.get('links')
   let users = List.of(bundle.get('creator'))
 
@@ -76,8 +76,8 @@ export function updateBundle (id, payload) {
 export function addCurrentLinkToBundle (bundleId, link) {
   return function (dispatch) {
     dispatch({ type: 'ADD_LINK_ID_TO_BUNDLE', linkId: link.get('id'), bundleId })
-    dispatch({ type: 'ADD_CURRENT_LINK_TO_BUNDLE', link, bundleId })
-    dispatch({ type: 'CLEAR_CURRENT_LINK',bundleId })
+    dispatch({ type: 'RECEIVE_LINK', link })
+    dispatch({ type: 'CLEAR_CURRENT_LINK', bundleId })
   }
 }
 

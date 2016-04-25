@@ -7,6 +7,9 @@ let defaultState = Map({
 
 export default function (state = defaultState, action) {
   switch (action.type) {
+    case 'RECEIVE_LINK':
+      return state.setIn(['byId', action.link.get('id')], action.link)
+
     case 'RECEIVE_LINKS':
       action.list.forEach(link => {
         state = state.setIn(['byId', link.get('id')], link)
@@ -19,9 +22,6 @@ export default function (state = defaultState, action) {
 
     case 'CLEAR_CURRENT_LINK':
       return state.deleteIn(['current', action.bundleId])
-
-    case 'ADD_CURRENT_LINK_TO_BUNDLE':
-      return state.setIn(['byId', action.link.get('id')], action.link)
 
     case 'UPDATE_LINK':
       return state.setIn(['byId', action.id, action.field], action.value)

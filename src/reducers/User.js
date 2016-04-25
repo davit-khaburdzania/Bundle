@@ -1,12 +1,14 @@
-import { Map } from 'immutable'
+import { fromJS, Map } from 'immutable'
 
-let defaultState = Map({
-  byId: Map(),
-  me: Map({
-    id: 1,
-    name: 'Sarah Gadon',
-    image: 'http://i.imgur.com/XMnLzi2.jpg'
-  })
+let me = {
+  id: '1',
+  name: 'Sarah Gadon',
+  image: 'http://i.imgur.com/XMnLzi2.jpg'
+}
+
+let defaultState = fromJS({
+  byId: { '1': me },
+  me: '1'
 })
 
 

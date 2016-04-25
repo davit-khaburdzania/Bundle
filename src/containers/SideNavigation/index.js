@@ -8,7 +8,7 @@ import './index.css'
 
 const connectState = (state) => ({
   isOpen: state.UserMenu,
-  currentUser: state.User.get('me')
+  currentUser: state.User.getIn(['byId', state.User.get('me')])
 })
 
 const connectProps = { ...userMenuActions }

@@ -9,7 +9,7 @@ export default function LinkPreview ({ link, currentUser, addLinkHandler }) {
 
   return (
     <div className='add-link-preview'>
-      <BundleView.Link link={linkWithCreator} />
+      <BundleView.Link link={linkWithCreator} creator={currentUser} />
 
       <button className='add-link-button'
         onClick={addLinkHandler.bind(this, link)}>Add Link

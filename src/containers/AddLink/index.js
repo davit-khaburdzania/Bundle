@@ -6,7 +6,7 @@ import LinkPreview from './LinkPreview'
 
 const connectState = (state) => ({
   bundle: state.Bundle.getIn(['byId', state.Route.getIn(['bundle', 'id'])]),
-  currentUser: state.User.get('me')
+  currentUser: state.User.getIn(['byId', state.User.get('me')])
 })
 
 const connectProps = {
@@ -41,7 +41,7 @@ export default class BundleAddLink extends React.Component {
   }
 
   nextLinkId (links) {
-    let max = links.keySeq().filter(id => id < 0).max() || '0'
+    let max = links.keySeq().filter(id => id < 0).max() || 0
     return max - 1
   }
 

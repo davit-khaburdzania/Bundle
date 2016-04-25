@@ -2,11 +2,10 @@ import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 import { NEW_BUNDLE_ID } from '../../constants'
 import { linksWithoutAuthors } from '../../helpers'
+import Wrapper from '../BundleView/Wrapper'
 
 import * as bundleActions from '../../actions/Bundle'
 import * as linkActions from '../../actions/Link'
-import Wrapper from '../BundleView/Wrapper'
-
 
 const connectState = (state) => ({
   currentBundle: state.Bundle.getIn(['byId', NEW_BUNDLE_ID]),
@@ -37,9 +36,8 @@ export default class BundleNewContainer extends React.Component {
       links_attributes: linksWithoutAuthors(bundleLinks)
     }
 
-    createBundle(payload).then((bundle) => {
+    createBundle(payload).then(bundle => {
       const newBundleRoutePath = `/bundles/${bundle.get('id')}`
-
       browserHistory.push(newBundleRoutePath)
     })
   }
