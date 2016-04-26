@@ -4,7 +4,7 @@ import './index.css'
 
 export default function LinkPreview ({ link, currentUser, addLinkHandler }) {
   const linkWithCreator = link
-    .set('creator', currentUser.get('id'))
+    .set('creator', currentUser.id)
     .set('created_at', link.created_at || new Date().toISOString())
 
   return (
@@ -19,7 +19,7 @@ export default function LinkPreview ({ link, currentUser, addLinkHandler }) {
 }
 
 LinkPreview.propTypes = {
-  link: ImmutablePropTypes.map.isRequired,
+  link: ImmutablePropTypes.record.isRequired,
   currentUser: ImmutablePropTypes.record.isRequired,
   addLinkHandler: React.PropTypes.func.isRequired
 }

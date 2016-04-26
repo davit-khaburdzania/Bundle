@@ -20,15 +20,15 @@ export default function BundleViewBody ({
   return (
     <div className='bundle-view-body'>
       <BundleName
-        bundleId={bundle.get('id')}
-        name={bundle.get('name')}
+        bundleId={bundle.id}
+        name={bundle.name}
         editMode={editMode}
         handleChange={handleChange}
       />
 
       <BundleDescription
-        bundleId={bundle.get('id')}
-        description={bundle.get('description')}
+        bundleId={bundle.id}
+        description={bundle.description}
         editMode={editMode}
         handleChange={handleChange}
       />
@@ -53,10 +53,10 @@ export default function BundleViewBody ({
 }
 
 BundleViewBody.propTypes = {
-  bundle: ImmutablePropTypes.map,
+  bundle: ImmutablePropTypes.record,
   users: ImmutablePropTypes.map,
   links: ImmutablePropTypes.map,
-  currentLink: ImmutablePropTypes.map,
+  currentLink: ImmutablePropTypes.record,
   editMode: React.PropTypes.bool,
   toggleEditMode: React.PropTypes.func,
   handleLinkEdit: React.PropTypes.func,

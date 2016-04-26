@@ -21,7 +21,7 @@ const connectProps = {
 @connect(connectState, connectProps)
 export default class Container extends React.Component {
   static propTypes = {
-    collection: ImmutablePropTypes.map
+    collection: ImmutablePropTypes.record
   }
 
   constructor (props) {

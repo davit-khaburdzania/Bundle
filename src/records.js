@@ -19,6 +19,7 @@ export const Bundle = Record({
   favorites_count: undefined,
   full_response: false,
   isNewBundle: undefined,
+  editMode: false,
   created_at: undefined
 })
 
