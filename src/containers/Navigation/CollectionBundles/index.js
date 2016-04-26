@@ -6,10 +6,10 @@ import * as favoriteActions from '../../../actions/Favorite'
 import Wrapper from './Wrapper'
 
 const connectState = (state) => ({
-  collection: state.Collection.getIn(['byId', state.Route.getIn(['navigation', 'collectionId'])]),
+  collection: state.Collection.getIn(['byId', state.Route.collectionId]),
   bundles: state.Bundle.get('byId'),
-  bundleId: state.Route.getIn(['bundle', 'id']),
-  collectionId: state.Route.getIn(['navigation', 'collectionId'])
+  bundleId: state.Route.bundleId,
+  collectionId: state.Route.collectionId
 })
 
 const connectProps = {

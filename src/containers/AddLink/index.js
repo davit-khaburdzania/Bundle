@@ -5,7 +5,7 @@ import EnterUrl from './EnterUrl'
 import LinkPreview from './LinkPreview'
 
 const connectState = (state) => ({
-  bundle: state.Bundle.getIn(['byId', state.Route.getIn(['bundle', 'id'])]),
+  bundle: state.Bundle.getIn(['byId', state.Route.bundleId]),
   currentUser: state.User.getIn(['byId', state.User.get('me')])
 })
 

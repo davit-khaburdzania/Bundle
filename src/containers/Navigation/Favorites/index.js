@@ -9,8 +9,8 @@ const connectState = (state) => ({
   favorites: state.Favorite.get('byId'),
   bundles: state.Bundle.get('byId'),
   collections: state.Collection.get('byId'),
-  bundleId: state.Route.getIn(['bundle', 'id']),
-  collectionId: state.Route.getIn(['navigation', 'collectionId'])
+  bundleId: state.Route.bundleId,
+  collectionId: state.Route.collectionId
 })
 
 const connectProps = {

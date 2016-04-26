@@ -7,7 +7,7 @@ import Wrapper from './Wrapper'
 
 const connectState = (state) => ({
   bundles: state.Bundle.get('byId'),
-  bundleId: state.Route.getIn(['bundle', 'id']),
+  bundleId: state.Route.bundleId,
   search: state.Search
 })
 

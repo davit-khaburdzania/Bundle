@@ -5,11 +5,11 @@ import Wrapper from './Wrapper'
 import { linksWithoutAuthors } from '../../helpers'
 
 const connectState = (state) => ({
-  bundle: state.Bundle.getIn(['byId', state.Route.getIn(['bundle', 'id'])]),
+  bundle: state.Bundle.getIn(['byId', state.Route.bundleId]),
   users: state.User.get('byId'),
   links: state.Link.get('byId'),
-  currentLink: state.Link.getIn(['current', state.Route.getIn(['bundle', 'id'])]),
-  bundleId: state.Route.getIn(['bundle', 'id'])
+  currentLink: state.Link.getIn(['current', state.Route.bundleId]),
+  bundleId: state.Route.bundleId
 })
 
 const connectProps = {

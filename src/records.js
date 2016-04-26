@@ -44,3 +44,10 @@ export const Link = Record({
   creator: undefined,
   created_at: undefined
 })
+
+
+export const Route = Record({
+  bundleId: null,
+  collectionId: null,
+  navigationView: 'bundles'
+})
