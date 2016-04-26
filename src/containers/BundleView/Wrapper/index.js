@@ -28,10 +28,10 @@ export default function BundleView ({
 }
 
 BundleView.propTypes = {
-  bundle: ImmutablePropTypes.map,
+  bundle: ImmutablePropTypes.record,
   users: ImmutablePropTypes.map,
   links: ImmutablePropTypes.map,
-  currentLink: ImmutablePropTypes.map,
+  currentLink: ImmutablePropTypes.record,
   editMode: React.PropTypes.bool,
   handleLinkEdit: React.PropTypes.func,
   handleLinkRemove: React.PropTypes.func,

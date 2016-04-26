@@ -55,21 +55,19 @@ export default class Navigation extends React.Component {
   parseRouteChange (props) {
     let { view, newBundle } = props.route
     let { bundleId, collectionId } = props.params
-
-    let navigation = props.Route.navigation
-    let bundle = props.Route.bundle
+    let Route = props.Route
 
     if (newBundle && this.isNewBundle(props) != newBundle) props.routeChangeNewBundle()
-    if (bundleId && bundle.id != bundleId) props.routeChangeBundleId(bundleId)
+    if (bundleId && Route.bundleId != bundleId) props.routeChangeBundleId(bundleId)
     if (this.shouldChangeNavigationView(props)) props.routeChangeNavigationView(view)
 
-    if (collectionId && navigation.collectionId != collectionId) {
+    if (collectionId && Route.collectionId != collectionId) {
       props.routeChangeNavigationCollectionId(collectionId)
     }
   }
 
   getNavigationView () {
-    let view = this.props.Route.navigation.view || this.props.route.view
+    let view = this.props.Route.navigationView || this.props.route.view
 
     if (view === 'collections')  return CollectionNavigation
     if (view === 'collectionsBundles')  return CollectionBundlesNavigation
@@ -80,7 +78,7 @@ export default class Navigation extends React.Component {
   }
 
   getBundleView () {
-    if (!this.props.Route.bundle.id) {
+    if (!this.props.Route.bundleId) {
       return BundleViewComponent.noBundleSelected
     }
 
@@ -90,12 +88,12 @@ export default class Navigation extends React.Component {
   shouldChangeNavigationView (props) {
     let { view, newBundle } = props.route
     let { bundleId } = props.params
-    let navigation = props.Route.navigation
+    let navigationView = props.Route.navigationView
 
-    return view && navigation.view != view && !bundleId && !newBundle
+    return view && navigationView != view && !bundleId && !newBundle
   }
 
   isNewBundle (props) {
-    return props.Route.bundle.id == NEW_BUNDLE_ID
+    return props.Route.bundleId == NEW_BUNDLE_ID
   }
 }

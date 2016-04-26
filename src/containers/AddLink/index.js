@@ -5,7 +5,7 @@ import EnterUrl from './EnterUrl'
 import LinkPreview from './LinkPreview'
 
 const connectState = (state) => ({
-  bundle: state.Bundle.getIn(['byId', state.Route.getIn(['bundle', 'id'])]),
+  bundle: state.Bundle.getIn(['byId', state.Route.bundleId]),
   currentUser: state.User.getIn(['byId', state.User.get('me')])
 })
 
@@ -17,27 +17,30 @@ const connectProps = {
 @connect(connectState, connectProps)
 export default class BundleAddLink extends React.Component {
   addLinkHandler (link) {
-    const { currentUser, bundle, links, clearCurrentLink,
+    let { currentUser, bundle, links, clearCurrentLink,
       updateBundle, addCurrentLinkToBundle } = this.props
+    let payloadLink = link.toJS()
 
-    const payload = {
-      links_attributes: [link.set('creator_id', currentUser.get('id')).toJS()]
+    payloadLink.creator_id = currentUser.id
+
+    let payload = {
+      links_attributes: [payloadLink]
     }
 
-    if (bundle.get('isNewBundle')) {
+    if (bundle.isNewBundle) {
       let linkWithCreator = link
-        .set('creator', currentUser.get('id'))
+        .set('creator', currentUser.id)
         .set('id', this.nextLinkId(links))
 
-      return addCurrentLinkToBundle(bundle.get('id'), linkWithCreator)
+      return addCurrentLinkToBundle(bundle.id, linkWithCreator)
     }
 
-    updateBundle(bundle.get('id'), payload)
-    clearCurrentLink(bundle.get('id'))
+    updateBundle(bundle.id, payload)
+    clearCurrentLink(bundle.id)
   }
 
   handeUrlEnter (url) {
-    this.props.fetchLink(url, this.props.bundle.get('id'))
+    this.props.fetchLink(url, this.props.bundle.id)
   }
 
   nextLinkId (links) {
@@ -53,8 +56,8 @@ export default class BundleAddLink extends React.Component {
                addLinkHandler={this.addLinkHandler.bind(this)}
              />
     } else {
-      return <EnterUrl image={currentUser.get('image')}
-               bundleId={bundle.get('id')}
+      return <EnterUrl image={currentUser.image}
+               bundleId={bundle.id}
                handeUrlEnter={this.handeUrlEnter.bind(this)}
              />
     }

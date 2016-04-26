@@ -10,9 +10,9 @@ export default class Container extends React.Component {
         key={index}
         Component={ListItem.Bundle}
         {...bundle.toJS()} {...listItemProps}
-        url={'/bundles/' + bundle.get('id')}
+        url={'/bundles/' + bundle.id}
         type={'bundle'}
-        active={bundle.get('id') === bundleId}
+        active={bundle.id === bundleId}
         remove={removeBundle}
       />
     )
@@ -26,9 +26,9 @@ export default class Container extends React.Component {
         key={index}
         Component={ListItem.Collection}
         {...collection.toJS()} {...listItemProps}
-        url={'/collections/' + collection.get('id')}
+        url={'/collections/' + collection.id}
         type={'collection'}
-        active={collection.get('id') === collectionId}
+        active={collection.id === collectionId}
         remove={removeCollection}
       />
     )

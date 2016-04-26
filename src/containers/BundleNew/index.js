@@ -28,23 +28,23 @@ export default class BundleNewContainer extends React.Component {
 
   saveBundle () {
     let { currentBundle, links, createBundle } = this.props
-    let bundleLinks = currentBundle.get('links').map(id => links.get(id).delete('id'))
+    let bundleLinks = currentBundle.links.map(id => links.get(id).delete('id'))
 
     const payload = {
-      name: currentBundle.get('name'),
-      description: currentBundle.get('description'),
+      name: currentBundle.name,
+      description: currentBundle.description,
       links_attributes: linksWithoutAuthors(bundleLinks)
     }
 
     createBundle(payload).then(bundle => {
-      const newBundleRoutePath = `/bundles/${bundle.get('id')}`
+      const newBundleRoutePath = `/bundles/${bundle.id}`
       browserHistory.push(newBundleRoutePath)
     })
   }
 
   removeLink (index) {
     let { currentBundle, removeLinkFromBundle } = this.props
-    removeLinkFromBundle(currentBundle.get('id'), index)
+    removeLinkFromBundle(currentBundle.id, index)
   }
 
   render () {

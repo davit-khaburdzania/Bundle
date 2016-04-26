@@ -8,11 +8,11 @@ let defaultState = Map({
 export default function (state = defaultState, action) {
   switch (action.type) {
     case 'RECEIVE_LINK':
-      return state.setIn(['byId', action.link.get('id')], action.link)
+      return state.setIn(['byId', action.link.id], action.link)
 
     case 'RECEIVE_LINKS':
       action.list.forEach(link => {
-        state = state.setIn(['byId', link.get('id')], link)
+        state = state.setIn(['byId', link.id], link)
       })
 
       return state

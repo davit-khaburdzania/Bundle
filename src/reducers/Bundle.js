@@ -1,7 +1,8 @@
+import { Bundle } from '../records'
 import { NEW_BUNDLE_ID } from '../constants'
 import { fromJS, Map, List } from 'immutable'
 
-let defaultBundle = Map({
+let defaultBundle = new Bundle({
   id: NEW_BUNDLE_ID,
   name: '',
   description: '',
@@ -17,11 +18,11 @@ let defaultState = Map({
 export default function (state = defaultState, action) {
   switch (action.type) {
     case 'GENERATE_NEW_BUNDLE':
-      return state.setIn(['byId', defaultBundle.get('id')], defaultBundle)
+      return state.setIn(['byId', defaultBundle.id], defaultBundle)
 
     case 'SAVE_BUNDLE':
       return state
-        .setIn(['byId', action.bundle.get('id')], action.bundle)
+        .setIn(['byId', action.bundle.id], action.bundle)
 
     case 'ADD_LINK_ID_TO_BUNDLE':
       return state
@@ -33,8 +34,8 @@ export default function (state = defaultState, action) {
 
     case 'RECEIVE_BUNDLES':
       action.list.forEach(bundle => {
-        if (state.getIn(['byId', bundle.get('id'), 'full_response'])) return
-        state = state.setIn(['byId', bundle.get('id')], bundle)
+        if (state.getIn(['byId', bundle.id, 'full_response'])) return
+        state = state.setIn(['byId', bundle.id], bundle)
       })
 
       return state

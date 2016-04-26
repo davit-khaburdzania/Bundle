@@ -5,11 +5,11 @@ import Wrapper from './Wrapper'
 import { linksWithoutAuthors } from '../../helpers'
 
 const connectState = (state) => ({
-  bundle: state.Bundle.getIn(['byId', state.Route.getIn(['bundle', 'id'])]),
+  bundle: state.Bundle.getIn(['byId', state.Route.bundleId]),
   users: state.User.get('byId'),
   links: state.Link.get('byId'),
-  currentLink: state.Link.getIn(['current', state.Route.getIn(['bundle', 'id'])]),
-  bundleId: state.Route.getIn(['bundle', 'id'])
+  currentLink: state.Link.getIn(['current', state.Route.bundleId]),
+  bundleId: state.Route.bundleId
 })
 
 const connectProps = {
@@ -39,23 +39,23 @@ export default class BundleViewContainer extends React.Component {
       links_attributes: [{id: linkId, _destroy: true }]
     }
 
-    updateBundle(bundle.get('id'), payload)
+    updateBundle(bundle.id, payload)
   }
 
   toggleEdit (save) {
     let { toggleEditMode, bundle, links, updateBundle } = this.props
-    let bundleLinks = bundle.get('links').map(id => links.get(id))
+    let bundleLinks = bundle.links.map(id => links.get(id))
 
-    if (!save) return toggleEditMode(bundle.get('id'))
+    if (!save) return toggleEditMode(bundle.id)
 
     const payload = {
-      name: bundle.get('name'),
-      description: bundle.get('description'),
+      name: bundle.name,
+      description: bundle.description,
       links_attributes: linksWithoutAuthors(bundleLinks)
     }
 
-    updateBundle(bundle.get('id'), payload)
-    toggleEditMode(bundle.get('id'))
+    updateBundle(bundle.id, payload)
+    toggleEditMode(bundle.id)
   }
 
   render () {
@@ -68,11 +68,11 @@ export default class BundleViewContainer extends React.Component {
       updateLink
     } = this.props
 
-    if (!bundle || !bundle.get('full_response')) {
+    if (!bundle || !bundle.full_response) {
       return false
     }
 
-    return <Wrapper editMode={bundle.get('editMode')}
+    return <Wrapper editMode={bundle.editMode}
       bundle={bundle}
       links={links}
       users={users}

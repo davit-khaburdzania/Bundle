@@ -1,11 +1,18 @@
 import { fromJS } from 'immutable'
+import { Bundle, Collection } from '../records'
 import request from 'axios'
 import api from './../api'
 
 export function getFavorites () {
   return async function (dispatch) {
     let response = await request.get(api.favorites())
-    let list = fromJS(response.data)
+    let list = fromJS(response.data).map(item => {
+      if (item.get('favoritable_type') == 'Bundle') {
+        return item.update('favoritable', item => new Bundle(item))
+      } else {
+        return item.update('favoritable', item => new Collection(item))
+      }
+    })
 
     let favorites = list.map(item => fromJS({
       id: item.getIn(['favoritable', 'id']),

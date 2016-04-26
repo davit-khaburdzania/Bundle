@@ -1,10 +1,12 @@
 import { fromJS, Map, List } from 'immutable'
+import { Bundle, User, Link } from '../records'
 import request from 'axios'
 import api from './../api'
 
 function reduceBundle (bundle, dispatch) {
+  let bundleCreator = new User(bundle.get('creator'))
   let links = bundle.get('links')
-  let users = List.of(bundle.get('creator'))
+  let users = List.of(bundleCreator)
 
   let normalizedBundle = bundle
     .update('links', links => {
@@ -13,7 +15,11 @@ function reduceBundle (bundle, dispatch) {
     .set('creator', bundle.getIn(['creator', 'id']))
 
   let normalizedLinks = links.map(link => {
-    users = users.push(link.get('creator'))
+    let creator = new User(link.get('creator'))
+
+    users = users.push(creator)
+    link = new Link(link)
+
     return link.set('creator', link.getIn(['creator', 'id']))
   })
 
@@ -29,7 +35,7 @@ export function generateNewBundle () {
 export function createBundle (payload) {
   return async function (dispatch) {
     let response = await request.post(api.bundles(), { bundle: payload })
-    let bundle = fromJS(response.data)
+    let bundle = new Bundle(fromJS(response.data))
 
     reduceBundle(bundle, dispatch)
     return bundle
@@ -39,7 +45,7 @@ export function createBundle (payload) {
 export function getBundle (id) {
   return async function (dispatch) {
     let response = await request.get(api.bundles(id))
-    let bundle = fromJS(response.data)
+    let bundle = new Bundle(fromJS(response.data))
 
     reduceBundle(bundle, dispatch)
   }
@@ -48,7 +54,7 @@ export function getBundle (id) {
 export function getBundles () {
   return async function (dispatch) {
     let response = await request.get(api.bundles())
-    let list = fromJS(response.data)
+    let list = fromJS(response.data).map(item => new Bundle(item))
 
     dispatch({ type: 'RECEIVE_BUNDLES', list })
   }
@@ -67,7 +73,7 @@ export function removeBundle (id) {
 export function updateBundle (id, payload) {
   return async function (dispatch) {
     let response = await request.put(api.bundles(id), { bundle: payload })
-    let bundle = fromJS(response.data)
+    let bundle = new Bundle(fromJS(response.data))
 
     reduceBundle(bundle, dispatch)
   }
