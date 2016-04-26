@@ -1,7 +1,8 @@
+import { Bundle } from '../records'
 import { NEW_BUNDLE_ID } from '../constants'
 import { fromJS, Map, List } from 'immutable'
 
-let defaultBundle = Map({
+let defaultBundle = new Bundle({
   id: NEW_BUNDLE_ID,
   name: '',
   description: '',

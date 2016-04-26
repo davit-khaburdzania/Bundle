@@ -21,12 +21,12 @@ export default class BundleAddLink extends React.Component {
       updateBundle, addCurrentLinkToBundle } = this.props
 
     const payload = {
-      links_attributes: [link.set('creator_id', currentUser.get('id')).toJS()]
+      links_attributes: [link.set('creator_id', currentUser.id).toJS()]
     }
 
     if (bundle.get('isNewBundle')) {
       let linkWithCreator = link
-        .set('creator', currentUser.get('id'))
+        .set('creator', currentUser.id)
         .set('id', this.nextLinkId(links))
 
       return addCurrentLinkToBundle(bundle.get('id'), linkWithCreator)
@@ -53,7 +53,7 @@ export default class BundleAddLink extends React.Component {
                addLinkHandler={this.addLinkHandler.bind(this)}
              />
     } else {
-      return <EnterUrl image={currentUser.get('image')}
+      return <EnterUrl image={currentUser.image}
                bundleId={bundle.get('id')}
                handeUrlEnter={this.handeUrlEnter.bind(this)}
              />

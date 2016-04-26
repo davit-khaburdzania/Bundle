@@ -1,6 +1,7 @@
+import { fromJS, Map, List } from 'immutable'
+import { Link } from '../records'
 import request from 'axios'
 import api from './../api'
-import { fromJS, Map, List } from 'immutable'
 
 export function clearCurrentLink (bundleId) {
   return { type: 'CLEAR_CURRENT_LINK' , bundleId }
@@ -9,7 +10,7 @@ export function clearCurrentLink (bundleId) {
 export function fetchLink (url, bundleId) {
   return async function (dispatch) {
     let response = await request.get(api.fetchLink(url))
-    let link = fromJS({
+    let link = new Link({
       url: response.data.url,
       title: response.data.title,
       description: response.data.description,

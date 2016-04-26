@@ -1,10 +1,12 @@
+import { User } from '../records'
 import { fromJS, Map } from 'immutable'
 
-let me = {
+let me = new User({
   id: '1',
   name: 'Sarah Gadon',
+  email: 'sarash.gadon@gmail.com',
   image: 'http://i.imgur.com/XMnLzi2.jpg'
-}
+})
 
 let defaultState = fromJS({
   byId: { '1': me },

@@ -22,7 +22,7 @@ export default function SideNavigationBottom ({
   )
 }
 SideNavigationBottom.propTypes = {
-  currentUser: ImmutablePropTypes.map.isRequired,
+  currentUser: ImmutablePropTypes.record.isRequired,
   isOpen: React.PropTypes.bool.isRequired,
   openUserMenu: React.PropTypes.func.isRequired,
   closeUserMenu: React.PropTypes.func.isRequired

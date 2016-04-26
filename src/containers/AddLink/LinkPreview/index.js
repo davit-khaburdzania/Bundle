@@ -20,6 +20,6 @@ export default function LinkPreview ({ link, currentUser, addLinkHandler }) {
 
 LinkPreview.propTypes = {
   link: ImmutablePropTypes.map.isRequired,
-  currentUser: ImmutablePropTypes.map.isRequired,
+  currentUser: ImmutablePropTypes.record.isRequired,
   addLinkHandler: React.PropTypes.func.isRequired
 }
