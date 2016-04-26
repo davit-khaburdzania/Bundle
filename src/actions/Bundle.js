@@ -1,31 +1,20 @@
 import { fromJS, Map, List } from 'immutable'
 import { Bundle, User, Link } from '../records'
+import { bundleSchema } from '../normalizers'
+import { normalize } from 'normalizr'
+
 import request from 'axios'
 import api from './../api'
 
-function reduceBundle (bundle, dispatch) {
-  let bundleCreator = new User(bundle.get('creator'))
-  let links = bundle.get('links')
-  let users = List.of(bundleCreator)
+function reduceBundle (data, dispatch) {
+  let result = normalize(data, bundleSchema).entities
+  let bundles = Object.values(result.bundles).map(item => new Bundle(fromJS(item)))
+  let users = Object.values(result.users).map(item => new User(fromJS(item)))
+  let links = Object.values(result.links).map(item => new Link(fromJS(item)))
 
-  let normalizedBundle = bundle
-    .update('links', links => {
-      return links.map(link => link.get('id'))
-    })
-    .set('creator', bundle.getIn(['creator', 'id']))
-
-  let normalizedLinks = links.map(link => {
-    let creator = new User(link.get('creator'))
-
-    users = users.push(creator)
-    link = new Link(link)
-
-    return link.set('creator', link.getIn(['creator', 'id']))
-  })
-
-  dispatch({ type: 'RECEIVE_USERS', list: users })
-  dispatch({ type: 'RECEIVE_LINKS', list: normalizedLinks })
-  dispatch({ type: 'SAVE_BUNDLE', bundle: normalizedBundle })
+  dispatch({ type: 'RECEIVE_USERS', users })
+  dispatch({ type: 'RECEIVE_LINKS', links })
+  dispatch({ type: 'RECEIVE_BUNDLES', bundles })
 }
 
 export function generateNewBundle () {
@@ -34,29 +23,27 @@ export function generateNewBundle () {
 
 export function createBundle (payload) {
   return async function (dispatch) {
-    let response = await request.post(api.bundles(), { bundle: payload })
-    let bundle = new Bundle(fromJS(response.data))
+    let { data } = await request.post(api.bundles(), { bundle: payload })
 
-    reduceBundle(bundle, dispatch)
-    return bundle
+    reduceBundle(data, dispatch)
+    return data
   }
 }
 
 export function getBundle (id) {
   return async function (dispatch) {
     let response = await request.get(api.bundles(id))
-    let bundle = new Bundle(fromJS(response.data))
 
-    reduceBundle(bundle, dispatch)
+    reduceBundle(response.data, dispatch)
   }
 }
 
 export function getBundles () {
   return async function (dispatch) {
     let response = await request.get(api.bundles())
-    let list = fromJS(response.data).map(item => new Bundle(item))
+    let bundles = fromJS(response.data).map(item => new Bundle(item))
 
-    dispatch({ type: 'RECEIVE_BUNDLES', list })
+    dispatch({ type: 'RECEIVE_BUNDLES', bundles })
   }
 }
 
@@ -73,9 +60,8 @@ export function removeBundle (id) {
 export function updateBundle (id, payload) {
   return async function (dispatch) {
     let response = await request.put(api.bundles(id), { bundle: payload })
-    let bundle = new Bundle(fromJS(response.data))
 
-    reduceBundle(bundle, dispatch)
+    reduceBundle(response.data, dispatch)
   }
 }
 

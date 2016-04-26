@@ -24,8 +24,8 @@ export function getFavorites () {
       .groupBy(item => item.get('favoritable_type'))
       .mapEntries(([k, v]) => [k, v.map(item => item.get('favoritable'))])
 
-    dispatch({ type: 'RECEIVE_COLLECTIONS', list: groupedFavs.get('Collection', []) })
-    dispatch({ type: 'RECEIVE_BUNDLES', list: groupedFavs.get('Bundle', []) })
+    dispatch({ type: 'RECEIVE_COLLECTIONS', collections: groupedFavs.get('Collection', []) })
+    dispatch({ type: 'RECEIVE_BUNDLES', bundles: groupedFavs.get('Bundle', []) })
     dispatch({ type: 'RECEIVE_FAVORITES', list: favorites })
   }
 }

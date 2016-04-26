@@ -17,7 +17,7 @@ let defaultState = fromJS({
 export default function (state = defaultState, action) {
   switch (action.type) {
     case 'RECEIVE_USERS':
-      action.list.forEach(user => {
+      action.users.forEach(user => {
         state = state.setIn(['byId', user.id], user)
       })
 

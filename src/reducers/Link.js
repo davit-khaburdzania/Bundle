@@ -11,7 +11,7 @@ export default function (state = defaultState, action) {
       return state.setIn(['byId', action.link.id], action.link)
 
     case 'RECEIVE_LINKS':
-      action.list.forEach(link => {
+      action.links.forEach(link => {
         state = state.setIn(['byId', link.id], link)
       })
 
