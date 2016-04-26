@@ -33,7 +33,7 @@ export default function (state = defaultState, action) {
         .updateIn(['byId', action.bundleId, 'links'], links => links.delete(action.index))
 
     case 'RECEIVE_BUNDLES':
-      action.list.forEach(bundle => {
+      action.bundles.forEach(bundle => {
         if (state.getIn(['byId', bundle.id, 'full_response'])) return
         state = state.setIn(['byId', bundle.id], bundle)
       })

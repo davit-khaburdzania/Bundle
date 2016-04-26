@@ -7,7 +7,11 @@ let defaultState = Map({
 export default function (state = defaultState, action) {
   switch (action.type) {
     case 'RECEIVE_COLLECTIONS':
-      return state.set('byId', Map(action.list.map(col => [col.id, col])))
+      action.collections.forEach(col => {
+        state = state.setIn(['byId', col.id], col)
+      })
+
+      return state
 
     case 'RECEIVE_COLLECTION':
       return state.setIn(['byId', action.collection.id], action.collection)
