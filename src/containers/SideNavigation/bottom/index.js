@@ -11,9 +11,9 @@ export default function SideNavigationBottom ({
   return (
     <div className='side-navigation-bottom'>
       <UserMenu isOpen={isOpen} openUserMenu={openUserMenu}
-        closeUserMenu={closeUserMenu} userImage={currentUser.get('image')} >
+        closeUserMenu={closeUserMenu} userImage={currentUser.image} >
 
-        <Menu left={'70px'} bottom={'40px'} headline={currentUser.get('name')}>
+        <Menu left={'70px'} bottom={'40px'} headline={currentUser.name}>
           <Link to='/settings'>Settings</Link>
           <Link to='/logout'>Sign Out</Link>
         </Menu>

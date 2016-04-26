@@ -6,7 +6,7 @@ export default function Wrapper ({
   ...listItemProps
 }) {
   let collectionsList = collections.valueSeq()
-    .sortBy(col => col.get('created_at'))
+    .sortBy(col => col.created_at)
     .reverse()
     .map((collection, index) => {
       return <ListItem key={index}
