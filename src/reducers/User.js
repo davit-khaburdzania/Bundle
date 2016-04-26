@@ -18,7 +18,7 @@ export default function (state = defaultState, action) {
   switch (action.type) {
     case 'RECEIVE_USERS':
       action.list.forEach(user => {
-        state = state.setIn(['byId', user.get('id')], user)
+        state = state.setIn(['byId', user.id], user)
       })
 
       return state

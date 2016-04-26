@@ -7,10 +7,10 @@ let defaultState = Map({
 export default function (state = defaultState, action) {
   switch (action.type) {
     case 'RECEIVE_COLLECTIONS':
-      return state.set('byId', Map(action.list.map(col => [col.get('id'), col])))
+      return state.set('byId', Map(action.list.map(col => [col.id, col])))
 
     case 'RECEIVE_COLLECTION':
-      return state.setIn(['byId', action.collection.get('id')], action.collection)
+      return state.setIn(['byId', action.collection.id], action.collection)
 
     case 'FAVORITE_COLLECTION':
       return state.updateIn(['byId', action.id], (col) => col.set('favorited', true))
