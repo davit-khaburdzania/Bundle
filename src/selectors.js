@@ -11,8 +11,6 @@ let currentCollectionIdSelector = state => state.Route.collectionId
 let currentUserIdSelector = state => state.User.get('me')
 let currentLinksSelector = state => state.Link.get('current')
 
-
-
 export const currentBundleSelector = createSelector(
   [currentBundleIdSelector, bundlesSelector],
   (id, bundles) => bundles.get(id)
