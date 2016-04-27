@@ -1,14 +1,16 @@
-import { connect } from 'react-redux'
 import * as bundleActions from '../../actions/Bundle'
 import * as linkActions from '../../actions/Link'
-import Wrapper from './Wrapper'
+
+import { connect } from 'react-redux'
+import { currentBundleSelector, currentLinkSelector } from '../../selectors'
 import { linksWithoutAuthors } from '../../helpers'
+import Wrapper from './Wrapper'
 
 const connectState = (state) => ({
-  bundle: state.Bundle.getIn(['byId', state.Route.bundleId]),
+  bundle: currentBundleSelector(state),
   users: state.User.get('byId'),
   links: state.Link.get('byId'),
-  currentLink: state.Link.getIn(['current', state.Route.bundleId]),
+  currentLink: currentLinkSelector(state),
   bundleId: state.Route.bundleId
 })
 

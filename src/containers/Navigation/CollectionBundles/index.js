@@ -1,13 +1,14 @@
-import ImmutablePropTypes from 'react-immutable-proptypes'
 import { connect } from 'react-redux'
+import { currentCollectionSelector, sortedCollectionBundlesSelector } from '../../../selectors'
 import * as collectionActions from '../../../actions/Collection'
 import * as bundleActions from '../../../actions/Bundle'
 import * as favoriteActions from '../../../actions/Favorite'
+import ImmutablePropTypes from 'react-immutable-proptypes'
 import Wrapper from './Wrapper'
 
 const connectState = (state) => ({
-  collection: state.Collection.getIn(['byId', state.Route.collectionId]),
-  bundles: state.Bundle.get('byId'),
+  collection: currentCollectionSelector(state),
+  bundles: sortedCollectionBundlesSelector(state),
   bundleId: state.Route.bundleId,
   collectionId: state.Route.collectionId
 })

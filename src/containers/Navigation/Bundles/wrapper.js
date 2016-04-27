@@ -12,20 +12,16 @@ export default function Wrapper ({
   ...listItemProps
 }) {
   let styles = { 'display': search.get('open') ? 'none' : 'block' }
-  let bundlesList = bundles.valueSeq()
-    .filter(bundle => bundle.id != NEW_BUNDLE_ID)
-    .sortBy(bundle => bundle.created_at)
-    .reverse()
-    .map((bundle, index) => {
-      return <ListItem key={index}
-        {...bundle.toJS()}
-        {...listItemProps}
-        Component={ListItem.Bundle}
-        url={'/bundles/' + bundle.id}
-        type={'bundle'}
-        active={bundle.id === bundleId}
-        remove={removeBundle}
-      />
+  let bundlesList = bundles.map((bundle, index) => {
+    return <ListItem key={index}
+      {...bundle.toJS()}
+      {...listItemProps}
+      Component={ListItem.Bundle}
+      url={'/bundles/' + bundle.id}
+      type={'bundle'}
+      active={bundle.id === bundleId}
+      remove={removeBundle}
+    />
   })
 
   return (

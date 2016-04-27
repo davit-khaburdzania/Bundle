@@ -7,10 +7,12 @@ import request from 'axios'
 import api from './../api'
 
 function reduceBundle (data, dispatch) {
-  let result = normalize(data, bundleSchema).entities
-  let bundles = Object.values(result.bundles).map(item => new Bundle(fromJS(item)))
-  let users = Object.values(result.users).map(item => new User(fromJS(item)))
-  let links = Object.values(result.links).map(item => new Link(fromJS(item)))
+  let result = fromJS(normalize(data, bundleSchema).entities)
+    .update('links', links => links || Map())
+
+  let bundles = result.get('bundles').valueSeq().map(item => new Bundle(item))
+  let users = result.get('users').valueSeq().map(item => new User(item))
+  let links = result.get('links').valueSeq().map(item => new Link(item))
 
   dispatch({ type: 'RECEIVE_USERS', users })
   dispatch({ type: 'RECEIVE_LINKS', links })

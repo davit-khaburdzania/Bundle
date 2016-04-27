@@ -12,21 +12,17 @@ export default function Wrapper ({
   removeBundle,
   ...listItemProps
 }) {
-  let bundleList = collection.bundles
-    .map(id => bundles.get(id))
-    .sortBy(col => col.created_at)
-    .reverse()
-    .map((bundle, index) => {
-      return <ListItem key={index}
-        {...bundle.toJS()}
-        {...listItemProps}
-        Component={ListItem.Bundle}
-        url={bundleUrl(collection, bundle)}
-        type={'bundle'}
-        remove={removeBundle}
-        active={bundle.id === bundleId}
-      />
-    })
+  let bundleList = bundles.map((bundle, index) => {
+    return <ListItem key={index}
+      {...bundle.toJS()}
+      {...listItemProps}
+      Component={ListItem.Bundle}
+      url={bundleUrl(collection, bundle)}
+      type={'bundle'}
+      remove={removeBundle}
+      active={bundle.id === bundleId}
+    />
+  })
 
   return (
     <ResourceNavigation bundleView={children}>
