@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux'
+import { reducer as ui } from 'redux-ui'
 import { routerReducer as routing } from 'react-router-redux'
 
 import UserMenu from './UserMenu'
@@ -12,6 +13,7 @@ import Favorite from './Favorite'
 import Link from './Link'
 
 export default combineReducers({
+  ui,
   routing,
   Route,
   UserMenu,
@@ -21,5 +23,5 @@ export default combineReducers({
   Alert,
   User,
   Favorite,
-  Link
+  Link,
 })

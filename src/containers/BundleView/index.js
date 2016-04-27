@@ -4,7 +4,9 @@ import * as linkActions from '../../actions/Link'
 import { connect } from 'react-redux'
 import { currentBundleSelector, currentLinkSelector } from '../../selectors'
 import { linksWithoutAuthors } from '../../helpers'
+
 import Wrapper from './Wrapper'
+import ui from 'redux-ui'
 
 const connectState = (state) => ({
   bundle: currentBundleSelector(state),
@@ -19,6 +21,12 @@ const connectProps = {
   ...linkActions
 }
 
+@ui({
+  key: 'bundle',
+  state: {
+    editMode: false
+  }
+})
 @connect(connectState, connectProps)
 export default class BundleViewContainer extends React.Component {
   componentWillMount () {
@@ -27,10 +35,13 @@ export default class BundleViewContainer extends React.Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    const { getBundle, bundleId } = this.props
+    const { getBundle, bundleId, resetUI } = this.props
     const nextBundleId = nextProps.bundleId
 
-    if (bundleId !== nextBundleId) getBundle(nextBundleId)
+    if (bundleId !== nextBundleId) {
+      resetUI()
+      getBundle(nextBundleId)
+    }
   }
 
   handleLinkRemove (index) {
@@ -45,10 +56,10 @@ export default class BundleViewContainer extends React.Component {
   }
 
   toggleEdit (save) {
-    let { toggleEditMode, bundle, links, updateBundle } = this.props
+    let { toggleEditMode, bundle, links, updateBundle, updateUI, ui } = this.props
     let bundleLinks = bundle.links.map(id => links.get(id))
 
-    if (!save) return toggleEditMode(bundle.id)
+    if (!save) return updateUI('editMode', !ui.editMode)
 
     const payload = {
       name: bundle.name,
@@ -57,11 +68,12 @@ export default class BundleViewContainer extends React.Component {
     }
 
     updateBundle(bundle.id, payload)
-    toggleEditMode(bundle.id)
+    updateUI('editMode', !ui.editMode)
   }
 
   render () {
     let {
+      ui,
       bundle,
       links,
       users,
@@ -74,7 +86,7 @@ export default class BundleViewContainer extends React.Component {
       return false
     }
 
-    return <Wrapper editMode={bundle.editMode}
+    return <Wrapper editMode={ui.editMode}
       bundle={bundle}
       links={links}
       users={users}
