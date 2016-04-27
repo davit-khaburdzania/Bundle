@@ -1,4 +1,5 @@
 import { connect } from 'react-redux'
+import { currentUserSelector } from '../../selectors'
 import * as userMenuActions from '../../actions/UserMenu'
 
 import SideNavigationTop from './top'
@@ -8,7 +9,7 @@ import './index.css'
 
 const connectState = (state) => ({
   isOpen: state.UserMenu,
-  currentUser: state.User.getIn(['byId', state.User.get('me')])
+  currentUser: currentUserSelector(state)
 })
 
 const connectProps = { ...userMenuActions }

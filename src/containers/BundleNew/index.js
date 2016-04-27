@@ -2,6 +2,7 @@ import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 import { NEW_BUNDLE_ID } from '../../constants'
 import { linksWithoutAuthors } from '../../helpers'
+import { currentBundleSelector } from '../../selectors'
 import Wrapper from '../BundleView/Wrapper'
 
 import * as bundleActions from '../../actions/Bundle'

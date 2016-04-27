@@ -1,4 +1,4 @@
-import { Record, Map } from 'immutable'
+import { Record, Map, List } from 'immutable'
 
 export const User = Record({
   id: null,
@@ -30,7 +30,7 @@ export const Collection = Record({
   favorites_count: null,
   shares_count: null,
   favorited: null,
-  bundles: null,
+  bundles: List(),
   full_response: false,
   created_at: null
 })
