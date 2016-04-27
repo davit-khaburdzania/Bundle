@@ -1,12 +1,13 @@
 import { connect } from 'react-redux'
+import { currentBundleSelector, currentUserSelector } from '../../selectors'
 import * as bundleActions from '../../actions/Bundle'
 import * as linkActions from '../../actions/Link'
 import EnterUrl from './EnterUrl'
 import LinkPreview from './LinkPreview'
 
 const connectState = (state) => ({
-  bundle: state.Bundle.getIn(['byId', state.Route.bundleId]),
-  currentUser: state.User.getIn(['byId', state.User.get('me')])
+  bundle: currentBundleSelector(state),
+  currentUser: currentUserSelector(state)
 })
 
 const connectProps = {

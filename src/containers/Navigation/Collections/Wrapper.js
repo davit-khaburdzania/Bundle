@@ -5,17 +5,14 @@ export default function Wrapper ({
   removeCollection,
   ...listItemProps
 }) {
-  let collectionsList = collections.valueSeq()
-    .sortBy(col => col.created_at)
-    .reverse()
-    .map((collection, index) => {
-      return <ListItem key={index}
-        {...collection.toJS()}
-        {...listItemProps}
-        Component={ListItem.Collection}
-        type={'collection'}
-        remove={removeCollection}
-      />
+  let collectionsList = collections.map((collection, index) => {
+    return <ListItem key={index}
+      {...collection.toJS()}
+      {...listItemProps}
+      Component={ListItem.Collection}
+      type={'collection'}
+      remove={removeCollection}
+    />
   })
 
   return (

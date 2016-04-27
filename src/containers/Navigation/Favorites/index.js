@@ -1,12 +1,13 @@
 import ImmutablePropTypes from 'react-immutable-proptypes'
 import { connect } from 'react-redux'
+import { sortedFavoritesSelector } from '../../../selectors'
 import * as bundleActions from '../../../actions/Bundle'
 import * as collectionActions from '../../../actions/Collection'
 import * as favoriteActions from '../../../actions/Favorite'
 import Wrapper from './Wrapper'
 
 const connectState = (state) => ({
-  favorites: state.Favorite.get('byId'),
+  favorites: sortedFavoritesSelector(state),
   bundles: state.Bundle.get('byId'),
   collections: state.Collection.get('byId'),
   bundleId: state.Route.bundleId,
@@ -31,7 +32,7 @@ export default class Container extends React.Component {
   }
 
   static propTypes = {
-    favorites: ImmutablePropTypes.map.isRequired,
+    favorites: ImmutablePropTypes.list.isRequired,
     bundles: ImmutablePropTypes.map.isRequired,
     collections: ImmutablePropTypes.map.isRequired,
     bundleId: React.PropTypes.string,
