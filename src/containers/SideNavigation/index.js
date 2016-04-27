@@ -1,29 +1,39 @@
 import { connect } from 'react-redux'
 import { currentUserSelector } from '../../selectors'
-import * as userMenuActions from '../../actions/UserMenu'
 
+import ui from 'redux-ui'
 import SideNavigationTop from './top'
 import SideNavigationBottom from './bottom'
 
 import './index.css'
 
 const connectState = (state) => ({
-  isOpen: state.UserMenu,
   currentUser: currentUserSelector(state)
 })
 
-const connectProps = { ...userMenuActions }
-
-@connect(connectState, connectProps)
+@ui({
+  key: 'userMenu',
+  state: { isOpen: false }
+})
+@connect(connectState)
 export default class SideNavigation extends React.Component {
+  openUserMenu () {
+    this.props.updateUI('isOpen', true)
+  }
+
+  closeUserMenu () {
+    this.props.updateUI('isOpen', false)
+  }
+
   render () {
-    let { isOpen, openUserMenu, closeUserMenu, currentUser } = this.props
+    let { ui, currentUser } = this.props
 
     return (
       <div className='side-navigation'>
         <SideNavigationTop/>
-        <SideNavigationBottom isOpen={isOpen} openUserMenu={openUserMenu}
-          closeUserMenu={closeUserMenu} currentUser={currentUser}
+        <SideNavigationBottom isOpen={ui.isOpen} currentUser={currentUser}
+          closeUserMenu={this.closeUserMenu.bind(this)}
+          openUserMenu={this.openUserMenu.bind(this)}
         />
       </div>
     )
