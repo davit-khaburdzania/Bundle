@@ -32,7 +32,10 @@ export default class App extends React.Component {
 
   render () {
     let { children } = this.props
-    if (!this.props.currentUser) return false
+
+    if (!this.props.currentUser) {
+      return <a href='http://localhost:3000/auth/facebook'>Authenticate with Facebook </a>
+    }
 
     return (
       <div>
