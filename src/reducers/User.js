@@ -13,7 +13,6 @@ let defaultState = fromJS({
   me: '1'
 })
 
-
 export default function (state = defaultState, action) {
   switch (action.type) {
     case 'RECEIVE_USERS':
@@ -22,6 +21,10 @@ export default function (state = defaultState, action) {
       })
 
       return state
+
+    case 'AUTHENTICATE_USER':
+      return state.setIn(['byId', action.user.id], action.user)
+                 .set('me', action.user.id)
 
     default:
       return state
