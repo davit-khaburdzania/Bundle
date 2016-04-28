@@ -1,11 +1,12 @@
 import { SideNavigation, Alerts } from '..'
 import { browserHistory } from 'react-router'
 import { connect } from 'react-redux'
+import { currentUserSelector } from '../../selectors'
 import * as userActions from '../../actions/User'
 import './style.css'
 
 const connectState = (state) => ({
-
+  currentUser: currentUserSelector(state)
 })
 
 const connectProps = {
@@ -15,18 +16,23 @@ const connectProps = {
 @connect(connectState, connectProps)
 export default class App extends React.Component {
   componentWillMount () {
-    let { children, location, authenticate } = this.props
+    let { children, location, authenticate, me } = this.props
     let { query } = this.props.location
+    let auth_token = localStorage.getItem('auth_token')
 
     if (query.authenticated === "true") {
       let user = JSON.parse(query.user)
       authenticate(user)
+
       browserHistory.push('/')
+    } else if (auth_token) {
+      me()
     }
   }
 
   render () {
     let { children } = this.props
+    if (!this.props.currentUser) return false
 
     return (
       <div>

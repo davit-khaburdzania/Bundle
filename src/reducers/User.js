@@ -1,16 +1,9 @@
 import { User } from '../records'
 import { fromJS, Map } from 'immutable'
 
-let me = new User({
-  id: '1',
-  name: 'Sarah Gadon',
-  email: 'sarash.gadon@gmail.com',
-  image: 'http://i.imgur.com/XMnLzi2.jpg'
-})
-
 let defaultState = fromJS({
-  byId: { '1': me },
-  me: '1'
+  byId: Map(),
+  me: null
 })
 
 export default function (state = defaultState, action) {
@@ -24,7 +17,7 @@ export default function (state = defaultState, action) {
 
     case 'AUTHENTICATE_USER':
       return state.setIn(['byId', action.user.id], action.user)
-                 .set('me', action.user.id)
+                  .set('me', action.user.id)
 
     default:
       return state
