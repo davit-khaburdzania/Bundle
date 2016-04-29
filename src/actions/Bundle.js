@@ -10,13 +10,13 @@ function reduceBundle (data, dispatch) {
   let result = fromJS(normalize(data, bundleSchema).entities)
     .update('links', links => links || Map())
 
-  let bundles = result.get('bundles').valueSeq().map(item => new Bundle(item))
+  let bundle = new Bundle(result.get('bundles').first())
   let users = result.get('users').valueSeq().map(item => new User(item))
   let links = result.get('links').valueSeq().map(item => new Link(item))
 
   dispatch({ type: 'RECEIVE_USERS', users })
   dispatch({ type: 'RECEIVE_LINKS', links })
-  dispatch({ type: 'RECEIVE_BUNDLES', bundles })
+  dispatch({ type: 'SAVE_BUNDLE', bundle })
 }
 
 export function generateNewBundle () {
