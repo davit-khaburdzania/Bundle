@@ -8,7 +8,7 @@ let usersSelector = state => state.User.get('byId')
 
 let currentBundleIdSelector = state => state.Route.bundleId
 let currentCollectionIdSelector = state => state.Route.collectionId
-let currentUserIdSelector = state => state.User.get('me')
+let currentUserIdSelector = state => state.User.get('current')
 let currentLinksSelector = state => state.Link.get('current')
 
 export const currentBundleSelector = createSelector(

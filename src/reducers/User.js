@@ -3,7 +3,7 @@ import { fromJS, Map } from 'immutable'
 
 let defaultState = fromJS({
   byId: Map(),
-  me: null
+  current: null
 })
 
 export default function (state = defaultState, action) {
@@ -16,8 +16,8 @@ export default function (state = defaultState, action) {
       return state
 
     case 'AUTHENTICATE_USER':
-      return state.setIn(['byId', action.user.id], action.user)
-                  .set('me', action.user.id)
+      return state.set('current', action.user.id)
+        .setIn(['byId', action.user.id], action.user)
 
     default:
       return state

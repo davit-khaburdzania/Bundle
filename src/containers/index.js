@@ -1,5 +1,6 @@
 export Root from './Root'
 export App from './App'
+export Auth from './Auth'
 export Alerts from './Alerts'
 export Navigation from './Navigation'
 export SideNavigation from './SideNavigation'
