@@ -3,8 +3,7 @@ import { connect } from 'react-redux'
 import { currentUserSelector } from '../../selectors'
 import * as userActions from '../../actions/User'
 
-const connectState = (state) => (
-  {
+const connectState = (state) => ({
   currentUser: state.User.getIn(['byId', state.User.get('current')])
 })
 
@@ -32,10 +31,15 @@ export default class Auth extends React.Component {
   render () {
     let { children, currentUser } = this.props
 
-    if (!currentUser) {
-      return <a href='http://localhost:3000/auth/facebook'>Authenticate with Facebook </a>
-    } else {
-      return (<div> {children} </div>)
-    }
+    if (currentUser) return <div>{children}</div>
+
+
+    return (
+      <div>
+        <a href='http://localhost:3000/auth/facebook'>Authenticate with Facebook </a>
+        <br />
+        <a href='http://localhost:3000/auth/twitter'>Authenticate with Twitter </a>
+      </div>
+    )
   }
 }
