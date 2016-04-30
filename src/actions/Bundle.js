@@ -2,6 +2,7 @@ import { fromJS, Map, List } from 'immutable'
 import { Bundle, User, Link } from '../records'
 import { bundleSchema } from '../normalizers'
 import { normalize } from 'normalizr'
+import { NEW_BUNDLE_ID } from '../constants'
 
 import request from 'axios'
 import api from './../api'
@@ -20,7 +21,15 @@ function reduceBundle (data, dispatch) {
 }
 
 export function generateNewBundle () {
-  return { type: 'GENERATE_NEW_BUNDLE' }
+  let bundle = new Bundle({
+    id: NEW_BUNDLE_ID,
+    name: '',
+    description: '',
+    isNewBundle: true,
+    links: List(),
+  })
+
+  return { type: 'SAVE_BUNDLE', bundle }
 }
 
 export function createBundle (payload) {

@@ -2,14 +2,6 @@ import { Bundle } from '../records'
 import { NEW_BUNDLE_ID } from '../constants'
 import { fromJS, Map, List } from 'immutable'
 
-let defaultBundle = new Bundle({
-  id: NEW_BUNDLE_ID,
-  name: '',
-  description: '',
-  isNewBundle: true,
-  links: List()
-})
-
 let defaultState = Map({
   byId: Map(),
   current: undefined
@@ -17,9 +9,6 @@ let defaultState = Map({
 
 export default function (state = defaultState, action) {
   switch (action.type) {
-    case 'GENERATE_NEW_BUNDLE':
-      return state.setIn(['byId', defaultBundle.id], defaultBundle)
-
     case 'SAVE_BUNDLE':
       return state
         .setIn(['byId', action.bundle.id], action.bundle)

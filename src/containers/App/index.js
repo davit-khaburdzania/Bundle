@@ -16,17 +16,17 @@ const connectProps = {
 @connect(connectState, connectProps)
 export default class App extends React.Component {
   componentWillMount () {
-    let { children, location, authenticate, me } = this.props
+    let {currentUser, location, setCurrentUser, authenticateUsingAuthToken } = this.props
     let { query } = this.props.location
     let auth_token = localStorage.getItem('auth_token')
 
     if (query.authenticated === "true") {
       let user = JSON.parse(query.user)
-      authenticate(user)
+      setCurrentUser(user)
 
       browserHistory.push('/')
-    } else if (auth_token) {
-      me()
+    } else if (auth_token && !currentUser) {
+      authenticateUsingAuthToken(auth_token)
     }
   }
 
@@ -40,6 +40,7 @@ export default class App extends React.Component {
     return (
       <div>
         <Alerts />
+
         <div className='application-container'>
           <SideNavigation />
           {children}

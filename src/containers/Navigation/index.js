@@ -43,6 +43,7 @@ export default class Navigation extends React.Component {
     let NavigationComponent = this.getNavigationView()
     let BundleViewComponent = this.getBundleView()
 
+    console.log('render')
     return (
       <div className='navigation-wrapper'>
         <NavigationComponent />
