@@ -10,7 +10,7 @@ export function setCurrentUser (user) {
   return { type: 'AUTHENTICATE_USER', user: new User(user) }
 }
 
-export function authenticateUsingAuthToken (auth_token) {
+export function authenticateUser (auth_token) {
   request.defaults.headers.common['AUTH-TOKEN'] = auth_token
 
   return async function (dispatch) {

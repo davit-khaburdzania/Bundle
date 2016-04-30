@@ -15,7 +15,7 @@ const connectProps = {
 @connect(connectState, connectProps)
 export default class Auth extends React.Component {
   componentWillMount () {
-    let {currentUser, location, setCurrentUser, authenticateUsingAuthToken } = this.props
+    let {currentUser, location, setCurrentUser, authenticateUser } = this.props
     let { query } = this.props.location
     let auth_token = localStorage.getItem('auth_token')
 
@@ -25,7 +25,7 @@ export default class Auth extends React.Component {
 
       browserHistory.push('/')
     } else if (auth_token && !currentUser) {
-      authenticateUsingAuthToken(auth_token)
+      authenticateUser(auth_token)
     }
   }
 
