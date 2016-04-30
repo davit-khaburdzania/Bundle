@@ -11,7 +11,7 @@ import Route from './Route'
 import Favorite from './Favorite'
 import Link from './Link'
 
-export default combineReducers({
+const appReducer = combineReducers({
   routing,
   Route,
   UserMenu,
@@ -23,3 +23,13 @@ export default combineReducers({
   Favorite,
   Link
 })
+
+const rootReducer = (state, action) => {
+  if (action.type === 'RESET_STATE') {
+    state = undefined
+  }
+
+  return appReducer(state, action)
+}
+
+export default rootReducer

@@ -18,3 +18,8 @@ export function authenticateUser (auth_token) {
     return dispatch(setCurrentUser(response.data))
   }
 }
+
+export function logoutUser () {
+  localStorage.removeItem('auth_token')
+  return { type: 'RESET_STATE'}
+}
