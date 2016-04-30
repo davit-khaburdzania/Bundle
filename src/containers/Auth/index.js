@@ -28,11 +28,19 @@ export default class Auth extends React.Component {
     }
   }
 
+  getAuthToken () {
+    return localStorage.getItem('auth_token')
+  }
+
+  shouldNotRender () {
+    return !this.props.currentUser && this.getAuthToken()
+  }
+
   render () {
     let { children, currentUser } = this.props
 
     if (currentUser) return <div>{children}</div>
-
+    if (this.shouldNotRender()) return false
 
     return (
       <div>
