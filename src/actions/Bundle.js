@@ -2,6 +2,7 @@ import { fromJS, Map, List } from 'immutable'
 import { Bundle, User, Link } from '../records'
 import { bundleSchema } from '../normalizers'
 import { normalize } from 'normalizr'
+import { NEW_BUNDLE_ID } from '../constants'
 
 import request from 'axios'
 import api from './../api'
@@ -10,17 +11,25 @@ function reduceBundle (data, dispatch) {
   let result = fromJS(normalize(data, bundleSchema).entities)
     .update('links', links => links || Map())
 
-  let bundles = result.get('bundles').valueSeq().map(item => new Bundle(item))
+  let bundle = new Bundle(result.get('bundles').first())
   let users = result.get('users').valueSeq().map(item => new User(item))
   let links = result.get('links').valueSeq().map(item => new Link(item))
 
   dispatch({ type: 'RECEIVE_USERS', users })
   dispatch({ type: 'RECEIVE_LINKS', links })
-  dispatch({ type: 'RECEIVE_BUNDLES', bundles })
+  dispatch({ type: 'SAVE_BUNDLE', bundle })
 }
 
 export function generateNewBundle () {
-  return { type: 'GENERATE_NEW_BUNDLE' }
+  let bundle = new Bundle({
+    id: NEW_BUNDLE_ID,
+    name: '',
+    description: '',
+    isNewBundle: true,
+    links: List(),
+  })
+
+  return { type: 'SAVE_BUNDLE', bundle }
 }
 
 export function createBundle (payload) {

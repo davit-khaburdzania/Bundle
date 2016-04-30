@@ -10,6 +10,7 @@ export function clearCurrentLink (bundleId) {
 export function fetchLink (url, bundleId) {
   return async function (dispatch) {
     let response = await request.get(api.fetchLink(url))
+
     let link = new Link({
       url: response.data.url,
       title: response.data.title,

@@ -1,18 +1,10 @@
 import { User } from '../records'
 import { fromJS, Map } from 'immutable'
 
-let me = new User({
-  id: '1',
-  name: 'Sarah Gadon',
-  email: 'sarash.gadon@gmail.com',
-  image: 'http://i.imgur.com/XMnLzi2.jpg'
-})
-
 let defaultState = fromJS({
-  byId: { '1': me },
-  me: '1'
+  byId: Map(),
+  current: null
 })
-
 
 export default function (state = defaultState, action) {
   switch (action.type) {
@@ -22,6 +14,10 @@ export default function (state = defaultState, action) {
       })
 
       return state
+
+    case 'AUTHENTICATE_USER':
+      return state.set('current', action.user.id)
+        .setIn(['byId', action.user.id], action.user)
 
     default:
       return state

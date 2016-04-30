@@ -17,16 +17,15 @@ import {
 import { BundleView as BundleViewComponent } from '../../components'
 
 const connectState = (state) => ({
-  Route: state.Route.toJS(),
+  Route: state.Route.toJS()
 })
 
 const connectProps = routeActions
 
 @connect(connectState, connectProps)
 export default class Navigation extends React.Component {
-  constructor (props) {
-    super(props)
-    this.parseRouteChange(props)
+  componentWillMount () {
+    this.parseRouteChange(this.props)
   }
 
   componentWillReceiveProps (nextProps) {
