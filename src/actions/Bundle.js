@@ -92,7 +92,3 @@ export function removeLinkFromBundle (bundleId, index) {
 export function updateBundleInfo (bundleId, field, value) {
   return { type: 'UPDATE_BUNDLE_INFO', bundleId, field, value }
 }
-
-export function toggleEditMode (bundleId) {
-  return { type: 'TOGGLE_EDIT_MODE', bundleId }
-}

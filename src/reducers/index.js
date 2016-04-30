@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
+import { reducer as ui } from 'redux-ui'
 import { routerReducer as routing } from 'react-router-redux'
 
-import UserMenu from './UserMenu'
 import Bundle from './Bundle'
 import Collection from './Collection'
 import Search from './Search'
@@ -12,9 +12,9 @@ import Favorite from './Favorite'
 import Link from './Link'
 
 const appReducer = combineReducers({
+  ui,
   routing,
   Route,
-  UserMenu,
   Bundle,
   Collection,
   Search,
