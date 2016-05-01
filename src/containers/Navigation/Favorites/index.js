@@ -1,5 +1,6 @@
 import ImmutablePropTypes from 'react-immutable-proptypes'
 import { connect } from 'react-redux'
+import { browserHistory } from 'react-router'
 import { sortedFavoritesSelector } from '../../../selectors'
 import * as bundleActions from '../../../actions/Bundle'
 import * as collectionActions from '../../../actions/Collection'
@@ -27,8 +28,13 @@ export default class Container extends React.Component {
     props.getFavorites()
   }
 
+  removeBundle (...args) {
+    this.props.removeBundle(...args)
+    browserHistory.goBack()
+  }
+
   render () {
-    return <Wrapper {...this.props} />
+    return <Wrapper {...this.props} removeBundle={this.removeBundle.bind(this)}/>
   }
 
   static propTypes = {

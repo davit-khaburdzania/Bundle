@@ -1,4 +1,5 @@
 import ImmutablePropTypes from 'react-immutable-proptypes'
+import { browserHistory } from 'react-router'
 import { connect } from 'react-redux'
 import { sortedBundlesSelector } from '../../../selectors'
 import * as bundleActions from '../../../actions/Bundle'
@@ -30,7 +31,12 @@ export default class Container extends React.Component {
     props.getBundles()
   }
 
+  removeBundle (...args) {
+    this.props.removeBundle(...args)
+    browserHistory.push('/bundles')
+  }
+
   render () {
-    return <Wrapper {...this.props} />
+    return <Wrapper {...this.props} removeBundle={this.removeBundle.bind(this)}/>
   }
 }

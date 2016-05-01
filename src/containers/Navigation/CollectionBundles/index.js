@@ -1,4 +1,5 @@
 import { connect } from 'react-redux'
+import { browserHistory } from 'react-router'
 import { currentCollectionSelector, sortedCollectionBundlesSelector } from '../../../selectors'
 import * as collectionActions from '../../../actions/Collection'
 import * as bundleActions from '../../../actions/Bundle'
@@ -30,10 +31,18 @@ export default class Container extends React.Component {
     props.getCollection(props.collectionId)
   }
 
+  removeBundle (...args) {
+    let { removeBundle, collectionId } = this.props
+
+    removeBundle(...args)
+    browserHistory.goBack()
+  }
+
   render () {
-    const { collection, ...wrapperProps } = this.props
+    const { collection } = this.props
+
     if (!collection || !collection.get('full_response')) return false
 
-    return <Wrapper collection={collection} {...wrapperProps} />
+    return <Wrapper {...this.props} removeBundle={this.removeBundle.bind(this)}/>
   }
 }
