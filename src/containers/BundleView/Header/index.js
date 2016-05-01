@@ -7,7 +7,9 @@ export default class BundleViewHeader extends React.Component {
   static propTypes = {
     bundle: ImmutablePropTypes.record,
     ui: React.PropTypes.object,
-    toggleEdit: React.PropTypes.func
+    toggleEdit: React.PropTypes.func,
+    searchCollection: React.PropTypes.func,
+    collectionSearchResult: ImmutablePropTypes.list
   }
 
   render () {
@@ -24,6 +26,8 @@ export default class BundleViewHeader extends React.Component {
             collectionId={bundle.collection_id}
             isOpen={ui.changeCollectionOpen}
             closeModal={this.props.closeChangeCollection}
+            searchCollection={this.props.searchCollection}
+            searchResult={this.props.collectionSearchResult}
           />
         </div>
         <ToggleBundleButton editMode={ui.editMode} toggleEdit={toggleEdit} />

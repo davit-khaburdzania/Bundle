@@ -1,5 +1,6 @@
 import * as bundleActions from '../../actions/Bundle'
 import * as linkActions from '../../actions/Link'
+import * as searchActions from '../../actions/Search'
 
 import { connect } from 'react-redux'
 import { currentBundleSelector, currentLinkSelector } from '../../selectors'
@@ -13,12 +14,14 @@ const connectState = (state) => ({
   users: state.User.get('byId'),
   links: state.Link.get('byId'),
   currentLink: currentLinkSelector(state),
-  bundleId: state.Route.bundleId
+  bundleId: state.Route.bundleId,
+  collectionSearchResult: state.Search.get('collections')
 })
 
 const connectProps = {
   ...bundleActions,
-  ...linkActions
+  ...linkActions,
+  ...searchActions
 }
 
 @ui({
