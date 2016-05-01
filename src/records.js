@@ -25,14 +25,15 @@ export const Bundle = Record({
 
 export const Collection = Record({
   id: null,
-  name: null,
-  bundles_count: null,
-  favorites_count: null,
-  shares_count: null,
-  favorited: null,
+  name: '',
+  bundles_count: 0,
+  favorites_count: 0,
+  shares_count: 0,
+  favorited: false,
   bundles: List(),
   full_response: false,
-  created_at: null
+  created_at: null,
+  editMode: false
 })
 
 export const Link = Record({

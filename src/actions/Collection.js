@@ -27,6 +27,27 @@ export function getCollections () {
   }
 }
 
+export function generateNewCollection (id) {
+  let collection = new Collection({
+    id,
+    name: 'Name Collection...',
+    editMode: true,
+    created_at: new Date().toISOString()
+  })
+
+  return { type: 'RECEIVE_COLLECTION', collection }
+}
+
+export function createCollection (id, name) {
+  return async function (dispatch) {
+    let response = await request.post(api.collections(), { name })
+    let collection = new Collection(fromJS(response.data))
+
+    dispatch({ type: 'RECEIVE_COLLECTION', collection })
+    dispatch({ type: 'REMOVE_COLLECTION', id })
+  }
+}
+
 export function removeCollection (id) {
   return async function (dispatch) {
     await request.delete(api.collections(id))

@@ -25,7 +25,20 @@ export default class CollectionsNavigationContainer extends React.Component {
     props.getCollections()
   }
 
+  nextId (collections) {
+    let max = collections.keySeq().filter(id => id < 0).max() || 0
+    return (max - 1).toString()
+  }
+
+  generateNewCollection () {
+    let { collections, generateNewCollection } = this.props
+
+    generateNewCollection(this.nextId(collections))
+  }
+
   render () {
-    return <Wrapper {...this.props}/>
+    return <Wrapper {...this.props}
+      generateNewCollection={this.generateNewCollection.bind(this)}
+    />
   }
 }
