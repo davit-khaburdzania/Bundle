@@ -56,19 +56,17 @@ export default class BundleNewContainer extends React.Component {
     if (!currentBundle) return false
 
     return (
-      <div className='bundle-view-wrapper'>
-        <Wrapper
-          bundle={currentBundle}
-          users={users}
-          currentLink={currentLink}
-          links={links}
-          editMode={true}
-          handleChange={updateBundleInfo}
-          handleLinkEdit={updateLink}
-          handleLinkRemove={this.removeLink.bind(this)}
-          toggleEdit={this.saveBundle.bind(this)}
-        />
-      </div>
+      <Wrapper
+        bundle={currentBundle}
+        users={users}
+        currentLink={currentLink}
+        links={links}
+        editMode={true}
+        handleChange={updateBundleInfo}
+        handleLinkEdit={updateLink}
+        handleLinkRemove={this.removeLink.bind(this)}
+        toggleEdit={this.saveBundle.bind(this)}
+      />
     )
   }
 }

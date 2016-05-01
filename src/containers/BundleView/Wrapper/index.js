@@ -17,11 +17,20 @@ export default function BundleView ({
 }) {
   return (
     <div className='bundle-view-wrapper'>
-      <BundleViewHeader toggleEdit={toggleEdit} editMode={editMode} />
+      <BundleViewHeader
+        toggleEdit={toggleEdit}
+        editMode={editMode}
+      />
 
-      <BundleViewBody editMode={editMode} handleLinkEdit={handleLinkEdit}
-        bundle={bundle} links={links} users={users} currentLink={currentLink}
-        handleChange={handleChange} handleLinkRemove={handleLinkRemove}
+      <BundleViewBody
+        editMode={editMode}
+        handleLinkEdit={handleLinkEdit}
+        bundle={bundle}
+        links={links}
+        users={users}
+        currentLink={currentLink}
+        handleChange={handleChange}
+        handleLinkRemove={handleLinkRemove}
       />
     </div>
   )
