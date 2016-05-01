@@ -1,3 +1,4 @@
+import { Link } from 'react-router'
 import { List, ListItem, ResourceNavigation } from '../../../components'
 
 export default function Wrapper ({
@@ -24,8 +25,8 @@ export default function Wrapper ({
         <ResourceNavigation.Header>
           <h2 className='title'>Collections</h2>
           <div className='nav'>
-            <span className='ion-ios-albums icon' onClick={generateNewCollection}>+</span>
-            <span className='ion-ios-search icon'></span>
+            <span className='icon ion-ios-albums' onClick={generateNewCollection}>+</span>
+            <Link to='/search' className='icon ion-ios-search search-icon' />
           </div>
         </ResourceNavigation.Header>
 

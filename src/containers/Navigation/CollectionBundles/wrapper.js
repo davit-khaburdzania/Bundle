@@ -1,3 +1,4 @@
+import { Link } from 'react-router'
 import { ResourceNavigation, List, ListItem } from '../../../components'
 
 function bundleUrl (collection, bundle) {
@@ -30,6 +31,7 @@ export default function Wrapper ({
         <ResourceNavigation.Header>
           <h2 className='title'>{collection.name}</h2>
           <div className='nav'>
+            <Link to='/search' className='icon ion-ios-search search-icon' />
           </div>
         </ResourceNavigation.Header>
 
