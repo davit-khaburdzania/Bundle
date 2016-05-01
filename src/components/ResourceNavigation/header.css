@@ -16,6 +16,11 @@
       font-size: 24px;
       margin-left: 10px;
       cursor: pointer;
+      transition: all linear 100ms;
+
+      &:hover {
+        opacity: 0.6;
+      }
     }
 
     .search-icon {

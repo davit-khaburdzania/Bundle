@@ -16,7 +16,7 @@ export default class SearchHeader extends React.Component {
         <input className='search-input animated flipInX' type='text'
           placeholder='Search...' onChange={this.onChange}
           value={query || ''} />
-        <Link to='/bundles' className='close-search'>x</Link>
+        <Link to='/bundles' className='icon ion-ios-search close-icon' />
       </div>
     )
   }
