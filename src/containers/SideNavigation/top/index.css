@@ -44,11 +44,11 @@
   }
 
   .nav-icon {
-    width: 22px;
-    height: 22px;
+    width: 24px;
+    height: 24px;
     transition: all .15s ease-in-out;
     background-repeat: no-repeat;
-    background-size: 22px 22px;
+    background-size: 24px 24px;
 
     &.nav-icon-bundles {
       background-image: url(/assets/images/bundles.svg);
