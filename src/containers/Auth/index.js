@@ -1,7 +1,8 @@
-import { browserHistory } from 'react-router'
+import { Link, browserHistory } from 'react-router'
 import { connect } from 'react-redux'
 import { currentUserSelector } from '../../selectors'
 import * as userActions from '../../actions/User'
+import './index.css'
 
 const connectState = (state) => ({
   currentUser: state.User.getIn(['byId', state.User.get('current')])
@@ -43,10 +44,13 @@ export default class Auth extends React.Component {
     if (this.shouldNotRender()) return false
 
     return (
-      <div>
-        <a href='http://localhost:3000/auth/facebook'>Authenticate with Facebook </a>
-        <br />
-        <a href='http://localhost:3000/auth/twitter'>Authenticate with Twitter </a>
+      <div className='auth-wrapper'>
+        <Link to='/' className='logo'>B</Link>
+        <div className='description'>Bundle up your resources together for love</div>
+        <div className='auth-methods'>
+          <a className='method facebook' href='http://localhost:3000/auth/facebook'>Authenticate With Facebook</a>
+          <a className='method twitter' href='http://localhost:3000/auth/twitter'>Authenticate With Twitter</a>
+        </div>
       </div>
     )
   }
