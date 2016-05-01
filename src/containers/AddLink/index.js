@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import { currentBundleSelector, currentUserSelector } from '../../selectors'
+import { nextId } from '../../helpers'
 import * as bundleActions from '../../actions/Bundle'
 import * as linkActions from '../../actions/Link'
 import EnterUrl from './EnterUrl'
@@ -31,7 +32,7 @@ export default class BundleAddLink extends React.Component {
     if (bundle.isNewBundle) {
       let linkWithCreator = link
         .set('creator', currentUser.id)
-        .set('id', this.nextLinkId(links))
+        .set('id', nextId(links))
 
       return addCurrentLinkToBundle(bundle.id, linkWithCreator)
     }
@@ -42,11 +43,6 @@ export default class BundleAddLink extends React.Component {
 
   handeUrlEnter (url) {
     this.props.fetchLink(url, this.props.bundle.id)
-  }
-
-  nextLinkId (links) {
-    let max = links.keySeq().filter(id => id < 0).max() || 0
-    return max - 1
   }
 
   render () {

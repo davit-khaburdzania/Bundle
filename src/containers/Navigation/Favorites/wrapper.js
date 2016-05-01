@@ -19,7 +19,7 @@ export default class Container extends React.Component {
   }
 
   renderCollectionListItem (collection, index) {
-    const { ...listItemProps, collectionId, removeCollection } = this.props
+    const { ...listItemProps, collectionId, createCollection, removeCollection } = this.props
 
     return (
       <ListItem
@@ -29,6 +29,7 @@ export default class Container extends React.Component {
         url={'/collections/' + collection.id}
         type={'collection'}
         active={collection.id === collectionId}
+        createCollection={createCollection}
         remove={removeCollection}
       />
     )
@@ -74,6 +75,7 @@ export default class Container extends React.Component {
     collections: ImmutablePropTypes.map.isRequired,
     removeBundle: React.PropTypes.func.isRequired,
     removeCollection: React.PropTypes.func.isRequired,
+    createCollection: React.PropTypes.func.isRequired,
     collectionId: React.PropTypes.string,
     bundleId: React.PropTypes.string
   }

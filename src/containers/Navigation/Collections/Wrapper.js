@@ -2,7 +2,9 @@ import { List, ListItem, ResourceNavigation } from '../../../components'
 
 export default function Wrapper ({
   collections,
+  generateNewCollection,
   removeCollection,
+  createCollection,
   ...listItemProps
 }) {
   let collectionsList = collections.map((collection, index) => {
@@ -12,6 +14,7 @@ export default function Wrapper ({
       Component={ListItem.Collection}
       type={'collection'}
       remove={removeCollection}
+      createCollection={createCollection}
     />
   })
 
@@ -21,7 +24,7 @@ export default function Wrapper ({
         <ResourceNavigation.Header>
           <h2 className='title'>Collections</h2>
           <div className='nav'>
-            <span className='ion-ios-albums icon'></span>
+            <span className='ion-ios-albums icon' onClick={generateNewCollection}>+</span>
             <span className='ion-ios-search icon'></span>
           </div>
         </ResourceNavigation.Header>

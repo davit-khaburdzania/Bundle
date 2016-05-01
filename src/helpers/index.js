@@ -12,3 +12,8 @@ export function shouldShow (show) {
 export function linksWithoutAuthors (links) {
   return links.map(link => link.delete('creator'))
 }
+
+export function nextId (items) {
+  let max = items.keySeq().filter(id => id < 0).max() || 0
+  return (max - 1).toString()
+}

@@ -1,5 +1,5 @@
 import { Link } from 'react-router'
-import { ListToolbar } from './../..'
+import { ListToolbar, Editable } from './../..'
 
 function sharedWithText (count) {
   if (count || count === 0) {
@@ -15,16 +15,24 @@ export default function CollectionListItem ({
   created_at,
   bundles_count,
   shares_count,
+  editMode,
+  createCollection,
   ...toolbarProps
 }) {
+  let url = '/collections/' + id
+
   return (
     <div>
       <ListToolbar id={id} {...toolbarProps} />
 
-      <Link to={'/collections/' + id}>
+      <Link to={url} onClick={event => editMode && event.preventDefault()}>
         <div>
           <h1>
-            {name}
+            <Editable
+              value={name}
+              editMode={editMode}
+              enterAction={value => createCollection(id, value)}
+            />
           </h1>
           <h2>
             <span>{bundles_count} Bundle</span>
@@ -41,5 +49,7 @@ CollectionListItem.propTypes = {
   name: React.PropTypes.string.isRequired,
   created_at: React.PropTypes.string.isRequired,
   bundles_count: React.PropTypes.number.isRequired,
-  shares_count: React.PropTypes.number.isRequired
+  shares_count: React.PropTypes.number.isRequired,
+  createCollection: React.PropTypes.func.isRequired,
+  editMode: React.PropTypes.bool
 }
