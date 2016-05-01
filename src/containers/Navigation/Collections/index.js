@@ -1,6 +1,7 @@
 import ImmutablePropTypes from 'react-immutable-proptypes'
 import { connect } from 'react-redux'
 import { sortedCollectionsSelector } from '../../../selectors'
+import { nextId } from '../../../helpers'
 import * as collectionActions from '../../../actions/Collection'
 import * as favoriteActions from '../../../actions/Favorite'
 import Wrapper from './Wrapper'
@@ -25,15 +26,10 @@ export default class CollectionsNavigationContainer extends React.Component {
     props.getCollections()
   }
 
-  nextId (collections) {
-    let max = collections.keySeq().filter(id => id < 0).max() || 0
-    return (max - 1).toString()
-  }
-
   generateNewCollection () {
     let { collections, generateNewCollection } = this.props
 
-    generateNewCollection(this.nextId(collections))
+    generateNewCollection(nextId(collections))
   }
 
   render () {
