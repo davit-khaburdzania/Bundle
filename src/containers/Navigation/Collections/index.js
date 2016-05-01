@@ -27,9 +27,9 @@ export default class CollectionsNavigationContainer extends React.Component {
   }
 
   generateNewCollection () {
-    let { collections, generateNewCollection } = this.props
+    let id = nextId(this.props.collections)
 
-    generateNewCollection(nextId(collections))
+    this.props.generateNewCollection(id)
   }
 
   render () {
