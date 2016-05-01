@@ -10,7 +10,7 @@ export function getCollection (id) {
   return async function (dispatch) {
     let response = await request.get(api.collections(id))
     let result = normalize(response.data, collectionSchema).entities
-    let bundles = Object.values(result.bundles).map(item => new Bundle(fromJS(item)))
+    let bundles = Object.values(result.bundles || []).map(item => new Bundle(fromJS(item)))
     let collections = Object.values(result.collections).map(item => new Collection(fromJS(item)))
 
     dispatch({ type: 'RECEIVE_BUNDLES', bundles })

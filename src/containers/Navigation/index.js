@@ -88,8 +88,9 @@ export default class Navigation extends React.Component {
     let { view, newBundle } = props.route
     let { bundleId } = props.params
     let navigationView = props.Route.navigationView
+    let shouldChangeBundleView = !newBundle && (!bundleId  || bundleId && view == 'collectionsBundles')
 
-    return view && navigationView != view && !bundleId && !newBundle
+    return view && navigationView != view && shouldChangeBundleView
   }
 
   isNewBundle (props) {
