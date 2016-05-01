@@ -1,3 +1,7 @@
+.toggle-btn-wrapper {
+  display: inline-block;
+}
+
 .btn.mod-toggle {
   width: 95px;
   height: 30px;

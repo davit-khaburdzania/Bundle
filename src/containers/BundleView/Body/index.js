@@ -11,12 +11,14 @@ export default function BundleViewBody ({
   users,
   links,
   currentLink,
-  editMode,
   toggleEditMode,
   handleLinkEdit,
   handleLinkRemove,
-  handleChange
+  handleChange,
+  ui
 }) {
+  let editMode = ui.editMode
+
   return (
     <div className='bundle-view-body'>
       <BundleName
@@ -57,7 +59,6 @@ BundleViewBody.propTypes = {
   users: ImmutablePropTypes.map,
   links: ImmutablePropTypes.map,
   currentLink: ImmutablePropTypes.record,
-  editMode: React.PropTypes.bool,
   toggleEditMode: React.PropTypes.func,
   handleLinkEdit: React.PropTypes.func,
   handleLinkRemove: React.PropTypes.func,

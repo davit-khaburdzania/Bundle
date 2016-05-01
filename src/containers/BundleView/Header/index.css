@@ -1,0 +1,40 @@
+.icon {
+  font-size: 24px;
+  cursor: pointer;
+  transition: all linear 100ms;
+
+  &:hover {
+    opacity: 0.6;
+  }
+}
+
+.collection-icon {
+  margin-left: 0px;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background: url(/assets/images/collections-gray.svg) no-repeat;
+}
+
+.down-arrow-icon {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  right: -19px;
+  top: 12px;
+  background: url(/assets/images/down-arrow.svg) no-repeat;
+}
+
+.change-collection-wrapper {
+  display: inline-block;
+  position: relative;
+  margin-right: 50px;
+
+  .collection-name {
+    font-family: Avenir-Light;
+    font-size: 16px;
+    color: #000000;
+    margin: 0 10px;
+  }
+}

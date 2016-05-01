@@ -1,14 +1,33 @@
+import ImmutablePropTypes from 'react-immutable-proptypes'
 import ToggleBundleButton from '../ToggleBundleButton'
+import { ChangeCollection } from '../../../components'
+import './index.css'
 
-export default function BundleViewHeader ({ toggleEdit, editMode }) {
-  return (
-    <div className='bundle-view-header-wrapper'>
-      <ToggleBundleButton editMode={editMode} toggleEdit={toggleEdit} />
-    </div>
-  )
-}
+export default class BundleViewHeader extends React.Component {
+  static propTypes = {
+    bundle: ImmutablePropTypes.record,
+    ui: React.PropTypes.object,
+    toggleEdit: React.PropTypes.func
+  }
 
-BundleViewHeader.propTypes = {
-  editMode: React.PropTypes.bool,
-  toggleEdit: React.PropTypes.func
+  render () {
+    let { bundle, toggleEdit, ui, openChangeCollection } = this.props
+
+    return (
+      <div className='bundle-view-header-wrapper'>
+        <div className='change-collection-wrapper'>
+          <span className='icon collection-icon'></span>
+          <span className='collection-name'>{bundle.collection_id}</span>
+          <span className='icon down-arrow-icon' onClick={openChangeCollection}></span>
+
+          <ChangeCollection
+            collectionId={bundle.collection_id}
+            isOpen={ui.changeCollectionOpen}
+            closeModal={this.props.closeChangeCollection}
+          />
+        </div>
+        <ToggleBundleButton editMode={ui.editMode} toggleEdit={toggleEdit} />
+      </div>
+    )
+  }
 }
