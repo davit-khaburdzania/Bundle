@@ -3,8 +3,12 @@ import * as linkActions from '../../actions/Link'
 import * as searchActions from '../../actions/Search'
 
 import { connect } from 'react-redux'
-import { currentBundleSelector, currentLinkSelector } from '../../selectors'
 import { linksWithoutAuthors } from '../../helpers'
+import {
+  currentBundleSelector,
+  currentLinkSelector,
+  collectionIdsSelector
+} from '../../selectors'
 
 import Wrapper from './Wrapper'
 import ui from 'redux-ui'
@@ -15,7 +19,7 @@ const connectState = (state) => ({
   links: state.Link.get('byId'),
   currentLink: currentLinkSelector(state),
   bundleId: state.Route.bundleId,
-  collectionSearchResult: state.Search.get('collections')
+  collectionIds: collectionIdsSelector(state)
 })
 
 const connectProps = {
