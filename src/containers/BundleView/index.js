@@ -1,6 +1,7 @@
 import * as bundleActions from '../../actions/Bundle'
 import * as linkActions from '../../actions/Link'
 import * as searchActions from '../../actions/Search'
+import * as collectionActions from '../../actions/Collection'
 
 import { connect } from 'react-redux'
 import { linksWithoutAuthors } from '../../helpers'
@@ -19,11 +20,13 @@ const connectState = (state) => ({
   links: state.Link.get('byId'),
   currentLink: currentLinkSelector(state),
   bundleId: state.Route.bundleId,
-  collectionIds: collectionIdsSelector(state)
+  collectionIds: collectionIdsSelector(state),
+  receivedAllCollections: state.Collection.get('receivedAll')
 })
 
 const connectProps = {
   ...bundleActions,
+  ...collectionActions,
   ...linkActions,
   ...searchActions
 }

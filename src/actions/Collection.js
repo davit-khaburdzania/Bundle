@@ -24,6 +24,7 @@ export function getCollections () {
     let collections = fromJS(response.data).map(item => new Collection(item))
 
     dispatch({ type: 'RECEIVE_COLLECTIONS', collections })
+    dispatch({ type: 'ALL_COLLECTIONS_RECEIVED' })
   }
 }
 

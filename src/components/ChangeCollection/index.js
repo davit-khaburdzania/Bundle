@@ -10,7 +10,14 @@ export default class ChangeCollection extends React.Component {
     searchResult: ImmutablePropTypes.list,
     isOpen: React.PropTypes.bool,
     closeModal: React.PropTypes.func,
-    searchCollection: React.PropTypes.func
+    getCollections: React.PropTypes.func,
+    receivedAll: React.PropTypes.bool
+  }
+
+  componentWillMount () {
+    if (!this.props.receivedAll) {
+      this.props.getCollections()
+    }
   }
 
   handleClickOutside (e) {
