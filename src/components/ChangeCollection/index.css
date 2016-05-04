@@ -5,8 +5,8 @@
   box-shadow: 0 2px 7px 0 rgba(0, 0, 0, 0.10);
   border-radius: 3px;
   width: 250px;
-  padding: 10px 12px;
   z-index: 1;
+  height: 400px;
 
   .close-icon {
     position: absolute;
@@ -45,13 +45,18 @@
     color: #4E4E4E;
     padding: 2px;
     margin: 3px 0;
-    width: 100%;
     outline: none;
+    margin-left: 13px;
+    margin-top: 13px;
+    width: 89%;
   }
 
   .search-results {
     padding-left: 3px;
     padding-top: 20px;
+    overflow-y: scroll;
+    height: 87%;
+    padding: 12px 13px;
 
     .item {
       font-family: Avenir-Book;
