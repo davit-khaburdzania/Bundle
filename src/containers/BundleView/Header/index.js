@@ -9,7 +9,8 @@ export default class BundleViewHeader extends React.Component {
     ui: React.PropTypes.object,
     toggleEdit: React.PropTypes.func,
     collectionIds: ImmutablePropTypes.list,
-    receivedAllCollections: React.PropTypes.bool
+    receivedAllCollections: React.PropTypes.bool,
+    updateBundle: React.PropTypes.func
   }
 
   openCollectionChangeModal () {
@@ -31,12 +32,13 @@ export default class BundleViewHeader extends React.Component {
           <span className='icon down-arrow-icon' onClick={this.openCollectionChangeModal.bind(this)} />
 
           <ChangeCollection
-            collectionId={bundle.collection_id}
+            bundle={bundle}
             isOpen={ui.changeCollectionOpen}
             closeModal={this.props.closeChangeCollection}
             getCollections={this.props.getCollections}
             collectionIds={this.props.collectionIds}
             receivedAll={this.props.receivedAllCollections}
+            updateBundle={this.props.updateBundle}
           />
         </div>
         <ToggleBundleButton editMode={ui.editMode} toggleEdit={toggleEdit} />

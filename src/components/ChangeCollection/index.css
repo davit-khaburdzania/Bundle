@@ -65,6 +65,7 @@
       letter-spacing: 0px;
       padding-bottom: 15px;
       position: relative;
+      cursor: pointer;
 
       &.current {
         font-family: Avenir-Medium;

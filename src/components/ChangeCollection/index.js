@@ -10,10 +10,11 @@ import './index.css'
 })
 export default class ChangeCollection extends React.Component {
   static propTypes = {
-    collectionId: React.PropTypes.string,
+    bundle: ImmutablePropTypes.record,
     collectionIds: ImmutablePropTypes.list,
     isOpen: React.PropTypes.bool,
     closeModal: React.PropTypes.func,
+    updateBundle: React.PropTypes.func,
     receivedAll: React.PropTypes.bool
   }
 
@@ -21,8 +22,17 @@ export default class ChangeCollection extends React.Component {
     if (this.props.isOpen) this.props.closeModal()
   }
 
-  onChange(e) {
+  onQuoryChange (e) {
     this.props.updateUI('q', e.target.value)
+  }
+
+  onItemClick (id) {
+    let { bundle, updateBundle } = this.props
+    let payload = { collection_id: id }
+
+    if (id != bundle.collection_id) {
+      updateBundle(bundle.id, payload)
+    }
   }
 
   filteredSearch () {
@@ -32,13 +42,16 @@ export default class ChangeCollection extends React.Component {
     return ids.filter(id => id.includes(q))
   }
 
-  renderItem (id, current) {
-    let checkIcon = current ? <span className='icon collection-check-icon' /> : null
+  renderItem (id, isCurrent) {
+    let checkIcon = isCurrent ? <span className='icon collection-check-icon' /> : null
 
     if (!id) return false
 
     return (
-      <div key={id} className={'item ' + (current ? 'current' : '')}>
+      <div key={id}
+        className={'item ' + (isCurrent ? 'current' : '')}
+        onClick={() => this.onItemClick(id, isCurrent)}>
+
         <span>{id}</span>
         {checkIcon}
         <div className='separator'/>
@@ -49,13 +62,11 @@ export default class ChangeCollection extends React.Component {
   renderSearchResult () {
     return (
       <div>
-        {this.renderItem(this.props.collectionId, true)}
-        {this.filteredSearch().map(id => this.renderItem(id))}
+        {this.renderItem.bind(this)(this.props.bundle.collection_id, true)}
+        {this.filteredSearch().map(id => this.renderItem.bind(this)(id))}
       </div>
     )
   }
-
-
 
   render () {
     if (!this.props.isOpen) return false
@@ -65,7 +76,7 @@ export default class ChangeCollection extends React.Component {
         <input type='text'
           className='search-input'
           placeholder='Search Collections...'
-          onChange={this.onChange.bind(this)}
+          onChange={this.onQuoryChange.bind(this)}
         />
         <span className='icon ion-ios-search close-icon' />
 
