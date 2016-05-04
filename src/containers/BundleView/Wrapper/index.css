@@ -1,6 +1,6 @@
 .bundle-view-wrapper {
   min-width: 570px;
   width: 74.3%;
-  padding: 15px 40px;
+  padding: 0 40px 15px 40px;
   overflow-y: auto;
 }

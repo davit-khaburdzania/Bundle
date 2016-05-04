@@ -9,7 +9,6 @@
 }
 
 .collection-icon {
-  margin-left: 0px;
   display: inline-block;
   width: 24px;
   height: 24px;
@@ -20,21 +19,59 @@
   display: inline-block;
   width: 24px;
   height: 24px;
-  position: absolute;
-  right: -19px;
-  top: 12px;
-  background: url(/assets/images/down-arrow.svg) no-repeat;
+  background: url(/assets/images/down-arrow.svg) no-repeat center center;
 }
 
 .change-collection-wrapper {
+  .change-collection-clicker {
+    cursor: pointer;
+
+    span {
+      vertical-align: middle;
+    }
+  }
+
   display: inline-block;
   position: relative;
   margin-right: 50px;
 
   .collection-name {
+    margin-left: 10px;
     font-family: Avenir-Light;
     font-size: 16px;
     color: #000000;
-    margin: 0 10px;
+  }
+}
+
+.bundle-view-header-wrapper {
+  height: 65px;
+  border-bottom: 1px solid #ECECEC;
+  display: flex;
+  align-items: center;
+}
+
+.toggle-btn-wrapper {
+  margin-left: auto;
+  display: inline-block;
+}
+
+.btn.mod-toggle {
+  width: 95px;
+  height: 30px;
+  background-color: #FFF;
+  border: 1px solid #6C90F3;
+  color: #6C90F3;
+  font-family: Avenir-Book;
+  font-size: 15px;
+  line-height: 25px;
+  cursor: pointer;
+  border-radius: 34px;
+  outline: none;
+  transition: all .05s ease-in-out;
+
+  &:hover {
+    transition: all .05s ease-in-out;
+    color: #FFF;
+    background-color: #6C90F3;
   }
 }

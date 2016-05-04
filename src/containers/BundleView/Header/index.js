@@ -46,9 +46,11 @@ export default class BundleViewHeader extends React.Component {
     return (
       <div className='bundle-view-header-wrapper'>
         <div className='change-collection-wrapper'>
-          <span className='icon collection-icon'></span>
-          <span className='collection-name'>{bundle.collection_id}</span>
-          <span className='icon down-arrow-icon' onClick={::this.openCollectionChangeModal} />
+          <div className='change-collection-clicker' onClick={::this.openCollectionChangeModal}>
+            <span className='icon collection-icon'></span>
+            <span className='collection-name'>{bundle.collection_id}</span>
+            <span className='icon down-arrow-icon'></span>
+          </div>
 
           <ChangeCollection
             bundle={bundle}
@@ -56,6 +58,7 @@ export default class BundleViewHeader extends React.Component {
             updateBundle={updateBundle}
           />
         </div>
+
         <ToggleBundleButton editMode={ui.editMode} toggleEdit={toggleEdit} />
       </div>
     )

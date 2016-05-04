@@ -1,5 +1,6 @@
 .change-collection-modal {
   position: absolute;
+  top: -10px;
   background: white;
   border: 1px solid #DCDCDC;
   box-shadow: 0 2px 7px 0 rgba(0, 0, 0, 0.10);
@@ -12,8 +13,8 @@
     position: absolute;
     color: #B4B4B4;
     cursor: pointer;
-    top: 20px;
-    right: 15px;
+    right: 13px;
+    top: 19px;
 
     display: inline-block;
     width: 24px;

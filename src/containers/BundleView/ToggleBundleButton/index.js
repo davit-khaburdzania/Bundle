@@ -1,5 +1,4 @@
 import { shouldShow } from '../../../helpers'
-import './index.css'
 
 export default function ToggleBundleButton ({ toggleEdit, editMode }) {
   return (
