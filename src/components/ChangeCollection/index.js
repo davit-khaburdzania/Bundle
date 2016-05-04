@@ -35,6 +35,10 @@ export default class ChangeCollection extends React.Component {
     }
   }
 
+  onCloseClick () {
+    this.props.updateUI('q', '')
+  }
+
   filteredSearch () {
     let ids = this.props.collectionIds
     let q = this.props.ui.q
@@ -76,9 +80,12 @@ export default class ChangeCollection extends React.Component {
         <input type='text'
           className='search-input'
           placeholder='Search Collections...'
+          value={this.props.ui.q}
           onChange={this.onQuoryChange.bind(this)}
         />
-        <span className='icon ion-ios-search close-icon' />
+        <span className='icon ion-ios-search close-icon'
+          onClick={this.onCloseClick.bind(this)}
+        />
 
         <div className='search-results'>
           {this.renderSearchResult()}
