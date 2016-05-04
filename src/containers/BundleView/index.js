@@ -1,9 +1,14 @@
 import * as bundleActions from '../../actions/Bundle'
 import * as linkActions from '../../actions/Link'
+import * as searchActions from '../../actions/Search'
+import * as collectionActions from '../../actions/Collection'
 
 import { connect } from 'react-redux'
-import { currentBundleSelector, currentLinkSelector } from '../../selectors'
 import { linksWithoutAuthors } from '../../helpers'
+import {
+  currentBundleSelector,
+  currentLinkSelector
+} from '../../selectors'
 
 import Wrapper from './Wrapper'
 import ui from 'redux-ui'
@@ -13,12 +18,16 @@ const connectState = (state) => ({
   users: state.User.get('byId'),
   links: state.Link.get('byId'),
   currentLink: currentLinkSelector(state),
-  bundleId: state.Route.bundleId
+  bundleId: state.Route.bundleId,
+  collections: state.Collection.get('byId'),
+  receivedAllCollections: state.Collection.get('receivedAll')
 })
 
 const connectProps = {
   ...bundleActions,
-  ...linkActions
+  ...collectionActions,
+  ...linkActions,
+  ...searchActions
 }
 
 @ui({
@@ -33,7 +42,12 @@ const connectProps = {
 export default class BundleViewContainer extends React.Component {
   componentWillMount () {
     const { getBundle, bundleId } = this.props
+
     if (bundleId) getBundle(bundleId)
+
+    if (!this.props.receivedAllCollections) {
+      this.props.getCollections()
+    }
   }
 
   componentWillReceiveProps (nextProps) {
@@ -74,29 +88,17 @@ export default class BundleViewContainer extends React.Component {
   }
 
   render () {
-    let {
-      ui,
-      bundle,
-      links,
-      users,
-      currentLink,
-      updateBundleInfo,
-      updateLink,
-    } = this.props
+    let { bundle, updateBundleInfo, updateLink} = this.props
 
     if (!bundle || !bundle.full_response) {
       return false
     }
 
-    return <Wrapper editMode={ui.editMode}
-      bundle={bundle}
-      links={links}
-      users={users}
-      currentLink={currentLink}
+    return <Wrapper {...this.props}
       handleChange={updateBundleInfo}
       handleLinkEdit={updateLink}
-      handleLinkRemove={this.handleLinkRemove.bind(this)}
-      toggleEdit={this.toggleEdit.bind(this)}
+      handleLinkRemove={::this.handleLinkRemove}
+      toggleEdit={::this.toggleEdit}
     />
   }
 }

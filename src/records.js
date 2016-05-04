@@ -13,6 +13,7 @@ export const Bundle = Record({
   name: null,
   description: null,
   creator: null,
+  collection_id: null,
   links: null,
   links_count: null,
   favorited: null,

@@ -13,7 +13,7 @@ export default class BundleViewBody extends React.Component {
       users,
       links,
       currentLink,
-      editMode,
+      ui,
       toggleEditMode,
       handleLinkEdit,
       handleLinkRemove,
@@ -22,9 +22,9 @@ export default class BundleViewBody extends React.Component {
 
     return (
       <div className='bundle-view-body'>
-        <BundleView.Name value={bundle.name} editMode={editMode} />
+        <BundleView.Name value={bundle.name} editMode={ui.editMode} />
 
-        <BundleView.Description value={bundle.description} editMode={editMode} />
+        <BundleView.Description value={bundle.description} editMode={ui.editMode} />
 
         <AddLink bundle={bundle} currentLink={currentLink} links={links} />
 
@@ -36,7 +36,7 @@ export default class BundleViewBody extends React.Component {
             index={index}
             link={links.get(id)}
             creator={users.get(links.getIn([id, 'creator']))}
-            editMode={editMode}
+            editMode={ui.editMode}
             handleLinkEdit={handleLinkEdit}
             handleLinkRemove={handleLinkRemove}
           />
@@ -54,9 +54,9 @@ BundleViewBody.propTypes = {
   users: ImmutablePropTypes.map,
   links: ImmutablePropTypes.map,
   currentLink: ImmutablePropTypes.record,
-  editMode: React.PropTypes.bool,
   toggleEditMode: React.PropTypes.func,
   handleLinkEdit: React.PropTypes.func,
   handleLinkRemove: React.PropTypes.func,
-  handleChange: React.PropTypes.func
+  handleChange: React.PropTypes.func,
+  ui: React.PropTypes.object
 }

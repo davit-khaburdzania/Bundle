@@ -1,0 +1,20 @@
+.change-collection-wrapper {
+  .change-collection-clicker {
+    cursor: pointer;
+
+    span {
+      vertical-align: middle;
+    }
+  }
+
+  display: inline-block;
+  position: relative;
+  margin-right: 50px;
+
+  .collection-name {
+    margin-left: 10px;
+    font-family: Avenir-Light;
+    font-size: 16px;
+    color: #000000;
+  }
+}

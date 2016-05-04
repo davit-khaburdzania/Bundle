@@ -24,28 +24,28 @@ const connectProps = {
   key: 'bundleNew',
   state: {
     name: '',
-    description: ''
+    description: '',
+    editMode: true
   }
 })
 @connect(connectState, connectProps)
 export default class BundleNewContainer extends React.Component {
   componentWillMount () {
-    const { generateNewBundle } = this.props
-    generateNewBundle()
+    this.props.generateNewBundle()
   }
 
   saveBundle () {
     let { currentBundle, links, createBundle, ui } = this.props
     let bundleLinks = currentBundle.links.map(id => links.get(id).delete('id'))
 
-    const payload = {
+    let payload = {
       name: ui.name,
       description: ui.description,
       links_attributes: linksWithoutAuthors(bundleLinks)
     }
 
     createBundle(payload).then(bundle => {
-      const newBundleRoutePath = `/bundles/${bundle.id}`
+      let newBundleRoutePath = `/bundles/${bundle.id}`
       browserHistory.push(newBundleRoutePath)
     })
   }
@@ -56,24 +56,21 @@ export default class BundleNewContainer extends React.Component {
   }
 
   render () {
-    const {
-      currentBundle, currentLink, links, users,
+    let {
+      currentBundle, currentLink,
       updateBundleInfo, updateLink
     } = this.props
 
     if (!currentBundle) return false
 
     return (
-      <Wrapper
+      <Wrapper {...this.props}
         bundle={currentBundle}
-        users={users}
         currentLink={currentLink}
-        links={links}
-        editMode={true}
         handleChange={updateBundleInfo}
         handleLinkEdit={updateLink}
-        handleLinkRemove={this.removeLink.bind(this)}
-        toggleEdit={this.saveBundle.bind(this)}
+        handleLinkRemove={::this.removeLink}
+        toggleEdit={::this.saveBundle}
       />
     )
   }

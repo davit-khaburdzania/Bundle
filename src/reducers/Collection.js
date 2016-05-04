@@ -25,6 +25,9 @@ export default function (state = defaultState, action) {
     case 'REMOVE_COLLECTION':
       return state.deleteIn(['byId', action.id])
 
+    case 'ALL_COLLECTIONS_RECEIVED':
+      return state.set('receivedAll', true)
+
     default:
       return state
   }
