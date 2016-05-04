@@ -17,7 +17,7 @@ class Editable extends React.Component {
 
     if (editMode) {
       return <input
-        defaultValue={value}
+        defaultValue={value || ''}
         placeholder={placeholder}
         onKeyUp={this.handleKeyUp.bind(this)}
       />

@@ -1,17 +1,11 @@
-import ui from 'redux-ui'
 import ImmutablePropTypes from 'react-immutable-proptypes'
+import Title from './Title'
+import Description from './Description'
 import { BundleView, Editable } from '../../../components'
 import { AddLink } from '../../'
 
 import './index.css'
 
-@ui({
-  key: 'bundleNew',
-  state: {
-    title: null,
-    description: null
-  }
-})
 export default class BundleViewBody extends React.Component {
   render () {
     let {
@@ -24,25 +18,13 @@ export default class BundleViewBody extends React.Component {
       handleLinkEdit,
       handleLinkRemove,
       handleChange,
-      updateUI
     } = this.props
 
     return (
       <div className='bundle-view-body'>
+        <BundleView.Title value={bundle.name} editMode={editMode} />
 
-        <Editable
-          value={bundle.name}
-          placeholder="title goes here"
-          editMode={editMode}
-          onChange={(value) => updateUI('title', value) }
-        />
-
-        <Editable
-          value={bundle.description}
-          placeholder="description goes here"
-          editMode={editMode}
-          onChange={(value) => updateUI('description', value) }
-        />
+        <BundleView.Description value={bundle.description} editMode={editMode} />
 
         <AddLink bundle={bundle} currentLink={currentLink} links={links} />
 
@@ -63,6 +45,9 @@ export default class BundleViewBody extends React.Component {
     )
   }
 }
+
+BundleView.Title = Title
+BundleView.Description = Description
 
 BundleViewBody.propTypes = {
   bundle: ImmutablePropTypes.record,
