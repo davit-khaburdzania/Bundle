@@ -31,7 +31,7 @@ export default class BundleViewHeader extends React.Component {
         <div className='change-collection-wrapper'>
           <span className='icon collection-icon'></span>
           <span className='collection-name'>{bundle.collection_id}</span>
-          <span className='icon down-arrow-icon' onClick={this.openCollectionChangeModal.bind(this)} />
+          <span className='icon down-arrow-icon' onClick={::this.openCollectionChangeModal} />
 
           <ChangeCollection
             bundle={bundle}

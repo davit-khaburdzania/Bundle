@@ -91,8 +91,8 @@ export default class BundleViewContainer extends React.Component {
     return <Wrapper {...this.props}
       handleChange={updateBundleInfo}
       handleLinkEdit={updateLink}
-      handleLinkRemove={this.handleLinkRemove.bind(this)}
-      toggleEdit={this.toggleEdit.bind(this)}
+      handleLinkRemove={::this.handleLinkRemove}
+      toggleEdit={::this.toggleEdit}
     />
   }
 }

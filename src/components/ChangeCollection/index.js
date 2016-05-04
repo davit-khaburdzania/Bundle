@@ -7,7 +7,7 @@ import './index.css'
 @ui({
   state: { q: '' }
 })
-@listensToClickOutside()
+// @listensToClickOutside()
 export default class ChangeCollection extends React.Component {
   static propTypes = {
     bundle: ImmutablePropTypes.record,
@@ -66,8 +66,8 @@ export default class ChangeCollection extends React.Component {
   renderSearchResult () {
     return (
       <div>
-        {this.renderItem.bind(this)(this.props.bundle.collection_id, true)}
-        {this.filteredSearch().map(id => this.renderItem.bind(this)(id))}
+        {::this.renderItem(this.props.bundle.collection_id, true)}
+        {this.filteredSearch().map(id => ::this.renderItem(id))}
       </div>
     )
   }
@@ -81,10 +81,10 @@ export default class ChangeCollection extends React.Component {
           className='search-input'
           placeholder='Search Collections...'
           value={this.props.ui.q}
-          onChange={this.onQuoryChange.bind(this)}
+          onChange={::this.onQuoryChange}
         />
         <span className='icon ion-ios-search close-icon'
-          onClick={this.onCloseClick.bind(this)}
+          onClick={::this.onCloseClick}
         />
 
         <div className='search-results'>
