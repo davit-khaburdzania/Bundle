@@ -5,7 +5,7 @@ import './index.css'
 export default class ChangeCollectionModal extends React.Component {
   static propTypes = {
     bundle: ImmutablePropTypes.record,
-    collectionIds: ImmutablePropTypes.list,
+    collections: ImmutablePropTypes.map,
     updateBundle: React.PropTypes.func,
   }
 
@@ -13,11 +13,11 @@ export default class ChangeCollectionModal extends React.Component {
     this.props.updateUI('q', e.target.value)
   }
 
-  onItemClick (id) {
+  onItemClick (collection) {
     let { bundle, updateBundle } = this.props
-    let payload = { collection_id: id }
+    let payload = { collection_id: collection.id }
 
-    if (id != bundle.collection_id) {
+    if (collection.id != bundle.collection_id) {
       updateBundle(bundle.id, payload)
     }
   }
@@ -26,25 +26,31 @@ export default class ChangeCollectionModal extends React.Component {
     this.props.updateUI('q', '')
   }
 
-  filteredSearch () {
-    let ids = this.props.collectionIds
-    let q = this.props.ui.q
-    let current = this.props.bundle.collection_id
-
-    return ids.filter(id => id != current && id.includes(q))
+  currentCollection () {
+    return this.props.collections.get(this.props.bundle.collection_id)
   }
 
-  renderItem (id, isCurrent) {
+  filteredCollections () {
+    let collections = this.props.collections.valueSeq()
+    let q = this.props.ui.q.toLowerCase()
+    let current = this.currentCollection()
+
+    return collections.filter(item => {
+      return item.id != current.id && item.name.toLowerCase().includes(q)
+    })
+  }
+
+  renderItem (item, isCurrent) {
     let checkIcon = isCurrent ? <span className='icon collection-check-icon' /> : null
 
-    if (!id) return false
+    if (!item) return false
 
     return (
-      <div key={id}
+      <div key={item.id}
         className={'item ' + (isCurrent ? 'current' : '')}
-        onClick={() => this.onItemClick(id)}>
+        onClick={() => this.onItemClick(item)}>
 
-        <span>{id}</span>
+        <span>{item.name}</span>
         {checkIcon}
         <div className='separator'/>
       </div>
@@ -54,8 +60,8 @@ export default class ChangeCollectionModal extends React.Component {
   renderSearchResult () {
     return (
       <div>
-        {::this.renderItem(this.props.bundle.collection_id, true)}
-        {this.filteredSearch().map(id => ::this.renderItem(id))}
+        {::this.renderItem(::this.currentCollection(), true)}
+        {this.filteredCollections().map(item => ::this.renderItem(item))}
       </div>
     )
   }

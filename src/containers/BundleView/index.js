@@ -7,8 +7,7 @@ import { connect } from 'react-redux'
 import { linksWithoutAuthors } from '../../helpers'
 import {
   currentBundleSelector,
-  currentLinkSelector,
-  collectionIdsSelector
+  currentLinkSelector
 } from '../../selectors'
 
 import Wrapper from './Wrapper'
@@ -20,7 +19,7 @@ const connectState = (state) => ({
   links: state.Link.get('byId'),
   currentLink: currentLinkSelector(state),
   bundleId: state.Route.bundleId,
-  collectionIds: collectionIdsSelector(state),
+  collections: state.Collection.get('byId'),
   receivedAllCollections: state.Collection.get('receivedAll')
 })
 
@@ -43,7 +42,12 @@ const connectProps = {
 export default class BundleViewContainer extends React.Component {
   componentWillMount () {
     const { getBundle, bundleId } = this.props
+
     if (bundleId) getBundle(bundleId)
+
+    if (!this.props.receivedAllCollections) {
+      this.props.getCollections()
+    }
   }
 
   componentWillReceiveProps (nextProps) {

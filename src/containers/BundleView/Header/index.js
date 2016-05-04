@@ -7,13 +7,12 @@ export default class BundleViewHeader extends React.Component {
   static propTypes = {
     bundle: ImmutablePropTypes.record,
     toggleEdit: React.PropTypes.func,
-    collectionIds: ImmutablePropTypes.list,
-    receivedAllCollections: React.PropTypes.bool,
+    collections: ImmutablePropTypes.map,
     updateBundle: React.PropTypes.func
   }
 
   render () {
-    let { ui, bundle, toggleEdit, collectionIds, updateBundle } = this.props
+    let { ui, bundle, toggleEdit, collections, updateBundle } = this.props
 
     if (bundle.isNewBundle) {
       return (
@@ -27,10 +26,8 @@ export default class BundleViewHeader extends React.Component {
       <div className='bundle-view-header-wrapper'>
         <ChangeCollection
           bundle={bundle}
-          collectionIds={collectionIds}
+          collections={collections}
           updateBundle={updateBundle}
-          getCollections={this.props.getCollections}
-          receivedAll={this.props.receivedAllCollections}
         />
 
         <ToggleBundleButton editMode={ui.editMode} toggleEdit={toggleEdit} />

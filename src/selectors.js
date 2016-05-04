@@ -31,9 +31,9 @@ export const currentLinkSelector = createSelector(
   (bundleId, currentLinks) => currentLinks.get(bundleId)
 )
 
-export const collectionIdsSelector = createSelector(
+export const collectionListSelector = createSelector(
   [collectionsSelector],
-  (collections) => collections.keySeq().toList()
+  (collections) => collections.valueSeq().toList()
 )
 
 export const sortedBundlesSelector = createSelector(

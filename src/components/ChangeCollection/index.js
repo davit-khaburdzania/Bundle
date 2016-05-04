@@ -11,10 +11,8 @@ import Modal from './Modal'
 export default class ChangeCollection extends React.Component {
   static propTypes = {
     bundle: ImmutablePropTypes.record,
-    collectionIds: ImmutablePropTypes.list,
+    collections: ImmutablePropTypes.map,
     updateBundle: React.PropTypes.func,
-    getCollections: React.PropTypes.func,
-    receivedAll: React.PropTypes.bool,
   }
 
   handleClickOutside (e) {
@@ -25,20 +23,19 @@ export default class ChangeCollection extends React.Component {
 
   openModal () {
     this.props.updateUI('isOpen', true)
+  }
 
-    if (!this.props.receivedAll) {
-      this.props.getCollections()
-    }
+  collectionName () {
+    let { collections, bundle } = this.props
+    return collections.getIn([bundle.collection_id, 'name']) || 'Add To Collection'
   }
 
   render () {
-    let collectionName = this.props.bundle.collection_id || 'Add To Collection'
-
     return (
       <div className='change-collection-wrapper'>
         <div className='change-collection-clicker' onClick={::this.openModal}>
           <span className='icon collection-icon'></span>
-          <span className='collection-name'>{collectionName}</span>
+          <span className='collection-name'>{::this.collectionName()}</span>
           <span className='icon down-arrow-icon'></span>
         </div>
 
