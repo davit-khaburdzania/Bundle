@@ -1,16 +1,26 @@
 import ImmutablePropTypes from 'react-immutable-proptypes'
+import listensToClickOutside from 'react-onclickoutside/decorator'
 import { List } from 'immutable'
 import ui from 'redux-ui'
 import './index.css'
 
 @ui({
-  state: { q: '' }
+  state: { q: '', isOpen: false }
 })
+@listensToClickOutside()
 export default class ChangeCollection extends React.Component {
   static propTypes = {
     bundle: ImmutablePropTypes.record,
     collectionIds: ImmutablePropTypes.list,
-    updateBundle: React.PropTypes.func
+    updateBundle: React.PropTypes.func,
+    getCollections: React.PropTypes.func,
+    receivedAll: React.PropTypes.bool,
+  }
+
+  handleClickOutside (e) {
+    if (this.props.ui.isOpen) {
+      this.props.updateUI('isOpen', false)
+    }
   }
 
   onQuoryChange (e) {
@@ -30,6 +40,14 @@ export default class ChangeCollection extends React.Component {
     this.props.updateUI('q', '')
   }
 
+  openModal () {
+    this.props.updateUI('isOpen', true)
+
+    if (!this.props.receivedAll) {
+      this.props.getCollections()
+    }
+  }
+
   filteredSearch () {
     let ids = this.props.collectionIds
     let q = this.props.ui.q
@@ -46,7 +64,7 @@ export default class ChangeCollection extends React.Component {
     return (
       <div key={id}
         className={'item ' + (isCurrent ? 'current' : '')}
-        onClick={() => this.onItemClick(id, isCurrent)}>
+        onClick={() => this.onItemClick(id)}>
 
         <span>{id}</span>
         {checkIcon}
@@ -64,25 +82,37 @@ export default class ChangeCollection extends React.Component {
     )
   }
 
+  renderModal () {
+    if (!this.props.ui.isOpen) return false
+
+    return <div className='change-collection-modal'>
+      <input type='text'
+        className='search-input'
+        placeholder='Search Collections...'
+        value={this.props.ui.q}
+        onChange={::this.onQuoryChange}
+      />
+      <span className='icon ion-ios-search close-icon'
+        onClick={::this.onCloseClick}
+      />
+      <div className='search-results'>
+        {this.renderSearchResult()}
+      </div>
+    </div>
+  }
+
   render () {
-    if (!this.props.ui.isCollectionChangeOpen) return false
+    let collectionName = this.props.bundle.collection_id || 'Add To Collection'
 
     return (
-      <div className='change-collection-modal'>
-        <input type='text'
-          className='search-input'
-          placeholder='Search Collections...'
-          value={this.props.ui.q}
-          onChange={::this.onQuoryChange}
-        />
-
-        <span className='icon ion-ios-search close-icon'
-          onClick={::this.onCloseClick}
-        />
-
-        <div className='search-results'>
-          {this.renderSearchResult()}
+      <div className='change-collection-wrapper'>
+        <div className='change-collection-clicker' onClick={::this.openModal}>
+          <span className='icon collection-icon'></span>
+          <span className='collection-name'>{collectionName}</span>
+          <span className='icon down-arrow-icon'></span>
         </div>
+
+        {::this.renderModal()}
       </div>
     )
   }

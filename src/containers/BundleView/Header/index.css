@@ -1,3 +1,24 @@
+.change-collection-wrapper {
+  .change-collection-clicker {
+    cursor: pointer;
+
+    span {
+      vertical-align: middle;
+    }
+  }
+
+  display: inline-block;
+  position: relative;
+  margin-right: 50px;
+
+  .collection-name {
+    margin-left: 10px;
+    font-family: Avenir-Light;
+    font-size: 16px;
+    color: #000000;
+  }
+}
+
 .icon {
   font-size: 24px;
   cursor: pointer;
@@ -22,26 +43,6 @@
   background: url(/assets/images/down-arrow.svg) no-repeat center center;
 }
 
-.change-collection-wrapper {
-  .change-collection-clicker {
-    cursor: pointer;
-
-    span {
-      vertical-align: middle;
-    }
-  }
-
-  display: inline-block;
-  position: relative;
-  margin-right: 50px;
-
-  .collection-name {
-    margin-left: 10px;
-    font-family: Avenir-Light;
-    font-size: 16px;
-    color: #000000;
-  }
-}
 
 .bundle-view-header-wrapper {
   height: 65px;

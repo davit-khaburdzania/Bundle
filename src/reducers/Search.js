@@ -1,10 +1,6 @@
 import { Map, List } from 'immutable'
 
-let defaultState = Map({
-  collections: List()
-})
-
-export default function (state = defaultState, action) {
+export default function (state = Map(), action) {
   switch (action.type) {
     case 'FETCH_SEARCH_RESULTS':
       return state.set('result', action.result)
