@@ -1,55 +1,67 @@
+import ui from 'redux-ui'
 import ImmutablePropTypes from 'react-immutable-proptypes'
-import BundleName from './BundleName'
-import BundleDescription from './BundleDescription'
-import { BundleView } from '../../../components'
+import { BundleView, Editable } from '../../../components'
 import { AddLink } from '../../'
 
 import './index.css'
 
-export default function BundleViewBody ({
-  bundle,
-  users,
-  links,
-  currentLink,
-  editMode,
-  toggleEditMode,
-  handleLinkEdit,
-  handleLinkRemove,
-  handleChange
-}) {
-  return (
-    <div className='bundle-view-body'>
-      <BundleName
-        bundleId={bundle.id}
-        name={bundle.name}
-        editMode={editMode}
-        handleChange={handleChange}
-      />
+@ui({
+  key: 'bundleNew',
+  state: {
+    title: null,
+    description: null
+  }
+})
+export default class BundleViewBody extends React.Component {
+  render () {
+    let {
+      bundle,
+      users,
+      links,
+      currentLink,
+      editMode,
+      toggleEditMode,
+      handleLinkEdit,
+      handleLinkRemove,
+      handleChange,
+      updateUI
+    } = this.props
 
-      <BundleDescription
-        bundleId={bundle.id}
-        description={bundle.description}
-        editMode={editMode}
-        handleChange={handleChange}
-      />
+    return (
+      <div className='bundle-view-body'>
 
-      <AddLink bundle={bundle} currentLink={currentLink} links={links} />
-
-      <div className='line' />
-
-      {bundle.get('links').map((id, index) =>
-        <BundleView.Link
-          key={index}
-          index={index}
-          link={links.get(id)}
-          creator={users.get(links.getIn([id, 'creator']))}
+        <Editable
+          value={bundle.name}
+          placeholder="title goes here"
           editMode={editMode}
-          handleLinkEdit={handleLinkEdit}
-          handleLinkRemove={handleLinkRemove}
+          onChange={(value) => updateUI('title', value) }
         />
-      )}
-    </div>
-  )
+
+        <Editable
+          value={bundle.description}
+          placeholder="description goes here"
+          editMode={editMode}
+          onChange={(value) => updateUI('description', value) }
+        />
+
+        <AddLink bundle={bundle} currentLink={currentLink} links={links} />
+
+        <div className='line' />
+
+        {bundle.get('links').map((id, index) =>
+          <BundleView.Link
+            key={index}
+            index={index}
+            link={links.get(id)}
+            creator={users.get(links.getIn([id, 'creator']))}
+            editMode={editMode}
+            handleLinkEdit={handleLinkEdit}
+            handleLinkRemove={handleLinkRemove}
+          />
+        )}
+      </div>
+    )
+  }
 }
 
 BundleViewBody.propTypes = {

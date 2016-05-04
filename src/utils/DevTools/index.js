@@ -10,6 +10,6 @@ export default createDevTools(
     changePositionKey='ctrl-q'
     defaultPosition='bottom'
   >
-    <Inspector supportImmutable={true}/>
+    <Inspector supportImmutable={true} />
   </DockMonitor>
 )

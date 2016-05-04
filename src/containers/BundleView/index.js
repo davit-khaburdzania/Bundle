@@ -79,7 +79,7 @@ export default class BundleViewContainer extends React.Component {
       users,
       currentLink,
       updateBundleInfo,
-      updateLink
+      updateLink,
     } = this.props
 
     if (!bundle || !bundle.full_response) {

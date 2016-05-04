@@ -13,7 +13,8 @@ export default function BundleView ({
   handleLinkEdit,
   handleChange,
   handleLinkRemove,
-  toggleEdit
+  toggleEdit,
+  updateUI
 }) {
   return (
     <div className='bundle-view-wrapper'>
@@ -31,6 +32,7 @@ export default function BundleView ({
         currentLink={currentLink}
         handleChange={handleChange}
         handleLinkRemove={handleLinkRemove}
+        updateUI={updateUI}
       />
     </div>
   )
@@ -44,5 +46,6 @@ BundleView.propTypes = {
   editMode: React.PropTypes.bool,
   handleLinkEdit: React.PropTypes.func,
   handleLinkRemove: React.PropTypes.func,
-  handleChange: React.PropTypes.func
+  handleChange: React.PropTypes.func,
+  updateUI: React.PropTypes.func.isRequired
 }

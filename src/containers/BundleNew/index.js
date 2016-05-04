@@ -50,7 +50,7 @@ export default class BundleNewContainer extends React.Component {
   render () {
     const {
       currentBundle, currentLink, links, users,
-      updateBundleInfo, updateLink
+      updateBundleInfo, updateLink, updateUI
     } = this.props
 
     if (!currentBundle) return false
@@ -66,6 +66,7 @@ export default class BundleNewContainer extends React.Component {
         handleLinkEdit={updateLink}
         handleLinkRemove={this.removeLink.bind(this)}
         toggleEdit={this.saveBundle.bind(this)}
+        updateUI={updateUI}
       />
     )
   }
