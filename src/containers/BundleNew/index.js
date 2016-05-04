@@ -1,4 +1,5 @@
 import { connect } from 'react-redux'
+import ui from 'redux-ui'
 import { browserHistory } from 'react-router'
 import { NEW_BUNDLE_ID } from '../../constants'
 import { linksWithoutAuthors } from '../../helpers'
@@ -19,6 +20,13 @@ const connectProps = {
   ...linkActions
 }
 
+@ui({
+  key: 'bundleNew',
+  state: {
+    name: '',
+    description: ''
+  }
+})
 @connect(connectState, connectProps)
 export default class BundleNewContainer extends React.Component {
   componentWillMount () {
@@ -27,12 +35,12 @@ export default class BundleNewContainer extends React.Component {
   }
 
   saveBundle () {
-    let { currentBundle, links, createBundle } = this.props
+    let { currentBundle, links, createBundle, ui } = this.props
     let bundleLinks = currentBundle.links.map(id => links.get(id).delete('id'))
 
     const payload = {
-      name: currentBundle.name,
-      description: currentBundle.description,
+      name: ui.name,
+      description: ui.description,
       links_attributes: linksWithoutAuthors(bundleLinks)
     }
 
