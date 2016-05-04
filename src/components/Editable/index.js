@@ -2,6 +2,14 @@ import ui from 'redux-ui'
 
 @ui()
 class Editable extends React.Component {
+  componentWillMount () {
+    let { onChange, value } = this.props
+
+    if (onChange && value) {
+      onChange(value)
+    }
+  }
+
   handleKeyUp({ key, target }) {
     let { enterAction, onChange } = this.props
 

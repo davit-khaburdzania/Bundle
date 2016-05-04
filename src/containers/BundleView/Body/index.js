@@ -1,5 +1,5 @@
 import ImmutablePropTypes from 'react-immutable-proptypes'
-import Title from './Title'
+import Name from './Name'
 import Description from './Description'
 import { BundleView, Editable } from '../../../components'
 import { AddLink } from '../../'
@@ -22,7 +22,7 @@ export default class BundleViewBody extends React.Component {
 
     return (
       <div className='bundle-view-body'>
-        <BundleView.Title value={bundle.name} editMode={editMode} />
+        <BundleView.Name value={bundle.name} editMode={editMode} />
 
         <BundleView.Description value={bundle.description} editMode={editMode} />
 
@@ -46,7 +46,7 @@ export default class BundleViewBody extends React.Component {
   }
 }
 
-BundleView.Title = Title
+BundleView.Name = Name
 BundleView.Description = Description
 
 BundleViewBody.propTypes = {

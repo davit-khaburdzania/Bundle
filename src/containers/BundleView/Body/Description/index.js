@@ -1,12 +1,7 @@
 import ui from 'redux-ui'
 import { Editable } from '../../../../components'
 
-@ui({
-  key: 'bundleNew',
-  state: {
-    description: null,
-  }
-})
+@ui()
 export default class Description extends React.Component {
   render () {
     let {
@@ -18,7 +13,7 @@ export default class Description extends React.Component {
     return (
       <Editable
         value={value}
-        placeholder="description goes here..."
+        placeholder='description goes here...'
         editMode={editMode}
         onChange={(value) => updateUI('description', value) }
       />

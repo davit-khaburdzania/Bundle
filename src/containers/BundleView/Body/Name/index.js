@@ -1,13 +1,8 @@
 import ui from 'redux-ui'
 import { Editable } from '../../../../components'
 
-@ui({
-  key: 'bundleNew',
-  state: {
-    title: null,
-  }
-})
-export default class Title extends React.Component {
+@ui()
+export default class Name extends React.Component {
   render () {
     let {
       value,
@@ -18,15 +13,15 @@ export default class Title extends React.Component {
     return (
       <Editable
         value={value}
-        placeholder="title goes here"
+        placeholder='name goes here'
         editMode={editMode}
-        onChange={(value) => updateUI('title', value) }
+        onChange={(value) => updateUI('name', value) }
       />
     )
   }
 }
 
-Title.propTypes = {
+Name.propTypes = {
   value: React.PropTypes.string,
   editMode: React.PropTypes.bool.isRequired
 }
