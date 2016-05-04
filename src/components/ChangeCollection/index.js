@@ -1,9 +1,13 @@
 import ImmutablePropTypes from 'react-immutable-proptypes'
 import { List } from 'immutable'
+import ui from 'redux-ui'
 import listensToClickOutside from 'react-onclickoutside/decorator'
 import './index.css'
 
 // @listensToClickOutside()
+@ui({
+  state: { q: '' }
+})
 export default class ChangeCollection extends React.Component {
   static propTypes = {
     collectionId: React.PropTypes.string,
@@ -18,37 +22,40 @@ export default class ChangeCollection extends React.Component {
   }
 
   onChange(e) {
-    // this.props.searchCollection(e.target.value)
+    this.props.updateUI('q', e.target.value)
   }
 
-  renderSearchResult () {
-    let { collectionId, collectionIds } = this.props
-    let currentCollection = null
+  filteredSearch () {
+    let ids = this.props.collectionIds
+    let q = this.props.ui.q
 
-    if (collectionId) {
-      currentCollection = (
-        <div key={collectionId} className='item current'>
-            <span>{collectionId}</span>
-            <span className='icon collection-check-icon' />
-            <div className='separator'/>
-        </div>
-      )
-    }
+    return ids.filter(id => id.includes(q))
+  }
 
-    collectionIds = collectionIds.map(id => (
-      <div key={id} className='item'>
-        <span>{id}</span>
-        <div className='separator'/>
-      </div>
-    ))
+  renderItem (id, current) {
+    let checkIcon = current ? <span className='icon collection-check-icon' /> : null
+
+    if (!id) return false
 
     return (
-      <div>
-        {currentCollection}
-        {collectionIds}
+      <div key={id} className={'item ' + (current ? 'current' : '')}>
+        <span>{id}</span>
+        {checkIcon}
+        <div className='separator'/>
       </div>
     )
   }
+
+  renderSearchResult () {
+    return (
+      <div>
+        {this.renderItem(this.props.collectionId, true)}
+        {this.filteredSearch().map(id => this.renderItem(id))}
+      </div>
+    )
+  }
+
+
 
   render () {
     if (!this.props.isOpen) return false
