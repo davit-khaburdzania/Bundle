@@ -11,12 +11,15 @@ export default class Description extends React.Component {
     } = this.props
 
     return (
-      <Editable
-        value={value}
-        placeholder='description goes here...'
-        editMode={editMode}
-        onChange={(value) => updateUI('description', value) }
-      />
+      <div className='bundle-editable-wrapper bundle-description'>
+        <Editable
+          value={value}
+          placeholder='description goes here...'
+          type='textarea'
+          editMode={editMode}
+          onChange={(value) => updateUI('description', value) }
+        />
+      </div>
     )
   }
 }

@@ -17,6 +17,7 @@ body {
 *:after {
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
+  font-family: Avenir-Book;
 }
 
 *:focus {

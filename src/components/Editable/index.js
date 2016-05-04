@@ -21,14 +21,19 @@ class Editable extends React.Component {
   }
 
   render () {
-    let { value, placeholder, editMode } = this.props
+    let { value, placeholder, editMode, type } = this.props
 
     if (editMode) {
-      return <input
-        defaultValue={value || ''}
-        placeholder={placeholder}
-        onKeyUp={this.handleKeyUp.bind(this)}
-      />
+      if (type == 'textarea') {
+        return <textarea defaultValue={value || ''} placeholder={placeholder}
+          onKeyUp={this.handleKeyUp.bind(this)}
+        />
+      } else {
+        return <input defaultValue={value || ''} placeholder={placeholder}
+          onKeyUp={this.handleKeyUp.bind(this)}
+        />
+      }
+
     } else {
       return <span>{value}</span>
     }
@@ -36,6 +41,7 @@ class Editable extends React.Component {
 
   static propTypes = {
     value: React.PropTypes.string,
+    type: React.PropTypes.string,
     placeholder: React.PropTypes.string,
     editMode: React.PropTypes.bool.isRequired,
     enterAction: React.PropTypes.func,

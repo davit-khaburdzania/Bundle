@@ -11,12 +11,14 @@ export default class Name extends React.Component {
     } = this.props
 
     return (
-      <Editable
-        value={value}
-        placeholder='name goes here'
-        editMode={editMode}
-        onChange={(value) => updateUI('name', value) }
-      />
+      <div className='bundle-editable-wrapper bundle-name'>
+        <Editable
+          value={value}
+          placeholder='name goes here'
+          editMode={editMode}
+          onChange={(value) => updateUI('name', value) }
+        />
+      </div>
     )
   }
 }
