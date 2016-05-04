@@ -16,7 +16,7 @@ export default class Name extends React.Component {
           value={value}
           placeholder='name goes here'
           editMode={editMode}
-          onChange={(value) => updateUI('name', value) }
+          onChange={value => updateUI('name', value) }
         />
       </div>
     )
