@@ -1,13 +1,15 @@
+import ui from 'redux-ui'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 import ToggleBundleButton from '../ToggleBundleButton'
 import { ChangeCollection } from '../../../components'
 import './index.css'
 
+@ui({
+  state: { isCollectionChangeOpen: false }
+})
 export default class BundleViewHeader extends React.Component {
   static propTypes = {
     bundle: ImmutablePropTypes.record,
-    ui: React.PropTypes.object,
-    updateUI: React.PropTypes.func,
     toggleEdit: React.PropTypes.func,
     collectionIds: ImmutablePropTypes.list,
     receivedAllCollections: React.PropTypes.bool,
@@ -15,7 +17,7 @@ export default class BundleViewHeader extends React.Component {
   }
 
   openCollectionChangeModal () {
-    this.props.updateUI('changeCollectionOpen', true)
+    this.props.updateUI('isCollectionChangeOpen', true)
 
     if (!this.props.receivedAll) {
       this.props.getCollections()
@@ -23,8 +25,7 @@ export default class BundleViewHeader extends React.Component {
   }
 
   render () {
-    let { bundle, toggleEdit, ui, openChangeCollection } = this.props
-
+    let { bundle, toggleEdit } = this.props
     return (
       <div className='bundle-view-header-wrapper'>
         <div className='change-collection-wrapper'>

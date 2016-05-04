@@ -34,8 +34,7 @@ const connectProps = {
 @ui({
   key: 'bundle',
   state: {
-    editMode: false,
-    changeCollectionOpen: false
+    editMode: false
   }
 })
 @connect(connectState, connectProps)

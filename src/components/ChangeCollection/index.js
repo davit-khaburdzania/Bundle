@@ -7,7 +7,7 @@ import './index.css'
 @ui({
   state: { q: '' }
 })
-// @listensToClickOutside()
+@listensToClickOutside()
 export default class ChangeCollection extends React.Component {
   static propTypes = {
     bundle: ImmutablePropTypes.record,
@@ -16,8 +16,8 @@ export default class ChangeCollection extends React.Component {
   }
 
   handleClickOutside (e) {
-    if (this.props.ui.changeCollectionOpen) {
-      this.props.updateUI('changeCollectionOpen', false)
+    if (this.props.ui.isCollectionChangeOpen) {
+      this.props.updateUI('isCollectionChangeOpen', false)
     }
   }
 
@@ -73,7 +73,7 @@ export default class ChangeCollection extends React.Component {
   }
 
   render () {
-    if (!this.props.ui.changeCollectionOpen) return false
+    if (!this.props.ui.isCollectionChangeOpen) return false
 
     return (
       <div className='change-collection-modal'>
