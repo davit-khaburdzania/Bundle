@@ -33,7 +33,16 @@ export default class BundleViewHeader extends React.Component {
   }
 
   render () {
-    let { bundle, toggleEdit } = this.props
+    let { ui, bundle, toggleEdit, collectionIds, updateBundle } = this.props
+
+    if (bundle.isNewBundle) {
+      return (
+       <div className='bundle-view-header-wrapper'>
+         <ToggleBundleButton editMode={ui.editMode} toggleEdit={toggleEdit} />
+       </div>
+     )
+    }
+
     return (
       <div className='bundle-view-header-wrapper'>
         <div className='change-collection-wrapper'>
@@ -43,8 +52,8 @@ export default class BundleViewHeader extends React.Component {
 
           <ChangeCollection
             bundle={bundle}
-            collectionIds={this.props.collectionIds}
-            updateBundle={this.props.updateBundle}
+            collectionIds={collectionIds}
+            updateBundle={updateBundle}
           />
         </div>
         <ToggleBundleButton editMode={ui.editMode} toggleEdit={toggleEdit} />

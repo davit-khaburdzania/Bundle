@@ -34,7 +34,9 @@ const connectProps = {
 @ui({
   key: 'bundle',
   state: {
-    editMode: false
+    editMode: false,
+    name: '',
+    description: ''
   }
 })
 @connect(connectState, connectProps)
@@ -72,8 +74,8 @@ export default class BundleViewContainer extends React.Component {
     if (!save) return updateUI('editMode', !ui.editMode)
 
     const payload = {
-      name: bundle.name,
-      description: bundle.description,
+      name: ui.name,
+      description: ui.description,
       links_attributes: linksWithoutAuthors(bundleLinks)
     }
 
