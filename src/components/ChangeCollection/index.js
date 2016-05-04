@@ -7,17 +7,10 @@ import './index.css'
 export default class ChangeCollection extends React.Component {
   static propTypes = {
     collectionId: React.PropTypes.string,
-    searchResult: ImmutablePropTypes.list,
+    collectionIds: ImmutablePropTypes.list,
     isOpen: React.PropTypes.bool,
     closeModal: React.PropTypes.func,
-    getCollections: React.PropTypes.func,
     receivedAll: React.PropTypes.bool
-  }
-
-  componentWillMount () {
-    if (!this.props.receivedAll) {
-      this.props.getCollections()
-    }
   }
 
   handleClickOutside (e) {
@@ -29,7 +22,7 @@ export default class ChangeCollection extends React.Component {
   }
 
   renderSearchResult () {
-    let { collectionId, searchResult } = this.props
+    let { collectionId, collectionIds } = this.props
     let currentCollection = null
 
     if (collectionId) {
@@ -42,7 +35,7 @@ export default class ChangeCollection extends React.Component {
       )
     }
 
-    searchResult = searchResult.map(id => (
+    collectionIds = collectionIds.map(id => (
       <div key={id} className='item'>
         <span>{id}</span>
         <div className='separator'/>
@@ -52,7 +45,7 @@ export default class ChangeCollection extends React.Component {
     return (
       <div>
         {currentCollection}
-        {searchResult}
+        {collectionIds}
       </div>
     )
   }

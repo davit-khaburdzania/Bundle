@@ -4,7 +4,6 @@ let paths = {
   bundles: (id = '') => `${API_BASE}/bundles/${id}`,
   collections: (id = '') => `${API_BASE}/collections/${id}`,
   searchResource: (query) => `${API_BASE}/search/resource?q=${query}`,
-  searchCollection: (query) => `${API_BASE}/search/collection?q=${query}`,
   favorite: (resource, id) => `${API_BASE}/${resource}/${id}/favorite`,
   favorites: () => `${API_BASE}/favorites`,
   fetchLink: (url) => FETCHER_URL + url,

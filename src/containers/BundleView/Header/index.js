@@ -8,9 +8,16 @@ export default class BundleViewHeader extends React.Component {
     bundle: ImmutablePropTypes.record,
     ui: React.PropTypes.object,
     toggleEdit: React.PropTypes.func,
-    getCollections: React.PropTypes.func,
     collectionIds: ImmutablePropTypes.list,
     receivedAllCollections: React.PropTypes.bool
+  }
+
+  openCollectionChangeModal () {
+    this.props.openChangeCollection()
+
+    if (!this.props.receivedAll) {
+      this.props.getCollections()
+    }
   }
 
   render () {
@@ -21,14 +28,14 @@ export default class BundleViewHeader extends React.Component {
         <div className='change-collection-wrapper'>
           <span className='icon collection-icon'></span>
           <span className='collection-name'>{bundle.collection_id}</span>
-          <span className='icon down-arrow-icon' onClick={openChangeCollection}></span>
+          <span className='icon down-arrow-icon' onClick={this.openCollectionChangeModal.bind(this)} />
 
           <ChangeCollection
             collectionId={bundle.collection_id}
             isOpen={ui.changeCollectionOpen}
             closeModal={this.props.closeChangeCollection}
             getCollections={this.props.getCollections}
-            searchResult={this.props.collectionIds}
+            collectionIds={this.props.collectionIds}
             receivedAll={this.props.receivedAllCollections}
           />
         </div>
