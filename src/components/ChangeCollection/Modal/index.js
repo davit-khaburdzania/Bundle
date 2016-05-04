@@ -30,13 +30,18 @@ export default class ChangeCollectionModal extends React.Component {
     return this.props.collections.get(this.props.bundle.collection_id)
   }
 
+
+  currentCollectionId () {
+    return this.props.collections.getIn([this.props.bundle.collection_id, 'id'])
+  }
+
   filteredCollections () {
     let collections = this.props.collections.valueSeq()
     let q = this.props.ui.q.toLowerCase()
-    let current = this.currentCollection()
+    let currentId = this.currentCollectionId()
 
     return collections.filter(item => {
-      return item.id != current.id && item.name.toLowerCase().includes(q)
+      return item.id != currentId && item.name.toLowerCase().includes(q)
     })
   }
 
