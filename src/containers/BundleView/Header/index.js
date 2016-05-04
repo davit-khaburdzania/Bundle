@@ -1,4 +1,5 @@
 import ui from 'redux-ui'
+import listensToClickOutside from 'react-onclickoutside/decorator'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 import ToggleBundleButton from '../ToggleBundleButton'
 import { ChangeCollection } from '../../../components'
@@ -7,6 +8,7 @@ import './index.css'
 @ui({
   state: { isCollectionChangeOpen: false }
 })
+@listensToClickOutside()
 export default class BundleViewHeader extends React.Component {
   static propTypes = {
     bundle: ImmutablePropTypes.record,
@@ -21,6 +23,12 @@ export default class BundleViewHeader extends React.Component {
 
     if (!this.props.receivedAll) {
       this.props.getCollections()
+    }
+  }
+
+  handleClickOutside (e) {
+    if (this.props.ui.isCollectionChangeOpen) {
+      this.props.updateUI('isCollectionChangeOpen', false)
     }
   }
 

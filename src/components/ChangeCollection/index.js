@@ -1,24 +1,16 @@
 import ImmutablePropTypes from 'react-immutable-proptypes'
 import { List } from 'immutable'
 import ui from 'redux-ui'
-import listensToClickOutside from 'react-onclickoutside/decorator'
 import './index.css'
 
 @ui({
   state: { q: '' }
 })
-// @listensToClickOutside()
 export default class ChangeCollection extends React.Component {
   static propTypes = {
     bundle: ImmutablePropTypes.record,
     collectionIds: ImmutablePropTypes.list,
     updateBundle: React.PropTypes.func
-  }
-
-  handleClickOutside (e) {
-    if (this.props.ui.isCollectionChangeOpen) {
-      this.props.updateUI('isCollectionChangeOpen', false)
-    }
   }
 
   onQuoryChange (e) {
