@@ -4,22 +4,21 @@ import ui from 'redux-ui'
 import listensToClickOutside from 'react-onclickoutside/decorator'
 import './index.css'
 
-// @listensToClickOutside()
 @ui({
   state: { q: '' }
 })
+// @listensToClickOutside()
 export default class ChangeCollection extends React.Component {
   static propTypes = {
     bundle: ImmutablePropTypes.record,
     collectionIds: ImmutablePropTypes.list,
-    isOpen: React.PropTypes.bool,
-    closeModal: React.PropTypes.func,
-    updateBundle: React.PropTypes.func,
-    receivedAll: React.PropTypes.bool
+    updateBundle: React.PropTypes.func
   }
 
   handleClickOutside (e) {
-    if (this.props.isOpen) this.props.closeModal()
+    if (this.props.ui.changeCollectionOpen) {
+      this.props.updateUI('changeCollectionOpen', false)
+    }
   }
 
   onQuoryChange (e) {
@@ -42,8 +41,9 @@ export default class ChangeCollection extends React.Component {
   filteredSearch () {
     let ids = this.props.collectionIds
     let q = this.props.ui.q
+    let current = this.props.bundle.collection_id
 
-    return ids.filter(id => id.includes(q))
+    return ids.filter(id => id != current && id.includes(q))
   }
 
   renderItem (id, isCurrent) {
@@ -73,7 +73,7 @@ export default class ChangeCollection extends React.Component {
   }
 
   render () {
-    if (!this.props.isOpen) return false
+    if (!this.props.ui.changeCollectionOpen) return false
 
     return (
       <div className='change-collection-modal'>

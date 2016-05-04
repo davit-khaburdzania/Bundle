@@ -82,14 +82,6 @@ export default class BundleViewContainer extends React.Component {
     updateUI('editMode', !ui.editMode)
   }
 
-  openChangeCollection () {
-    this.props.updateUI('changeCollectionOpen', true)
-  }
-
-  closeChangeCollection () {
-    this.props.updateUI('changeCollectionOpen', false)
-  }
-
   render () {
     let { bundle, updateBundleInfo, updateLink} = this.props
 
@@ -101,8 +93,6 @@ export default class BundleViewContainer extends React.Component {
       handleChange={updateBundleInfo}
       handleLinkEdit={updateLink}
       handleLinkRemove={this.handleLinkRemove.bind(this)}
-      openChangeCollection={this.openChangeCollection.bind(this)}
-      closeChangeCollection={this.closeChangeCollection.bind(this)}
       toggleEdit={this.toggleEdit.bind(this)}
     />
   }

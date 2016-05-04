@@ -7,6 +7,7 @@ export default class BundleViewHeader extends React.Component {
   static propTypes = {
     bundle: ImmutablePropTypes.record,
     ui: React.PropTypes.object,
+    updateUI: React.PropTypes.func,
     toggleEdit: React.PropTypes.func,
     collectionIds: ImmutablePropTypes.list,
     receivedAllCollections: React.PropTypes.bool,
@@ -14,7 +15,7 @@ export default class BundleViewHeader extends React.Component {
   }
 
   openCollectionChangeModal () {
-    this.props.openChangeCollection()
+    this.props.updateUI('changeCollectionOpen', true)
 
     if (!this.props.receivedAll) {
       this.props.getCollections()
@@ -33,11 +34,7 @@ export default class BundleViewHeader extends React.Component {
 
           <ChangeCollection
             bundle={bundle}
-            isOpen={ui.changeCollectionOpen}
-            closeModal={this.props.closeChangeCollection}
-            getCollections={this.props.getCollections}
             collectionIds={this.props.collectionIds}
-            receivedAll={this.props.receivedAllCollections}
             updateBundle={this.props.updateBundle}
           />
         </div>
